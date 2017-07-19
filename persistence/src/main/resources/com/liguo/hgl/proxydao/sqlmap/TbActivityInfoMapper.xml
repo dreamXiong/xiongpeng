@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbActivityInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbActivityInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER"/>
+    <result column="activity_name" property="activityName" jdbcType="VARCHAR" />
+    <result column="activity_detail" property="activityDetail" jdbcType="VARCHAR" />
+    <result column="start_date" property="startDate" jdbcType="DATE" />
+    <result column="end_date" property="endDate" jdbcType="DATE" />
+    <result column="start_time" property="startTime" jdbcType="TIME" />
+    <result column="end_time" property="endTime" jdbcType="TIME" />
+    <result column="display_begin" property="displayBegin" jdbcType="INTEGER" />
+    <result column="display_remaining" property="displayRemaining" jdbcType="INTEGER" />
+    <result column="title_image" property="titleImage" jdbcType="VARCHAR"/>
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="created_by" property="createdBy" jdbcType="INTEGER" />
+    <result column="created_date" property="createdDate" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER"/>
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null">
+      	 and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.activityName != null" >
+         and activity_name = #{parameter.activityName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.activityDetail != null" >
+         and activity_detail = #{parameter.activityDetail,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.startDate != null" >
+         and start_date = #{parameter.startDate,jdbcType=DATE}
+      </if>
+      <if test="parameter.endDate != null" >
+         and end_date = #{parameter.endDate,jdbcType=DATE}
+      </if>
+      <if test="parameter.startTime != null" >
+         and start_time = #{parameter.startTime,jdbcType=TIME}
+      </if>
+      <if test="parameter.endTime != null" >
+         and end_time = #{parameter.endTime,jdbcType=TIME}
+      </if>
+      <if test="parameter.displayBegin != null" >
+         and display_begin = #{parameter.displayBegin,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.displayRemaining != null" >
+         and display_remaining = #{parameter.displayRemaining,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.titleImage != null">
+      	and title_image = #{parameter.titleImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.image != null" >
+         and image = #{parameter.image,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createdBy != null" >
+         and created_by = #{parameter.createdBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createdDate != null" >
+         and created_date = #{parameter.createdDate,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null">
+      	and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id,shop_id,activity_name, activity_detail, start_date, end_date, start_time, end_time, display_begin, 
+    display_remaining, title_image, image, status, created_by, created_date, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_activity_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_activity_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_activity_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_activity_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbActivityInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into hgl.tb_activity_info (id, shop_id, activity_name, activity_detail, 
+      start_date, end_date, start_time, 
+      end_time, display_begin, display_remaining, title_image, 
+      image, status, created_by, 
+      created_date,version)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{activityName,jdbcType=VARCHAR}, #{activityDetail,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=DATE}, #{endDate,jdbcType=DATE}, #{startTime,jdbcType=TIME}, 
+      #{endTime,jdbcType=TIME}, #{displayBegin,jdbcType=INTEGER}, #{displayRemaining,jdbcType=INTEGER}, #{titleImage,jdbcType=VARCHAR},
+      #{image,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createdBy,jdbcType=INTEGER}, 
+      #{createdDate,jdbcType=BIGINT},#{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbActivityInfo" >
+    insert into tb_activity_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null">
+      	shop_id,
+      </if>
+      <if test="activityName != null" >
+        activity_name,
+      </if>
+      <if test="activityDetail != null" >
+        activity_detail,
+      </if>
+      <if test="startDate != null" >
+        start_date,
+      </if>
+      <if test="endDate != null" >
+        end_date,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="displayBegin != null" >
+        display_begin,
+      </if>
+      <if test="displayRemaining != null" >
+        display_remaining,
+      </if>
+      <if test="titleImage != null" >
+        titleImage,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createdBy != null" >
+        created_by,
+      </if>
+      <if test="createdDate != null" >
+        created_date,
+      </if>
+      <if test="version != null">
+      	version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null">
+      	#{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null" >
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDetail != null" >
+        #{activityDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIME},
+      </if>
+      <if test="displayBegin != null" >
+        #{displayBegin,jdbcType=INTEGER},
+      </if>
+      <if test="displayRemaining != null" >
+        #{displayRemaining,jdbcType=INTEGER},
+      </if>
+      <if test="titleImage != null" >
+        #{titleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null" >
+        #{createdDate,jdbcType=BIGINT},
+      </if>
+      <if test="version !=null">
+      	#{version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_activity_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbActivityInfo" flushCache="true" >
+    update tb_activity_info
+    <set >
+      <if test="shopId != null">
+      	shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="activityName != null" >
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="activityDetail != null" >
+        activity_detail = #{activityDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null" >
+        start_date = #{startDate,jdbcType=DATE},
+      </if>
+      <if test="endDate != null" >
+        end_date = #{endDate,jdbcType=DATE},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIME},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIME},
+      </if>
+      <if test="displayBegin != null" >
+        display_begin = #{displayBegin,jdbcType=INTEGER},
+      </if>
+      <if test="displayRemaining != null" >
+        display_remaining = #{displayRemaining,jdbcType=INTEGER},
+      </if>
+      <if test="titleImage != null" >
+        title_image = #{titleImage,jdbcType=VARCHAR},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createdBy != null" >
+        created_by = #{createdBy,jdbcType=INTEGER},
+      </if>
+      <if test="createdDate != null" >
+        created_date = #{createdDate,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbActivityInfo" flushCache="true" >
+    update tb_activity_info
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      activity_detail = #{activityDetail,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=DATE},
+      end_date = #{endDate,jdbcType=DATE},
+      start_time = #{startTime,jdbcType=TIME},
+      end_time = #{endTime,jdbcType=TIME},
+      display_begin = #{displayBegin,jdbcType=INTEGER},
+      display_remaining = #{displayRemaining,jdbcType=INTEGER},
+      title_image = #{titleImage,jdbcType=VARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      created_by = #{createdBy,jdbcType=INTEGER},
+      created_date = #{createdDate,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectObjectByPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+  	select id,shop_id,activity_name,activity_detail,start_date,end_date,start_time,end_time,display_begin,display_remaining,
+  			title_image,image,status,created_by,created_date from tb_activity_info 
+  		<trim prefix="where" prefixOverrides="and|or">
+  			<if test="parameter.shopId != null">
+  				and shop_id =#{parameter.shopId,jdbcType=VARCHAR}
+  			</if>
+  			<if test="parameter.activityName !=null and parameter.activityName !=''">
+  				and activity_name like CONCAT('%', #{parameter.activityName,jdbcType=VARCHAR},'%')
+  			</if>
+  			<if test="parameter.status !=null and parameter.status !=''">
+  				and status =#{parameter.status,jdbcType=INTEGER}
+  			</if>
+  		</trim>	
+  		<if test="orderByClause!=null">
+			order by ${orderByClause}
+		</if>
+  		<include refid="common.Mysql_Pagination_Limit"/>
+  </select>
+</mapper>

@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbUserInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_type" property="shopType" jdbcType="INTEGER" />
+    <result column="exp_level" property="expLevel" jdbcType="INTEGER" />
+    <result column="exp" property="exp" jdbcType="INTEGER" />
+    <result column="reg_province" property="regProvince" jdbcType="INTEGER" />
+    <result column="reg_city" property="regCity" jdbcType="INTEGER" />
+    <result column="reg_country" property="regCountry" jdbcType="INTEGER" />
+    <result column="reg_street" property="regStreet" jdbcType="INTEGER" />
+    <result column="reg_address" property="regAddress" jdbcType="VARCHAR" />
+    <result column="sales" property="sales" jdbcType="INTEGER" />
+    <result column="image" property="image" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auth_status" property="authStatus" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="birth_year" property="birthYear" jdbcType="INTEGER" />
+    <result column="birth_month" property="birthMonth" jdbcType="INTEGER" />
+    <result column="birth_day" property="birthDay" jdbcType="INTEGER" />
+    <result column="service_type" property="serviceType" jdbcType="VARCHAR" />
+    <result column="image_face" property="imageFace" jdbcType="VARCHAR" />
+    <result column="iamge_back" property="iamgeBack" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="feed_back" property="feedBack" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="evaluate_num_avg" property="evaluateNumAvg" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopType != null" >
+         and shop_type = #{parameter.shopType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.expLevel != null" >
+         and exp_level = #{parameter.expLevel,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.exp != null" >
+         and exp = #{parameter.exp,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regProvince != null" >
+         and reg_province = #{parameter.regProvince,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCity != null" >
+         and reg_city = #{parameter.regCity,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCountry != null" >
+         and reg_country = #{parameter.regCountry,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regStreet != null" >
+         and reg_street = #{parameter.regStreet,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regAddress != null" >
+         and reg_address = #{parameter.regAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.sales != null" >
+         and sales = #{parameter.sales,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.image != null" >
+         and image = #{parameter.image,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.authStatus != null" >
+         and auth_status = #{parameter.authStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.birthYear != null" >
+         and birth_year = #{parameter.birthYear,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.birthMonth != null" >
+         and birth_month = #{parameter.birthMonth,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.birthDay != null" >
+         and birth_day = #{parameter.birthDay,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.serviceType != null" >
+         and service_type = #{parameter.serviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.imageFace != null" >
+         and image_face = #{parameter.imageFace,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.iamgeBack != null" >
+         and iamge_back = #{parameter.iamgeBack,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.gender != null" >
+         and gender = #{parameter.gender,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.accountId != null" >
+         and account_id = #{parameter.accountId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.feedBack != null" >
+         and feed_back = #{parameter.feedBack,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_type, exp_level, exp, reg_province, reg_city, reg_country, reg_street, reg_address, 
+    sales, image, remark, auth_status, create_by, create_dt, birth_year, birth_month, 
+    birth_day, service_type, image_face, iamge_back, gender, account_id, feed_back, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_user_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_user_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_user_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbUserInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into hgl.tb_user_info (id, shop_type, exp_level, 
+      exp, reg_province, reg_city, 
+      reg_country, reg_street, reg_address, 
+      sales, image, remark, 
+      auth_status, create_by, create_dt, 
+      birth_year, birth_month, birth_day, 
+      service_type, image_face, iamge_back, 
+      gender, account_id,feed_back, version
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, #{expLevel,jdbcType=INTEGER}, 
+      #{exp,jdbcType=INTEGER}, #{regProvince,jdbcType=INTEGER}, #{regCity,jdbcType=INTEGER}, 
+      #{regCountry,jdbcType=INTEGER}, #{regStreet,jdbcType=INTEGER}, #{regAddress,jdbcType=VARCHAR}, 
+      #{sales,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{authStatus,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT}, 
+      #{birthYear,jdbcType=INTEGER}, #{birthMonth,jdbcType=INTEGER}, #{birthDay,jdbcType=INTEGER}, 
+      #{serviceType,jdbcType=VARCHAR}, #{imageFace,jdbcType=VARCHAR}, #{iamgeBack,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER},#{feedBack,jdbcType=VARCHAR},#{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbUserInfo" >
+    insert into tb_user_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
+      </if>
+      <if test="expLevel != null" >
+        exp_level,
+      </if>
+      <if test="exp != null" >
+        exp,
+      </if>
+      <if test="regProvince != null" >
+        reg_province,
+      </if>
+      <if test="regCity != null" >
+        reg_city,
+      </if>
+      <if test="regCountry != null" >
+        reg_country,
+      </if>
+      <if test="regStreet != null" >
+        reg_street,
+      </if>
+      <if test="regAddress != null" >
+        reg_address,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="image != null" >
+        image,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="authStatus != null" >
+        auth_status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="birthYear != null" >
+        birth_year,
+      </if>
+      <if test="birthMonth != null" >
+        birth_month,
+      </if>
+      <if test="birthDay != null" >
+        birth_day,
+      </if>
+      <if test="serviceType != null" >
+        service_type,
+      </if>
+      <if test="imageFace != null" >
+        image_face,
+      </if>
+      <if test="iamgeBack != null" >
+        iamge_back,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="feedBack != null" >
+        feed_back,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="expLevel != null" >
+        #{expLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null" >
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="regProvince != null" >
+        #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null" >
+        #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="birthYear != null" >
+        #{birthYear,jdbcType=INTEGER},
+      </if>
+      <if test="birthMonth != null" >
+        #{birthMonth,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        #{birthDay,jdbcType=INTEGER},
+      </if>
+      <if test="serviceType != null" >
+        #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageFace != null" >
+        #{imageFace,jdbcType=VARCHAR},
+      </if>
+      <if test="iamgeBack != null" >
+        #{iamgeBack,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="feedBack != null" >
+        #{feedBack,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_user_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbUserInfo" flushCache="true" >
+    update tb_user_info
+    <set >
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="expLevel != null" >
+        exp_level = #{expLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null" >
+        exp = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="regProvince != null" >
+        reg_province = #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        reg_city = #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        reg_country = #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        reg_street = #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        reg_address = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="image != null" >
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null" >
+        auth_status = #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="birthYear != null" >
+        birth_year = #{birthYear,jdbcType=INTEGER},
+      </if>
+      <if test="birthMonth != null" >
+        birth_month = #{birthMonth,jdbcType=INTEGER},
+      </if>
+      <if test="birthDay != null" >
+        birth_day = #{birthDay,jdbcType=INTEGER},
+      </if>
+      <if test="serviceType != null" >
+        service_type = #{serviceType,jdbcType=VARCHAR},
+      </if>
+      <if test="imageFace != null" >
+        image_face = #{imageFace,jdbcType=VARCHAR},
+      </if>
+      <if test="iamgeBack != null" >
+        iamge_back = #{iamgeBack,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="feedBack != null" >
+        feed_back = #{feedBack,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbUserInfo" flushCache="true" >
+    update tb_user_info
+    set shop_type = #{shopType,jdbcType=INTEGER},
+      exp_level = #{expLevel,jdbcType=INTEGER},
+      exp = #{exp,jdbcType=INTEGER},
+      reg_province = #{regProvince,jdbcType=INTEGER},
+      reg_city = #{regCity,jdbcType=INTEGER},
+      reg_country = #{regCountry,jdbcType=INTEGER},
+      reg_street = #{regStreet,jdbcType=INTEGER},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      birth_year = #{birthYear,jdbcType=INTEGER},
+      birth_month = #{birthMonth,jdbcType=INTEGER},
+      birth_day = #{birthDay,jdbcType=INTEGER},
+      service_type = #{serviceType,jdbcType=VARCHAR},
+      image_face = #{imageFace,jdbcType=VARCHAR},
+      iamge_back = #{iamgeBack,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=INTEGER},
+      feed_back = #{feedBack,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateEvaluateNumAvg" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+	UPDATE tb_user_info tui
+	SET tui.evaluate_num_avg = (
+		SELECT
+			AVG(twose.evaluate_start) AS e
+		FROM
+			tb_wap_order_service twose
+		WHERE
+			twose.repairman_id = #{parameter.repId,jdbcType=INTEGER}
+	)
+	WHERE
+		tui.id = #{parameter.id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="findMasterByShopId"  parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="map">
+  	SELECT
+  		twu.id as id,
+		twu.NAME AS name,
+		twu.mobile AS mobile,
+		twu.id_card AS idCard,
+		twu.address AS address,
+		tui.evaluate_num_avg as evaluateNumAvg
+	FROM
+		tb_web_user twu
+	INNER JOIN tb_user_info tui ON twu.userinfo_id = tui.id
+	INNER JOIN tb_customer_service t ON tui.service_type = t.service_type_id
+	WHERE
+		twu.recommend_shop_id = #{parameter.shopId,jdbcType=INTEGER}
+	AND 
+	(
+		tui.service_type LIKE CONCAT(#{parameter.typeId,jdbcType=INTEGER}, ',', '%')
+		OR tui.service_type LIKE CONCAT('%', ',', #{parameter.typeId,jdbcType=INTEGER})
+		OR tui.service_type LIKE CONCAT('%',',' , #{parameter.typeId,jdbcType=INTEGER},',' ,'%')
+	)
+  </select>
+
+  
+</mapper>

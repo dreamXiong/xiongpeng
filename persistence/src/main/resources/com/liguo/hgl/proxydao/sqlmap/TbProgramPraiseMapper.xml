@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbProgramPraiseMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbProgramPraise" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="program_id" property="programId" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="weixin_num" property="weixinNum" jdbcType="VARCHAR" />
+    <result column="weixin_name" property="weixinName" jdbcType="VARCHAR" />
+    <result column="weixin_head_image" property="weixinHeadImage" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.programId != null" >
+         and program_id = #{parameter.programId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.openId != null" >
+         and open_id = #{parameter.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.weixinNum != null" >
+         and weixin_num = #{parameter.weixinNum,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.weixinName != null" >
+         and weixin_name = #{parameter.weixinName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.weixinHeadImage != null" >
+         and weixin_head_image = #{parameter.weixinHeadImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.isDelete != null" >
+         and is_delete = #{parameter.isDelete,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, program_id, open_id, weixin_num, weixin_name, weixin_head_image, create_time, 
+    is_delete, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_program_praise
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_program_praise
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_program_praise
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_program_praise
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbProgramPraise" useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_program_praise (program_id, open_id, weixin_num, 
+      weixin_name, weixin_head_image, create_time, 
+      is_delete, version)
+    values (#{programId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{weixinNum,jdbcType=VARCHAR}, 
+      #{weixinName,jdbcType=VARCHAR}, #{weixinHeadImage,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{isDelete,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbProgramPraise" useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_program_praise
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="programId != null" >
+        program_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num,
+      </if>
+      <if test="weixinName != null" >
+        weixin_name,
+      </if>
+      <if test="weixinHeadImage != null" >
+        weixin_head_image,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="programId != null" >
+        #{programId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null" >
+        #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinName != null" >
+        #{weixinName,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinHeadImage != null" >
+        #{weixinHeadImage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_program_praise
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbProgramPraise" flushCache="true" >
+    update tb_program_praise
+    <set >
+      <if test="programId != null" >
+        program_id = #{programId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinNum != null" >
+        weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinName != null" >
+        weixin_name = #{weixinName,jdbcType=VARCHAR},
+      </if>
+      <if test="weixinHeadImage != null" >
+        weixin_head_image = #{weixinHeadImage,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbProgramPraise" flushCache="true" >
+    update tb_program_praise
+    set program_id = #{programId,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      weixin_num = #{weixinNum,jdbcType=VARCHAR},
+      weixin_name = #{weixinName,jdbcType=VARCHAR},
+      weixin_head_image = #{weixinHeadImage,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
+  </update>
+</mapper>

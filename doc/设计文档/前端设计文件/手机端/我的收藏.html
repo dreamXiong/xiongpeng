@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>我的收藏</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/my.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<link rel="stylesheet" href="layer-mobile/layer/need/layer.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="layer-mobile/layer/layer.js"></script>
+</head>	
+<body>
+
+	<header class="collect-head">
+		<span href="javascript:history.back(-1); " class="icon-angle-left text-center"></span>
+		<h3 class="text-center">我的收藏</h3>
+		<span class="icon-reorder"></span>
+		<ul class="nav">
+			<li>
+				<a href="index.html">
+					<span class="icon-home"></span>
+					首页
+				</a>
+			</li>
+			<li>
+				<a href="class.html">
+					<span class="icon-th-list"></span>
+					分类
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<span class="icon-shopping-cart"></span>
+					选购
+				</a>
+			</li>
+			<li>
+				<a href="选购页面.html">
+					<span class="icon-user"></span>
+					我的
+				</a>
+			</li>
+		</ul>
+	</header>
+	<nav class="collect-nav box-shadow">
+		<ul class="box clearfix text-center">
+			<li class="box1 active">
+				<a href="javascript:;">产品</a>
+			</li>
+			<li class="box1">
+				<a href="javascript:;">店铺</a>
+			</li>
+			<li class="box1">
+				<a href="javascript:;">师傅</a>
+			</li>
+			<li class="box1">
+				<a href="javascript:;">服务</a>
+			</li>
+		</ul>
+	</nav>
+	
+
+<div class="container" style="margin-top:95px;">
+	<div class="show-list" style="display: block;">
+		<div class="list-info">
+			<div class="box">
+				<img src="images/20.jpg" alt="">
+				<div class="box1 text-hidden"> 奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店</div>
+				<span class="remove"></span>
+			</div>
+			<div class="box">
+				<img src="images/20.jpg" alt="">
+				<div class="box1 text-hidden"> 奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店</div>
+				<span class="remove"></span>
+			</div>
+		</div>
+	</div>
+	<div class="show-list">
+		<div class="list-info">
+			<div class="box">
+				<img src="images/20.jpg" alt="">
+				<div class="box1 text-hidden"> 奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店奕锦服饰专营店</div>
+				<span class="remove"></span>
+			</div>
+		</div>
+	</div>
+	<div class="show-list">
+		<div class="list-info">
+			<div class="box box-shadow">
+				<img src="images/kunge.jpg" alt="">
+				<div class="box1 text-hidden">周坤--bug高手</div>
+				<span class="remove"></span>
+			</div>
+			<div class="box box-shadow">
+				<img src="images/kunge.jpg" alt="">
+				<div class="box1 text-hidden">熊鹏--撩妹高手</div>
+				<span class="remove"></span>
+			</div>
+			<div class="box box-shadow">
+				<img src="images/21.jpg" alt="">
+				<div class="box1 text-hidden">熊鹏--撩妹高手</div>
+				<span class="remove"></span>
+			</div>
+		</div>
+	</div>
+	<div class="show-list">
+		<img src="images/null.png" alt="">
+	</div>
+</div>
+
+
+
+  		
+</body>
+<script>
+	$(function() {
+		var arr = ['你确认要删除此收藏产品??','你确认要删除此收藏店铺??',
+				   '你确认要删除此收藏师傅??','你确认要删除此收藏服务??'];
+		var len = $('.collect-nav li').length;
+		var str = '你确认要删除此收藏产品??';
+		
+		$('.collect-nav li').on('click',function(){
+			var index = $(this).index();
+			str = arr[index];
+			$(this).addClass('active').siblings('li').removeClass('active');
+			$('.show-list').eq(index).show().siblings('.show-list').hide();
+		})
+		$('.show-list').delegate('.remove','click',function(){
+			var _this = $(this)
+			layer.open({
+		    	content: str,
+		    	btn: ['确认','取消'],
+		    	shadeClose: true,
+			    yes: function(index){
+			    	removeList(_this);
+ 					layer.close(index);
+			    }, 
+			    no: function(index){
+			    	layer.close(index)
+			    }
+			});
+		})
+	});
+	function removeList(obj){
+		obj.parents('.box').remove()
+	} 
+</script>
+
+</html>
+
+

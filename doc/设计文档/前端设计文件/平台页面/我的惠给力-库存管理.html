@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>库存管理</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jq-ui-rest.css">
+	<link rel="stylesheet" href="css/me.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="js/pick.js"></script>
+	<script src="js/uploadPreview.min.js"></script>
+	<script src="js/jquery.jqzoom.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="js/datepicker-zh.js"></script>
+</head>
+<body>
+<!-- 头部菜单开始 -->
+	<div class="nav">
+		<div class="area">
+			<div class="nav-left">
+				<ul>
+					<li style="padding-left:0"><a href="javascript:">收藏网站</a></li>
+					<li><a href="javascript:">注册</a></li>
+					<li><a href="javascript:">登录</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="javascript:">我的订单</a></li>
+					<li class="two-ac"><a href="javascript:">商家入驻</a></li>
+					<li><a href="javascript:">联系我们</a></li>
+					<li style="padding-right:0"> 
+						<span class="icon-phone text-red" style="font-size:16px"></span>&nbsp; 
+						<i class="text-red font-bold" style="font-size:16px">400-2377-2661</i>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- 头部菜单结束 -->
+<!-- 搜索板块开始 -->
+	<div class="search area">
+		<div class="logo">
+			<h1>
+				<a href="javascript:">
+					<img src="images/logo.png" height="100" width="200" alt="">
+				</a>
+			</h1>
+		</div>
+		<div class="search-box">
+			<div class="search-bg">
+				<input type="text" placeholder="输入厂家、品名、规格、材质、产地">
+				<button type="button">搜 索</button>
+			</div>
+			<div class="search-text">
+				<span><a href="javascript:" class="text-red">六角螺母</a></span>
+				<span><a href="javscript:" class="text-red">八角扳手</a></span>
+				<span><a href="javascript:">满额送</a></span>
+				<span><a href="javascript:">招商</a></span>
+			</div>
+		</div>
+		<div class="shopping">
+			<i>0</i>
+			进货单
+			<div class="shopping-in">
+				<div class="shop-in"></div>
+				购物车中还没有商品，赶紧选购吧！
+			</div>
+		</div>
+	</div>
+	<div class="area commodity text-center">
+		<div class="pull-left name">
+			<span class="icon-list" style="vertical-align: middle;margin-left:5px"></span>
+			商品分类
+
+			<div class="name-list cantainer-left">
+				<ul class="cantainer-warp-ui">
+						<li>
+							
+							<a href="javascript:"><i class="iconfont">&#xe601; </i> 手动工具</a>
+							<div class="ui-drop-down">
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+								<a href="javascript:">
+									<img src="images/warp-logo.png"   alt="">
+								</a>
+
+							</div>
+						</li>
+						<li>
+							
+							<a href="javascript:"><i class="iconfont">&#xe607;</i> 电动工具</a>
+							<div class="ui-drop-down">
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/title-bg.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand2.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+
+							</div>
+						</li>
+						<li>
+							
+							<a href="javascript:"><i class="iconfont">&#xe600;</i> 橱柜/电器</a>
+							<div class="ui-drop-down">
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/title-bg.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand2.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/title-bg.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand2.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+							</div>
+						</li>
+						<li>
+							
+							<a href="javascript:"><i class="iconfont">&#xe605;</i> 水暖/卫浴/洁具</a>
+							<div class="ui-drop-down">
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/title-bg.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand2.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:"><i class="iconfont">&#xe60a;</i> 照明/交电</a>
+							<div class="ui-drop-down">
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/title-bg.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/warp-brand2.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+								<a href="javacscript:">
+									<img src="images/logo.png"  alt="">
+								</a>
+							</div>
+						</li>
+						<img src="images/warp-logo.png" height="100" width="196" alt="">
+					</ul>
+			</div>
+		</div>
+		<div class="pull-left sort">
+			<ul>
+				<li><a href="index.html">首页</a></li>
+				<li><a href="pick.html">现货选购</a></li>
+				<li><a href="招商.html">招商</a></li>
+				<li><a href="javascript:">活动折扣</a></li>
+				<li><a href="javascript:">支付结算</a></li>
+			</ul>
+		</div>
+	</div>
+<!-- 搜索板块结束 -->
+<!-- 内容板块开始 -->
+	<div class="cantainer">
+		<div class="area me">
+			<h2>我的惠给力</h2>
+			<div class="main-left pull-left">
+				<div class="main-left-in">
+					<div class="main-list">
+						<dl>
+							<dt>订单中心</dt>
+							<dd><a href="javascript:;">我的订单</a></dd>
+							<dd><a href="javascript:;">关闭订单</a></dd>
+							<dd><a href="javascript:;">我的商铺管理</a></dd>
+							<dd><a href="javascript:;">收货地址</a></dd>
+							<dd><a href="javascript:;">我的经验值</a></dd>
+							<dd><a href="javascript:;">我的优惠券</a></dd>
+							<dd><a href="javascript:;">我的等级</a></dd>
+						</dl>
+						<dl>
+							<dt>销售订单</dt>
+							<dd><a href="javascript:;">销售订单</a></dd>
+							<dd><a href="javascript:;">关闭订单</a></dd>
+							<dd class="active"><a href="javascript:;">库存管理</a></dd>
+							<dd><a href="javascript:;">积分管理</a></dd>
+						</dl>
+						<dl>
+							<dt>系统功能</dt>
+							<dd><a href="javascript:;">账户管理</a></dd>
+							<dd><a href="javascript:;">我的工作台</a></dd>
+							<dd><a href="javascript:;">系统配置</a></dd>
+						</dl>
+					</div>
+				</div>
+			</div>
+			<div class="main-right pull-right">
+				<div class="stock">
+					<div class="stock_nav">
+						名称<input type="text">
+						大类
+						<select>
+							<option value="熊鹏">熊鹏</option>
+							<option value="问责天">问责天</option>
+						</select>
+						品牌
+						<select>
+							<option value="大婶">大婶</option>
+							<option value="大神">大神</option>
+						</select>
+						状态
+						<select>
+							<option value="菜鸟">菜鸟</option>
+							<option value="小白">小白</option>
+						</select>
+						<div class="pull-right">
+							<button type="button" class="btn">查询</button>
+							<button type="button" class="btn" id="put">批量上架</button>
+							<button type="button" class="btn" id="but">批量下架</button>
+							<button type="button" class="btn" id="add">添加自有商品</button>
+						</div>
+					</div>	
+					<table class="col-10">
+						<thead class="bg-gray">
+							<tr>
+								<th width="30"><input type="checkbox" title="全选"></th>
+								<th width="248">名称</th>
+								<th width="162">分类</th>
+								<th width="99">品牌</th>
+								<th width="297">附加属性</th>
+								<th width="200">操作选项</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td><input type="checkbox"></td>
+								<td>维修级尖嘴大力钳@TAJIMA/田岛维修级尖嘴大力钳@TAJIMA/田岛	</td>
+								<td>手动工具-扳手-呆扳手动工具-扳手-呆扳手</td>
+								<td>TAJIMA/田岛</td>
+								<td>价格/规格/材质/产地/开口半径/开口格/材质/产地/开口半径/开口宽度</td>
+								<td>
+									<button type="button" class="btn">修改</button>
+									<button type="button" class="btn">详情</button>
+									<button type="button" class="btn" onclick="window.location.href='我的惠给力-编辑库存.html'">编辑库存</button>
+								</td>
+							</tr>
+							
+						</tbody>
+					</table>	
+					<div class="text-center padding">
+						<div class="pagination clear">
+							<a href="javascript:;" class="prev">上一页</a>
+							<a href="javascript:;" class="page active">1</a>
+							<a href="javascript:;" class="page">2</a>
+							<a href="javascript:;" class="page">3</a>
+							<a href="javascript:;" class="next">下一页</a>
+							<a href="javascript:;" class="no-border"> 到 <input type="text" class="text-center"> 页 </a>
+							<a href="javascript:;"><button type="button">确定</button></a>
+						</div>
+					</div>
+				</div>
+					
+			</div>
+		</div>
+	</div>
+<!-- 内容板块结束 -->
+
+
+
+<!-- 底部开始 -->
+	<div class="foot">
+		<div class="area">
+			<p class="font-text text-center">
+				<span><a href="javascript:">购物指南</a></span>
+				<span><a href="javascript:">免费注册</a></span>
+				<span><a href="javascript:">联系客服</a></span>
+				<span><a href="javascript:">特色服务</a></span>
+				<span><a href="javascript:">招商代理</a></span>
+				<span><a href="javascript:">满额赠送</a></span>
+				<span><a href="javascript:">商家中心</a></span>
+				<span><a href="javascript:">入驻平台</a></span>
+				<span><a href="javascript:">入驻协议</a></span>
+				<span><a href="javascript:">交易规则</a></span>
+			</p>
+			<p class="text-center" style="line-height:26px">Copyright © 2012-2019 http://www.hgeili.com All Rights Reserved.</p>
+			<p class="text-center" style="line-height:26px">粤ICP备16000497号-1 立国网络技术有限公司 版权所有</p>
+		</div>
+	</div>
+<!-- 底部结束 -->
+
+<!-- 批量定价的modal开始 -->
+<div id="dialog" class="put-warp">
+	您确定要批量上架？？
+</div>
+<!-- 批量定价的modal结束 -->
+
+<!-- 添加商品的modal开始 -->
+<div id="dialog1" class="add-pick">
+	<div class="clear">
+		<label>分类</label>
+		<select class="short">
+			<option value="1">1</option>
+		</select>
+		<select class="short">
+			<option value="1">1</option>
+		</select>
+		<select class="short">
+			<option value="1">1</option>
+		</select>
+	</div>
+	<div class="clear">
+		<label>品牌</label>
+		<select>
+			<option value="2">2</option>
+		</select>
+	</div>
+	<div class="clear">
+		<label>名称</label>
+		<input type="text">
+	</div>
+	<div class="clear">
+		<label>价格</label>
+		<input type="text">
+	</div>
+	<div class="clear">
+		<label>计量单位</label>
+		<input type="text">
+	</div>
+	<div class="clear">
+		<label>产品图片</label>
+		<div class="pull-left add-img">
+            <div class="img-list">
+            	<input type="file" id="input">
+            	<div id="imgdiv">
+            	  <img id="imgShow">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+            	<input type="file" id="input1">
+            	<div id="imgdiv1">
+            	  <img id="imgShow1">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+            	<input type="file" id="input2">
+            	<div id="imgdiv2">
+            	  <img id="imgShow2">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+        </div>
+	</div>
+	<div class="clear des-img">
+		<label>产品描述图片</label>
+		<div class="pull-left add-img">
+            <div class="img-list">
+            	<input type="file" id="input3">
+            	<div id="imgdiv3">
+            	  <img id="imgShow3">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+            	<input type="file" id="input4">
+            	<div id="imgdiv4">
+            	  <img id="imgShow4">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+            	<input type="file" id="input5">
+            	<div id="imgdiv5">
+            	  <img id="imgShow5">
+            	</div>
+            	<span class="icon-plus"></span>
+            </div>
+        </div>
+	</div>
+	<div class="clear">
+		<label>描述</label>
+		<textarea rows="3"></textarea>
+	</div>
+	<div class="clear">
+		<label>附加属性</label>
+		<div class="pull-left inp-short clear">
+			<div>
+				<input type="text">
+				<span class="inp-close">&times;</span>
+			</div>
+			<div>
+				<input type="text">
+				<span class="inp-close">&times;</span>
+			</div>
+			<div>
+				<input type="text">
+				<span class="inp-close">&times;</span>
+			</div>
+			<div>
+				<input type="text">
+				<span class="inp-close">&times;</span>
+			</div>
+			<input type="button" class="btn" value="添加..." id="addInput">
+		</div>
+	</div>
+</div>
+<!-- 添加商品的modal结束 -->
+
+
+
+
+</body>
+<script>
+	$(function() {
+		$( "#dialog" ).dialog({            
+       		title:'确定批量上架' ,  
+       		autoOpen: false ,
+       		resizable: false,
+       		draggable :false,
+       		modal: true,
+       		width:'340',     
+       		
+       		closeText:'关闭',
+       		buttons:{        
+       		  关闭:function(){   
+       		    $(this).dialog("close");
+       		  },
+       		  确定:function(){
+       		    $(this).dialog("close");
+       		  },
+       		},
+   		});
+   		$( "#dialog1" ).dialog({            
+       		title:'添加自有商品' ,  
+       		autoOpen: false ,
+       		resizable: false,
+       		draggable :false,
+       		modal: true,
+       		width:'500',     
+       		closeText:'关闭',
+       		buttons:{        
+       		  关闭:function(){   
+       		    $(this).dialog("close");
+       		  },
+       		  确定:function(){
+       		    $(this).dialog("close");
+       		  },
+       		},
+   		});
+   		$(document).delegate('#put','click',function(){
+   			$('#dialog').dialog('open');
+   		});
+   		$(document).delegate('#add','click',function(){
+   			$('#dialog1').dialog('open');
+   		});
+
+   		$('.inp-short').delegate('.inp-close','click',function(){
+      		$(this).parent('div').remove();
+    	})
+   		$('.inp-short').delegate('#addInput','click',function(){
+   		  var div= $('<div>' 
+   		               +' <input type="text">'
+   		                +'<span class="inp-close">&times;</span>'
+   		              +'</div>')
+   		  if($('.inp-short div').length<9){
+   		    $(this).before(div)
+   		  }
+   		})
+
+    	new uploadPreview({ UpBtn: "input", DivShow: "imgdiv", ImgShow: "imgShow" });
+    	new uploadPreview({ UpBtn: "input1", DivShow: "imgdiv1", ImgShow: "imgShow1" });
+    	new uploadPreview({ UpBtn: "input2", DivShow: "imgdiv2", ImgShow: "imgShow2" });
+    	new uploadPreview({ UpBtn: "input3", DivShow: "imgdiv3", ImgShow: "imgShow3" });
+    	new uploadPreview({ UpBtn: "input4", DivShow: "imgdiv4", ImgShow: "imgShow4" });
+    	new uploadPreview({ UpBtn: "input5", DivShow: "imgdiv5", ImgShow: "imgShow5" });
+	});
+</script>
+		
+</html>

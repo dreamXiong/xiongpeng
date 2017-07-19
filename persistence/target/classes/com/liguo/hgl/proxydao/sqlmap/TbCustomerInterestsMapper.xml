@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCustomerInterestsMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCustomerInterests" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="profit_money" property="profitMoney" jdbcType="DOUBLE" />
+    <result column="sale_price" property="salePrice" jdbcType="DOUBLE" />
+    <result column="recommend_count" property="recommendCount" jdbcType="INTEGER" />
+    <result column="total_profit" property="totalProfit" jdbcType="DOUBLE" />
+    <result column="recommend_name" property="recommendName" jdbcType="VARCHAR" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDataInfo" type="com.liguo.hgl.proxydao.dto.CustomerInterestsDto" extends="BaseResultMap">
+    <result column="start_count" property="startCount" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userName != null" >
+         and user_name = #{parameter.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.profitMoney != null" >
+         and profit_money = #{parameter.profitMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.salePrice != null" >
+         and sale_price = #{parameter.salePrice,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.recommendCount != null" >
+         and recommend_count = #{parameter.recommendCount,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.totalProfit != null" >
+         and total_profit = #{parameter.totalProfit,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.recommendName != null" >
+         and recommend_name = #{parameter.recommendName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+    <sql id="Base_Column_List" >
+    id, shop_id, user_id, user_name, profit_money, sale_price, recommend_count, total_profit, 
+    recommend_name, create_dt
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_customer_interests
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer_interests
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_customer_interests
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_customer_interests
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCustomerInterests" >
+    insert into hgl.tb_customer_interests (id, shop_id, user_id, 
+      user_name, profit_money, sale_price, 
+      recommend_count, total_profit, recommend_name, 
+      create_dt)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{userName,jdbcType=VARCHAR}, #{profitMoney,jdbcType=DOUBLE}, #{salePrice,jdbcType=DOUBLE}, 
+      #{recommendCount,jdbcType=INTEGER}, #{totalProfit,jdbcType=DOUBLE}, #{recommendName,jdbcType=VARCHAR}, 
+      #{createDt,jdbcType=BIGINT})
+  </insert>
+ <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCustomerInterests" >
+    insert into tb_customer_interests
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="profitMoney != null" >
+        profit_money,
+      </if>
+      <if test="salePrice != null" >
+        sale_price,
+      </if>
+      <if test="recommendCount != null" >
+        recommend_count,
+      </if>
+      <if test="totalProfit != null" >
+        total_profit,
+      </if>
+      <if test="recommendName != null" >
+        recommend_name,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="profitMoney != null" >
+        #{profitMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null" >
+        #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendCount != null" >
+        #{recommendCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalProfit != null" >
+        #{totalProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendName != null" >
+        #{recommendName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(distinct user_id) from tb_customer_interests
+    where date_format(from_unixtime(create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+      and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCustomerInterests" flushCache="true" >
+    update tb_customer_interests
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="profitMoney != null" >
+        profit_money = #{profitMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="salePrice != null" >
+        sale_price = #{salePrice,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendCount != null" >
+        recommend_count = #{recommendCount,jdbcType=INTEGER},
+      </if>
+      <if test="totalProfit != null" >
+        total_profit = #{totalProfit,jdbcType=DOUBLE},
+      </if>
+      <if test="recommendName != null" >
+        recommend_name = #{recommendName,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCustomerInterests" flushCache="true" >
+    update tb_customer_interests
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      user_name = #{userName,jdbcType=VARCHAR},
+      profit_money = #{profitMoney,jdbcType=DOUBLE},
+      sale_price = #{salePrice,jdbcType=DOUBLE},
+      recommend_count = #{recommendCount,jdbcType=INTEGER},
+      total_profit = #{totalProfit,jdbcType=DOUBLE},
+      recommend_name = #{recommendName,jdbcType=VARCHAR},
+      create_dt = #{createDt,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <select id="callCustomerInterests" parameterType="java.util.Map" statementType="CALLABLE">  
+      {
+      	call p_customer_interests(#{rowCount,jdbcType=INTEGER,mode=OUT})
+      }
+  </select>
+  <select id="selectByDataInfo" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDataInfo" >
+   <if test="parameter.startCount == null">
+	   select  tci.user_id,
+		       tci.user_name,
+		       ROUND(sum(tci.profit_money),2) profit_money,
+		       ROUND(sum(tci.sale_price),2) sale_price,
+		       sum(tci.recommend_count) recommend_count,
+		       ROUND(sum(tci.total_profit),2) total_profit,
+		       tci.recommend_name,
+		       0 start_count
+		from tb_customer_interests tci
+		where date_format(from_unixtime(tci.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tci.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tci.user_id,tci.user_name,recommend_name
+		order by ${orderByClause}
+	</if>
+	<if test="parameter.startCount != null">
+		(select  tci.user_id,
+		       tci.user_name,
+		       ROUND(sum(tci.profit_money),2) profit_money,
+		       ROUND(sum(tci.sale_price),2) sale_price,
+		       sum(tci.recommend_count) recommend_count,
+		       ROUND(sum(tci.total_profit),2) total_profit,
+		       tci.recommend_name,
+		       0 start_count
+		from tb_customer_interests tci
+		where date_format(from_unixtime(tci.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tci.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tci.user_id,tci.user_name,recommend_name
+		order by ${orderByClause}
+		limit 5)
+		union all
+		(select  tci.user_id,
+		       tci.user_name,
+		       ROUND(sum(tci.profit_money),2) profit_money,
+		       ROUND(sum(tci.sale_price),2) sale_price,
+		       sum(tci.recommend_count) recommend_count,
+		       ROUND(sum(tci.total_profit),2) total_profit,
+		       tci.recommend_name,
+		       #{parameter.startCount,jdbcType=INTEGER} start_count
+		from tb_customer_interests tci
+		where date_format(from_unixtime(tci.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tci.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tci.user_id,tci.user_name,recommend_name
+		order by ${orderByClause}
+		limit #{parameter.startCount,jdbcType=INTEGER},4)
+	</if>
+  </select>    
+  <select id="selectByDataInfoSum" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+		 select ROUND(sum(tci.profit_money),2) profit_money
+		 from tb_customer_interests tci
+		 where date_format(from_unixtime(tci.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tci.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  </select>
+</mapper>

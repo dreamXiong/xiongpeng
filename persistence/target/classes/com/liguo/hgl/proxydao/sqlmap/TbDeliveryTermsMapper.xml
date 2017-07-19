@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbDeliveryTermsMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbDeliveryTerms" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="calc_method" property="calcMethod" jdbcType="INTEGER" />
+    <result column="min_distance" property="minDistance" jdbcType="DOUBLE" />
+    <result column="max_distance" property="maxDistance" jdbcType="DOUBLE" />
+    <result column="min_amount" property="minAmount" jdbcType="DOUBLE" />
+    <result column="max_amount" property="maxAmount" jdbcType="DOUBLE" />
+    <result column="freight" property="freight" jdbcType="DOUBLE" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.description != null" >
+         and description = #{parameter.description,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.calcMethod != null" >
+         and calc_method = #{parameter.calcMethod,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.minDistance != null" >
+         and min_distance = #{parameter.minDistance,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.maxDistance != null" >
+         and max_distance = #{parameter.maxDistance,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.minAmount != null" >
+         and min_amount = #{parameter.minAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.maxAmount != null" >
+         and max_amount = #{parameter.maxAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.freight != null" >
+         and freight = #{parameter.freight,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_id, description, calc_method, min_distance, max_distance, min_amount, max_amount, 
+    freight, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_delivery_terms
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_delivery_terms
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_delivery_terms
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_delivery_terms
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbDeliveryTerms" keyProperty="id">
+    insert into hgl.tb_delivery_terms (id, shop_id, description, 
+      calc_method, min_distance, max_distance, 
+      min_amount, max_amount, freight, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{description,jdbcType=VARCHAR}, 
+      #{calcMethod,jdbcType=INTEGER}, #{minDistance,jdbcType=DOUBLE}, #{maxDistance,jdbcType=DOUBLE}, 
+      #{minAmount,jdbcType=DOUBLE}, #{maxAmount,jdbcType=DOUBLE}, #{freight,jdbcType=DOUBLE}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbDeliveryTerms">
+    insert into tb_delivery_terms
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="calcMethod != null" >
+        calc_method,
+      </if>
+      <if test="minDistance != null" >
+        min_distance,
+      </if>
+      <if test="maxDistance != null" >
+        max_distance,
+      </if>
+      <if test="minAmount != null" >
+        min_amount,
+      </if>
+      <if test="maxAmount != null" >
+        max_amount,
+      </if>
+      <if test="freight != null" >
+        freight,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="calcMethod != null" >
+        #{calcMethod,jdbcType=INTEGER},
+      </if>
+      <if test="minDistance != null" >
+        #{minDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="maxDistance != null" >
+        #{maxDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null" >
+        #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="maxAmount != null" >
+        #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null" >
+        #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_delivery_terms
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbDeliveryTerms" flushCache="true" >
+    update tb_delivery_terms
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="calcMethod != null" >
+        calc_method = #{calcMethod,jdbcType=INTEGER},
+      </if>
+      <if test="minDistance != null" >
+        min_distance = #{minDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="maxDistance != null" >
+        max_distance = #{maxDistance,jdbcType=DOUBLE},
+      </if>
+      <if test="minAmount != null" >
+        min_amount = #{minAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="maxAmount != null" >
+        max_amount = #{maxAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="freight != null" >
+        freight = #{freight,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbDeliveryTerms" flushCache="true" >
+    update tb_delivery_terms
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      description = #{description,jdbcType=VARCHAR},
+      calc_method = #{calcMethod,jdbcType=INTEGER},
+      min_distance = #{minDistance,jdbcType=DOUBLE},
+      max_distance = #{maxDistance,jdbcType=DOUBLE},
+      min_amount = #{minAmount,jdbcType=DOUBLE},
+      max_amount = #{maxAmount,jdbcType=DOUBLE},
+      freight = #{freight,jdbcType=DOUBLE},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <select id="selectByDeliveryObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+	   	select * from(
+			select dt.description,dt.freight from tb_delivery_terms dt
+			where dt.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+			and ((dt.max_distance <![CDATA[>=]]> #{parameter.distance,jdbcType=DOUBLE} and dt.min_distance <![CDATA[<=]]> #{parameter.distance,jdbcType=DOUBLE})
+			or (dt.max_amount <![CDATA[>=]]> #{parameter.amount,jdbcType=DOUBLE} and dt.min_amount <![CDATA[<=]]> #{parameter.amount,jdbcType=DOUBLE}))
+			union all
+			select d.description,d.freight from tb_delivery_terms d
+			where d.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+			and #{parameter.distance,jdbcType=DOUBLE} <![CDATA[>]]> d.min_distance
+			and d.freight = -1
+		) bdt 
+		order by bdt.freight
+		limit 1
+  </select>
+</mapper>

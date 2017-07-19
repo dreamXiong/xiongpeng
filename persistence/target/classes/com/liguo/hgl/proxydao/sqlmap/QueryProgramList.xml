@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbProgramInfoDtoMapper">
+	<resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.dto.TbProgramInfoDto">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="title" property="title" jdbcType="VARCHAR" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="image" property="image" jdbcType="VARCHAR" />
+		<result column="key_word" property="keyWord" jdbcType="VARCHAR" />
+		<result column="praise" property="praise" jdbcType="INTEGER" />
+		<result column="praise_flag" property="praiseFlag" jdbcType="INTEGER" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="praiseStatu" property="praiseStatu" jdbcType="INTEGER" />
+	</resultMap>
+	
+	<select id="queryProgramSortList" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select id, name, title, remark, image, key_word,(select count(1) from tb_program_praise p where t1.id=p.program_id) as praise,praise_flag, version
+    from tb_program_info t1 
+    order by praise desc
+  	</select>
+  
+  <select id="queryProgramList" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select t1.id, t1.name, t1.title, t1.remark, t1.image, t1.key_word, (select count(1) from tb_program_praise p where t1.id=p.program_id)  as praise,t1.praise_flag, t1.version
+    <if test="parameter.openId != null" >
+    ,IFNULL(t2.id,0) as praiseStatu
+    </if>
+    from tb_program_info t1 
+     <if test="parameter.openId != null" >
+    left join tb_program_praise t2 on t1.id=t2.program_id and t2.open_id=#{parameter.openId}
+    </if>
+    order by t1.id asc
+   	 <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  
+  <select id="queryTopProgramList" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select t1.id, t1.name, t1.title, t1.remark, t1.image, t1.key_word, t1.praise,t1.praise_flag, t1.version
+    from (
+    select id, name, title, remark, image, key_word,(select count(1) from tb_program_praise p where t1.id=p.program_id) as praise,praise_flag, version
+    from tb_program_info t1 
+    order by praise desc limit #{mysqlLength}
+    ) t1 order by t1.title
+  </select>
+</mapper>

@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbAddressHistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbAddressHistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="recipient" property="recipient" jdbcType="VARCHAR" />
+    <result column="province_name" property="provinceName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="code" property="code" jdbcType="VARCHAR" />
+    <result column="telephone" property="telephone" jdbcType="VARCHAR" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="extension_field" property="extensionField" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.recipient != null" >
+         and recipient = #{parameter.recipient,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.provinceName != null" >
+         and province_name = #{parameter.provinceName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.phone != null" >
+         and phone = #{parameter.phone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.code != null" >
+         and code = #{parameter.code,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.telephone != null" >
+         and telephone = #{parameter.telephone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.extensionField != null" >
+         and extension_field = #{parameter.extensionField,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, recipient, province_name, phone, code, telephone, create_by, create_dt, extension_field, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_address_history
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_address_history
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_address_history
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_address_history
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbAddressHistory" >
+    insert into hgl.tb_address_history (recipient, province_name, 
+      phone, code, telephone, 
+      create_by, create_dt, extension_field)
+    values (#{recipient,jdbcType=VARCHAR}, #{provinceName,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{telephone,jdbcType=VARCHAR}, 
+      #{createBy,jdbcType=INTEGER}, unix_timestamp(now()), #{extensionField,jdbcType=VARCHAR})
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbAddressHistory" >
+    insert into tb_address_history
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recipient != null" >
+        recipient,
+      </if>
+      <if test="provinceName != null" >
+        province_name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="code != null" >
+        code,
+      </if>
+      <if test="telephone != null" >
+        telephone,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="extensionField != null" >
+        extension_field,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recipient != null" >
+        #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null" >
+        #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_address_history
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbAddressHistory" flushCache="true" >
+    update tb_address_history
+    <set >
+      <if test="recipient != null" >
+        recipient = #{recipient,jdbcType=VARCHAR},
+      </if>
+      <if test="provinceName != null" >
+        province_name = #{provinceName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="telephone != null" >
+        telephone = #{telephone,jdbcType=VARCHAR},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null" >
+        extension_field = #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbAddressHistory" flushCache="true" >
+    update tb_address_history
+    set recipient = #{recipient,jdbcType=VARCHAR},
+      province_name = #{provinceName,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      telephone = #{telephone,jdbcType=VARCHAR},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      extension_field = #{extensionField,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

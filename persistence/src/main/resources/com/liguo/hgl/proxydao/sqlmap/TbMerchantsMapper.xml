@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbMerchantsMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbMerchants" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+   <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="DOUBLE" />
+    <result column="other" property="other" jdbcType="VARCHAR" />
+    <result column="coupons" property="coupons" jdbcType="DOUBLE" />
+    <result column="address" property="address" jdbcType="INTEGER" />
+    <result column="views" property="views" jdbcType="INTEGER" />
+    <result column="winning" property="winning" jdbcType="INTEGER" />
+    <result column="participate" property="participate" jdbcType="INTEGER" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="country" property="country" jdbcType="INTEGER" />
+    <result column="street" property="street" jdbcType="INTEGER" />
+    <result column="places" property="places" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="reserved" property="reserved" jdbcType="INTEGER" />
+    <result column="reserved1" property="reserved1" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="BIGINT" />
+    <result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
+    <result column="release_time" property="releaseTime" jdbcType="BIGINT" />
+  </resultMap>
+     <resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.TbMerchantsAssociatedDto" extends="BaseResultMap" >
+    <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+    <result column="provinceName" property="provinceName" jdbcType="VARCHAR" />
+    <result column="cityName" property="cityName" jdbcType="VARCHAR" />
+    <result column="countryName" property="countryName" jdbcType="VARCHAR" />
+    <result column="streetName" property="streetName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.brandId != null" >
+         and brand_id = #{parameter.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.level != null" >
+         and level = #{parameter.level,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.number != null" >
+         and number = #{parameter.number,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.other != null" >
+         and other = #{parameter.other,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.coupons != null" >
+         and coupons = #{parameter.coupons,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.address != null" >
+         and address = #{parameter.address,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.views != null" >
+         and views = #{parameter.views,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.winning != null" >
+         and winning = #{parameter.winning,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.participate != null" >
+         and participate = #{parameter.participate,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.province != null" >
+         and province = #{parameter.province,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.city != null" >
+         and city = #{parameter.city,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.country != null" >
+         and country = #{parameter.country,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.street != null" >
+         and street = #{parameter.street,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.places != null" >
+         and places = #{parameter.places,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.state != null" >
+         and state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reserved != null" >
+         and reserved = #{parameter.reserved,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reserved1 != null" >
+         and reserved1 = #{parameter.reserved1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.lastUpdateTime != null" >
+         and last_update_time = #{parameter.lastUpdateTime,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.releaseTime != null" >
+         and release_time = #{parameter.releaseTime,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, brand_id, user_id, type, level, number, other, coupons, address, views, winning, 
+    participate, province, city, country, street, places, state, reserved, reserved1, 
+    version, create_time, last_update_time, release_time
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hgl.tb_merchants
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hgl.tb_merchants
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from hgl.tb_merchants
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from hgl.tb_merchants
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbMerchants" >
+    insert into hgl.tb_merchants (id,  brand_id, user_id, 
+      type, level, number, 
+      other, coupons, address, 
+      views, winning, participate, 
+      province, city, country, 
+      street, places, state, 
+      reserved, reserved1, version, 
+      create_time, last_update_time, release_time
+      )
+    values (#{id,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{level,jdbcType=INTEGER}, #{number,jdbcType=DOUBLE}, 
+      #{other,jdbcType=VARCHAR}, #{coupons,jdbcType=DOUBLE}, #{address,jdbcType=INTEGER}, 
+      #{views,jdbcType=INTEGER}, #{winning,jdbcType=INTEGER}, #{participate,jdbcType=INTEGER}, 
+      #{province,jdbcType=INTEGER}, #{city,jdbcType=INTEGER}, #{country,jdbcType=INTEGER}, 
+      #{street,jdbcType=INTEGER}, #{places,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{reserved,jdbcType=INTEGER}, #{reserved1,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=BIGINT}, #{lastUpdateTime,jdbcType=BIGINT}, #{releaseTime,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbMerchants"  useGeneratedKeys="true" keyProperty="id">
+    insert into hgl.tb_merchants
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="other != null" >
+        other,
+      </if>
+      <if test="coupons != null" >
+        coupons,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="views != null" >
+        views,
+      </if>
+      <if test="winning != null" >
+        winning,
+      </if>
+      <if test="participate != null" >
+        participate,
+      </if>
+      <if test="province != null" >
+        province,
+      </if>
+      <if test="city != null" >
+        city,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="street != null" >
+        street,
+      </if>
+      <if test="places != null" >
+        places,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="reserved != null" >
+        reserved,
+      </if>
+      <if test="reserved1 != null" >
+        reserved1,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      
+      <if test="releaseTime != null" >
+        release_time,
+      </if>
+      create_time,
+      last_update_time,
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=DOUBLE},
+      </if>
+      <if test="other != null" >
+        #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="coupons != null" >
+        #{coupons,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        #{views,jdbcType=INTEGER},
+      </if>
+      <if test="winning != null" >
+        #{winning,jdbcType=INTEGER},
+      </if>
+      <if test="participate != null" >
+        #{participate,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        #{city,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=INTEGER},
+      </if>
+      <if test="street != null" >
+        #{street,jdbcType=INTEGER},
+      </if>
+      <if test="places != null" >
+        #{places,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+     
+      <if test="releaseTime != null" >
+        #{releaseTime,jdbcType=BIGINT},
+      </if>
+        unix_timestamp(now()),
+        unix_timestamp(now()),
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from hgl.tb_merchants
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbMerchants" flushCache="true" >
+    update hgl.tb_merchants
+    <set >
+       <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=DOUBLE},
+      </if>
+      <if test="other != null" >
+        other = #{other,jdbcType=VARCHAR},
+      </if>
+      <if test="coupons != null" >
+        coupons = #{coupons,jdbcType=DOUBLE},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=INTEGER},
+      </if>
+      <if test="views != null" >
+        views = #{views,jdbcType=INTEGER},
+      </if>
+      <if test="winning != null" >
+        winning = #{winning,jdbcType=INTEGER},
+      </if>
+      <if test="participate != null" >
+        participate = #{participate,jdbcType=INTEGER},
+      </if>
+      <if test="province != null" >
+        province = #{province,jdbcType=INTEGER},
+      </if>
+      <if test="city != null" >
+        city = #{city,jdbcType=INTEGER},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=INTEGER},
+      </if>
+      <if test="street != null" >
+        street = #{street,jdbcType=INTEGER},
+      </if>
+      <if test="places != null" >
+        places = #{places,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        reserved = #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        reserved1 = #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+      </if>
+     
+        last_update_time = unix_timestamp(now()),
+      
+      <if test="releaseTime != null" >
+        release_time = #{releaseTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbMerchants" flushCache="true" >
+    update hgl.tb_merchants
+   set brand_id = #{brandId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      level = #{level,jdbcType=INTEGER},
+      number = #{number,jdbcType=DOUBLE},
+      other = #{other,jdbcType=VARCHAR},
+      coupons = #{coupons,jdbcType=DOUBLE},
+      address = #{address,jdbcType=INTEGER},
+      views = #{views,jdbcType=INTEGER},
+      winning = #{winning,jdbcType=INTEGER},
+      participate = #{participate,jdbcType=INTEGER},
+      province = #{province,jdbcType=INTEGER},
+      city = #{city,jdbcType=INTEGER},
+      country = #{country,jdbcType=INTEGER},
+      street = #{street,jdbcType=INTEGER},
+      places = #{places,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      reserved = #{reserved,jdbcType=INTEGER},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=BIGINT},
+      last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
+      release_time = #{releaseTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+    <select id="selectById" resultMap="ResultMapDto" parameterType="java.lang.Integer" >
+	    select m.*,b.`name` as brandName,b.product_type_name AS producttypeName,c.`name` as cityName ,p.`name` as provinceName,ct.`name` as countryName,st.`name` as streetName
+		from tb_merchants m
+		  left join tb_brand b on m.brand_id=b.id
+		    left join tb_city_info c on m.city = c.id
+		      left join tb_province_info p on m.province = p.id
+		      left join tb_country_info ct on m.country= ct.id 
+		     left join tb_street_info st on m.street = st.id
+		where  m.id = #{id,jdbcType=INTEGER}
+  </select>
+   <select id="selectByCriteria" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+	    select m.*,b.`name` as brandName,b.product_type_name As producttypeName,c.`name` as cityName ,p.`name` as provinceName,ct.`name` as countryName,st.`name` as streetName
+		from tb_merchants m
+		  left join tb_brand b on m.brand_id=b.id
+		    left join tb_city_info c on m.city = c.id
+		      left join tb_province_info p on m.province = p.id
+		      left join tb_country_info ct on m.country= ct.id 
+		     left join tb_street_info st on m.street = st.id
+		     
+		 <if test="parameter != null" >
+		      <include refid="Object_Where_ClauseDto" />
+		    </if>
+		   <if test="orderByClause != null" >
+		      order by ${orderByClause} ${orderByClauseDesc}
+		    </if>
+		    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <sql id="Object_Where_ClauseDto" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.brandName != null" >
+         and b.name like CONCAT('%','${parameter.brandName}','%')
+      </if>
+        <if test="parameter.state != null" >
+         and m.state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+   <select id="selectByShopCriteria" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+	     select tm.*,b.`name` as brandName,b.productType_name As producttypeName 
+	     from tb_merchants tm left join tb_brand b on tm.brand_id=b.id
+		
+		   <if test="parameter != null" >
+		      <include refid="Object_Where_User" />
+		    </if>
+		   <if test="orderByClause != null" >
+		      order by ${orderByClause} ${orderByClauseDesc}
+		    </if>
+		    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+   <sql id="Object_Where_User" >
+    <trim prefix="where" prefixOverrides="and|or" >
+       <if test="parameter.state != null" >
+         and tm.state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.userId != null" >
+       		<if test="parameter.agencyIdList != null">
+       			 and tm.id not in 
+       			 <foreach item="item" index="index" collection="parameter.agencyIdList" open="(" separator="," close=")" >  
+		           ${item}
+		        </foreach>
+       		</if>
+		
+		 and ( (tm.city = #{parameter.city,jdbcType=INTEGER} and tm.country=0 and tm.street =0)
+		 or (tm.city = #{parameter.city,jdbcType=INTEGER} and (tm.country = #{parameter.country,jdbcType=INTEGER} or tm.country = 0) and tm.street =0)
+		 or (tm.city = #{parameter.city,jdbcType=INTEGER} and tm.country = #{parameter.country,jdbcType=INTEGER} and(tm.street = #{parameter.street,jdbcType=INTEGER} or tm.street = 0)))
+      </if>
+      <if test="parameter.brandId != null" >
+         and b.id = #{parameter.brandId,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+   <select id="selectByAdress" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+	     select tm.*
+	     from tb_merchants tm where 1=1
+		
+		   <if test="parameter.brandId != null" >
+	         and tm.brand_id = #{parameter.brandId,jdbcType=INTEGER}
+	      </if>
+		  <if test="parameter.city != null" >
+	         and (tm.city = #{parameter.city,jdbcType=INTEGER} or tm.city=0)
+	      </if>
+	      <if test="parameter.country != null" >
+	         and (tm.country = #{parameter.country,jdbcType=INTEGER} or tm.country=0)
+	      </if>
+	      <if test="parameter.street != null" >
+	         and (tm.street = #{parameter.street,jdbcType=INTEGER} or tm.street=0)
+	      </if>
+	      
+	      <if test="parameter.merchantsId != null" >
+	         and tm.id != #{parameter.merchantsId,jdbcType=INTEGER} 
+	      </if>
+  </select>
+</mapper>

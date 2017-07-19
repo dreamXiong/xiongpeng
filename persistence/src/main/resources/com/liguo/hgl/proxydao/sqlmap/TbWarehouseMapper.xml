@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWarehouseMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWarehouse" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="warehouse_province" property="warehouseProvince" jdbcType="INTEGER" />
+    <result column="warehouse_city" property="warehouseCity" jdbcType="INTEGER" />
+    <result column="warehouse_country" property="warehouseCountry" jdbcType="INTEGER" />
+    <result column="warehouse_street" property="warehouseStreet" jdbcType="INTEGER" />
+    <result column="warehouse_address" property="warehouseAddress" jdbcType="VARCHAR" />
+    <result column="shop_type" property="shopType" jdbcType="VARCHAR" />
+    <result column="warehouse_name" property="warehouseName" jdbcType="VARCHAR" />
+    <result column="contract" property="contract" jdbcType="VARCHAR" />
+    <result column="contract_phone" property="contractPhone" jdbcType="VARCHAR" />
+    <result column="warehouse_tel" property="warehouseTel" jdbcType="VARCHAR" />
+    <result column="manage_user" property="manageUser" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="states" property="states" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.warehouseProvince != null" >
+         and warehouse_province = #{parameter.warehouseProvince,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.warehouseCity != null" >
+         and warehouse_city = #{parameter.warehouseCity,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.warehouseCountry != null" >
+         and warehouse_country = #{parameter.warehouseCountry,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.warehouseStreet != null" >
+         and warehouse_street = #{parameter.warehouseStreet,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.warehouseAddress != null" >
+         and warehouse_address = #{parameter.warehouseAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopType != null" >
+         and shop_type = #{parameter.shopType,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.warehouseName != null" >
+         and warehouse_name = #{parameter.warehouseName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contract != null" >
+         and contract = #{parameter.contract,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contractPhone != null" >
+         and contract_phone = #{parameter.contractPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.warehouseTel != null" >
+         and warehouse_tel = #{parameter.warehouseTel,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.manageUser != null" >
+         and manage_user = #{parameter.manageUser,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.states != null" >
+         and states = #{parameter.states,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, warehouse_province, warehouse_city, warehouse_country, warehouse_street, warehouse_address, 
+    shop_type, warehouse_name, contract, contract_phone, warehouse_tel, manage_user, 
+    create_by, states, create_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_warehouse
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_warehouse
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_warehouse
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_warehouse
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWarehouse" >
+    insert into hgl.tb_warehouse (id, warehouse_province, warehouse_city, 
+      warehouse_country, warehouse_street, warehouse_address, 
+      shop_type, warehouse_name, contract, 
+      contract_phone, warehouse_tel, manage_user, 
+      create_by, states, create_dt, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{warehouseProvince,jdbcType=INTEGER}, #{warehouseCity,jdbcType=INTEGER}, 
+      #{warehouseCountry,jdbcType=INTEGER}, #{warehouseStreet,jdbcType=INTEGER}, #{warehouseAddress,jdbcType=VARCHAR}, 
+      #{shopType,jdbcType=VARCHAR}, #{warehouseName,jdbcType=VARCHAR}, #{contract,jdbcType=VARCHAR}, 
+      #{contractPhone,jdbcType=VARCHAR}, #{warehouseTel,jdbcType=VARCHAR}, #{manageUser,jdbcType=INTEGER}, 
+      #{createBy,jdbcType=INTEGER}, #{states,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWarehouse" >
+    insert into tb_warehouse
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="warehouseProvince != null" >
+        warehouse_province,
+      </if>
+      <if test="warehouseCity != null" >
+        warehouse_city,
+      </if>
+      <if test="warehouseCountry != null" >
+        warehouse_country,
+      </if>
+      <if test="warehouseStreet != null" >
+        warehouse_street,
+      </if>
+      <if test="warehouseAddress != null" >
+        warehouse_address,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
+      </if>
+      <if test="warehouseName != null" >
+        warehouse_name,
+      </if>
+      <if test="contract != null" >
+        contract,
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone,
+      </if>
+      <if test="warehouseTel != null" >
+        warehouse_tel,
+      </if>
+      <if test="manageUser != null" >
+        manage_user,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="states != null" >
+        states,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseProvince != null" >
+        #{warehouseProvince,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCity != null" >
+        #{warehouseCity,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCountry != null" >
+        #{warehouseCountry,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseStreet != null" >
+        #{warehouseStreet,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseAddress != null" >
+        #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null" >
+        #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseTel != null" >
+        #{warehouseTel,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        #{manageUser,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="states != null" >
+        #{states,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_warehouse
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWarehouse" flushCache="true" >
+    update tb_warehouse
+    <set >
+      <if test="warehouseProvince != null" >
+        warehouse_province = #{warehouseProvince,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCity != null" >
+        warehouse_city = #{warehouseCity,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseCountry != null" >
+        warehouse_country = #{warehouseCountry,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseStreet != null" >
+        warehouse_street = #{warehouseStreet,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseAddress != null" >
+        warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseName != null" >
+        warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="warehouseTel != null" >
+        warehouse_tel = #{warehouseTel,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        manage_user = #{manageUser,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="states != null" >
+        states = #{states,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWarehouse" flushCache="true" >
+    update tb_warehouse
+    set warehouse_province = #{warehouseProvince,jdbcType=INTEGER},
+      warehouse_city = #{warehouseCity,jdbcType=INTEGER},
+      warehouse_country = #{warehouseCountry,jdbcType=INTEGER},
+      warehouse_street = #{warehouseStreet,jdbcType=INTEGER},
+      warehouse_address = #{warehouseAddress,jdbcType=VARCHAR},
+      shop_type = #{shopType,jdbcType=VARCHAR},
+      warehouse_name = #{warehouseName,jdbcType=VARCHAR},
+      contract = #{contract,jdbcType=VARCHAR},
+      contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      warehouse_tel = #{warehouseTel,jdbcType=VARCHAR},
+      manage_user = #{manageUser,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      states = #{states,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+ 
+   <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="com.liguo.hgl.proxydao.model.WarehouseDto"  >
+    select 
+		tpi.name as province,
+		tci.name as city,
+		tci1.name as country,
+		tst.name as street,
+		tw.id, 
+		 
+		tw.warehouse_province as warehouseProvince, 
+		tw.warehouse_city as warehouseCity, 
+		tw.warehouse_country as warehouseCountry, 
+		tw.warehouse_street as warehouseStreet, 
+		tw.warehouse_address as warehouseAddress, 
+		tw.shop_type as shopType, 
+		tw.warehouse_name as warehouseName, 
+		tw.contract, 
+		tw.contract_phone as contractPhone, 
+		tw.warehouse_tel as warehouseTel,
+		tw.manage_user, 
+		tw.create_by, 
+		tw.states, 
+		(select count(*) from tb_warehouse_user twu where twu.warehouse_id = tw.id) as count,
+		tw.create_dt, 
+		version 
+		from tb_warehouse tw
+		left join tb_city_info tci on tci.id = tw.warehouse_city
+		left join tb_province_info tpi on tpi.id = tw.warehouse_province
+		left join tb_country_info tci1 on tci1.id = tw.warehouse_country
+		left join tb_street_info tst on tst.id = tw.warehouse_street
+		<if test="parameter.name != null and parameter.name!=''" >
+      		where tw.warehouse_name like '%${parameter.name}%'
+    	</if>
+		order by tw.id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  
+  
+</mapper>

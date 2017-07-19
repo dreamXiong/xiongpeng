@@ -1,0 +1,135 @@
+@charset "utf-8";
+/* 招商 */
+.attract-nav{
+	position: relative;
+}
+.attract-nav ul{
+	position: absolute;
+	top:0;
+	z-index:980;
+}
+.attract-nav li{
+	float: left;
+	line-height: 36px;
+	padding:10px 20px;
+	font-size:16px;
+	cursor:pointer;
+}
+.attract-nav li.active{
+	color:#f2000e;
+	border-bottom:2px solid #f2000e;
+}
+.slide{
+	margin-bottom:20px;
+}
+.slide .show-bg{
+	height:692px;
+	position: relative;
+}
+.slide .show-bg.one{
+	background: url(../images/zhaoshang1.png) no-repeat left top;
+}
+.slide .show-bg.two{
+	background: url(../images/zhaoshang2.png) no-repeat left top;
+}
+.slide .show-bg.three{
+	background: url(../images/zhaoshang3.png) no-repeat left top;
+}
+.slide .show-bg .abso{
+	position: absolute;
+	width:550px;
+	font-size: 16px;
+	text-indent:2em;
+	line-height:32px;
+	text-align:justify;
+	top:134px;
+}
+.slide .show-bg.two .abso{
+	left:208px;
+	top:108px;
+}
+.slide .show-bg.three .abso{
+	left:102px;
+	top:102px;
+}
+ul.slide-list{
+	top:370px;
+	margin-right:-10px;
+}
+.slide-list li{
+	border:1px solid #ddd;
+	height:300px;
+	width:351px;
+	margin-right:10px;
+	overflow: hidden;
+}
+.slide-list h3{
+	border-bottom:1px solid #eee;
+	margin-bottom:10px;
+	padding-bottom:5px;
+	font-weight:normal;
+}
+.slide-list img{
+	margin:0 auto;
+}
+.slide-list p{
+	line-height:36px;
+}
+.investment-list{
+	padding:20px 0 ;
+	border-top:2px solid #f2000e;
+}
+/* 招商购买页面 */
+.serve h3{
+	font-size:14px;
+	padding:8px 10px ;
+	margin:10px -8px 5px;
+}
+.serve .matter{
+	padding:8px;
+}
+.serve .syn{
+	padding:20px 8px;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+	margin:10px 0 15px;
+}
+.serve .succeed2 .clear li.active {
+    border-color: #f2000e;
+}
+.serve .succeed2 .clear li {
+    display: inline-block;
+    margin-right: 28px;
+    margin-top: 20px;
+    border: 1px solid #009dd9;
+    padding: 5px;
+    position: relative;
+}
+.serve .money{
+	border-bottom:1px solid #eee;
+}
+.serve .money .btn{
+	margin:20px 0;
+}
+.serve .money input{
+	vertical-align: middle;
+	margin-top:-2px;
+}
+.serve .pay{
+	margin-top:20px;
+}
+.referrer{
+	margin-bottom:15px;
+}
+.referrer input{
+	height:30px;
+	line-height: 30px;
+	border:1px solid #ddd;
+	padding-left:5px;
+}
+.referrer input:hover{
+	border-color:#009dd9;
+}
+.serve .pay .font-bold.text-red{
+	font-size:24px;
+}

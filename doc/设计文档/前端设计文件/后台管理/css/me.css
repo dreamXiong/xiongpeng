@@ -1,0 +1,70 @@
+@charset "utf-8";
+a{
+	color:#999;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	text-align:center;
+}
+label{
+	width:66px;
+	margin:10px 0;
+	vertical-align: middle;
+}
+input.short{
+	width:100px;
+	text-align: center;
+}
+input.long{
+	width:350px;
+}
+button{
+	background:#3c8dbc;
+	color:#fff;
+	outline: none;
+	border:none;
+	height: 32px;
+	line-height: 32px;
+	margin-left:-4px;
+	vertical-align: middle;
+	margin-top:-3px;
+}
+input{
+	width:180px;
+	border:1px solid #eee;
+	padding:6px;
+	outline: none;
+	height:32px;
+	line-height: 32px;
+}
+input:hover,input:focus{
+	border-color:#3c8dbc;
+}
+td img{
+	width:80px;
+	height:80px;
+	margin-right:10px;
+}
+td dt{
+	float: left;
+}
+td dd{
+	text-align:left;
+}
+.deal{
+	margin:10px 0;
+}
+.deal a{
+	padding:10px;
+}
+.deal a.active{
+	background:#3c8dbc;
+	color:#fff;
+}
+.head{
+	line-height: 30px;
+	color: #999;
+}
+.head span{
+	margin-right:66px;
+	color:#333;
+}

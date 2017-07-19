@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCouponInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCouponInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="amount" property="amount" jdbcType="DOUBLE" />
+    <result column="bussiness_id" property="bussinessId" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="order_serial_no" property="orderSerialNo" jdbcType="VARCHAR" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="obtain_dt" property="obtainDt" jdbcType="BIGINT" />
+    <result column="use_dt" property="useDt" jdbcType="BIGINT" />
+    <result column="operate_dt" property="operateDt" jdbcType="BIGINT" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.CouponInfoDto" extends="BaseResultMap">
+  	<result column="from" property="from" jdbcType="BIGINT" />
+    <result column="to" property="to" jdbcType="BIGINT" />
+    <result column="gainAmt" property="gainAmt" jdbcType="REAL"/>
+    <result column="employAmt" property="employAmt" jdbcType="REAL"/>
+    <result column="remainingAmt" property="remainingAmt" jdbcType="REAL"/>
+    <result column="currentGainAmt" property="currentGainAmt" jdbcType="REAL"/>
+    <result column="currentEmployAmt" property="currentEmployAmt" jdbcType="REAL"/>
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.typeId != null" >
+         and type_id = #{parameter.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.amount != null" >
+         and amount = #{parameter.amount,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.bussinessId != null" >
+         and bussiness_id = #{parameter.bussinessId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderSerialNo != null" >
+         and order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopName != null" >
+         and shop_name = #{parameter.shopName,jdbcType=VARCHAR}
+      </if>
+       <if test="parameter.obtainDt != null" >
+         and obtain_dt = #{parameter.obtainDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.useDt != null" >
+         and use_dt = #{parameter.useDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.operateDt != null" >
+         and operate_dt = #{parameter.operateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type_id, status, amount, bussiness_id, shop_id, order_serial_no, shop_name, obtain_dt, 
+    use_dt, operate_dt, remark
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_coupon_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_coupon_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_coupon_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_coupon_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCouponInfo" >
+    insert into hgl.tb_coupon_info (id, type_id, status, 
+      amount, bussiness_id, shop_id, 
+      order_serial_no, shop_name, obtain_dt, 
+      use_dt, operate_dt, remark
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{amount,jdbcType=DOUBLE}, #{bussinessId,jdbcType=VARCHAR}, #{shopId,jdbcType=INTEGER}, 
+      #{orderSerialNo,jdbcType=VARCHAR}, #{shopName,jdbcType=VARCHAR}, #{obtainDt,jdbcType=BIGINT}, 
+      #{useDt,jdbcType=BIGINT}, #{operateDt,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCouponInfo" >
+    insert into tb_coupon_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="bussinessId != null" >
+        bussiness_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="obtainDt != null" >
+        obtain_dt,
+      </if>
+      <if test="useDt != null" >
+        use_dt,
+      </if>
+      <if test="operateDt != null" >
+        operate_dt,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="bussinessId != null" >
+        #{bussinessId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+     <if test="obtainDt != null" >
+        #{obtainDt,jdbcType=BIGINT},
+      </if>
+      <if test="useDt != null" >
+        #{useDt,jdbcType=BIGINT},
+      </if>
+      <if test="operateDt != null" >
+        #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_coupon_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCouponInfo" flushCache="true" >
+    update tb_coupon_info
+    <set >
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DOUBLE},
+      </if>
+      <if test="bussinessId != null" >
+        bussiness_id = #{bussinessId,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="obtainDt != null" >
+        obtain_dt = #{obtainDt,jdbcType=BIGINT},
+      </if>
+      <if test="useDt != null" >
+        use_dt = #{useDt,jdbcType=BIGINT},
+      </if>
+      <if test="operateDt != null" >
+        operate_dt = #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCouponInfo" flushCache="true" >
+    update tb_coupon_info
+    set type_id = #{typeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      amount = #{amount,jdbcType=DOUBLE},
+      bussiness_id = #{bussinessId,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      obtain_dt = #{obtainDt,jdbcType=BIGINT},
+      use_dt = #{useDt,jdbcType=BIGINT},
+      operate_dt = #{operateDt,jdbcType=BIGINT},
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <!-- 分页 -->
+  
+  <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDto">
+  		select c.* ,(select sum(c1.amount) from tb_coupon_info as c1 where c1.status =400 and c1.operate_dt&lt;=c.operate_dt
+  					  <if test="parameter.shopId != null and parameter.shopId != ''">
+  						and c1.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  					  </if>) as currentGainAmt,
+					(select sum(c2.amount) from tb_coupon_info as c2  where c2.status =402 and c2.operate_dt&lt;=c.operate_dt
+					<if test="parameter.shopId != null and parameter.shopId != ''">
+  						and c2.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  					 </if>) as currentEmployAmt,
+					s.coupon_gainAmt as gainAmt,s.coupon_employAmt as employAmt,s.coupon_remainingAmt as remainingAmt
+ 					from tb_coupon_info as c left join tb_shop_info as s on s.id = c.shop_id
+  		<trim prefix="where" prefixOverrides="and|or">
+  			<if test="parameter.shopId != null and parameter.shopId != ''">
+  				and c.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  			</if>
+	  		<if test="parameter.status != null and parameter.status != 0">
+				and c.status = #{parameter.status,jdbcType=INTEGER}
+			</if>	
+			<if test="parameter.typeId != null and parameter.typeId != 0">
+				and c.type_id = #{parameter.typeId,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.from != null and parameter.from  != 0">
+				and c.operate_dt &gt;= #{parameter.from ,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.to !=null and parameter.to !=''">
+				and c.operate_dt &lt;= #{parameter.to,jdbcType=INTEGER}
+			</if>
+  		</trim>	
+  		<if test="orderByClause!=null">
+			order by ${orderByClause}
+		</if>	
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+</mapper>

@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCityInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCityInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.parentid != null" >
+         and parentId = #{parameter.parentid,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, parentId
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hgl.tb_city_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hgl.tb_city_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from hgl.tb_city_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from hgl.tb_city_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCityInfo" >
+    insert into hgl.tb_city_info (id, name, parentId
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCityInfo" >
+    insert into hgl.tb_city_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from hgl.tb_city_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCityInfo" flushCache="true" >
+    update hgl.tb_city_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCityInfo" flushCache="true" >
+    update hgl.tb_city_info
+    set name = #{name,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  								 
+  <select id="findCityByProvice" parameterType="java.lang.Integer" resultType="map">
+  	SELECT
+		tci.id as pId,
+		tci.`name` as name,
+		tci.id as id
+	FROM
+		tb_city_info tci
+	WHERE
+	tci.parentId = #{id,jdbcType=INTEGER}
+	union
+	SELECT
+			tcio.parentId as pId,
+			tcio.`name` as name,
+			tcio.id as id
+	FROM
+		tb_province_info tpi
+	LEFT JOIN tb_city_info tci ON tpi.id = tci.parentId
+	LEFT JOIN tb_country_info tcio ON tcio.parentId = tci.id
+	WHERE
+	tpi.id = #{id,jdbcType=INTEGER};
+  	
+  </select>
+  
+   <!-- <select id="selectByPid" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="map" >
+    select
+    	tci.parentId as pId,
+		tci.`name` as name,
+		tci.id as id
+    from tb_city_info tci
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  -->
+  
+  <select id="findBatchCityById" parameterType="ArrayList" resultMap="BaseResultMap">
+  	select
+  	<include refid="Base_Column_List" />
+  	from tb_city_info tci
+  	where
+  	tci.id in
+  	<foreach collection="list" index="index" item="item" open="(" separator=',' close=")">
+  		#{item}
+  	</foreach>
+  </select>
+  
+  
+  <select id="searchCity" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.String">
+  	SELECT
+		tci.id as cityId 
+	FROM
+		tb_city_info tci
+	WHERE
+		tci.`name` LIKE CONCAT('%' ,#{parameter.cityName}, '%')
+		<include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  
+  
+</mapper>

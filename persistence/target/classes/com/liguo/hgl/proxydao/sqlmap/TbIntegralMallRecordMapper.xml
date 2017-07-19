@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbIntegralMallRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbIntegralMallRecord" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="integral_mall_id" property="integralMallId" jdbcType="INTEGER" />
+    <result column="integral_serial_no" property="integralSerialNo" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="pay_money" property="payMoney" jdbcType="DOUBLE" />
+    <result column="remaining_integral" property="remainingIntegral" jdbcType="INTEGER" />
+    <result column="pay_status" property="payStatus" jdbcType="INTEGER" />
+    <result column="plat_status" property="platStatus" jdbcType="INTEGER" />
+    <result column="exchange_num" property="exchangeNum" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultInfoMap" type="com.liguo.hgl.proxydao.dto.IntegralMallRecordDto" extends="BaseResultMap">
+    <result column="goods_name" property="goodsName" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="recipient" property="recipient" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="extension_field" property="extensionField" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.integralMallId != null" >
+         and integral_mall_id = #{parameter.integralMallId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.integralSerialNo != null" >
+         and integral_serial_no = #{parameter.integralSerialNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payMoney != null" >
+         and pay_money = #{parameter.payMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.remainingIntegral != null" >
+         and remaining_integral = #{parameter.remainingIntegral,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payStatus != null" >
+         and pay_status = #{parameter.payStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.platStatus != null" >
+         and plat_status = #{parameter.platStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.exchangeNum != null" >
+         and exchange_num = #{parameter.exchangeNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.addressId != null" >
+         and address_id = #{parameter.addressId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, integral_mall_id, integral_serial_no, user_id, pay_money, remaining_integral, 
+    pay_status, plat_status, exchange_num, address_id, create_by, create_dt, version, remark
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultInfoMap" >
+     select timr.*,tim.goods_name,twu.user_name,twah.recipient,twah.phone,twah.extension_field
+	 from tb_integral_mall_record timr
+	 left join tb_integral_mall tim on timr.integral_mall_id = tim.id
+	 left join tb_web_user twu on timr.user_id = twu.id
+	 left join tb_wap_address_history twah on timr.address_id = twah.id
+	 where 1=1
+	 <if test="parameter.goodsName != null and parameter.goodsName != ''" >
+		and tim.goods_name like CONCAT('%','${parameter.goodsName}','%')  
+	 </if>
+	 <if test="parameter.userId != null and parameter.userId != ''" >
+		and timr.user_id = #{parameter.userId,jdbcType=INTEGER}
+	 </if>
+	 <if test="parameter.payStatus != null and parameter.payStatus != ''" >
+		and timr.pay_status = #{parameter.payStatus,jdbcType=INTEGER}
+	 </if>
+	 order by timr.id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_integral_mall_record
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_integral_mall_record
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_integral_mall_record
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallRecord" >
+    insert into hgl.tb_integral_mall_record (id, integral_mall_id, integral_serial_no, 
+      user_id, pay_money, remaining_integral, 
+      pay_status, plat_status, exchange_num, 
+      address_id, create_by, create_dt, remark)
+    values (#{id,jdbcType=INTEGER}, #{integralMallId,jdbcType=INTEGER}, #{integralSerialNo,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{payMoney,jdbcType=DOUBLE}, #{remainingIntegral,jdbcType=INTEGER}, 
+      #{payStatus,jdbcType=INTEGER}, #{platStatus,jdbcType=INTEGER}, #{exchangeNum,jdbcType=INTEGER}, 
+      #{addressId,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT}, #{remark,jdbcType=VARCHAR})
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallRecord" >
+    insert into tb_integral_mall_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="integralMallId != null" >
+        integral_mall_id,
+      </if>
+      <if test="integralSerialNo != null" >
+        integral_serial_no,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="remainingIntegral != null" >
+        remaining_integral,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="platStatus != null" >
+        plat_status,
+      </if>
+      <if test="exchangeNum != null" >
+        exchange_num,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="integralMallId != null" >
+        #{integralMallId,jdbcType=INTEGER},
+      </if>
+      <if test="integralSerialNo != null" >
+        #{integralSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="remainingIntegral != null" >
+        #{remainingIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="platStatus != null" >
+        #{platStatus,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeNum != null" >
+        #{exchangeNum,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_integral_mall_record
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallRecord" flushCache="true" >
+    update tb_integral_mall_record
+    <set >
+      <if test="integralMallId != null" >
+        integral_mall_id = #{integralMallId,jdbcType=INTEGER},
+      </if>
+      <if test="integralSerialNo != null" >
+        integral_serial_no = #{integralSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="remainingIntegral != null" >
+        remaining_integral = #{remainingIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=INTEGER},
+      </if>
+      <if test="platStatus != null" >
+        plat_status = #{platStatus,jdbcType=INTEGER},
+      </if>
+      <if test="exchangeNum != null" >
+        exchange_num = #{exchangeNum,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallRecord" flushCache="true" >
+    update tb_integral_mall_record
+    set integral_mall_id = #{integralMallId,jdbcType=INTEGER},
+      integral_serial_no = #{integralSerialNo,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=DOUBLE},
+      remaining_integral = #{remainingIntegral,jdbcType=INTEGER},
+      pay_status = #{payStatus,jdbcType=INTEGER},
+      plat_status = #{platStatus,jdbcType=INTEGER},
+      exchange_num = #{exchangeNum,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      version = version + 1,
+      remark = #{remark,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <select id="selectBySerialNo" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_integral_mall_record
+    where integral_serial_no = #{parameter.integralSerialNo,jdbcType=VARCHAR}
+  </select>
+</mapper>

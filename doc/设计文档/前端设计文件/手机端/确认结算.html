@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<script src="js/base.js"></script>
+</head>	
+<body>
+	
+<header class="cart verify-head">
+	<span class="icon-angle-left text-center"></span>
+	<h3 class="text-center">确认结算</h3>
+</header>
+
+<div class="container container-cart verify">
+	<div>
+		<h2>收获方式</h2>
+		<div class="choice">
+			<label for="ziti">
+				<input type="radio" id="ziti" name="receipt" class="on">自提
+			</label>
+			<label for="songhuo">
+				<input type="radio" id="songhuo" name="receipt"><span id="text">送货(超出8公里不提供送货服务)</span>
+			</label>
+		</div>
+	</div>
+	<div>
+		<h2>选择收获地址</h2>
+		<div class="choice">
+			<div>张三(广东省)    <span class="phone">18026955706</span></div>
+			<div>龙华新区展涛科技大夏1201</div>
+		</div>
+	</div>
+	<div>
+		<h2>支付方式</h2>
+		<div class="choice">
+			<label for="lineDown">
+				<input type="radio" id="lineDown" name="pay" class="on" >线下
+			</label>
+			<label for="lineUp">
+				<input type="radio" id="lineUp" name="pay">线上
+			</label>
+		</div>
+	</div>	
+	<div class="cart-lists">
+		<h2>订单信息</h2>
+		<div class="cart-shopping">
+			<div class="shopping-head">
+				<div class="clearfix">
+					<div>
+						一路发五金店
+					</div>
+					<div>
+						<span class="icon-phone-sign"></span> <span>0755-85421484</span> 
+					</div>
+				</div>
+				<div class="clearfix">
+					<div>
+						<span>深圳市龙华新区展滔科技大厦1201</span>
+					</div>
+					<div>
+						<span class="icon-map-marker"></span>10km
+					</div>
+				</div>
+			</div>
+	
+			<ul class="shopping-lists shopping-verify">
+				<li class="clearfix">
+					<div class="item1">
+						<img src="images/shoudong.png" alt="">
+					</div>
+					<div class="item2">
+						<h3>维修级尖嘴大力钳@TAJIMA/田岛田岛田岛田岛田岛</h3>
+						<dl>
+							<dt><span class=" icon-angle-right"></span>规格：5.5MM</dt>
+							<dd>材质：合金钢</dd>
+							<dd>长度：127mm</dd>
+							<dd>开口钳宽度：15mm</dd>
+							<dd>棘轮钳头宽度：17mm</dd>
+							<dd>开口钳厚度：5mm</dd>
+							<dd>棘轮钳头厚度：6.5mm</dd>
+						</dl>
+						<div>
+							<span class="text-red">￥<b style="font-size:1.5em;">5.8</b></span>
+							<div class="pull-right">x<span style="line-height:2em" class="num">1</span></div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		
+	</div>
+</div>
+
+<footer class="cart-footer">
+	<ul class="clearfix verify-list">
+		<li>合计:<span style="color:#f40;">4000</span>个</li>
+		<li><span style="color:#f40;">360.00</span>元(含10元运费)</li>
+		<li>
+			<a href="javascript:;">去结算</a>
+		</li>
+	</ul>
+</footer>
+
+  		
+</body>
+
+</html>
+
+ <script>
+ 	$(function() {
+ 		var arr = ['送货（您所在区域不提供送货服务）','送货（该店不提供送货服务）',
+ 				   '送货（超出8公里不提供送货服务）','送货（加收送货费10元）',
+ 				   '送货（满300包邮）','送货（免费送货）','送货（送货费与卖家协商）'];
+ 		$(document).delegate('dl dt','click',function(){
+ 			$(this).siblings('dd').slideToggle(100);
+ 		})
+ 		setInterval(function(){
+ 			$('#text').html(arr[Math.floor(Math.random()*arr.length)])
+ 		},1000)
+
+ 		$(document).delegate('input[type="radio"]','click',function(event) {
+ 			$(this).addClass('on').parent('label').siblings('label').children('input').removeClass('on');
+ 		});
+ 		
+ 	});
+
+ </script>

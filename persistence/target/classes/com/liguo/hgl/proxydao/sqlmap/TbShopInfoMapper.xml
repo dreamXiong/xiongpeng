@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbShopInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbShopInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_type" property="shopType" jdbcType="INTEGER" />
+    <result column="exp_level" property="expLevel" jdbcType="INTEGER" />
+    <result column="exp" property="exp" jdbcType="INTEGER" />
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="contract" property="contract" jdbcType="VARCHAR" />
+    <result column="contract_phone" property="contractPhone" jdbcType="VARCHAR" />
+    <result column="company_tel" property="companyTel" jdbcType="VARCHAR" />
+    <result column="legal_representative" property="legalRepresentative" jdbcType="VARCHAR" />
+    <result column="reg_province" property="regProvince" jdbcType="INTEGER" />
+    <result column="reg_city" property="regCity" jdbcType="INTEGER" />
+    <result column="reg_country" property="regCountry" jdbcType="INTEGER" />
+    <result column="reg_street" property="regStreet" jdbcType="INTEGER" />
+    <result column="reg_address" property="regAddress" jdbcType="VARCHAR" />
+    <result column="product_type_id" property="productTypeId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="sales" property="sales" jdbcType="INTEGER" />
+    <result column="taxpayer_image" property="taxpayerImage" jdbcType="VARCHAR" />
+    <result column="license_image" property="licenseImage" jdbcType="VARCHAR" />
+    <result column="organization_image" property="organizationImage" jdbcType="VARCHAR" />
+    <result column="shop_image1" property="shopImage1" jdbcType="VARCHAR" />
+    <result column="shop_image2" property="shopImage2" jdbcType="VARCHAR" />
+    <result column="shop_image3" property="shopImage3" jdbcType="VARCHAR" />
+    <result column="ads_image" property="adsImage" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="auth_status" property="authStatus" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="coupon_gain_amt" property="couponGainAmt" jdbcType="DOUBLE" />
+    <result column="coupon_employ_amt" property="couponEmployAmt" jdbcType="DOUBLE" />
+    <result column="coupon_remaining_amt" property="couponRemainingAmt" jdbcType="DOUBLE" />
+    <result column="balance" property="balance" jdbcType="INTEGER" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="is_automatic_order" property="isAutomaticOrder" jdbcType="INTEGER" />
+    <result column="settlement" property="settlement" jdbcType="INTEGER" />
+    <result column="rebate" property="rebate" jdbcType="DOUBLE" />
+    <result column="grade" property="grade" jdbcType="VARCHAR" />
+    <result column="service_type" property="serviceType" jdbcType="VARCHAR" />
+    <result column="medal_agent_flag" property="medalAgentFlag" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultShopMapDto" type="com.liguo.hgl.proxydao.dto.ShopWebUserDto" extends="BaseResultMap" >
+    <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+    <result column="productType" property="productType" jdbcType="VARCHAR" />
+     <result column="userName" property="userName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopType != null" >
+         and shop_type = #{parameter.shopType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.expLevel != null" >
+         and exp_level = #{parameter.expLevel,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.exp != null" >
+         and exp = #{parameter.exp,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.shopName != null" >
+         and shop_name = #{parameter.shopName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyName != null" >
+         and company_name = #{parameter.companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contract != null" >
+         and contract = #{parameter.contract,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contractPhone != null" >
+         and contract_phone = #{parameter.contractPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyTel != null" >
+         and company_tel = #{parameter.companyTel,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.legalRepresentative != null" >
+         and legal_representative = #{parameter.legalRepresentative,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.regProvince != null" >
+         and reg_province = #{parameter.regProvince,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCity != null" >
+         and reg_city = #{parameter.regCity,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCountry != null" >
+         and reg_country = #{parameter.regCountry,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regStreet != null" >
+         and reg_street = #{parameter.regStreet,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regAddress != null" >
+         and reg_address = #{parameter.regAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.productTypeId != null" >
+         and product_type_id = #{parameter.productTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.brandId != null" >
+         and brand_id = #{parameter.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.scope != null" >
+         and scope = #{parameter.scope,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.sales != null" >
+         and sales = #{parameter.sales,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.taxpayerImage != null" >
+         and taxpayer_image = #{parameter.taxpayerImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.licenseImage != null" >
+         and license_image = #{parameter.licenseImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.organizationImage != null" >
+         and organization_image = #{parameter.organizationImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopImage1 != null" >
+         and shop_image1 = #{parameter.shopImage1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopImage2 != null" >
+         and shop_image2 = #{parameter.shopImage2,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopImage3 != null" >
+         and shop_image3 = #{parameter.shopImage3,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.adsImage != null" >
+         and ads_image = #{parameter.adsImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.authStatus != null" >
+         and auth_status = #{parameter.authStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.accountId != null" >
+         and account_id = #{parameter.accountId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.couponGainAmt != null" >
+         and coupon_gain_amt = #{parameter.couponGainAmt,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.couponEmployAmt != null" >
+         and coupon_employ_amt = #{parameter.couponEmployAmt,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.couponRemainingAmt != null" >
+         and coupon_remaining_amt = #{parameter.couponRemainingAmt,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.balance != null" >
+         and balance = #{parameter.balance,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.lon != null" >
+         and lon = #{parameter.lon,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.lat != null" >
+         and lat = #{parameter.lat,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.isAutomaticOrder != null" >
+         and is_automatic_order = #{parameter.isAutomaticOrder,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.settlement != null" >
+         and settlement = #{parameter.settlement,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.rebate != null" >
+         and rebate = #{parameter.rebate,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.grade != null" >
+         and grade = #{parameter.grade,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.serviceType != null" >
+         and service_type = #{parameter.serviceType,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.medalAgentFlag != null" >
+         and medal_agent_flag = #{parameter.medalAgentFlag,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_type, exp_level, exp, shop_name, company_name, contract, contract_phone, 
+    company_tel, legal_representative, reg_province, reg_city, reg_country, reg_street, 
+    reg_address, product_type_id, brand_id, scope, sales, taxpayer_image, license_image, 
+    organization_image, shop_image1, shop_image2, shop_image3, ads_image, remark, auth_status, 
+    create_by, create_dt, coupon_gain_amt, coupon_employ_amt, coupon_remaining_amt, balance, 
+    lon, lat, version, account_id, is_automatic_order, settlement, rebate, grade, service_type, medal_agent_flag
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_shop_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_shop_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_shop_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_shop_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbShopInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into hgl.tb_shop_info (id, shop_type, exp_level, 
+      exp, shop_name, company_name, 
+      contract, contract_phone, company_tel, 
+      legal_representative, reg_province, reg_city, 
+      reg_country, reg_street, reg_address, 
+      product_type_id, brand_id, scope, 
+      sales, taxpayer_image, license_image, 
+      organization_image, shop_image1, shop_image2, 
+      shop_image3, ads_image, remark, 
+      auth_status, create_by,create_dt,coupon_gain_amt,coupon_employ_amt,coupon_remaining_amt,
+      balance, lon, lat, is_automatic_order, grade,settlement, service_type, medal_agent_flag
+      )
+    values (#{id,jdbcType=INTEGER}, #{shopType,jdbcType=INTEGER}, #{expLevel,jdbcType=INTEGER}, 
+      #{exp,jdbcType=INTEGER}, #{shopName,jdbcType=VARCHAR}, #{companyName,jdbcType=VARCHAR}, 
+      #{contract,jdbcType=VARCHAR}, #{contractPhone,jdbcType=VARCHAR}, #{companyTel,jdbcType=VARCHAR}, 
+      #{legalRepresentative,jdbcType=VARCHAR}, #{regProvince,jdbcType=INTEGER}, #{regCity,jdbcType=INTEGER}, 
+      #{regCountry,jdbcType=INTEGER}, #{regStreet,jdbcType=INTEGER}, #{regAddress,jdbcType=VARCHAR}, 
+      #{productTypeId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{scope,jdbcType=VARCHAR}, 
+      #{sales,jdbcType=INTEGER}, #{taxpayerImage,jdbcType=VARCHAR}, #{licenseImage,jdbcType=VARCHAR}, 
+      #{organizationImage,jdbcType=VARCHAR}, #{shopImage1,jdbcType=VARCHAR}, #{shopImage2,jdbcType=VARCHAR}, 
+      #{shopImage3,jdbcType=VARCHAR}, #{adsImage,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{authStatus,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT},
+      #{couponGainAmt,jdbcType=DOUBLE}, #{couponEmployAmt,jdbcType=DOUBLE},#{couponRemainingAmt,jdbcType=DOUBLE},	
+      #{balance,jdbcType=DOUBLE}, #{lon,jdbcType=DOUBLE},#{lat,jdbcType=DOUBLE},
+      #{isAutomaticOrder,jdbcType=INTEGER},#{grade,jdbcType=VARCHAR},#{settlement,jdbcType=INTEGER},
+      #{serviceType,jdbcType=VARCHAR},#{medalAgentFlag,jdbcType=INTEGER}
+      )
+     <selectKey resultType="int" order="AFTER" keyProperty="id">
+		SELECT LAST_INSERT_ID() AS id
+	 </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbShopInfo" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_shop_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopType != null" >
+        shop_type,
+      </if>
+      <if test="expLevel != null" >
+        exp_level,
+      </if>
+      <if test="exp != null" >
+        exp,
+      </if>
+      <if test="shopName != null" >
+        shop_name,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="contract != null" >
+        contract,
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone,
+      </if>
+      <if test="companyTel != null" >
+        company_tel,
+      </if>
+      <if test="legalRepresentative != null" >
+        legal_representative,
+      </if>
+      <if test="regProvince != null" >
+        reg_province,
+      </if>
+      <if test="regCity != null" >
+        reg_city,
+      </if>
+      <if test="regCountry != null" >
+        reg_country,
+      </if>
+      <if test="regStreet != null" >
+        reg_street,
+      </if>
+      <if test="regAddress != null" >
+        reg_address,
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="sales != null" >
+        sales,
+      </if>
+      <if test="taxpayerImage != null" >
+        taxpayer_image,
+      </if>
+      <if test="licenseImage != null" >
+        license_image,
+      </if>
+      <if test="organizationImage != null" >
+        organization_image,
+      </if>
+      <if test="shopImage1 != null" >
+        shop_image1,
+      </if>
+      <if test="shopImage2 != null" >
+        shop_image2,
+      </if>
+      <if test="shopImage3 != null" >
+        shop_image3,
+      </if>
+      <if test="adsImage != null" >
+        ads_image,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="authStatus != null" >
+        auth_status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="couponGainAmt != null" >
+        coupon_gain_amt,
+      </if>
+      <if test="couponEmployAmt != null" >
+        coupon_employ_amt,
+      </if>
+      <if test="couponRemainingAmt != null" >
+        coupon_remaining_amt,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="lon != null" >
+        lon,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="isAutomaticOrder != null" >
+        is_automatic_order,
+      </if>
+      <if test="settlement != null" >
+        settlement,
+      </if>
+      <if test="rebate != null" >
+        rebate,
+      </if>
+      <if test="grade != null" >
+        grade,
+      </if>
+      <if test="serviceType != null" >
+        service_type,
+      </if>
+      <if test="medalAgentFlag != null" >
+        medal_agent_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopType != null" >
+        #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="expLevel != null" >
+        #{expLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null" >
+        #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null" >
+        #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="regProvince != null" >
+        #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeId != null" >
+        #{productTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="taxpayerImage != null" >
+        #{taxpayerImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationImage != null" >
+        #{organizationImage,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage1 != null" >
+        #{shopImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage2 != null" >
+        #{shopImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage3 != null" >
+        #{shopImage3,jdbcType=VARCHAR},
+      </if>
+      <if test="adsImage != null" >
+        #{adsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null" >
+        #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="couponGainAmt != null" >
+        #{couponGainAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponEmployAmt != null" >
+        #{couponEmployAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponRemainingAmt != null" >
+        #{couponRemainingAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="lon != null" >
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="isAutomaticOrder != null" >
+        #{isAutomaticOrder,jdbcType=INTEGER},
+      </if>
+      <if test="settlement != null" >
+        #{settlement,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null" >
+        #{rebate,jdbcType=DOUBLE},
+      </if>
+      <if test="grade != null" >
+        #{grade,jdbcType=VARCHAR},
+      </if>
+      <if test="serviceType != null" >
+        #{serviceType,jdbcType=VARCHAR},
+      </if>    
+      <if test="medalAgentFlag != null" >
+        #{medalAgentFlag,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_shop_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbShopInfo" flushCache="true" >
+    update tb_shop_info
+    <set >
+      <if test="shopType != null" >
+        shop_type = #{shopType,jdbcType=INTEGER},
+      </if>
+      <if test="expLevel != null" >
+        exp_level = #{expLevel,jdbcType=INTEGER},
+      </if>
+      <if test="exp != null" >
+        exp = #{exp,jdbcType=INTEGER},
+      </if>
+      <if test="shopName != null" >
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="legalRepresentative != null" >
+        legal_representative = #{legalRepresentative,jdbcType=VARCHAR},
+      </if>
+      <if test="regProvince != null" >
+        reg_province = #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        reg_city = #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        reg_country = #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        reg_street = #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        reg_address = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="productTypeId != null" >
+        product_type_id = #{productTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="sales != null" >
+        sales = #{sales,jdbcType=INTEGER},
+      </if>
+      <if test="taxpayerImage != null" >
+        taxpayer_image = #{taxpayerImage,jdbcType=VARCHAR},
+      </if>
+      <if test="licenseImage != null" >
+        license_image = #{licenseImage,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationImage != null" >
+        organization_image = #{organizationImage,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage1 != null" >
+        shop_image1 = #{shopImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage2 != null" >
+        shop_image2 = #{shopImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="shopImage3 != null" >
+        shop_image3 = #{shopImage3,jdbcType=VARCHAR},
+      </if>
+      <if test="adsImage != null" >
+        ads_image = #{adsImage,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="authStatus != null" >
+        auth_status = #{authStatus,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="couponGainAmt != null" >
+        coupon_gain_amt = #{couponGainAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponEmployAmt != null" >
+        coupon_employ_amt = #{couponEmployAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="couponRemainingAmt != null" >
+        coupon_remaining_amt = #{couponRemainingAmt,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="lon != null" >
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="isAutomaticOrder != null" >
+        is_automatic_order = #{isAutomaticOrder,jdbcType=INTEGER},
+      </if>
+      <if test="settlement != null" >
+        settlement = #{settlement,jdbcType=INTEGER},
+      </if>
+      <if test="rebate != null" >
+        rebate = #{rebate,jdbcType=DOUBLE},
+      </if>
+      <if test="grade != null" >
+        grade = #{grade,jdbcType=VARCHAR},
+      </if>
+        service_type = #{serviceType,jdbcType=VARCHAR},
+      <if test="medalAgentFlag != null" >
+        medal_agent_flag = #{medalAgentFlag,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbShopInfo" flushCache="true" >
+    update tb_shop_info
+    set shop_type = #{shopType,jdbcType=INTEGER},
+      exp_level = #{expLevel,jdbcType=INTEGER},
+      exp = #{exp,jdbcType=INTEGER},
+      shop_name = #{shopName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      contract = #{contract,jdbcType=VARCHAR},
+      contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      legal_representative = #{legalRepresentative,jdbcType=VARCHAR},
+      reg_province = #{regProvince,jdbcType=INTEGER},
+      reg_city = #{regCity,jdbcType=INTEGER},
+      reg_country = #{regCountry,jdbcType=INTEGER},
+      reg_street = #{regStreet,jdbcType=INTEGER},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      product_type_id = #{productTypeId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      scope = #{scope,jdbcType=VARCHAR},
+      sales = #{sales,jdbcType=INTEGER},
+      taxpayer_image = #{taxpayerImage,jdbcType=VARCHAR},
+      license_image = #{licenseImage,jdbcType=VARCHAR},
+      organization_image = #{organizationImage,jdbcType=VARCHAR},
+      shop_image1 = #{shopImage1,jdbcType=VARCHAR},
+      shop_image2 = #{shopImage2,jdbcType=VARCHAR},
+      shop_image3 = #{shopImage3,jdbcType=VARCHAR},
+      ads_image = #{adsImage,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      auth_status = #{authStatus,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=INTEGER},
+      coupon_gain_amt = #{couponGainAmt,jdbcType=DOUBLE},
+      coupon_employ_amt = #{couponEmployAmt,jdbcType=DOUBLE},
+      coupon_remaining_amt = #{couponRemainingAmt,jdbcType=DOUBLE},
+      balance = #{balance,jdbcType=DOUBLE},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      version = version + 1,
+      account_id = #{accountId,jdbcType=INTEGER},
+      is_automatic_order = #{isAutomaticOrder,jdbcType=INTEGER},
+      settlement = #{settlement,jdbcType=INTEGER},
+      rebate = #{rebate,jdbcType=DOUBLE},
+      grade = #{grade,jdbcType=VARCHAR},
+      service_type = #{serviceType,jdbcType=VARCHAR},
+      medal_agent_flag = #{medalAgentFlag,jdbcType=INTEGER}
+     where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+   <select id="selectUserShopById" resultMap="ResultShopMapDto" parameterType="java.lang.Integer" >
+	  select s.*,b.name AS brandName,b.product_type_name as productType,w.mobile AS mobile,w.state as state,w.user_name AS userName 
+	  	from tb_shop_info s left join tb_web_user w on s.id=w.shop_id
+       left join tb_brand b on s.brand_id=b.id
+	   where s.id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByCriteria" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultShopMapDto" >
+	  select s.*,w.mobile AS mobile,w.id AS userId from tb_shop_info s ,tb_web_user w
+		     
+		 <if test="parameter != null" >
+		      <include refid="Object_Where_ClauseDto" />
+		    </if>
+		   <if test="orderByClause != null" >
+		      order by ${orderByClause} ${orderByClauseDesc}
+		    </if>
+		    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <sql id="Object_Where_ClauseDto" >
+    <trim prefix="where" prefixOverrides="and|or" >
+    	 w.shop_id=s.id
+      <if test="parameter.companyName != null" >
+         and s.company_name like CONCAT('%','${parameter.companyName}','%')
+      </if>
+       <if test="parameter.shopName != null" >
+         and s.shop_name like CONCAT('%','${parameter.shopName}','%')
+      </if>
+        <if test="parameter.state != null" >
+         and s.auth_status = #{parameter.state,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.shopType != null" >
+         and s.shop_type = #{parameter.shopType,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <select id="selectByUserId" resultMap="ResultShopMapDto" parameterType="java.lang.Integer" >
+	  select s.* from tb_shop_info s left join tb_web_user w on s.id=w.shop_id
+	   where w.id=#{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectTbShopInfoForWap" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select 
+		tsi.id, 
+		tsi.shop_type, 
+		tsi.shop_name, 
+		tsi.company_name, 
+		tsi.contract, 
+		tsi.contract_phone, 
+		tsi.company_tel, 
+		tsi.legal_representative, 
+		tsi.product_type_id, 
+		tsi.brand_id, 
+		tsi.scope, 
+		tsi.sales, 
+		tsi.taxpayer_image, 
+		tsi.license_image, 
+		tsi.organization_image, 
+		tsi.shop_image1, 
+		tsi.shop_image2, 
+		tsi.shop_image3, 
+		tsi.ads_image, 
+		tsi.auth_status,
+		tsi.grade, 
+		GetShortDistance(tsi.lon,tsi.lat,#{parameter.lon,jdbcType=DOUBLE},#{parameter.lat,jdbcType=DOUBLE}) as balance
+		from tb_shop_info tsi 
+		join tb_city_info tci on tsi.reg_city =  tci.id
+		where 1=1
+		<if test="parameter.address != null" >
+         	and tci.name = #{parameter.address,jdbcType=VARCHAR}
+      	</if>
+		<if test="parameter.authStatus != null" >
+         	and tsi.auth_status = #{parameter.authStatus,jdbcType=INTEGER}
+      	</if>
+		<if test="parameter.shopType != null" >
+         	and tsi.shop_type = #{parameter.shopType,jdbcType=INTEGER}
+      	</if>
+		<if test="parameter.grade != null" >
+         	and tsi.grade  is not null
+      	</if>
+		order by balance asc
+	</select>
+	<select id="selectRebatereCommended" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    	select tsi.id,
+		       tsi.account_id,
+		       tsi.settlement,
+		       tsi.medal_agent_flag
+		from tb_shop_info tsi
+		join 
+		(select twu1.shop_id from tb_web_user twu1 
+		 where logo_code = (select recommend_code from tb_web_user twu where twu.shop_id = #{parameter.shopId,jdbcType=INTEGER} and twu.recommend_code != 0000)
+		) tu on tu.shop_id = tsi.id
+	</select>
+	
+	<select id="selectNearTbShopInfo" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select 
+		tsi.id, 
+		tsi.shop_type, 
+		tsi.shop_name, 
+		tsi.company_name, 
+		tsi.contract, 
+		tsi.contract_phone, 
+		tsi.company_tel, 
+		tsi.legal_representative, 
+		tsi.product_type_id, 
+		tsi.brand_id, 
+		tsi.scope, 
+		tsi.sales, 
+		tsi.taxpayer_image, 
+		tsi.license_image, 
+		tsi.organization_image, 
+		tsi.shop_image1, 
+		tsi.shop_image2, 
+		tsi.shop_image3, 
+		tsi.ads_image, 
+		tsi.lon,tsi.lat,
+		tsi.auth_status,
+		tpt.name as grade,
+		GetShortDistance(tsi.lon,tsi.lat,#{parameter.lon,jdbcType=DOUBLE},#{parameter.lat,jdbcType=DOUBLE}) as rebate
+		from tb_shop_info tsi 
+		left join tb_product_type tpt on tpt.id = tsi.product_type_id
+		where 1=1
+		<if test="parameter.settlement != null" >
+         	and tsi.settlement = #{parameter.settlement,jdbcType=INTEGER}
+      	</if>
+		<if test="parameter.shopType != null" >
+         	and tsi.shop_type = #{parameter.shopType,jdbcType=INTEGER}
+      	</if>
+      	<if test="parameter.typeList != null and parameter.typeList !=''" >
+			and tsi.product_type_id in
+			<foreach item="itemc" index="index" collection="parameter.typeList" open="(" separator="," close=")" >  
+                  ${itemc}
+            </foreach>
+		</if>
+		<if test="parameter.searchText != null and parameter.searchText !=''" >
+     			and tsi.shop_name like '%${parameter.searchText}%'
+   			</if>
+		order by rebate asc
+		limit #{parameter.pageFrom,jdbcType=INTEGER},#{parameter.pageSize,jdbcType=INTEGER}
+	</select>
+	
+	<select id="selectNearTbShopPageCount" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+	   select 
+			count(*)
+			from tb_shop_info tsi 
+			left join tb_product_type tpt on tpt.id = tsi.product_type_id
+			where 1=1
+			<if test="parameter.settlement != null" >
+	         	and tsi.settlement = #{parameter.settlement,jdbcType=INTEGER}
+	      	</if>
+			<if test="parameter.shopType != null" >
+	         	and tsi.shop_type = #{parameter.shopType,jdbcType=INTEGER}
+	      	</if>
+	      	<if test="parameter.typeList != null and parameter.typeList !=''" >
+				and tsi.product_type_id in
+				<foreach item="itemc" index="index" collection="parameter.typeList" open="(" separator="," close=")" >  
+	                  ${itemc}
+	            </foreach>
+			</if>
+			<if test="parameter.searchText != null and parameter.searchText !=''" >
+	     		and tsi.shop_name like '%${parameter.searchText}%'
+	   		</if>
+  	</select>
+</mapper>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>秒杀列表</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+	<style>
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	   vertical-align:middle;
+	}
+	</style>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	<header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+        	<a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+        	<a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+        	<a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+        <li class="active treeview">
+          <a href="javascript:;">
+            <i class="fa fa-dashboard"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="javasript:;"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+            <li><a href="javasript:;"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i>
+            <span>活动管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 秒杀管理</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 优惠券</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 积分管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-laptop"></i>
+            <span>广告管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 添加广告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-edit"></i>
+            <span>系统管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+          </ul>
+        </li>
+    	</ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>秒杀列表</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+    		<div class="box box-primary">
+    			 <div class="box-body">
+             <form action="#" class="form-horizontal">
+              <div  class="col-sm-4">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">名称</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div>
+              <div  class="col-sm-4">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">状态</label>
+                  <div class="col-sm-8">
+                    <select class="form-control" >
+                      <option value="销售中">销售中</option>
+                      <option value="已售罄">已售罄</option>
+                      <option value="已结束">已结束</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                  <button type="button" class="btn btn-primary">查询</button>
+                  <button type="button" class="btn btn-info">添加</button>
+              </div>
+              </div>
+              <div class="col-sm-12">
+                <table class="table table-bordered table-hover dataTable text-center table-bordered">
+                  <tr class="info">
+                    <th></th>
+                    <th>商品名称</th>
+                    <th>品牌名称</th>
+                    <th>商品分类</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
+                    <th>价格(元)</th>
+                    <th>状态</th>
+                    <th>库存</th>
+                    <th>操作选项</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" name="pitch">
+                    </td>
+                    <td>
+                      可折叠牛津包手动工具和园林工具组套
+                    </td>
+                    <td>
+                      GREATWALL/长城精工
+                    </td>
+                    <td>
+                      手工工具
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      197.00
+                    </td>
+                    <td>
+                      销售中
+                    </td>
+                    <td>
+                      150
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                      <button type="button" class="btn btn-primary btn-sm">上架</button>
+                      <button type="button" class="btn btn-primary btn-sm">下架</button>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" name="pitch">
+                    </td>
+                    <td>
+                      可折叠牛津包手动工具和园林工具组套
+                    </td>
+                    <td>
+                      GREATWALL/长城精工
+                    </td>
+                    <td>
+                      手工工具
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      197.00
+                    </td>
+                    <td>
+                      销售中
+                    </td>
+                    <td>
+                      150
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                      <button type="button" class="btn btn-primary btn-sm">上架</button>
+                      <button type="button" class="btn btn-primary btn-sm">下架</button>
+                    </td>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" name="pitch">
+                    </td>
+                    <td>
+                      可折叠牛津包手动工具和园林工具组套
+                    </td>
+                    <td>
+                      GREATWALL/长城精工
+                    </td>
+                    <td>
+                      手工工具
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      2016-3-31
+                    </td>
+                    <td>
+                      197.00
+                    </td>
+                    <td>
+                      销售中
+                    </td>
+                    <td>
+                      150
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                      <button type="button" class="btn btn-primary btn-sm">上架</button>
+                      <button type="button" class="btn btn-primary btn-sm">下架</button>
+                    </td>
+
+                  </tr>
+                </table>
+              </div>
+              <div>
+                <div class="col-sm-5">
+                  <div class="dataTables_info" >
+                   当前第<span>1</span>条 共<span>3</span>条  总共<span>10</span>页
+                  </div>
+                </div>
+                <div class="col-sm-7 text-right">
+                      <a href="javascrip:;">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascrip:;">上一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascrip:;">下一页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascrip:;">尾页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <a href="javascript:;">跳转</a> <input type="text" style="width:30px"> 页
+                </div>
+              </div>
+             </form>
+                
+    			 </div>
+    		</div>
+    	</div>
+    </section>
+  </div>
+</div>
+</body>
+</html>

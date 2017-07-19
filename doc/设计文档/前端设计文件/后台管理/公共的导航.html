@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>tab栏</title>
+  <!-- 公共的样式开始 -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+  <!-- 公共的样式结束 -->
+
+  <link rel="stylesheet" href="css/nav.css">
+
+  <!-- 公共js开始 -->
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+  <script src="dist/js/jquery.slimscroll.min.js"></script>
+  <!-- 公共js结束 -->
+  
+  <script src="js/nav.js"></script>
+
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	<header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+        <span class="invisible">惠给利后台管理系统</span>
+      </a>
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+        	<a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+        	<a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+        	<a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+
+        
+
+        <li class=" treeview">
+          <a href="javascript:;">
+            <i class="fa fa-tags"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javascript:;"><i class="fa fa-circle invisible-o invisible"></i> 类别管理</a></li>
+            <li><a href="${ctx}/brand/index"><i class="fa fa-circle invisible-o invisible"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pencil"></i> <span>注册审核</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javasript:;"><i class="fa fa-circle-o invisible"></i>厂家审核</a></li>
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i> 经销商审核</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-cubes"></i> <span>库存管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${ctx}/product/index"><i class="fa fa-circle-o invisible"></i>产品管理</a></li>
+            <li><a href="${ctx}/inventory/index"><i class="fa fa-circle-o invisible"></i>库存管理</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i><span>活动管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+                <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i>优惠券管理</a></li>
+                <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i>积分管理</a></li>
+                <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i>活动管理</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-arrows"></i><span>广告管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${ctx}/notice/queryNoticeInfoList"><i class="fa fa-circle-o invisible"></i>公告列表</a></li>
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i>广告管理</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-cogs"></i> <span>系统管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${ctx}/warehouse/index"><i class="fa fa-circle invisible-o invisible"></i> 仓库管理</a></li>
+            <li><a href="${ctx}/systemConfig/index"><i class="fa fa-circle invisible-o invisible"></i> 配置管理</a></li>
+          </ul>
+        </li>
+        
+
+         <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-users"></i> <span>招商管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${ctx}/merchants/merchants"><i class="fa fa-circle invisible-o invisible"></i> 招商列表</a></li>
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i> 街道管理</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-user"></i><span>前台用户管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i> 用户管理</a></li>
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i> 角色管理</a></li>
+          </ul>
+        </li>
+
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-user-plus"></i><span>后台用户管理</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="${ctx}/adminuser/queryAdminUserList"><i class="fa fa-circle-o invisible"></i> 用户列表</a></li>
+            <li><a href="javascript:;"><i class="fa fa-circle-o invisible"></i> 角色管理</a></li>
+          </ul>
+        </li>
+
+    	</ul>
+    </section>
+  </aside>
+  </div>
+  
+
+</body>
+</html>

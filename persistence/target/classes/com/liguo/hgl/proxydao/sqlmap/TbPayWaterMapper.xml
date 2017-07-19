@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbPayWaterMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbPayWater" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_group_no" property="orderGroupNo" jdbcType="VARCHAR" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="pay_date_start" property="payDateStart" jdbcType="TIMESTAMP" />
+    <result column="pay_date_end" property="payDateEnd" jdbcType="TIMESTAMP" />
+    <result column="pay_amt" property="payAmt" jdbcType="DECIMAL" />
+    <result column="pay_status_code" property="payStatusCode" jdbcType="VARCHAR" />
+    <result column="pay_result_code" property="payResultCode" jdbcType="VARCHAR" />
+    <result column="pay_service_name" property="payServiceName" jdbcType="VARCHAR" />
+    <result column="pay_zfb_sign_code" property="payZfbSignCode" jdbcType="VARCHAR" />
+    <result column="pay_zfb_seller" property="payZfbSeller" jdbcType="VARCHAR" />
+    <result column="pay_zfb_buyer" property="payZfbBuyer" jdbcType="VARCHAR" />
+    <result column="thd_trade_no" property="thdTradeNo" jdbcType="VARCHAR" />
+    <result column="thd_trade_status" property="thdTradeStatus" jdbcType="VARCHAR" />
+    <result column="pay_status" property="payStatus" jdbcType="VARCHAR" />
+    <result column="time_task_queries" property="timeTaskQueries" jdbcType="VARCHAR" />
+    <result column="thd_wx_url" property="thdWxUrl" jdbcType="VARCHAR" />
+    <result column="thd_wx_id" property="thdWxId" jdbcType="VARCHAR" />
+    <result column="thd_wx_mch" property="thdWxMch" jdbcType="VARCHAR" />
+    <result column="thd_wx_nonce" property="thdWxNonce" jdbcType="VARCHAR" />
+    <result column="thd_wx_spbill" property="thdWxSpbill" jdbcType="VARCHAR" />
+    <result column="thd_wx_code_url" property="thdWxCodeUrl" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderGroupNo != null" >
+         and order_group_no = #{parameter.orderGroupNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payType != null" >
+         and pay_type = #{parameter.payType,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payDateStart != null" >
+         and pay_date_start = #{parameter.payDateStart,jdbcType=TIMESTAMP}
+      </if>
+      <if test="parameter.payDateEnd != null" >
+         and pay_date_end = #{parameter.payDateEnd,jdbcType=TIMESTAMP}
+      </if>
+      <if test="parameter.payAmt != null" >
+         and pay_amt = #{parameter.payAmt,jdbcType=DECIMAL}
+      </if>
+      <if test="parameter.payStatusCode != null" >
+         and pay_status_code = #{parameter.payStatusCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payResultCode != null" >
+         and pay_result_code = #{parameter.payResultCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payServiceName != null" >
+         and pay_service_name = #{parameter.payServiceName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payZfbSignCode != null" >
+         and pay_zfb_sign_code = #{parameter.payZfbSignCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payZfbSeller != null" >
+         and pay_zfb_seller = #{parameter.payZfbSeller,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payZfbBuyer != null" >
+         and pay_zfb_buyer = #{parameter.payZfbBuyer,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdTradeNo != null" >
+         and thd_trade_no = #{parameter.thdTradeNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdTradeStatus != null" >
+         and thd_trade_status = #{parameter.thdTradeStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payStatus != null" >
+         and pay_status = #{parameter.payStatus,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.timeTaskQueries != null" >
+         and time_task_queries = #{parameter.timeTaskQueries,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxUrl != null" >
+         and thd_wx_url = #{parameter.thdWxUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxId != null" >
+         and thd_wx_id = #{parameter.thdWxId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxMch != null" >
+         and thd_wx_mch = #{parameter.thdWxMch,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxNonce != null" >
+         and thd_wx_nonce = #{parameter.thdWxNonce,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxSpbill != null" >
+         and thd_wx_spbill = #{parameter.thdWxSpbill,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.thdWxCodeUrl != null" >
+         and thd_wx_code_url = #{parameter.thdWxCodeUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_group_no, pay_type, pay_date_start, pay_date_end, pay_amt, pay_status_code, 
+    pay_result_code, pay_service_name, pay_zfb_sign_code, pay_zfb_seller, pay_zfb_buyer, 
+    thd_trade_no, thd_trade_status, pay_status, time_task_queries, thd_wx_url, thd_wx_id, 
+    thd_wx_mch, thd_wx_nonce, thd_wx_spbill, thd_wx_code_url, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_pay_water
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+      order by id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pay_water
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_pay_water
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_pay_water
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbPayWater" >
+    insert into hgl.tb_pay_water (id, order_group_no, pay_type, 
+      pay_date_start, pay_date_end, pay_amt, 
+      pay_status_code, pay_result_code, pay_service_name, 
+      pay_zfb_sign_code, pay_zfb_seller, pay_zfb_buyer, 
+      thd_trade_no, thd_trade_status, pay_status, 
+      time_task_queries, thd_wx_url, thd_wx_id, 
+      thd_wx_mch, thd_wx_nonce, thd_wx_spbill, 
+      thd_wx_code_url, version)
+    values (#{id,jdbcType=INTEGER}, #{orderGroupNo,jdbcType=VARCHAR}, #{payType,jdbcType=VARCHAR}, 
+      #{payDateStart,jdbcType=TIMESTAMP}, #{payDateEnd,jdbcType=TIMESTAMP}, #{payAmt,jdbcType=DECIMAL}, 
+      #{payStatusCode,jdbcType=VARCHAR}, #{payResultCode,jdbcType=VARCHAR}, #{payServiceName,jdbcType=VARCHAR}, 
+      #{payZfbSignCode,jdbcType=VARCHAR}, #{payZfbSeller,jdbcType=VARCHAR}, #{payZfbBuyer,jdbcType=VARCHAR}, 
+      #{thdTradeNo,jdbcType=VARCHAR}, #{thdTradeStatus,jdbcType=VARCHAR}, #{payStatus,jdbcType=VARCHAR}, 
+      #{timeTaskQueries,jdbcType=VARCHAR}, #{thdWxUrl,jdbcType=VARCHAR}, #{thdWxId,jdbcType=VARCHAR}, 
+      #{thdWxMch,jdbcType=VARCHAR}, #{thdWxNonce,jdbcType=VARCHAR}, #{thdWxSpbill,jdbcType=VARCHAR}, 
+      #{thdWxCodeUrl,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbPayWater" >
+    insert into tb_pay_water
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderGroupNo != null" >
+        order_group_no,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="payDateStart != null" >
+        pay_date_start,
+      </if>
+      <if test="payDateEnd != null" >
+        pay_date_end,
+      </if>
+      <if test="payAmt != null" >
+        pay_amt,
+      </if>
+      <if test="payStatusCode != null" >
+        pay_status_code,
+      </if>
+      <if test="payResultCode != null" >
+        pay_result_code,
+      </if>
+      <if test="payServiceName != null" >
+        pay_service_name,
+      </if>
+      <if test="payZfbSignCode != null" >
+        pay_zfb_sign_code,
+      </if>
+      <if test="payZfbSeller != null" >
+        pay_zfb_seller,
+      </if>
+      <if test="payZfbBuyer != null" >
+        pay_zfb_buyer,
+      </if>
+      <if test="thdTradeNo != null" >
+        thd_trade_no,
+      </if>
+      <if test="thdTradeStatus != null" >
+        thd_trade_status,
+      </if>
+      <if test="payStatus != null" >
+        pay_status,
+      </if>
+      <if test="timeTaskQueries != null" >
+        time_task_queries,
+      </if>
+      <if test="thdWxUrl != null" >
+        thd_wx_url,
+      </if>
+      <if test="thdWxId != null" >
+        thd_wx_id,
+      </if>
+      <if test="thdWxMch != null" >
+        thd_wx_mch,
+      </if>
+      <if test="thdWxNonce != null" >
+        thd_wx_nonce,
+      </if>
+      <if test="thdWxSpbill != null" >
+        thd_wx_spbill,
+      </if>
+      <if test="thdWxCodeUrl != null" >
+        thd_wx_code_url,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderGroupNo != null" >
+        #{orderGroupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payDateStart != null" >
+        #{payDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payDateEnd != null" >
+        #{payDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payAmt != null" >
+        #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatusCode != null" >
+        #{payStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payResultCode != null" >
+        #{payResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payServiceName != null" >
+        #{payServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbSignCode != null" >
+        #{payZfbSignCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbSeller != null" >
+        #{payZfbSeller,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbBuyer != null" >
+        #{payZfbBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="thdTradeNo != null" >
+        #{thdTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="thdTradeStatus != null" >
+        #{thdTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="timeTaskQueries != null" >
+        #{timeTaskQueries,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxUrl != null" >
+        #{thdWxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxId != null" >
+        #{thdWxId,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxMch != null" >
+        #{thdWxMch,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxNonce != null" >
+        #{thdWxNonce,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxSpbill != null" >
+        #{thdWxSpbill,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxCodeUrl != null" >
+        #{thdWxCodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_pay_water
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbPayWater" flushCache="true" >
+    update tb_pay_water
+    <set >
+      <if test="orderGroupNo != null" >
+        order_group_no = #{orderGroupNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="payDateStart != null" >
+        pay_date_start = #{payDateStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payDateEnd != null" >
+        pay_date_end = #{payDateEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payAmt != null" >
+        pay_amt = #{payAmt,jdbcType=DECIMAL},
+      </if>
+      <if test="payStatusCode != null" >
+        pay_status_code = #{payStatusCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payResultCode != null" >
+        pay_result_code = #{payResultCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payServiceName != null" >
+        pay_service_name = #{payServiceName,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbSignCode != null" >
+        pay_zfb_sign_code = #{payZfbSignCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbSeller != null" >
+        pay_zfb_seller = #{payZfbSeller,jdbcType=VARCHAR},
+      </if>
+      <if test="payZfbBuyer != null" >
+        pay_zfb_buyer = #{payZfbBuyer,jdbcType=VARCHAR},
+      </if>
+      <if test="thdTradeNo != null" >
+        thd_trade_no = #{thdTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="thdTradeStatus != null" >
+        thd_trade_status = #{thdTradeStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payStatus != null" >
+        pay_status = #{payStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="timeTaskQueries != null" >
+        time_task_queries = #{timeTaskQueries,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxUrl != null" >
+        thd_wx_url = #{thdWxUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxId != null" >
+        thd_wx_id = #{thdWxId,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxMch != null" >
+        thd_wx_mch = #{thdWxMch,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxNonce != null" >
+        thd_wx_nonce = #{thdWxNonce,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxSpbill != null" >
+        thd_wx_spbill = #{thdWxSpbill,jdbcType=VARCHAR},
+      </if>
+      <if test="thdWxCodeUrl != null" >
+        thd_wx_code_url = #{thdWxCodeUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where order_group_no = #{orderGroupNo,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbPayWater" flushCache="true" >
+    update tb_pay_water
+    set order_group_no = #{orderGroupNo,jdbcType=VARCHAR},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      pay_date_start = #{payDateStart,jdbcType=TIMESTAMP},
+      pay_date_end = #{payDateEnd,jdbcType=TIMESTAMP},
+      pay_amt = #{payAmt,jdbcType=DECIMAL},
+      pay_status_code = #{payStatusCode,jdbcType=VARCHAR},
+      pay_result_code = #{payResultCode,jdbcType=VARCHAR},
+      pay_service_name = #{payServiceName,jdbcType=VARCHAR},
+      pay_zfb_sign_code = #{payZfbSignCode,jdbcType=VARCHAR},
+      pay_zfb_seller = #{payZfbSeller,jdbcType=VARCHAR},
+      pay_zfb_buyer = #{payZfbBuyer,jdbcType=VARCHAR},
+      thd_trade_no = #{thdTradeNo,jdbcType=VARCHAR},
+      thd_trade_status = #{thdTradeStatus,jdbcType=VARCHAR},
+      pay_status = #{payStatus,jdbcType=VARCHAR},
+      time_task_queries = #{timeTaskQueries,jdbcType=VARCHAR},
+      thd_wx_url = #{thdWxUrl,jdbcType=VARCHAR},
+      thd_wx_id = #{thdWxId,jdbcType=VARCHAR},
+      thd_wx_mch = #{thdWxMch,jdbcType=VARCHAR},
+      thd_wx_nonce = #{thdWxNonce,jdbcType=VARCHAR},
+      thd_wx_spbill = #{thdWxSpbill,jdbcType=VARCHAR},
+      thd_wx_code_url = #{thdWxCodeUrl,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

@@ -1,0 +1,104 @@
+<!-- <!DOCTYPE html> -->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>Document</title>
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+  <link rel="stylesheet" href="css/jq-ui-rest.css">
+  <link rel="stylesheet" href="css/me.css">
+  <script src="js/jquery-1.12.2.min.js"></script>
+  <script src="jquery-ui/jquery-ui.min.js"></script>
+  <script src="js/uploadPreview.min.js"></script>
+  <script src="js/jquery.jqzoom.js"></script>
+  <script src="js/jquery.lazyload.min.js"></script>
+  <script src="js/base.js"></script>
+  
+</head>
+<body>
+ 
+<button id="opener" >打开对话框</button>   
+<div class="add-pick" >  
+  <form>
+    <div class="clear">
+      <label>漏发订单描述</label>
+      <textarea rows="5" style="width:482px;">tttt</textarea>
+    </div>
+    <div class="clear">
+    <label>产品图片</label>
+    <div class="pull-left add-img">
+            <div class="img-list">
+              <input type="file" id="UinputOne" class="pImg">
+               <div id="pImgdivUpOne">
+                  <img id="pImgShowUpOne" src="">
+                </div>
+              <span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+              <input type="file" id="UinputTwo" class="pImg" >
+              <div id="pImgdivUpTwo">
+                   <img id="pImgShowUpTwo" src="">
+              </div>
+              <span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+              <input type="file" id="UinputThree" class="pImg" >
+              <div id="pImgdivUpThree">
+                       <img id="pImgShowUpThree">
+                  </div>
+              <span class="icon-plus"></span>
+            </div>
+            <div class="img-list">
+              <input type="file" id="UinputFour" class="pImg" >
+              <div id="pImgdivUpFour">
+                       <img id="pImgShowUpFour">
+                  </div>
+              <span class="icon-plus"></span>
+            </div>
+        </div>
+  </div>
+    
+  </form>
+</div>
+ 
+<script>
+  $(function() {                /* ******************  每个参数后面必须加逗号   ******************  */
+    $( ".add-pick" ).dialog({            //弹出层初始化
+        title:'漏发订单' ,  //弹出层的标题
+        autoOpen: false ,//禁止自己弹出
+        resizable: false,//禁止弹出层缩放
+        draggable :false,//禁止拖动
+        modal: true,//是否有模态框
+    //  height:?
+        width:626,     //设置宽高
+        show:true,   //显示
+        hide:true,   //隐藏
+        closeText:'关闭',//closetitle
+        buttons:{         //创建btn
+          关闭:function(){          //btn的回调函数
+            $(this).dialog("close")
+          },
+          确定:function(){
+            $(this).dialog("close")
+          },
+        },
+
+    });
+    $( "#opener" ).click(function() {
+      $( ".add-pick" ).dialog('open');  
+    });
+
+    new uploadPreview({ UpBtn: "UinputOne", DivShow: "pImgdivUpOne", ImgShow: "pImgShowUpOne" });
+    new uploadPreview({ UpBtn: "UinputTwo", DivShow: "pImgdivUpTwo", ImgShow: "pImgShowUpTwo" });
+    new uploadPreview({ UpBtn: "UinputFour", DivShow: "pImgdivUpFour", ImgShow: "pImgShowUpFour" });
+    new uploadPreview({ UpBtn: "UinputThree", DivShow: "pImgdivUpThree", ImgShow: "pImgShowUpThree" });
+  });
+
+
+</script>
+</body>
+	
+</html>
+ 

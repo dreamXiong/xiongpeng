@@ -1,0 +1,31 @@
+.form-horizontal{padding-left:20px;}
+.table .col-sm-3{margin-right:30px;height:188px;width:188px;border:1px solid #eee;}
+.table .col-sm-3 input[type="file"]{opacity:0;position:absolute;top:0;left:0;width:100%;height:100%;cursor: pointer;z-index:10;}
+.table .col-sm-3 img,#myModal .col-sm-3 div{width:100%;height:100%;position: absolute;top:0;left:0;z-index:9;}
+.table .col-sm-3 span{color:#ccc;line-height:180px;width:180px;text-align:center;position: absolute;top:0;left:0;font-size:30px;z-index:8;}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {padding-right:88px;}
+.table tr .th{width:88px;padding-right:0;}
+.pull-left .text-center{margin-right:30px;}
+
+.form-control{
+	width:250px;
+}
+.select1{width:125px;display:inline-block;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

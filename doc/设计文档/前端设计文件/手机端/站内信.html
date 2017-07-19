@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>站内信</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="css/my.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<script src="js/base.js"></script>
+</head>	
+<body>
+
+	<header class="cart verify-head ">
+		<span class="icon-angle-left text-center"></span>
+		<h3 class="text-center text-hidden" style="padding:0 44px;">站内信站内信站内信站内信站内信站内站内信信站内信</h3>
+		<span class="icon-reorder"></span>
+		<ul class="nav">
+			<li>
+				<a href="index.html">
+					<span class="icon-home"></span>
+					首页
+				</a>
+			</li>
+			<li>
+				<a href="class.html">
+					<span class="icon-th-list"></span>
+					分类
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<span class="icon-shopping-cart"></span>
+					选购
+				</a>
+			</li>
+			<li>
+				<a href="选购页面.html">
+					<span class="icon-user"></span>
+					我的
+				</a>
+			</li>
+		</ul>
+	</header>
+	
+
+<div class="container letter">
+	<div class="letter-inser left">
+		<p class="text-center">
+			<span>2016-07-03 15:18</span>
+		</p>
+		<div class="box-shadow clearfix box">
+			<div class="pull-left box1">
+				<img src="images/3.jpg" alt="">
+			</div>
+			<div class="pull-left box5">
+				<a href="javascript:;">
+					<p class="text-hidden">oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送</p>
+					<img src="images/12.jpg" alt="">
+				</a>
+			</div>
+			
+			<!-- <div class="pull-left box1">
+				<img src="images/3.jpg" alt="">
+			</div>
+			<div class="pull-left box5">
+				站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信
+			</div> -->
+		</div>
+	</div>
+	<div class="letter-inser left">
+		<p class="text-center">
+			<span>2016-07-03 15:18</span>
+		</p>
+		<div class="box-shadow clearfix box">
+			<!-- <a href="javascript:;">
+				<p class="text-hidden">oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送</p>
+				<img src="images/12.jpg" alt="">
+			</a> -->
+			<div class="pull-left box1">
+				<img src="images/3.jpg" alt="">
+			</div>
+			<div class="pull-left box5">
+				站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信站内信站内信站内信站内信站内信站内站内信信站内信
+			</div>
+		</div>
+	</div>
+	<div class="letter-inser right">
+		<p class="text-center">
+			<span>2016-07-03 15:20</span>
+		</p>
+		<div class="box-shadow box-shadow clearfix box">
+			<div class="pull-right box5">
+				你猜！
+			</div>
+			<div class="pull-right box1">
+				<img src="images/2.jpg" alt="">
+			</div>
+		</div>
+	</div>
+	<div class="letter-inser left">
+		<p class="text-center">
+			<span>2016-07-03 15:18</span>
+		</p>
+		<div class="box-shadow clearfix box">
+			<!-- <a href="javascript:;">
+				<p class="text-hidden">oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送</p>
+				<img src="images/12.jpg" alt="">
+			</a> -->
+			<div class="pull-left box1">
+				<img src="images/3.jpg" alt="">
+			</div>
+			<div class="pull-left box5">
+				你猜我猜不猜？
+			</div>
+		</div>
+	</div>
+	<div class="letter-inser right">
+		<p class="text-center">
+			<span>2016-07-03 15:20</span>
+		</p>
+		<div class="box-shadow box-shadow clearfix box">
+			<div class="pull-right box5">
+				你爱猜不猜！
+			</div>
+			<div class="pull-right box1">
+				<img src="images/2.jpg" alt="">
+			</div>
+		</div>
+	</div>
+</div>
+<footer class="letter-foot">
+	<input type="text" id="info">
+	<button type="button" id="send">发送</button>
+</footer>
+
+
+  		
+</body>
+<script>
+	$(function() {
+		$('.box1 img').height($('.box1 img').width());
+		$('#send').click(function(){
+			var text = $('#info').val();
+			var div = $('<div class="letter-inser right" style="display:none;">'+
+							'<p class="text-center">'+
+								'<span>2016-07-03 15:20</span>'+
+							'</p>'+
+							'<div class="box-shadow box-shadow clearfix box">'+
+								'<div class="pull-right box5">'+
+									text +
+								'</div>'+
+								'<div class="pull-right box1">'+
+									'<img src="images/2.jpg" alt="" style="height: 60px;">'+
+								'</div>'+
+							'</div>'+
+						'</div>');
+			$('#info').val('');
+			if(!text==''){
+				$('.container').append(div);
+				div.fadeIn(100);
+			}
+			
+		})
+	});
+
+	//发送消息的方法
+	function addText(text){
+		var div = $('<div class="letter-inser right" style="display:none;">'+
+						'<p class="text-center">'+
+							'<span>2016-07-03 15:20</span>'+
+						'</p>'+
+						'<div class="box-shadow box-shadow clearfix box">'+
+							'<div class="pull-right box5">'+
+								text +
+							'</div>'+
+							'<div class="pull-right box1">'+
+								'<img src="images/2.jpg" alt="" style="height: 60px;">'+
+							'</div>'+
+						'</div>'+
+					'</div>');
+		$('.container').append(div);
+		div.fadeIn(100);
+	}
+	//图文的方法
+	function addImgText(){
+		var div = $('<div class="letter-inser left">'+
+			'<p class="text-center">'+
+				'<span>2016-07-03 15:18</span>'+
+			'</p>'+
+			'<div class="box-shadow clearfix box">'+
+				'<div class="pull-left box1">'+
+					'<img src="images/3.jpg" alt="" style="height: 60px;">'+
+				'</div>'+
+				'<div class="pull-left box5">'+
+					'<a href="javascript:;">'+
+						'<p class="text-hidden">oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送oppo免费送</p>'+
+						'<img src="images/12.jpg" alt="">'+
+					'</a>'+
+				'</div>'+
+			'</div>'+
+		'</div>');
+		$('.container').append(div);
+		div.fadeIn(100);
+	}
+</script>
+
+</html>
+
+

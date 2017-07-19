@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbIntegralDetailedMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbIntegralDetailed" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="integral_id" property="integralId" jdbcType="INTEGER" />
+    <result column="opear_dt" property="opearDt" jdbcType="BIGINT" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="order_serial_no" property="orderSerialNo" jdbcType="VARCHAR" />
+    <result column="integral" property="integral" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="resultMapDetailed" type="com.liguo.hgl.proxydao.dto.IntegralDetailedDto" extends="BaseResultMap">
+	<result column="typeString" property="typeString" jdbcType="VARCHAR" />
+	<result column="dateString" property="dateString" jdbcType="VARCHAR" />
+    <result column="dateTimeString" property="dateTimeString" jdbcType="VARCHAR" />
+  </resultMap> 
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.integralId != null" >
+         and integral_id = #{parameter.integralId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.opearDt != null" >
+         and opear_dt = #{parameter.opearDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.orderId != null" >
+         and order_id = #{parameter.orderId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderSerialNo != null" >
+         and order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.integral != null" >
+         and integral = #{parameter.integral,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, integral_id, opear_dt, order_id, order_serial_no, integral, type, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_integral_detailed
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+     
+    </if>
+     order by id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_integral_detailed
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_integral_detailed
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_integral_detailed
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbIntegralDetailed" >
+    insert into hgl.tb_integral_detailed (id, integral_id, opear_dt, 
+      order_id, order_serial_no, integral, 
+      type, version)
+    values (#{id,jdbcType=INTEGER}, #{integralId,jdbcType=INTEGER}, #{opearDt,jdbcType=BIGINT}, 
+      #{orderId,jdbcType=INTEGER}, #{orderSerialNo,jdbcType=VARCHAR}, #{integral,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralDetailed" >
+    insert into tb_integral_detailed
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="integralId != null" >
+        integral_id,
+      </if>
+      <if test="opearDt != null" >
+        opear_dt,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no,
+      </if>
+      <if test="integral != null" >
+        integral,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="integralId != null" >
+        #{integralId,jdbcType=INTEGER},
+      </if>
+      <if test="opearDt != null" >
+        #{opearDt,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_integral_detailed
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralDetailed" flushCache="true" >
+    update tb_integral_detailed
+    <set >
+      <if test="integralId != null" >
+        integral_id = #{integralId,jdbcType=INTEGER},
+      </if>
+      <if test="opearDt != null" >
+        opear_dt = #{opearDt,jdbcType=BIGINT},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="integral != null" >
+        integral = #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbIntegralDetailed" flushCache="true" >
+    update tb_integral_detailed
+    set integral_id = #{integralId,jdbcType=INTEGER},
+      opear_dt = #{opearDt,jdbcType=BIGINT},
+      order_id = #{orderId,jdbcType=INTEGER},
+      order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      integral = #{integral,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <select id="selectIntegralDetailedPage" resultMap="resultMapDetailed" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+	select 
+		tid.*,
+		case tid.`type` when '1' then '结算积分' when '2' then '返利积分' when '3' then '签到积分' when '4' then '商品兑换' end as typeString,
+		FROM_UNIXTIME(tid.opear_dt/1000,'%Y-%m-%d') AS dateString,
+		FROM_UNIXTIME(tid.opear_dt/1000,'%H:%i:%s') AS dateTimeString 
+	from tb_integral_detailed tid
+	where 1=1
+	 <if test="parameter.integralId != null" >
+         and tid.integral_id = #{parameter.integralId,jdbcType=INTEGER}
+     </if>
+     <if test="parameter.pageFrom != null" >
+     	 order by tid.id desc
+         limit #{parameter.pageFrom,jdbcType=INTEGER},#{parameter.pageSize,jdbcType=INTEGER}
+     </if>
+   </select>
+   
+   <select id="selectTodaySignByUserId" resultMap="resultMapDetailed" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+		select  t.*  from tb_integral_detailed t   left join tb_integral t2 on t.integral_id=t2.id  where 
+		t.type = 3
+		<if test="parameter.opearDt != null" >
+		 and FROM_UNIXTIME(t.opear_dt/1000,'%Y-%m-%d')= FROM_UNIXTIME(#{parameter.opearDt,jdbcType=BIGINT}/1000,'%Y-%m-%d')  
+		</if>
+		<if test="parameter.userId != null" >
+		    and t2.user_id = #{parameter.userId,jdbcType=INTEGER}
+		</if>
+		limit 1
+   </select>
+</mapper>

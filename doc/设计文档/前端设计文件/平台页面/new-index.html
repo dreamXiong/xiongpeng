@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" class="hgl-html">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" >
+	<title>惠给利首页</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/new-index.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.mousewheel.min.js"></script>
+</head>
+<body class="hgl-body">
+	<div class="hgl-header">
+		<div class="area">
+			<h1>
+				<img src="images/logo.png" height="80" width="200" alt="">
+			</h1>
+			<div class="clear hgl-nav">
+				<a href="javascript:;" class="active">首页</a>	
+				<a href="javascript:;">招商合作</a>	
+				<a href="javascript:;">关于惠给力</a>
+				<a href="http://192.168.0.133:8080/web/register/jxregister" target="_blank">注册</a>	
+				<a href="http://192.168.0.133:8080/web/login/index" target="_blank">商家登录</a>
+			</div>
+			<div class="pull-right">
+				<span class="icon-headphones"></span>
+				全国热线 : 400-2377-2661
+			</div>	
+		</div>
+	</div>
+	<div class="container">
+		<div class="page page1">1</div>
+		<div class="page page2">2</div>
+		<div class="page page3">3</div>
+		<div class="page page4">4</div>
+	</div>
+</body>
+
+</html>
+<script>
+	
+$(function() {
+	var timer = null;
+	var num = 0,page=0,state = 1,Zindex=0;
+	var len = $('.page').length;
+	/*timer = setInterval(function(){
+		num++;
+		if(num>len-1){
+			num=0;
+			$('.page').css('zIndex',0);
+		}
+		$('.page').eq(num).css('zIndex',num+4);
+	},1000);*/
+	
+	$('.hgl-nav a:lt(3)').click(function(){
+		$(this).addClass('active').siblings('a').removeClass('active');
+	});
+	$(document).mousewheel(function(event,dalta){
+		
+		// if(state == 1){
+			/*if(dalta==-1){
+				page++;
+				if(page>len-1){
+					page = len;
+					return false;
+				};
+				if(!$('.page').is(':animated')){
+					$('.page').eq(page).css({'zIndex':Zindex,top:'100%'}).animate({top:0},1000);
+				};
+				
+			};
+			if(dalta==1){
+				page--;
+				if(page<0){
+					page = 0;
+					return false;
+				};
+				if(!$('.page').is(':animated')){
+					$('.page').eq(page).css({'zIndex':Zindex,top:'-100%'}).animate({top:0},1000);
+				};
+			};*/
+		// };
+		
+		if(state == 1){
+			state=0;
+			Zindex++;
+			page = page-dalta;
+			if(page<0){
+				page = 0;
+				return state=1;
+			}
+			if(page>len-1){
+				page = len-1;
+				return state=1;
+			};
+			if(!$('.page').is(':animated')){
+				$('.page').eq(page).css({'zIndex':Zindex,top:-dalta*100+'%'}).stop().animate({top:0},1000,function(){
+					state=1;
+				});
+			};
+		}
+		
+		console.log(num);
+		console.log(dalta);
+		console.log('page='+page);
+			// if(dalta>0){
+			// 	page--;
+			// 	if(page<0){
+			// 		page = 0;
+			// 	};
+
+			// 	$('.page').eq(page).css({
+			// 		zIndex:page,
+			// 		top:'100%'
+			// 	}).animate({
+			// 		top:0
+			// 	},500);
+			// };
+		
+		
+	});
+});
+
+</script>

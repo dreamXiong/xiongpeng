@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbRecommendedMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbRecommended" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="recommended" property="recommended" jdbcType="INTEGER" />
+    <result column="is_recommended" property="isRecommended" jdbcType="INTEGER" />
+    <result column="recommended_type" property="recommendedType" jdbcType="INTEGER" />
+    <result column="is_recommended_type" property="isRecommendedType" jdbcType="INTEGER" />
+    <result column="type_recommend" property="typeRecommend" jdbcType="INTEGER" />
+    <result column="recommended_contact_type_id" property="recommendedContactTypeId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="earnings" property="earnings" jdbcType="DOUBLE" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="first_order_Id" property="firstOrderId" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="reserved" property="reserved" jdbcType="INTEGER" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="update_dt" property="updateDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.recommended != null" >
+         and recommended = #{parameter.recommended,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.isRecommended != null" >
+         and is_recommended = #{parameter.isRecommended,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.recommendedType != null" >
+         and recommended_type = #{parameter.recommendedType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.isRecommendedType != null" >
+         and is_recommended_type = #{parameter.isRecommendedType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.typeRecommend != null" >
+         and type_recommend = #{parameter.typeRecommend,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.recommendedContactTypeId != null" >
+         and recommended_contact_type_id = #{parameter.recommendedContactTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.earnings != null" >
+         and earnings = #{parameter.earnings,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.orderType != null" >
+         and order_type = #{parameter.orderType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.firstOrderId != null" >
+         and first_order_Id = #{parameter.firstOrderId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.money != null" >
+         and money = #{parameter.money,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.reserved != null" >
+         and reserved = #{parameter.reserved,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.updateBy != null" >
+         and update_by = #{parameter.updateBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.updateDt != null" >
+         and update_dt = #{parameter.updateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, recommended, is_recommended, recommended_type, is_recommended_type, type_recommend, 
+    recommended_contact_type_id, type, earnings, order_type, first_order_Id, money, reserved, 
+    describes, create_dt, update_by, update_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_recommended
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_recommended
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_recommended
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_recommended
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbRecommended" >
+    insert into hgl.tb_recommended (id, recommended, is_recommended, 
+      recommended_type, is_recommended_type, type_recommend, 
+      recommended_contact_type_id, type, earnings, 
+      order_type, first_order_Id, money, 
+      reserved, describes, create_dt, 
+      update_by, update_dt, version
+      )
+    values (#{id,jdbcType=INTEGER}, #{recommended,jdbcType=INTEGER}, #{isRecommended,jdbcType=INTEGER}, 
+      #{recommendedType,jdbcType=INTEGER}, #{isRecommendedType,jdbcType=INTEGER}, #{typeRecommend,jdbcType=INTEGER}, 
+      #{recommendedContactTypeId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, #{earnings,jdbcType=DOUBLE}, 
+      #{orderType,jdbcType=INTEGER}, #{firstOrderId,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, 
+      #{reserved,jdbcType=INTEGER}, #{describes,jdbcType=VARCHAR}, #{createDt,jdbcType=BIGINT}, 
+      #{updateBy,jdbcType=INTEGER}, #{updateDt,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbRecommended" >
+    insert into tb_recommended
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="recommended != null" >
+        recommended,
+      </if>
+      <if test="isRecommended != null" >
+        is_recommended,
+      </if>
+      <if test="recommendedType != null" >
+        recommended_type,
+      </if>
+      <if test="isRecommendedType != null" >
+        is_recommended_type,
+      </if>
+      <if test="typeRecommend != null" >
+        type_recommend,
+      </if>
+      <if test="recommendedContactTypeId != null" >
+        recommended_contact_type_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="earnings != null" >
+        earnings,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="firstOrderId != null" >
+        first_order_Id,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="reserved != null" >
+        reserved,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDt != null" >
+        update_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="recommended != null" >
+        #{recommended,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommended != null" >
+        #{isRecommended,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedType != null" >
+        #{recommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommendedType != null" >
+        #{isRecommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="typeRecommend != null" >
+        #{typeRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedContactTypeId != null" >
+        #{recommendedContactTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="earnings != null" >
+        #{earnings,jdbcType=DOUBLE},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="firstOrderId != null" >
+        #{firstOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_recommended
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbRecommended" flushCache="true" >
+    update tb_recommended
+    <set >
+      <if test="recommended != null" >
+        recommended = #{recommended,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommended != null" >
+        is_recommended = #{isRecommended,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedType != null" >
+        recommended_type = #{recommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommendedType != null" >
+        is_recommended_type = #{isRecommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="typeRecommend != null" >
+        type_recommend = #{typeRecommend,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedContactTypeId != null" >
+        recommended_contact_type_id = #{recommendedContactTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="earnings != null" >
+        earnings = #{earnings,jdbcType=DOUBLE},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="firstOrderId != null" >
+        first_order_Id = #{firstOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="reserved != null" >
+        reserved = #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null" >
+        update_dt = #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbRecommended" flushCache="true" >
+    update tb_recommended
+    set recommended = #{recommended,jdbcType=INTEGER},
+      is_recommended = #{isRecommended,jdbcType=INTEGER},
+      recommended_type = #{recommendedType,jdbcType=INTEGER},
+      is_recommended_type = #{isRecommendedType,jdbcType=INTEGER},
+      type_recommend = #{typeRecommend,jdbcType=INTEGER},
+      recommended_contact_type_id = #{recommendedContactTypeId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      earnings = #{earnings,jdbcType=DOUBLE},
+      order_type = #{orderType,jdbcType=INTEGER},
+      first_order_Id = #{firstOrderId,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
+      reserved = #{reserved,jdbcType=INTEGER},
+      describes = #{describes,jdbcType=VARCHAR},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      update_dt = #{updateDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

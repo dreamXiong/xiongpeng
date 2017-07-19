@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbIntegralMallTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbIntegralMallType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="goods_type_name" property="goodsTypeName" jdbcType="VARCHAR" />
+    <result column="goods_type_image" property="goodsTypeImage" jdbcType="VARCHAR" />
+    <result column="goods_type_describe" property="goodsTypeDescribe" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.goodsTypeName != null" >
+         and goods_type_name = #{parameter.goodsTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.goodsTypeImage != null" >
+         and goods_type_image = #{parameter.goodsTypeImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.goodsTypeDescribe != null" >
+         and goods_type_describe = #{parameter.goodsTypeDescribe,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, goods_type_name, goods_type_image, goods_type_describe, status, create_by, create_dt, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_integral_mall_type
+    where 1=1
+	<if test="parameter.goodsTypeName != null and parameter.goodsTypeName != ''" >
+		and goods_type_name like CONCAT('%','${parameter.goodsTypeName}','%')  
+	</if>
+	<if test="parameter.status != null and parameter.status != ''" >
+		and status = #{parameter.status,jdbcType=INTEGER}
+	</if>
+    order by id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_integral_mall_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_integral_mall_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_integral_mall_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallType" >
+    insert into hgl.tb_integral_mall_type (id, goods_type_name, goods_type_image, 
+      goods_type_describe, status, create_by, 
+      create_dt)
+    values (#{id,jdbcType=INTEGER}, #{goodsTypeName,jdbcType=VARCHAR}, #{goodsTypeImage,jdbcType=VARCHAR}, 
+      #{goodsTypeDescribe,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, 
+      #{createDt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallType" >
+    insert into tb_integral_mall_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="goodsTypeName != null" >
+        goods_type_name,
+      </if>
+      <if test="goodsTypeImage != null" >
+        goods_type_image,
+      </if>
+      <if test="goodsTypeDescribe != null" >
+        goods_type_describe,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="goodsTypeName != null" >
+        #{goodsTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeImage != null" >
+        #{goodsTypeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeDescribe != null" >
+        #{goodsTypeDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_integral_mall_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallType" flushCache="true" >
+    update tb_integral_mall_type
+    <set >
+      <if test="goodsTypeName != null" >
+        goods_type_name = #{goodsTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeImage != null" >
+        goods_type_image = #{goodsTypeImage,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsTypeDescribe != null" >
+        goods_type_describe = #{goodsTypeDescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbIntegralMallType" flushCache="true" >
+    update tb_integral_mall_type
+    set goods_type_name = #{goodsTypeName,jdbcType=VARCHAR},
+      goods_type_image = #{goodsTypeImage,jdbcType=VARCHAR},
+      goods_type_describe = #{goodsTypeDescribe,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

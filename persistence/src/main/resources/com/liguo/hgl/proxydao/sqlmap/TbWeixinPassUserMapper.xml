@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWeixinPassUserMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWeixinPassUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="weixin_user_id" property="weixinUserId" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="headimgurl" property="headimgurl" jdbcType="VARCHAR" />
+    <result column="is_delete" property="isDelete" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="win_grade" property="winGrade" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.weixinUserId != null" >
+         and weixin_user_id = #{parameter.weixinUserId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.openId != null" >
+         and open_id = #{parameter.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.nickname != null" >
+         and nickname = #{parameter.nickname,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.headimgurl != null" >
+         and headimgurl = #{parameter.headimgurl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.isDelete != null" >
+         and is_delete = #{parameter.isDelete,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.winGrade != null" >
+         and win_grade = #{parameter.winGrade,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, weixin_user_id, open_id, nickname, headimgurl, is_delete, create_time, win_grade, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_weixin_pass_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  <select id="selectRandUser" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from (SELECT * from tb_weixin_pass_user WHERE headimgurl is not null and headimgurl!='' AND nickname is not null and nickname!='' AND win_grade=0  AND is_delete=0 
+    <if test="parameter.userArray != null and parameter.userArray.size() >0" >
+		 and open_id in 
+		<foreach collection="parameter.userArray" item="item" separator="," open="(" close=")" index="index">
+	        #{item}
+	    </foreach>
+    </if>
+    ) t 
+  </select>
+  
+   <select id="selectSignInUser" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+     from tb_weixin_pass_user WHERE headimgurl is not null and headimgurl!='' AND nickname is not null and nickname!=''  AND is_delete=0 order by id limit #{value,jdbcType=INTEGER}
+  </select>
+  
+   <select id="selectCanErnieCount" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select
+    count(0)
+     from tb_weixin_pass_user WHERE headimgurl is not null and headimgurl!='' AND nickname is not null and nickname!='' AND win_grade=0   AND is_delete=0 
+	<if test="parameter.userArray != null and parameter.userArray.size() >0" >
+		 and open_id in 
+		<foreach collection="parameter.userArray" item="item" separator="," open="(" close=")" index="index">
+	        #{item}
+	    </foreach>
+    </if>
+  </select>
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_weixin_pass_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_weixin_pass_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_weixin_pass_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWeixinPassUser" useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_weixin_pass_user (weixin_user_id, open_id, nickname, 
+      headimgurl, is_delete, create_time, 
+      win_grade, version)
+    values (#{weixinUserId,jdbcType=INTEGER}, #{openId,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{headimgurl,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}, #{createTime,jdbcType=VARCHAR}, 
+      #{winGrade,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWeixinPassUser" useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_weixin_pass_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="weixinUserId != null" >
+        weixin_user_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl,
+      </if>
+      <if test="isDelete != null" >
+        is_delete,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="winGrade != null" >
+        win_grade,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="weixinUserId != null" >
+        #{weixinUserId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="winGrade != null" >
+        #{winGrade,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_weixin_pass_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWeixinPassUser" flushCache="true" >
+    update tb_weixin_pass_user
+    <set >
+      <if test="weixinUserId != null" >
+        weixin_user_id = #{weixinUserId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="headimgurl != null" >
+        headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null" >
+        is_delete = #{isDelete,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="winGrade != null" >
+        win_grade = #{winGrade,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWeixinPassUser" flushCache="true" >
+    update tb_weixin_pass_user
+    set weixin_user_id = #{weixinUserId,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      headimgurl = #{headimgurl,jdbcType=VARCHAR},
+      is_delete = #{isDelete,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      win_grade = #{winGrade,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER} and version = #{version,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateByPrimaryKeyArray" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_weixin_pass_user
+    set 
+      win_grade = #{parameter.winGrade,jdbcType=INTEGER},
+      version = version + 1
+    where id in 
+	<foreach collection="parameter.userArray" item="item" separator="," open="(" close=")" index="index">
+        #{item.id}
+    </foreach>
+	
+  </update>
+   <update id="updateWinUserByWinGrade" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_weixin_pass_user
+    set 
+      win_grade = #{parameter.winGrade,jdbcType=INTEGER},
+      version = version + 1
+    where win_grade &lt; 0	
+  </update>
+  
+  
+</mapper>

@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbInventoryLockMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbInventoryLock" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="inventory_id" property="inventoryId" jdbcType="INTEGER" />
+    <result column="goods_detail_id" property="goodsDetailId" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="lock_quantity" property="lockQuantity" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderId != null" >
+         and order_id = #{parameter.orderId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.inventoryId != null" >
+         and inventory_id = #{parameter.inventoryId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.goodsDetailId != null" >
+         and goods_detail_id = #{parameter.goodsDetailId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderStatus != null" >
+         and order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderType != null" >
+         and order_type = #{parameter.orderType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.lockQuantity != null" >
+         and lock_quantity = #{parameter.lockQuantity,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_id, inventory_id, goods_detail_id, order_status, order_type, lock_quantity, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_inventory_lock
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_inventory_lock
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_inventory_lock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_inventory_lock
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbInventoryLock" >
+    insert into hgl.tb_inventory_lock (id, order_id, inventory_id, 
+      goods_detail_id, order_status, order_type, 
+      lock_quantity, version)
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=INTEGER}, #{inventoryId,jdbcType=INTEGER}, 
+      #{goodsDetailId,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, 
+      #{lockQuantity,jdbcType=INTEGER}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbInventoryLock" >
+    insert into tb_inventory_lock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="goodsDetailId != null" >
+        goods_detail_id,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="lockQuantity != null" >
+        lock_quantity,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDetailId != null" >
+        #{goodsDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="lockQuantity != null" >
+        #{lockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_inventory_lock
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbInventoryLock" flushCache="true" >
+    update tb_inventory_lock
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id = #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsDetailId != null" >
+        goods_detail_id = #{goodsDetailId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="lockQuantity != null" >
+        lock_quantity = #{lockQuantity,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbInventoryLock" flushCache="true" >
+    update tb_inventory_lock
+    set order_id = #{orderId,jdbcType=INTEGER},
+      inventory_id = #{inventoryId,jdbcType=INTEGER},
+      goods_detail_id = #{goodsDetailId,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      lock_quantity = #{lockQuantity,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <insert id="batchInsertSelective" parameterType="ArrayList" >
+     insert into hgl.tb_inventory_lock (order_id, Inventory_id,goods_detail_id, order_status, order_type,lock_quantity, version)
+     values
+	    <foreach collection="list" item="obj" index="index" separator="," >
+	       (#{obj.orderId,jdbcType=INTEGER}, #{obj.inventoryId,jdbcType=INTEGER}, 
+	      #{obj.goodsDetailId,jdbcType=INTEGER}, #{obj.orderStatus,jdbcType=INTEGER}, #{obj.orderType,jdbcType=INTEGER}, 
+	      #{obj.lockQuantity,jdbcType=INTEGER}, #{obj.version,jdbcType=INTEGER})
+	    </foreach>
+  </insert>
+  
+  
+	  <delete id="batchDeleteTbInventoryLock" parameterType="java.util.List">  
+	    DELETE from hgl.tb_inventory_lock WHERE id in  
+	    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+	        #{item}   
+	    </foreach>  
+	</delete>  
+  
+</mapper>

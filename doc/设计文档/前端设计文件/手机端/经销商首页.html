@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>店铺首页</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+</head>	
+<body>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+    	<div class="swiper-slide"><img src="images/outlet.png" alt=""></div>
+    	<div class="swiper-slide"><img src="images/13.jpg" alt=""></div>
+        <div class="swiper-slide"><img src="images/11.jpg" alt=""></div>
+	</div>
+	<div class="swiper-pagination"></div>
+</div>
+
+<div class="contact">
+	<div class="contact-top clearfix">
+		<p>一路发五金店</p>
+		<p><span class="icon-phone-sign" tel="0755-85421484"></span> 0755-85421484</p>
+		
+	</div>
+	<div class="contact-top clearfix contact-bottom">
+		<p>深圳市龙华新区展滔科技大厦深圳市龙华新区展滔科技大厦深圳市龙华新区展滔科技大厦深圳市龙华新区展滔科技大厦</p>
+		<p><span class="icon-map-marker"></span> 10.0km</p>
+	</div>
+</div>
+<div class="nab-list">
+	<ul class="clearfix">
+		<li class="nav-tab active">
+			<a href="javascript:;">
+				综合
+				<span class="icon-angle-up"></span>
+			</a>
+		</li>
+		<li class="nav-tab">
+			<a href="javascript:;">
+				销售
+				<span class="icon-angle-down"></span>
+			</a>
+		</li>
+		<li class="nav-tab ">
+			<a href="javascript:;">
+				价格
+			</a>
+		</li>
+		<li id="screen">
+			<a href="javascript:;">
+				筛选
+			</a>
+		</li>
+	</ul>
+</div>
+<div class="dealer-nav">
+	<ul class="clearfix">
+		<li class="dealer-list">
+			<a href="javascript:;">
+				<img data-original="images/2.jpg" alt="" src="images/blank.gif" class="lazy" alt="">
+			</a>
+			<h3>扳手/两用扳手/梅花呆扳手7mm，双头</h3>
+			<div class="clearfix sales">
+				<div class="pull-left">
+					<span class="text-red">¥ 5.8</span>起
+				</div>
+				<div class="pull-right">
+					销量800
+				</div>
+			</div>
+		</li>
+		<li class="dealer-list">
+			<a href="javascript:;">
+				<img data-original="images/2.jpg" alt="" src="images/blank.gif" class="lazy" alt="">
+			</a>
+			<h3>扳手/两用扳手/梅花呆扳手7mm，双头</h3>
+			<div class="clearfix sales">
+				<div class="pull-left">
+					<span class="text-red">¥ 5.8</span>起
+				</div>
+				<div class="pull-right">
+					销量800
+				</div>
+			</div>
+		</li>
+		<li class="dealer-list">
+			<a href="javascript:;">
+				<img data-original="images/2.jpg" alt="" src="images/blank.gif" class="lazy" alt="">
+			</a>
+			<h3>扳手/两用扳手/梅花呆扳手7mm，双头</h3>
+			<div class="clearfix sales">
+				<div class="pull-left">
+					<span class="text-red">¥ 5.8</span>起
+				</div>
+				<div class="pull-right">
+					销量800
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+<footer class="footer">
+	<ul class="clearfix nav-bar text-center">
+		<li>
+			<span class="nav-bar-a">
+				<a href="javascript:;">
+					<img src="images/nav-bar-a.png" alt="">
+				</a>
+			</span>
+		</li>
+		<li>
+			<span class="nav-bar-b">
+				<a href="javascript:;">
+					<img src="images/nav-bar-b.png" alt="">
+				</a>
+			</span>
+		</li>
+		<li>
+			<span class="nav-bar-c">
+				<a href="javascript:;">
+					<img src="images/nav-bar-c.png" alt="">
+				</a>
+			</span>
+		</li>
+		<li>
+			<span class="nav-bar-d">
+				<a href="javascript:;">
+					<img src="images/nav-bar-d.png" alt="">
+				</a>
+			</span>
+		</li>
+	</ul>
+</footer>
+
+<div class="screen-warp">
+	<div class="screen">
+		<div class="text-center screen-header">
+			<span class="icon-angle-left text-center pull-left" id="back"></span>
+			筛选
+			<a href="javascript:;" class="pull-right" id="save">确定</a>
+		</div>
+		<div class="screen-body">
+			<ul>
+				<li><a href="javascript:;">电动工具</a></li>
+				<li><a href="javascript:;">手动工具</a></li>
+				<li><a href="javascript:;">橱柜/电器</a></li>
+				<li><a href="javascript:;">水暖/卫浴/洁具</a></li>
+				<li><a href="javascript:;">照明/交电</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+  	
+</body>
+<script>
+
+ 	$(function() {
+ 		
+ 		$('.nav-tab').click(function(){
+ 			$(this).addClass('active').siblings('.nav-tab').removeClass('active');
+ 		})
+ 		$('#screen').click(function(event) {
+ 			$('.screen-warp').css('display','block').animate({
+ 				left:'0'
+ 			},500);
+ 			$('body').addClass('hidden');
+ 			
+ 		});
+ 		$('#save').click(function(event) {
+ 			$('.screen-warp').animate({
+ 				left:'100%'
+ 			},500,function(){
+ 				$(this).css('display','none');
+ 			});
+ 			$('body').removeClass('hidden');
+ 		});
+ 		$('#back').click(function(event) {
+ 			$('.screen-warp').animate({
+ 				left:'100%'
+ 			},500,function(){
+ 				$(this).css('display','none');
+ 			});
+ 			$('body').removeClass('hidden');
+ 		});
+ 		
+ 		$("img.lazy").lazyload({
+			threshold : 20,                               //距离相片多少距离加载
+			effect : "fadeIn",                            //加载方式
+		});
+ 		$('.dealer-list img').height($('.dealer-list img').width());
+ 	});
+
+
+ 	// 此方法为轮播插件，虽然代码都一样但是不能共用
+	var swiper = new Swiper('.swiper-container', {
+		autoplay : 1000,
+        pagination: '.swiper-pagination',
+    });
+   
+
+</script>
+</html>

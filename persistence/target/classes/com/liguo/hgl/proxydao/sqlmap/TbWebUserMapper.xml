@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWebUserMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWebUser" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="userinfo_id" property="userinfoId" jdbcType="INTEGER" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="audit_description" property="auditDescription" jdbcType="VARCHAR" />
+   <result column="logo_code" property="logoCode" jdbcType="VARCHAR" />
+    <result column="recommend_code" property="recommendCode" jdbcType="VARCHAR" />
+    <result column="recommend_shop_id" property="recommendShopId" jdbcType="INTEGER" />
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="auto_login_flag" property="autoLoginFlag" jdbcType="INTEGER" />
+    <result column="user_group" property="userGroup" jdbcType="VARCHAR" />
+     <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+  </resultMap>
+  
+  <resultMap id="DtoResultMap" type="com.liguo.hgl.proxydao.dto.WebUserDto" >
+  	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="userinfo_id" property="userinfoId" jdbcType="INTEGER"/>
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="roleName" property="roleName" jdbcType="VARCHAR"/>
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="test" property="test" jdbcType="VARCHAR" />
+    <result column="exp_proportion" property="expProportion" jdbcType="DOUBLE" /> 
+   <result column="logo_code" property="logoCode" jdbcType="VARCHAR" />
+    <result column="user_sale" property="userSale" jdbcType="DOUBLE" /> 
+    <result column="cash_num" property="cashNum" jdbcType="INTEGER" /> 
+    <result column="level_name" property="levelName" jdbcType="VARCHAR" /> 
+    <result column="exp_level" property="expLevel" jdbcType="INTEGER" /> 
+    <result column="coupon_rule" property="couponRule" jdbcType="DOUBLE" /> 
+    <result column="open_id" property="openId" jdbcType="VARCHAR" />
+    <result column="auto_login_flag" property="autoLoginFlag" jdbcType="INTEGER" />
+    <result column="feedBack" property="feedBack" jdbcType="VARCHAR"/>
+    <result column="recommend_shop_id" property="recommendShopId" jdbcType="INTEGER" />
+    <result column="user_group" property="userGroup" jdbcType="VARCHAR"/>
+    <result column="integralId" property="integralId" jdbcType="INTEGER" />
+    <result column="accountId" property="accountId" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ResultShopMapDto" type="com.liguo.hgl.proxydao.dto.TbwebUserShopDto" extends="BaseResultMap" >
+    <result column="companyName" property="companyName" jdbcType="VARCHAR" />
+    <result column="province" property="province" jdbcType="INTEGER" />
+    <result column="city" property="city" jdbcType="INTEGER" />
+    <result column="country" property="country" jdbcType="INTEGER" />
+    <result column="street" property="street" jdbcType="INTEGER" />
+    <result column="addressName" property="addressName" jdbcType="VARCHAR" />
+    <result column="producttype" property="producttype" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="UserRecommendedDto" type="com.liguo.hgl.proxydao.dto.UserRecommendedDto" extends="BaseResultMap" >
+     <result column="type" property="type" jdbcType="INTEGER" />
+     <result column="earnings" property="earnings" jdbcType="DOUBLE" />
+     <result column="createDate" property="createDate" jdbcType="BIGINT" />
+     <result column="firstMoney" property="firstMoney" jdbcType="DOUBLE" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.userName != null" >
+         and user_name = #{parameter.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.password != null" >
+         and password = #{parameter.password,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.address != null" >
+         and address = #{parameter.address,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.email != null" >
+         and email = #{parameter.email,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.mobile != null" >
+         and mobile = #{parameter.mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.roleId != null" >
+         and role_id = #{parameter.roleId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.typeId != null" >
+         and type_id = #{parameter.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userinfoId != null" >
+         and userinfo_id = #{parameter.userinfoId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.idCard != null" >
+         and id_card = #{parameter.idCard,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.state != null" >
+         and state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.auditDescription != null" >
+         and audit_description = #{parameter.auditDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.logoCode != null" >
+         and logo_code = #{parameter.logoCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.recommendCode != null" >
+         and recommend_code = #{parameter.recommendCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.recommendShopId != null" >
+         and recommend_shop_id = #{parameter.recommendShopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.openId != null" >
+         and open_id = #{parameter.openId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.autoLoginFlag != null" >
+         and auto_login_flag = #{parameter.autoLoginFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userGroup != null" >
+         and user_group = #{parameter.userGroup,jdbcType=VARCHAR}
+      </if>
+       <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_name, password, address, email, mobile, name, role_id, type_id, shop_id, 
+    userinfo_id, id_card, remark, version, state, audit_description,logo_code, recommend_code, 
+     recommend_shop_id,open_id,auto_login_flag,user_group, create_dt
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hgl.tb_web_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_web_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_web_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from hgl.tb_web_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWebUser" keyProperty="id">
+    insert into hgl.tb_web_user (id, user_name, password, 
+      address, email, mobile, 
+      name, role_id, type_id, 
+      shop_id, userinfo_id, id_card, 
+      remark, version, state, 
+      audit_description,logo_code, recommend_code, 
+      recommend_shop_id,open_id,auto_login_flag,user_group, 
+      create_dt)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, 
+      #{shopId,jdbcType=INTEGER}, #{userinfoId,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{auditDescription,jdbcType=VARCHAR},#{logoCode,jdbcType=VARCHAR}, #{recommendCode,jdbcType=VARCHAR}, 
+       #{recommendShopId,jdbcType=INTEGER},#{openId,jdbcType=VARCHAR},#{autoLoginFlag,jdbcType=INTEGER},#{userGroup,jdbcType=VARCHAR}, 
+      #{createDt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWebUser">
+    insert into hgl.tb_web_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="userinfoId != null" >
+        userinfo_id,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="auditDescription != null" >
+        audit_description,
+      </if>
+     <if test="logoCode != null" >
+        logo_code,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code,
+      </if>
+      <if test="recommendShopId != null" >
+        recommend_shop_id,
+      </if>
+      <if test="openId != null" >
+        open_id,
+      </if>
+      <if test="auto_login_flag != null" >
+        auto_login_flag,
+      </if>
+      <if test="userGroup != null" >
+        user_group,
+      </if>
+       <if test="createDt != null" >
+        create_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="userinfoId != null" >
+        #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="auditDescription != null" >
+        #{auditDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="logoCode != null" >
+        #{logoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendShopId != null" >
+        #{recommendShopId,jdbcType=INTEGER},
+      </if>
+      <if test="openId != null" >
+        #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="autoLoginFlag != null" >
+        #{autoLoginFlag,jdbcType=INTEGER},
+      </if>
+      <if test="userGroup != null" >
+        #{userGroup,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from hgl.tb_web_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWebUser" flushCache="true" >
+    update hgl.tb_web_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="userinfoId != null" >
+        userinfo_id = #{userinfoId,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="auditDescription != null" >
+        audit_description = #{auditDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="logoCode != null" >
+        logo_code = #{logoCode,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="recommendShopId != null" >
+        recommend_shop_id = #{recommendShopId,jdbcType=INTEGER},
+      </if>
+       <if test="openId != null" >
+        open_id = #{openId,jdbcType=VARCHAR},
+      </if>
+      <if test="autoLoginFlag != null" >
+        auto_login_flag = #{autoLoginFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="userGroup != null" >
+        user_group = #{userGroup,jdbcType=VARCHAR},
+      </if>
+       <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWebUser" flushCache="true" >
+    update hgl.tb_web_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      type_id = #{typeId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      userinfo_id = #{userinfoId,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      audit_description = #{auditDescription,jdbcType=VARCHAR},
+     logo_code = #{logoCode,jdbcType=VARCHAR},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      recommend_shop_id = #{recommendShopId,jdbcType=INTEGER},
+      open_id = #{openId,jdbcType=VARCHAR},
+      auto_login_flag = #{autoLoginFlag,jdbcType=INTEGER},
+      user_group = #{userGroup,jdbcType=VARCHAR},
+       create_dt = #{createDt,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUsernameAndPwd" resultMap="DtoResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+    user.*,level.exp_proportion,
+	level.user_sale,
+	level.cash_num,
+	shop.exp_level,
+	level.level_name,
+	level.coupon_rule,
+	integral.id as integralId,
+	case when user.type_id = 104 or user.type_id = 102 then  shop.account_id
+			else  userinfo.account_id
+	end as accountId
+    from tb_web_user user
+ 	left join tb_shop_info shop on user.shop_id=shop.id
+	left join tb_shop_level level on shop.exp_level=level.id
+	left join tb_user_info userinfo on user.userinfo_id =userinfo.id
+	left join tb_integral integral on integral.user_id=user.id
+	
+    where user_name = #{parameter.userName,jdbcType=VARCHAR} and password = #{parameter.password,jdbcType=VARCHAR}
+  </select>
+  <select id="selectByCriteria" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultShopMapDto" >
+	  	select w.*,s.company_name as companyName,s.reg_city as city ,s.reg_province as province,
+s.reg_country as country,s.reg_street as street,s.reg_address as addressName,s.legal_representative as legalRepresentative
+ from tb_web_user w,tb_shop_info s 
+		     
+		 <if test="parameter != null" >
+		      <include refid="Object_Where_ClauseDto" />
+		    </if>
+		   <if test="orderByClause != null" >
+		      order by ${orderByClause} ${orderByClauseDesc}
+		    </if>
+		    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <sql id="Object_Where_ClauseDto" >
+    <trim prefix="where" prefixOverrides="and|or" >
+    	 w.shop_id=s.id
+      <if test="parameter.companyName != null" >
+         and s.company_name like CONCAT('%','${parameter.companyName}','%')
+      </if>
+        <if test="parameter.state != null" >
+         and w.state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.typeId != null" >
+         and w.type_id = #{parameter.typeId,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  
+  <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="DtoResultMap">
+  		select u.*,r.name as roleName,s.feed_back as feedBack from tb_web_user as u left join tb_web_role as r on u.role_id = r.id	
+  			left join tb_user_info as s on s.id = u.userinfo_id	
+  		<trim prefix="where" prefixOverrides="and|or">
+	  		<if test="parameter.userName != null and parameter.userName!=''">
+				and u.user_name like CONCAT('%',#{parameter.userName,jdbcType=VARCHAR},'%')
+			</if>	
+			<if test="parameter.name != null and parameter.name !=''">
+				and u.name like CONCAT('%',#{parameter.name,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="parameter.mobile != null and parameter.mobile != ''">
+				and u.mobile like CONCAT('%',#{parameter.mobile,jdbcType=VARCHAR},'%')
+			</if>	
+			<if test="parameter.openId != null and parameter.openId != ''">
+				and u.open_id = #{parameter.openId,jdbcType=VARCHAR}
+			</if>	
+			<if test="parameter.typeId != null">
+			    and u.type_id in
+				<foreach collection="parameter.typeId" item="typeId" index="index" open="(" separator="," close=")">
+					#{typeId}
+				</foreach>
+			</if>	
+  		</trim>	
+  		<if test="orderByClause!=null">
+			order by ${orderByClause}
+		</if>	
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+  
+  
+  <select id="selectUserShopById" resultMap="ResultShopMapDto" parameterType="java.lang.Integer" >
+	    select w.*,s.company_name as companyName,s.reg_city as city ,s.reg_province as province,
+		s.reg_country as country,s.reg_street as street,s.reg_address as addressName,s.legal_representative as legalRepresentative
+		 from tb_web_user w,tb_shop_info s where w.shop_id=s.id and w.id=#{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectWebUser" resultMap="ResultShopMapDto" parameterType="java.lang.Integer" >
+	    select w.*
+		 from tb_web_user w,tb_shop_info s where w.shop_id=s.id and w.shop_id=#{shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByOpenIdList" resultMap="DtoResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+	    user.*,level.exp_proportion,
+		level.user_sale,
+		level.cash_num,
+		shop.exp_level,
+		level.level_name,
+		level.coupon_rule
+    from tb_web_user user
+ 	left join tb_shop_info shop on user.shop_id=shop.id
+	left join tb_shop_level level on shop.exp_level=level.id
+    where user.open_id = #{parameter.openId,jdbcType=VARCHAR}
+    <if test="parameter.autoLoginFlag != null and parameter.autoLoginFlag != ''">
+		and user.auto_login_flag = #{parameter.autoLoginFlag,jdbcType=INTEGER}
+	</if>
+  </select>
+  
+  <select id="selectRecommended" resultMap="UserRecommendedDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+	select r.earnings as earnings,r.type as type,w.create_dt as createDate,r.money as firstMoney, w.user_name, w.name,w.type_id from tb_web_user w
+       left join tb_recommended r on w.id= r.is_recommended
+      <trim prefix="where" prefixOverrides="and|or">
+	  		<if test="parameter.recommendedCode != null">
+				and  w.recommend_code = #{parameter.recommendedCode,jdbcType=INTEGER}
+			</if>	
+			
+  		</trim>	
+  		
+			order by w.create_dt desc
+			
+  </select>
+  
+   <select id="selectWebUserByGroupId" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+   	select twu.* from tb_web_user twu
+   		where
+     		twu.user_group like '%${parameter.userGroup}%'
+  </select>
+  
+  <update id="updateUserOpenId" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set open_id = #{parameter.openId,jdbcType=VARCHAR}
+    where id = #{parameter.id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateUserOpenIdNull" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set open_id = ''
+    where open_id = #{parameter.openId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectUserByRecommendCode" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+  	  select id,shop_id,recommend_code from tb_web_user where recommend_code =#{parameter.recommendCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectUserByLogoCode" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+  	select id,shop_id,type_id,logo_code,recommend_shop_id from tb_web_user where logo_code = #{parameter.logoCode,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="selectUserGroupPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="DtoResultMap">
+  	select 
+  		twu.id, 
+		left(twu.user_name,6) as user_name,
+      	twu.address, 
+		twu.email,
+		twu.mobile, 
+      	twu.name,
+		twu.role_id, 
+		twu.type_id, 
+      	twu.shop_id, 
+		twu.userinfo_id, 
+		twu.id_card, 
+      	twu.remark, 
+		twu.state, 
+		twu.open_id,
+		twu.auto_login_flag,
+		gfd.group_id as user_group
+      from tb_web_user twu
+      left join tb_group_distribution gfd on twu.id = gfd.user_id  and gfd.shop_id and gfd.shop_id = #{parameter.recommendShopId,jdbcType=VARCHAR}
+  			where 1=1
+	  		<if test="parameter.userName != null and parameter.userName!=''">
+				and twu.user_name like CONCAT('%',#{parameter.userName,jdbcType=VARCHAR},'%')
+			</if>	
+			<if test="parameter.typeId != null and parameter.typeId != ''">
+				and twu.type_id = #{parameter.typeId,jdbcType=VARCHAR}
+			</if>	
+			<if test="parameter.groupName != null and parameter.groupName != ''">
+				and gfd.group_id like (select concat('%',id,'%')  from tb_user_group where name like '%${parameter.groupName}%' 
+				and shop_id = #{parameter.recommendShopId,jdbcType=VARCHAR}  limit 1)
+			</if>	
+			<if test="parameter.name != null and parameter.name !=''">
+				and twu.name like CONCAT('%',#{parameter.name,jdbcType=VARCHAR},'%')
+			</if>
+			<if test="parameter.recommendShopId != null and parameter.recommendShopId != ''">
+				and twu.recommend_shop_id = #{parameter.recommendShopId,jdbcType=VARCHAR}
+			</if>	
+			and (twu.recommend_shop_id != twu.shop_id  or twu.shop_id is null)
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+   <select id="selectUserByGroup" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+   select w.id,w.user_name,w.name 
+   from tb_web_user w left 
+   join tb_group_distribution g on w.id=g.user_id 
+   where g.shop_id=  #{parameter.shopId,jdbcType=INTEGER} and g.group_id like '%${parameter.groupId}%'
+     		
+  </select>
+  
+   <select id="selectBySaveShop" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+	select w.id, w.user_name, w.name,w.type_id from tb_web_user w
+       left join tb_save_info s on w.id= s.create_by
+      <trim prefix="where" prefixOverrides="and|or">
+	  		<if test="parameter.shopId != null">
+				and s.save_id = #{parameter.shopId,jdbcType=INTEGER}
+			</if>	
+			<if test="parameter.saveType != null">
+				and s.save_type = #{parameter.saveType,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.bind != null">
+				and s.bind = #{parameter.bind,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.userId != null">
+				and w.id != #{parameter.userId,jdbcType=INTEGER}
+			</if>
+  		</trim>	
+  		<if test="orderByClause!=null">
+			order by s.create_dt desc
+		</if>	
+  </select>
+    <select id="selectByUserName" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select *
+    from tb_web_user
+    where user_name = #{parameter.userName,jdbcType=VARCHAR}
+    <if test="parameter.typeId != null" >
+        and type_id = #{parameter.typeId,jdbcType=INTEGER}
+    </if>
+  </select>
+  <update id="updateUserPassword" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set password = #{parameter.password,jdbcType=VARCHAR}
+    where user_name = #{parameter.userName,jdbcType=VARCHAR}
+  </update>
+  <update id="updateUserAutoLoginFlag" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set auto_login_flag = #{parameter.autoLoginFlag,jdbcType=INTEGER}
+    where id = #{parameter.id,jdbcType=INTEGER}
+  </update>
+  
+  <update id="updateUserAutoLoginFlagList" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set auto_login_flag = #{parameter.autoLoginFlag,jdbcType=INTEGER}
+    where id in (select t.id from (select id from tb_web_user where open_id = #{parameter.openId,jdbcType=VARCHAR}) t)
+  </update>
+  
+  <!-- 手机号登录 -->
+  <select id="selectByMobileAndPwd" resultMap="DtoResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+    user.*,level.exp_proportion,
+	level.user_sale,
+	level.cash_num,
+	shop.exp_level,
+	level.level_name,
+	level.coupon_rule
+    from tb_web_user user
+ 	left join tb_shop_info shop on user.shop_id=shop.id
+	left join tb_shop_level level on shop.exp_level=level.id
+    where mobile = #{parameter.mobile,jdbcType=VARCHAR} and password = #{parameter.password,jdbcType=VARCHAR}
+  </select>
+  
+  <update id="updateUserMobile" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_web_user
+    set mobile = #{parameter.mobile,jdbcType=VARCHAR}
+    where id = #{parameter.id,jdbcType=INTEGER}
+  </update>
+</mapper>

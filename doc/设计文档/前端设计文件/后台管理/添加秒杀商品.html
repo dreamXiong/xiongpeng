@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>秒杀列表</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css">
+  <link rel="stylesheet" href="css/back.css">
+
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+  <script src="bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.min.js"></script>
+
+	<style>
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	   vertical-align:middle;
+	}
+	</style>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	<header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+        	<a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+        	<a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+        	<a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+        <li class="active treeview">
+          <a href="javascript:;">
+            <i class="fa fa-dashboard"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="javasript:;"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+            <li><a href="javasript:;"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i>
+            <span>活动管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 秒杀管理</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 优惠券</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 积分管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-laptop"></i>
+            <span>广告管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 添加广告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-edit"></i>
+            <span>系统管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+          </ul>
+        </li>
+    	</ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>添加秒杀商品</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+    		<div class="box box-primary">
+    			 <div class="box-body">
+            <div>
+              <a href="javascript:;" class="btn btn-primary">返回列表</a>
+            </div>
+    			 <form action="#"  class="form-horizontal">
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">分类</label>
+                <div class="col-sm-10">
+                 <select class="form-control">
+                    <option value="手动工具">手动工具</option>
+                    <option value="电动工具">电动工具</option>
+                    <option selected="" value="照明/交电">照明/交电</option>
+                    <option value="橱柜/电器">橱柜/电器</option>
+                    <option value="水暖/洁具">水暖/洁具</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">品牌名称</label>
+                <div class="col-sm-10">
+                 <select class="form-control">
+                    <option value="飞利浦">飞利浦</option>
+                    <option value="光明五金">光明五金</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">商品名称</label>
+                <div class="col-sm-10">
+                 <select class="form-control">
+                    <option value="飞利浦日光灯">飞利浦日光灯</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">库存</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" placeholder="20">
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">开始时间</label>
+                <div class="col-sm-2">
+                  <div class="input-group date start_time_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd hh:MM">
+                    <input class="form-control start_time_picker_text n-valid times" name="time"  type="text" readonly="" aria-required="true">
+                  </div>
+                </div>
+                <label  class="col-sm-1 control-label">结束时间</label>
+                <div class="col-sm-2">
+                  <div class="input-group date start_time_picker" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd hh:MM">
+                    <input class="form-control start_time_picker_text n-valid times" name="time"  type="text" readonly="" aria-required="true">
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label  class="col-sm-2 control-label">状态</label>
+                <div class="col-sm-10">
+                  <select class="form-control">
+                    <option value="销售中">销售中</option>
+                    <option value="已售罄">已售罄</option>
+                    <option value="已结束">已结束</option>
+                    <option value="未开始">未开始</option>
+                  </select>
+                </div> 
+              </div>
+              
+              <div class="row">
+                <div class="col-sm-6 text-right">
+                  <button type="button" class="btn btn-primary">确定</button>
+                </div>
+                <div class="col-sm-6 text-left">
+                  <button type="button" class="btn btn-default">重置</button>
+                </div>
+              </div>
+             </form>
+    		</div>
+    	</div>
+    </div>
+    </section>
+  </div>
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.3.1
+    </div>
+    <strong>Copyright © 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+</div>
+<script>
+  $(function() {
+    $('.times').click(function(){
+      $(this).datetimepicker('show')
+    });
+    
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCityLowestPriceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCityLowestPrice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cityId" property="cityid" jdbcType="INTEGER" />
+    <result column="lowest_price" property="lowestPrice" jdbcType="DECIMAL" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.cityid != null" >
+         and cityId = #{parameter.cityid,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.lowestPrice != null" >
+         and lowest_price = #{parameter.lowestPrice,jdbcType=DECIMAL}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.remark1 != null" >
+         and remark1 = #{parameter.remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark2 != null" >
+         and remark2 = #{parameter.remark2,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cityId, lowest_price, version, remark1, remark2
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_city_lowest_price
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_city_lowest_price
+    where cityId = #{cityId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_city_lowest_price
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_city_lowest_price
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCityLowestPrice" >
+    insert into hgl.tb_city_lowest_price (id, cityId, lowest_price, 
+      version, remark1, remark2
+      )
+    values (#{id,jdbcType=INTEGER}, #{cityid,jdbcType=INTEGER}, #{lowestPrice,jdbcType=DECIMAL}, 
+      #{version,jdbcType=INTEGER}, #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCityLowestPrice" >
+    insert into tb_city_lowest_price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cityid != null" >
+        cityId,
+      </if>
+      <if test="lowestPrice != null" >
+        lowest_price,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cityid != null" >
+        #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="lowestPrice != null" >
+        #{lowestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_city_lowest_price
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCityLowestPrice" flushCache="true" >
+    update tb_city_lowest_price
+    <set >
+      <if test="cityid != null" >
+        cityId = #{cityid,jdbcType=INTEGER},
+      </if>
+      <if test="lowestPrice != null" >
+        lowest_price = #{lowestPrice,jdbcType=DECIMAL},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cityid = #{cityid,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCityLowestPrice" flushCache="true" >
+    update tb_city_lowest_price
+    set cityId = #{cityid,jdbcType=INTEGER},
+      lowest_price = #{lowestPrice,jdbcType=DECIMAL},
+      version = version + 1,
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="findLowestPriceBatchByCityId" parameterType="ArrayList" resultType="map">
+  	SELECT
+		cti.id as id,
+		tclp.lowest_price as lowestPrice,
+		cti.name as name,
+		tclp.version as version 
+	FROM
+		tb_city_info cti
+	INNER JOIN tb_city_lowest_price tclp ON cti.id = tclp.cityId
+	WHERE
+		tclp.cityId IN 
+	<foreach collection="list" index="index" item="item" open="(" separator=',' close=")">
+	#{item}
+  	</foreach>
+  </select>
+  
+  <select id="selectCityIds"  resultType="String" >
+    select
+    tclp.cityId  
+    from tb_city_lowest_price tclp
+  </select>
+  
+   <insert id="insertLowestPriceBatch" parameterType="com.liguo.hgl.proxydao.model.TbCityLowestPrice" >
+    insert into hgl.tb_city_lowest_price (cityId)
+    values
+    <foreach collection="list" index="index" item="item"  separator=','>
+    	(#{item})
+    </foreach>
+  </insert>
+  
+  <delete id="deleteLowestPrice_Batch" parameterType="ArrayList" flushCache="true"  >
+    delete from tb_city_lowest_price
+    where cityId  in
+    <foreach collection="list" index="index" item="item" open="(" separator=',' close=")">
+	#{item}
+  	</foreach>
+  </delete>
+  
+</mapper>

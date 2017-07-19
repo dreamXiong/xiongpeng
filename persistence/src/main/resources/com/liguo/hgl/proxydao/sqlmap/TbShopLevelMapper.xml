@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbShopLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbShopLevel" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="level_name" property="levelName" jdbcType="VARCHAR" />
+    <result column="min_exp" property="minExp" jdbcType="INTEGER" />
+    <result column="exp_proportion" property="expProportion" jdbcType="DOUBLE" />
+    <result column="user_sale" property="userSale" jdbcType="DOUBLE" />
+    <result column="coupon_rule" property="couponRule" jdbcType="DOUBLE" />
+    <result column="cash_num" property="cashNum" jdbcType="INTEGER" />
+    <result column="level_remark" property="levelRemark" jdbcType="VARCHAR" />
+    <result column="update_by" property="updateBy" jdbcType="INTEGER" />
+    <result column="update_dt" property="updateDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="max_exp" property="maxExp" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.levelName != null" >
+         and level_name = #{parameter.levelName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.minExp != null" >
+         and min_exp = #{parameter.minExp,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.expProportion != null" >
+         and exp_proportion = #{parameter.expProportion,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.userSale != null" >
+         and user_sale = #{parameter.userSale,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.couponRule != null" >
+         and coupon_rule = #{parameter.couponRule,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.cashNum != null" >
+         and cash_num = #{parameter.cashNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.levelRemark != null" >
+         and level_remark = #{parameter.levelRemark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.updateBy != null" >
+         and update_by = #{parameter.updateBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.updateDt != null" >
+         and update_dt = #{parameter.updateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.maxExp != null" >
+         and max_exp = #{parameter.maxExp,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, level_name, min_exp, exp_proportion, user_sale, coupon_rule, cash_num, level_remark, 
+    update_by, update_dt, version, max_exp
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_shop_level
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_shop_level
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_shop_level
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_shop_level
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbShopLevel" >
+    insert into hgl.tb_shop_level (id, level_name, min_exp, 
+      exp_proportion, user_sale, coupon_rule, 
+      cash_num, level_remark, update_by, 
+      update_dt, version, max_exp
+      )
+    values (#{id,jdbcType=INTEGER}, #{levelName,jdbcType=VARCHAR}, #{minExp,jdbcType=INTEGER}, 
+      #{expProportion,jdbcType=DOUBLE}, #{userSale,jdbcType=DOUBLE}, #{couponRule,jdbcType=DOUBLE}, 
+      #{cashNum,jdbcType=INTEGER}, #{levelRemark,jdbcType=VARCHAR}, #{updateBy,jdbcType=INTEGER}, 
+      #{updateDt,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{maxExp,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbShopLevel" >
+    insert into tb_shop_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="levelName != null" >
+        level_name,
+      </if>
+      <if test="minExp != null" >
+        min_exp,
+      </if>
+      <if test="expProportion != null" >
+        exp_proportion,
+      </if>
+      <if test="userSale != null" >
+        user_sale,
+      </if>
+      <if test="couponRule != null" >
+        coupon_rule,
+      </if>
+      <if test="cashNum != null" >
+        cash_num,
+      </if>
+      <if test="levelRemark != null" >
+        level_remark,
+      </if>
+      <if test="updateBy != null" >
+        update_by,
+      </if>
+      <if test="updateDt != null" >
+        update_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="maxExp != null" >
+        max_exp,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="levelName != null" >
+        #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="minExp != null" >
+        #{minExp,jdbcType=INTEGER},
+      </if>
+      <if test="expProportion != null" >
+        #{expProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="userSale != null" >
+        #{userSale,jdbcType=DOUBLE},
+      </if>
+      <if test="couponRule != null" >
+        #{couponRule,jdbcType=DOUBLE},
+      </if>
+      <if test="cashNum != null" >
+        #{cashNum,jdbcType=INTEGER},
+      </if>
+      <if test="levelRemark != null" >
+        #{levelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="maxExp != null" >
+        #{maxExp,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_shop_level
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbShopLevel" flushCache="true" >
+    update tb_shop_level
+    <set >
+      <if test="levelName != null" >
+        level_name = #{levelName,jdbcType=VARCHAR},
+      </if>
+      <if test="minExp != null" >
+        min_exp = #{minExp,jdbcType=INTEGER},
+      </if>
+      <if test="expProportion != null" >
+        exp_proportion = #{expProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="userSale != null" >
+        user_sale = #{userSale,jdbcType=DOUBLE},
+      </if>
+      <if test="couponRule != null" >
+        coupon_rule = #{couponRule,jdbcType=DOUBLE},
+      </if>
+      <if test="cashNum != null" >
+        cash_num = #{cashNum,jdbcType=INTEGER},
+      </if>
+      <if test="levelRemark != null" >
+        level_remark = #{levelRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateBy != null" >
+        update_by = #{updateBy,jdbcType=INTEGER},
+      </if>
+      <if test="updateDt != null" >
+        update_dt = #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="maxExp != null" >
+        max_exp = #{maxExp,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbShopLevel" flushCache="true" >
+    update tb_shop_level
+    set level_name = #{levelName,jdbcType=VARCHAR},
+      min_exp = #{minExp,jdbcType=INTEGER},
+      exp_proportion = #{expProportion,jdbcType=DOUBLE},
+      user_sale = #{userSale,jdbcType=DOUBLE},
+      coupon_rule = #{couponRule,jdbcType=DOUBLE},
+      cash_num = #{cashNum,jdbcType=INTEGER},
+      level_remark = #{levelRemark,jdbcType=VARCHAR},
+      update_by = #{updateBy,jdbcType=INTEGER},
+      update_dt = #{updateDt,jdbcType=BIGINT},
+      version = version + 1,
+      max_exp = #{maxExp,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <select id="selectByExperience" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select e.* from tb_shop_level e where e.min_exp <![CDATA[<=]]> #{experience,jdbcType=INTEGER} and e.max_exp <![CDATA[>]]> #{experience,jdbcType=INTEGER};
+  
+  </select>
+</mapper>

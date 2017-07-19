@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbStatisticalMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbStatistical" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="merchansId" property="merchansid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="browser" property="browser" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="reserved" property="reserved" jdbcType="INTEGER" />
+    <result column="reserved1" property="reserved1" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.merchansid != null" >
+         and merchansId = #{parameter.merchansid,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.ip != null" >
+         and ip = #{parameter.ip,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.browser != null" >
+         and browser = #{parameter.browser,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.state != null" >
+         and state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reserved != null" >
+         and reserved = #{parameter.reserved,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reserved1 != null" >
+         and reserved1 = #{parameter.reserved1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, merchansId, type, ip, browser, create_time, state, reserved, reserved1, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hgl.tb_statistical
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hgl.tb_statistical
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from hgl.tb_statistical
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from hgl.tb_statistical
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbStatistical" >
+    insert into hgl.tb_statistical (id, merchansId, type, 
+      ip, browser, create_time, 
+      state, reserved, reserved1, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{merchansid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{ip,jdbcType=VARCHAR}, #{browser,jdbcType=VARCHAR}, #{createTime,jdbcType=VARCHAR}, 
+      #{state,jdbcType=INTEGER}, #{reserved,jdbcType=INTEGER}, #{reserved1,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbStatistical" >
+    insert into hgl.tb_statistical
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="merchansid != null" >
+        merchansId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="browser != null" >
+        browser,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="reserved != null" >
+        reserved,
+      </if>
+      <if test="reserved1 != null" >
+        reserved1,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchansid != null" >
+        #{merchansid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="browser != null" >
+        #{browser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from hgl.tb_statistical
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbStatistical" flushCache="true" >
+    update hgl.tb_statistical
+    <set >
+      <if test="merchansid != null" >
+        merchansId = #{merchansid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="browser != null" >
+        browser = #{browser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        reserved = #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reserved1 != null" >
+        reserved1 = #{reserved1,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbStatistical" flushCache="true" >
+    update hgl.tb_statistical
+    set merchansId = #{merchansid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      ip = #{ip,jdbcType=VARCHAR},
+      browser = #{browser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      state = #{state,jdbcType=INTEGER},
+      reserved = #{reserved,jdbcType=INTEGER},
+      reserved1 = #{reserved1,jdbcType=VARCHAR},
+      version = #{version,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

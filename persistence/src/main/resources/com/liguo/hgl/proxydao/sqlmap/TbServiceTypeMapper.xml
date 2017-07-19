@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbServiceTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbServiceType" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="jsp" property="jsp" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.ServiceTypeDto" extends="BaseResultMap">
+    <result column="checked" property="checked" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="selectServiceType" type="com.liguo.hgl.proxydao.dto.WapServiceTypeDto">
+	 <result column="tstName" property="tstName" jdbcType="VARCHAR" />
+     <result column="tstId" property="tstId" jdbcType="INTEGER" />
+ 	 <collection property="wapServiceType" ofType="com.liguo.hgl.proxydao.model.TbServiceType" javaType="ArrayList">
+ 	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+	    <result column="name" property="name" jdbcType="VARCHAR" />
+	    <result column="describes" property="describes" jdbcType="VARCHAR" />
+	    <result column="jsp" property="jsp" jdbcType="VARCHAR" />
+	    <result column="version" property="version" jdbcType="INTEGER" />
+ 	 </collection>
+  </resultMap> 
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.parentId != null" >
+         and parent_id = #{parameter.parentId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.jsp != null" >
+         and jsp = #{parameter.jsp,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <!-- 查询所有子节点-->
+      <if test="parameter.childAll != null" >
+         parent_id != 0
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, parent_id, name, describes, jsp, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_service_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_service_type
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_service_type
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_service_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbServiceType" >
+    insert into hgl.tb_service_type (id, parent_id, name, 
+      describes, jsp
+      )
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{describes,jdbcType=VARCHAR}, #{jsp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbServiceType" >
+    insert into tb_service_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="jsp != null" >
+        jsp,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="jsp != null" >
+        #{jsp,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_service_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbServiceType" flushCache="true" >
+    update tb_service_type
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="jsp != null" >
+        jsp = #{jsp,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbServiceType" flushCache="true" >
+    update tb_service_type
+    set parent_id = #{parentId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      describes = #{describes,jdbcType=VARCHAR},
+      jsp = #{jsp,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+    
+  <select id="selectServiceTypeByIds" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDto">
+  	select st1.id,st1.parent_id,st1.name,st1.describes,st1.version
+  	<if test="parameter.item != null">
+	  	,case when st1.id in 
+	  	<foreach collection="parameter.item" item="item" index="index" open="(" separator="," close=")">
+	    	#{item}
+	   </foreach>	
+	  	then '1' else '0' end as 'checked'
+	</if>	
+		from tb_service_type as st1 where 1=1
+	<if test="parameter.parentId != null">
+		and st1.parent_id = #{parameter.parentId,jdbcType=INTEGER}
+	</if> 	
+  </select>
+  
+  <select id="selectDtoByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMapDto">
+  	 select 
+    	<include refid="Base_Column_List" />
+    	from tb_service_type
+    		where id = #{id,jdbcType=INTEGER}
+  </select>
+  
+  <select id="selectDtoByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDto" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_service_type
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  <select id="selectByWap" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+	  select * from (
+			select 
+			tst.*,
+			(select count(id) from tb_service_type where parent_id = tst.id) as coun
+			from tb_service_type tst 
+			where tst.parent_id = 0	
+				group by tst.id
+			) a where a.coun >0
+	</select>
+	<select id="selectServiceType" resultMap="selectServiceType" >
+			select 
+				tst.*,
+				tst01.id as tstId,
+				tst01.name as tstName
+				from tb_service_type tst
+				left join tb_service_type tst01 on tst.parent_id = tst01.id
+				left join tb_customer_service tcs on tst.id = tcs.service_type_id
+			where tst.parent_id != 0
+				  and tcs.name is not null
+			<!-- group by tst.id -->
+	</select>
+</mapper>

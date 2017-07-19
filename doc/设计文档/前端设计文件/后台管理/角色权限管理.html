@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>角色权限管理管理</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+  <script src="js/jquery-1.12.2.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="dist/js/app.min.js"></script>
+  <script src="dist/js/jquery.slimscroll.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini wysihtml5-supported">
+<div class="wrapper">
+  
+
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        我的主页
+        <small>角色权限管理</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+        <div class="box box-primary">
+          <div class="box-body pad table-responsive">
+              <div class="fil">
+                <div class="one">
+                  <ul class="nav text-center" id="ul">
+                    <li class="nav-title">
+                      <a href="javascript:;" id="addRole">添加角色</a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">厂家</a>
+                      <div class="pull-right">
+                        <a href="javascript:;">修改</a>
+                        <a href="javascript:;">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">买家财务</a>
+                      <div class="pull-right">
+                        <a href="javascript:;">修改</a>
+                        <a href="javascript:;">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">王武</a>
+                      <div class="pull-right">
+                        <a href="javascript:;">修改</a>
+                        <a href="javascript:;">删除</a>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="poas">
+
+                    <dl class="fl-dl">
+                      <dt class="nav-title">菜单2</dt>
+                      <dd>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <input type="checkbox" class="menu">菜单1
+                        <dl class="po-dl">
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                        </dl>
+                      </dd>
+                      
+                    </dl>
+
+
+                    <dl class="fl-dl" style="display:none">
+                      <dt class="nav-title">菜单3</dt>
+                      <dd>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <input type="checkbox" class="menu">菜单1
+                        <dl class="po-dl">
+                          <dd><input type="checkbox" class="submenu">菜单1-2221</dd>
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                        </dl>
+                      </dd>
+                      <dd>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <input type="checkbox" class="menu">菜单2
+                        <dl class="po-dl">
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                        </dl>
+                      </dd>
+                    </dl>
+                    <dl class="fl-dl" style="display:none">
+                      <dt class="nav-title">菜单</dt>
+                      <dd>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <input type="checkbox" class="menu">菜单1
+                        <dl class="po-dl">
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                        </dl>
+                      </dd>
+                      <dd>
+                        <span class="glyphicon glyphicon-plus"></span>
+                        <input type="checkbox" class="menu">菜单2
+                        <dl class="po-dl">
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                          <dd><input type="checkbox" class="submenu">菜单1-1</dd>
+                        </dl>
+                      </dd>
+                    </dl>
+                  </div>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+
+
+<!-- 添加角色模态框开始 -->
+<div class="modal fade" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加角色</h4>
+      </div>
+      <div class="modal-body">
+        <form action="" class="form-horizontal">
+          <div class="form-group">
+            <label for="" class="col-sm-2">角色名称</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" placeholder="请输入角色名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="" class="col-sm-2">备注</label>
+            <div class="col-sm-10">
+              <textarea rows="3" class="form-control"></textarea>   
+            </div>
+          </div>
+        </form>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" id="save" data-dismiss="modal">确定</button>
+      </div> 
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+<!-- 添加角色模态框结束 -->
+
+
+
+</body>
+</html>
+<script>
+  $(function() {
+    var num=null;
+    var tag = 1;
+    var arr = ['glyphicon glyphicon-plus','glyphicon glyphicon-minus']
+   $('#addRole').click(function(event) {
+     $('#modal').modal('show');
+   });
+   $('#save').click(function(event) {
+      var inp = $('.modal-body').find('input');
+      var inpV = inp.val();
+      var txt = $('.modal-body').find('textarea');
+      var li= $('<li>' +
+                   '<a href="javascript:;">'+inpV+'</a>'+
+                   '<div class="pull-right">'+
+                       '<a href="javascript:;">修改</a>'+
+                       '<a href="javascript:;">修改</a>'+
+                   '</div>'+
+                 '</li>');
+      $('.nav-title').after(li);
+    });
+
+   $('.one').delegate('#ul li:not(:first)','click',function(){
+      var index =$(this).index()-1;
+      $('.poas .fl-dl').eq(index).show().siblings('.fl-dl').hide();
+   });
+
+
+   $(document).delegate('.glyphicon', 'click', function(event) {
+      $(this).siblings('.po-dl').stop().slideToggle();
+      if ($(this).hasClass(arr[0])) {
+        $(this).attr('class',arr[1])
+      }else{
+        $(this).attr('class',arr[0]);
+     
+      };
+
+   });
+
+   $('.menu').on('click',function(){
+      var state=$(this).prop('checked');
+      $(this).siblings('.po-dl').find('input').prop('checked',state);
+   });
+  
+  $('.submenu').on('click',function(){
+      var checkedFalg = false;
+      var menu = $(this).parents('.po-dl').siblings('.menu');
+      menu.prop('checked',false);
+      var par = $(this).parents('.po-dl');
+      par.find('input').each(function(i){
+        if($(this).prop('checked')){
+          checkedFalg = true;
+        }
+      })
+      if(checkedFalg){
+         menu.prop('checked',true);
+      }
+  })
+    
+  });
+</script>

@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbNoticeInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbNoticeInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="notice_name" property="noticeName" jdbcType="VARCHAR" />
+    <result column="notice_type" property="noticeType" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.liguo.hgl.proxydao.model.TbNoticeInfo" extends="BaseResultMap" >
+    <result column="notice_content" property="noticeContent" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.noticeName != null" >
+         and notice_name like CONCAT('%', #{parameter.noticeName,jdbcType=VARCHAR},'%')   
+      </if>
+      <if test="parameter.noticeType != null" >
+         and notice_type = #{parameter.noticeType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.noticeContent != null" >
+         and notice_content = #{parameter.noticeContent,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, notice_name, notice_type, create_dt, create_by
+  </sql>
+  <sql id="Blob_Column_List" >
+    notice_content
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_notice_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_notice_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_notice_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_notice_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbNoticeInfo" >
+    insert into hgl.tb_notice_info (id, notice_name, notice_type, 
+      create_dt, create_by, notice_content
+      )
+    values (#{id,jdbcType=INTEGER}, #{noticeName,jdbcType=VARCHAR}, #{noticeType,jdbcType=INTEGER}, 
+      #{createDt,jdbcType=BIGINT}, #{createBy,jdbcType=VARCHAR}, #{noticeContent,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbNoticeInfo" >
+    insert into tb_notice_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="noticeName != null" >
+        notice_name,
+      </if>
+      <if test="noticeType != null" >
+        notice_type,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="noticeContent != null" >
+        notice_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="noticeName != null" >
+        #{noticeName,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null" >
+        #{noticeType,jdbcType=INTEGER},
+      </if>
+        <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeContent != null" >
+        #{noticeContent,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_notice_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbNoticeInfo" flushCache="true" >
+    update tb_notice_info
+    <set >
+      <if test="noticeName != null" >
+        notice_name = #{noticeName,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeType != null" >
+        notice_type = #{noticeType,jdbcType=INTEGER},
+      </if>
+        <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="noticeContent != null" >
+        notice_content = #{noticeContent,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbNoticeInfo" flushCache="true" >
+    update tb_notice_info
+    set notice_name = #{noticeName,jdbcType=VARCHAR},
+      notice_type = #{noticeType,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <!-- 分页 -->
+   <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_notice_info
+    where 1=1
+    <if test="parameter.noticeName !=null and parameter.noticeName !=''">
+         and notice_name like CONCAT('%', #{parameter.noticeName,jdbcType=VARCHAR},'%')      	
+    </if>
+    <if test="parameter.noticeType !=null and parameter.noticeType !=0">
+      	and notice_type = #{parameter.noticeType,jdbcType=INTEGER}
+    </if>
+    <if test="orderByClause!= null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+</mapper>

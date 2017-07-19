@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户管理</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+  <script src="dist/js/jquery.slimscroll.min.js"></script>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>用户管理</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+    		<div class="box box-primary">
+    			 <div class="box-body">
+             <form action="#" class="form-horizontal">
+             <div class="row">
+              <div  class="col-sm-3">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">名称</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div  class="col-sm-3">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">帐号</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control">
+                  </div>
+                </div>
+              </div>
+
+              <div  class="col-sm-3">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">手机号</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                  <button type="button" class="btn btn-primary">查询</button>
+                  <button type="button" class="btn btn-primary" id="add">添加</button>
+              </div>
+             </div>
+              <div class="col-sm-12">
+                <table class="table table-bordered table-hover dataTable text-center table-bordered">
+                  <tr class="info">
+                    <th>姓名</th>
+                    <th>帐号</th>
+                    <th>手机号码</th>
+                    <th>邮箱</th>
+                    <th>角色</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>操作</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      张桑
+                    </td>
+                    <td>
+                      zhangsan
+                    </td>
+                    <td>
+                      13698596935
+                    </td>
+                    <td>
+                      liguowangluo@139.com
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      审核通过
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-xs">停用</button>
+                      <button type="button" class="btn btn-primary btn-xs">修改</button>
+                      <button type="button" class="btn btn-primary btn-xs">删除</button>
+                      <button type="button" class="btn btn-primary btn-xs">重置密码</button>
+                    </td>
+                  </tr>
+                   <tr>
+                    <td>
+                      张桑
+                    </td>
+                    <td>
+                      zhangsan
+                    </td>
+                    <td>
+                      13698596935
+                    </td>
+                    <td>
+                      liguowangluo@139.com
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      审核通过
+                    </td>
+                    <td>
+                    <!-- type=“hidden”让button占位不显示 -->
+                      <button type="hidden" class="btn btn-primary btn-xs">停用</button>
+                      <button type="button" class="btn btn-primary btn-xs">修改</button>
+                      <button type="button" class="btn btn-primary btn-xs">删除</button>
+                      <button type="button" class="btn btn-primary btn-xs">重置密码</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      张桑
+                    </td>
+                    <td>
+                      zhangsan
+                    </td>
+                    <td>
+                      13698596935
+                    </td>
+                    <td>
+                      liguowangluo@139.com
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      买家
+                    </td>
+                    <td>
+                      审核通过
+                    </td>
+                    <td>
+                      <button type="hidden" class="btn btn-primary btn-xs">启用</button>
+                      <button type="button" class="btn btn-primary btn-xs">修改</button>
+                      <button type="button" class="btn btn-primary btn-xs">删除</button>
+                      <button type="button" class="btn btn-primary btn-xs">重置密码</button>
+                    </td>
+                  </tr>
+
+                  
+                </table>
+              </div>
+                <div class="col-sm-12 text-right">
+                  <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button previous disabled">
+                        <a href="#">
+                          <span>&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="paginate_button active">
+                        <a href="#">1</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">2</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">3</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">4</a>
+                      </li>
+                      <li class="paginate_button previous">
+                        <a href="#">
+                          <span>&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+             </form>
+    			 </div>
+    		</div>
+    	</div>
+    </section>
+  </div>
+</div>
+<!-- 用户管理添加+修改 -->
+<div class="modal fade" id="modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加用户</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <table class="table table-bordered" style="width:80%;margin:0 auto">
+            <tr>
+              <td>状态</td>
+              <td>审核通过</td>
+            </tr>
+            <tr>
+              <td>用户名</td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>姓名</td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>常用地址</td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>手机号</td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>邮箱地址</td>
+              <td><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>角色</td>
+              <td><select class="form-control"></select></td>
+            </tr>
+            <tr>
+              <td>用户类型</td>
+              <td><select class="form-control"></select></td>
+            </tr>
+            <tr>
+              <td>归属店铺</td>
+              <td><select class="form-control"></select></td>
+            </tr>
+            <tr>
+              <td>备注</td>
+              <td>
+                <textarea class="form-control" rows="3"></textarea>
+              </td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-sm" data-dismiss="modal">关闭</button>
+        <button type="button" class="btn btn-primary btn-sm">确定</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 用户管理添加+修改 -->
+</body>
+<script>
+  $(function() {
+    $('#add').click(function(event) {
+      $('#modal').modal('show')
+    });
+  });
+</script>
+</html>

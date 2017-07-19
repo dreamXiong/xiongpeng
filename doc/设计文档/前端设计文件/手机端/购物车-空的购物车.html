@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>空的购物车</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+</head>	
+<body style="background:#eee">
+<header class="cart">
+	<span class="icon-angle-left text-center"></span>
+	<h3 class="text-center">购物车</h3>
+</header>
+
+<div class="container container-cart">
+	<div class="empty text-center">
+		<span class="icon-shopping-cart"></span>
+		你的购物车空空如也T.T<br>
+		<a href="javascript:;">去逛逛</a>
+	</div>
+</div>
+ 
+
+
+  		
+</body>
+<script>
+	
+ 	$(function() {
+ 		
+ 		$('input').click(function(event) {
+ 			if ($(this).prop('checked')) {
+ 				alert(1)
+ 			}else{
+ 				alert(0)
+ 			};
+ 		});
+
+ 	});
+
+   
+
+</script>
+</html>

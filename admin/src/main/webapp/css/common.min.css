@@ -1,0 +1,30 @@
+.fl{float:left;}
+.fr{float:right;}
+.c{clear:both;}
+.clearfix:after {content: "."; display: block; height: 0; clear: both; visibility: hidden;font-size:0px;}
+.p_l15{
+	padding-left: 15px;
+}
+.p_t15{padding-top: 15px;}
+.p15{ padding: 15px;}
+.p5{padding: 5px;}
+.p8{padding: 8px;}
+.p10{padding: 10px;}
+.fw{font-weight: bold;}
+.w25{width: 25%}
+.w45{width: 45%}
+.mt10{margin-top: 10px;}
+.mt20{margin-top: 20px;}
+.mt25{margin-top: 25px;}
+.ml10{margin-left: 10px;}
+.input_label{height:32px;line-height:32px;font-weight: 700;text-align: right;}
+.input{border:1px solid #ccc;border-radius:3px;height:35px;padding:5px;width:200px;line-height: 35px;}
+.select{border:1px solid #ccc;border-radius:3px;height: 32px;width: 200px;}
+.select1{border:1px solid #ccc;border-radius:3px;height: 35px;width: 100px;}
+.input_ck_err {}
+.msg{margin-left:5px;margin-top:7px;}
+.w_200{width:200px;}
+.w_175{width:175px;}
+.w_135{width:135px;}
+.w_120{width:120px;}
+.w_100{width:100px;}

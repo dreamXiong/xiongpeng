@@ -1,0 +1,66 @@
+.treeview>a{
+    font-weight:bold;
+  }
+
+  .skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side{
+    background:#fff;
+   
+  }
+  .skin-blue .sidebar-menu>li.header{
+    background:#FFFFFF;
+    color:#515151;
+    font-size:16px;
+    font-weight:bold;
+  }
+ 
+ .skin-blue .sidebar-menu>li.active>a{
+    background:#E2E2E2;
+    color:#515151;
+  }
+  .skin-blue .sidebar a {
+    color: #515151;
+  }
+  .skin-blue .sidebar-menu>li>.treeview-menu {
+    background:#fff;
+  }
+  .skin-blue .sidebar-menu>li>.treeview-menu a{
+    color:#515151;
+  }
+  .skin-blue .sidebar-menu>li:hover>a{       
+    background:#E2E2E2;
+    border-left-color: #3c8dbc;
+    color:#515151;
+  }
+  .skin-blue .treeview-menu>li.active>a{
+    color: #00c3f5;
+  }
+  .skin-blue .treeview-menu>li.active>a{
+    color: #00c3f5;
+    text-decoration:underline;
+  }
+  .skin-blue .treeview-menu>li.active>a:hover{
+    text-decoration:underline;
+  }
+  .skin-blue .treeview-menu>li>a:hover{
+  
+    color:#333;
+    text-decoration:none; 
+  }
+  .treeview.active li:hover a{
+    color:#00c3f5;
+  }
+  
+  /* ����ҳ�� */
+  .table td.sel{
+  	text-align:left;
+  }
+  .table .sel select{
+  	width:188px;   
+  }
+  .main-sidebar{
+  	border-right: 1px solid #d2d6de;
+  }
+  .fa.fa-angle-left.pull-right{ 
+  	position:absolute;
+  	right:0;
+  }

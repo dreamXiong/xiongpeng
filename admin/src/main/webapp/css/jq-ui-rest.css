@@ -1,0 +1,46 @@
+@charset "utf-8";
+/* dialog重置 */
+.ui-widget-content{border:none;}
+.ui-dialog{padding:0;webkit-box-shadow: 0 5px 15px rgba(0,0,0,.5); box-shadow: 0 5px 15px rgba(0,0,0,.5);}
+.ui-widget-header{border:0;}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br{border-radius:0;}
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{background:none;border:none;}
+
+
+.ui-dialog-buttonset .ui-button:first-child .ui-button-text{
+	background:#66b6ff;
+}
+.ui-dialog-buttonset .ui-button:first-child .ui-button-text:hover{
+	background:#118adb;
+}
+
+.ui-dialog-buttonset .ui-button-text{padding:0 11px;line-height: 26px;color:#fff;background:#6c6c6c;}
+.ui-dialog-buttonset .ui-button-text:hover{background:#3c3c3c;}
+
+.ui-dialog .ui-dialog-buttonpane{border-width:0;}
+.ui-dialog .ui-dialog-content{padding:1em;}
+.dialog.ui-dialog-content.ui-widget-content{line-height:1.5em;}
+.ui-dialog .ui-dialog-titlebar{padding:0.6em 1em;}
+
+
+/* datepicker重置 */
+#ui-datepicker-div{box-shadow:1px 1px 10px rgba(0,0,0,.1);padding:0;-webkit-box-shadow:1px 1px 5px rgba(0,0,0,.1);padding:0;border:1px solid #eee\9;}
+.ui-state-default.ui-state-highlight{color:#009dd9;}
+.ui-datepicker td span, .ui-datepicker td a{text-align:center;}
+.ui-state-default.ui-state-active{color:#FF7100;}
+.ui-datepicker-header.ui-datepicker-title{background: #F2F2F2}
+.ui-dialog input,.ui-dialog select,.ui-dialog textarea{border:1px solid #ddd;padding:8px 5px;margin:8px 3px;}
+
+.ui-dialog input:hover,.ui-dialog input:focus,
+.ui-dialog select:hover,.ui-dialog select:focus,
+.ui-dialog textarea:hover,.ui-dialog textarea:focus
+{
+	border-color:#66afe9;
+}
+.dialog{
+	display: none;
+}
+.ui-widget-overlay{
+	z-index:1020!important;
+	background:#000;
+}

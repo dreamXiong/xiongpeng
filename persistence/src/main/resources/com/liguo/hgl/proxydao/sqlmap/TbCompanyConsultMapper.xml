@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCompanyConsultMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCompanyConsult" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="contract" property="contract" jdbcType="VARCHAR" />
+    <result column="contract_phone" property="contractPhone" jdbcType="VARCHAR" />
+    <result column="company_id" property="companyId" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="tbCompanyConsultDto" type="com.liguo.hgl.proxydao.dto.TbCompanyConsultDto" extends="BaseResultMap">
+	  <result column="companyName" property="companyName" jdbcType="VARCHAR" />
+  </resultMap> 
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.contract != null" >
+         and contract = #{parameter.contract,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contractPhone != null" >
+         and contract_phone = #{parameter.contractPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyId != null" >
+         and company_id = #{parameter.companyId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, contract, contract_phone, company_id, create_dt, describes, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_company_consult
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_company_consult
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_company_consult
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_company_consult
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCompanyConsult" >
+    insert into hgl.tb_company_consult (id, user_id, contract, 
+      contract_phone, company_id, create_dt, 
+      describes, version)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{contract,jdbcType=VARCHAR}, 
+      #{contractPhone,jdbcType=VARCHAR}, #{companyId,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT}, 
+      #{describes,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCompanyConsult" >
+    insert into tb_company_consult
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="contract != null" >
+        contract,
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone,
+      </if>
+      <if test="companyId != null" >
+        company_id,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="contract != null" >
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_company_consult
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCompanyConsult" flushCache="true" >
+    update tb_company_consult
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="contract != null" >
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyId != null" >
+        company_id = #{companyId,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCompanyConsult" flushCache="true" >
+    update tb_company_consult
+    set user_id = #{userId,jdbcType=INTEGER},
+      contract = #{contract,jdbcType=VARCHAR},
+      contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      company_id = #{companyId,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      describes = #{describes,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="tbCompanyConsultDto" >
+	  select 
+		tcc.*,
+		tcs.company_name as companyName
+		from tb_company_consult tcc
+		left join tb_company_service tcs on tcs.id = tcc.company_id
+		where 1=1 
+		 <if test="parameter.id != null" >
+         	and tcc.id = #{parameter.id,jdbcType=INTEGER}
+      	 </if>
+      	  <if test="parameter.companyName != null and parameter.companyName != ''"  >
+         	and tcs.company_name like '%${parameter.companyName}%'
+      	 </if>
+  </select>
+</mapper>

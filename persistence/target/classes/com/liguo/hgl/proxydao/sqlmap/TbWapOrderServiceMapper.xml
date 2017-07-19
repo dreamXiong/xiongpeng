@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWapOrderServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWapOrderService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_serial_no" property="orderSerialNo" jdbcType="VARCHAR" />
+    <result column="total_money" property="totalMoney" jdbcType="DOUBLE" />
+    <result column="repairman_id" property="repairmanId" jdbcType="INTEGER" />
+    <result column="master_id" property="masterId" jdbcType="INTEGER" />
+    <result column="service_type_id" property="serviceTypeId" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="settle_type" property="settleType" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="pay_dt" property="payDt" jdbcType="BIGINT" />
+    <result column="appointment_dt" property="appointmentDt" jdbcType="BIGINT" />
+    <result column="appointment_period_dt" property="appointmentPeriodDt" jdbcType="VARCHAR" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="cancel_dt" property="cancelDt" jdbcType="BIGINT" />
+    <result column="cancel_flag" property="cancelFlag" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="evaluate" property="evaluate" jdbcType="VARCHAR" />
+    <result column="evaluate_start" property="evaluateStart" jdbcType="VARCHAR" />
+    <result column="evaluate_img" property="evaluateImg" jdbcType="VARCHAR" />
+    <result column="extension_field" property="extensionField" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="repairman_show" property="repairmanShow" jdbcType="INTEGER" />
+    <result column="master_show" property="masterShow" jdbcType="INTEGER" />
+     <result column="city_code" property="cityCode" jdbcType="INTEGER" />
+  </resultMap>
+    <resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.WapOrderServiceDto" extends="BaseResultMap" >
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="serciceName" property="serciceName" jdbcType="VARCHAR" />
+    <result column="stateName" property="stateName" jdbcType="VARCHAR" />
+    <result column="place" property="place" jdbcType="VARCHAR" />
+     <result column="address" property="address" jdbcType="VARCHAR" />
+      <result column="distance" property="distance" jdbcType="DOUBLE" />
+       <result column="serciceId" property="serciceId" jdbcType="INTEGER" />
+     <result column="addressId" property="addressId" jdbcType="INTEGER" />
+     <result column="sfUserName" property="sfUserName" jdbcType="VARCHAR" />
+    <result column="sfPhone" property="sfPhone" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderSerialNo != null" >
+         and order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.totalMoney != null" >
+         and total_money = #{parameter.totalMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.repairmanId != null" >
+         and repairman_id = #{parameter.repairmanId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.masterId != null" >
+         and master_id = #{parameter.masterId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.serviceTypeId != null" >
+         and service_type_id = #{parameter.serviceTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderStatus != null" >
+         and order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.settleType != null" >
+         and settle_type = #{parameter.settleType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.payDt != null" >
+         and pay_dt = #{parameter.payDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.appointmentDt != null" >
+         and appointment_dt = #{parameter.appointmentDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.appointmentPeriodDt != null" >
+         and appointment_period_dt = #{parameter.appointmentPeriodDt,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.addressId != null" >
+         and address_id = #{parameter.addressId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.cancelDt != null" >
+         and cancel_dt = #{parameter.cancelDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.cancelFlag != null" >
+         and cancel_flag = #{parameter.cancelFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderType != null" >
+         and order_type = #{parameter.orderType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.message != null" >
+         and message = #{parameter.message,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.evaluate != null" >
+         and evaluate = #{parameter.evaluate,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.evaluateStart != null" >
+         and evaluate_start = #{parameter.evaluateStart,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.evaluateImg != null" >
+         and evaluate_img = #{parameter.evaluateImg,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.extensionField != null" >
+         and extension_field = #{parameter.extensionField,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+         <if test="parameter.repairmanShow != null" >
+         and repairman_show = #{parameter.repairmanShow,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.masterShow != null" >
+         and master_show = #{parameter.masterShow,jdbcType=INTEGER}
+      </if>
+        <if test="parameter.cityCode != null" >
+         and city_code = #{parameter.cityCode,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_serial_no, total_money, repairman_id, master_id, service_type_id, order_status, 
+    settle_type, create_dt, pay_dt, appointment_dt, appointment_period_dt, address_id, 
+    cancel_dt, cancel_flag, order_type, message, evaluate, evaluate_start, evaluate_img, 
+    extension_field, version, repairman_show, master_show,  city_code
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_wap_order_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wap_order_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_wap_order_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_wap_order_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderService" >
+    insert into hgl.tb_wap_order_service (id, order_serial_no, total_money, 
+      repairman_id, master_id, service_type_id, 
+      order_status, settle_type, create_dt, 
+      pay_dt, appointment_dt, appointment_period_dt, 
+      address_id, cancel_dt, cancel_flag, 
+      order_type, message, evaluate, 
+      evaluate_start, evaluate_img, extension_field,  city_code)
+    values (#{id,jdbcType=INTEGER}, #{orderSerialNo,jdbcType=VARCHAR}, #{totalMoney,jdbcType=DOUBLE}, 
+      #{repairmanId,jdbcType=INTEGER}, #{masterId,jdbcType=INTEGER}, #{serviceTypeId,jdbcType=INTEGER}, 
+      #{orderStatus,jdbcType=INTEGER}, #{settleType,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT}, 
+      #{payDt,jdbcType=BIGINT}, #{appointmentDt,jdbcType=BIGINT}, #{appointmentPeriodDt,jdbcType=VARCHAR}, 
+      #{addressId,jdbcType=INTEGER}, #{cancelDt,jdbcType=BIGINT}, #{cancelFlag,jdbcType=INTEGER}, 
+      #{orderType,jdbcType=INTEGER}, #{message,jdbcType=VARCHAR}, #{evaluate,jdbcType=VARCHAR}, 
+      #{evaluateStart,jdbcType=VARCHAR}, #{evaluateImg,jdbcType=VARCHAR}, #{extensionField,jdbcType=VARCHAR},
+       #{cityCode,jdbcType=INTEGER})
+       <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderService" >
+    insert into tb_wap_order_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="repairmanId != null" >
+        repairman_id,
+      </if>
+      <if test="masterId != null" >
+        master_id,
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="settleType != null" >
+        settle_type,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="payDt != null" >
+        pay_dt,
+      </if>
+      <if test="appointmentDt != null" >
+        appointment_dt,
+      </if>
+      <if test="appointmentPeriodDt != null" >
+        appointment_period_dt,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="cancelDt != null" >
+        cancel_dt,
+      </if>
+      <if test="cancelFlag != null" >
+        cancel_flag,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="message != null" >
+        message,
+      </if>
+      <if test="evaluate != null" >
+        evaluate,
+      </if>
+      <if test="evaluateStart != null" >
+        evaluate_start,
+      </if>
+      <if test="evaluateImg != null" >
+        evaluate_img,
+      </if>
+      <if test="extensionField != null" >
+        extension_field,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+        <if test="cityCode != null" >
+        city_code,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="repairmanId != null" >
+        #{repairmanId,jdbcType=INTEGER},
+      </if>
+      <if test="masterId != null" >
+        #{masterId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypeId != null" >
+        #{serviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="settleType != null" >
+        #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="payDt != null" >
+        #{payDt,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentDt != null" >
+        #{appointmentDt,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentPeriodDt != null" >
+        #{appointmentPeriodDt,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelDt != null" >
+        #{cancelDt,jdbcType=BIGINT},
+      </if>
+      <if test="cancelFlag != null" >
+        #{cancelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateStart != null" >
+        #{evaluateStart,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateImg != null" >
+        #{evaluateImg,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionField != null" >
+        #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+       <if test="cityCode != null" >
+        #{cityCode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_wap_order_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderService" flushCache="true" >
+    update tb_wap_order_service
+    <set >
+      <if test="orderSerialNo != null" >
+        order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="repairmanId != null" >
+        repairman_id = #{repairmanId,jdbcType=INTEGER},
+      </if>
+      <if test="masterId != null" >
+        master_id = #{masterId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id = #{serviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="settleType != null" >
+        settle_type = #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="payDt != null" >
+        pay_dt = #{payDt,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentDt != null" >
+        appointment_dt = #{appointmentDt,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentPeriodDt != null" >
+        appointment_period_dt = #{appointmentPeriodDt,jdbcType=VARCHAR},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelDt != null" >
+        cancel_dt = #{cancelDt,jdbcType=BIGINT},
+      </if>
+      <if test="cancelFlag != null" >
+        cancel_flag = #{cancelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="message != null" >
+        message = #{message,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluate != null" >
+        evaluate = #{evaluate,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateStart != null" >
+        evaluate_start = #{evaluateStart,jdbcType=VARCHAR},
+      </if>
+      <if test="evaluateImg != null" >
+        evaluate_img = #{evaluateImg,jdbcType=VARCHAR},
+      </if>
+      <if test="extensionField != null" >
+        extension_field = #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+        <if test="repairmanShow != null" >
+        repairman_show = #{repairmanShow,jdbcType=INTEGER},
+      </if>
+      <if test="masterShow != null" >
+        master_show = #{masterShow,jdbcType=INTEGER},
+      </if>
+       <if test="cityCode != null" >
+        city_code = #{cityCode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderService" flushCache="true" >
+    update tb_wap_order_service
+    set order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      total_money = #{totalMoney,jdbcType=DOUBLE},
+      repairman_id = #{repairmanId,jdbcType=INTEGER},
+      master_id = #{masterId,jdbcType=INTEGER},
+      service_type_id = #{serviceTypeId,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      settle_type = #{settleType,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      pay_dt = #{payDt,jdbcType=BIGINT},
+      appointment_dt = #{appointmentDt,jdbcType=BIGINT},
+      appointment_period_dt = #{appointmentPeriodDt,jdbcType=VARCHAR},
+      address_id = #{addressId,jdbcType=INTEGER},
+      cancel_dt = #{cancelDt,jdbcType=BIGINT},
+      cancel_flag = #{cancelFlag,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      message = #{message,jdbcType=VARCHAR},
+      evaluate = #{evaluate,jdbcType=VARCHAR},
+      evaluate_start = #{evaluateStart,jdbcType=VARCHAR},
+      evaluate_img = #{evaluateImg,jdbcType=VARCHAR},
+      extension_field = #{extensionField,jdbcType=VARCHAR},
+      version = version + 1,
+       repairman_show = #{repairmanShow,jdbcType=INTEGER},
+      master_show = #{masterShow,jdbcType=INTEGER},
+      city_code = #{cityCode,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+   <select id="selectByCriteria" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+	   select t.name As serciceName,t.id As serciceId, 
+	   h.recipient AS userName,h.phone as phone,h.extension_field as address, h.address_id as addressId,
+	   w.mobile AS sfPhone,w.name as sfUserName,
+	   <if test="parameter.lon != null" >
+	   GetShortDistance(h.lon,h.lat,#{parameter.lon,jdbcType=REAL},#{parameter.lat,jdbcType=REAL}) as distance,
+	   </if>
+	   s.* from tb_wap_order_service s  
+		left join tb_customer_service t on s.service_type_id =t.id 
+		left join tb_service_type tst on tst.id =t.service_type_id 
+		left join tb_wap_address_history h on h.id= s.address_id
+		left join tb_web_user w on w.id=s.repairman_id
+	    <if test="parameter != null" >
+	      <include refid="Object_Where_ClauseDto" />
+	    </if>
+	    order by create_dt desc
+  </select>
+  
+  <select id="selectUnCompleteOrderCount" resultType="java.lang.Integer" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+  	select count(1) from tb_wap_order_service as s where s.order_status in 
+  		<foreach  item="item" index="index" collection="parameter.statusList" open="(" separator="," close=")">
+  			${item}
+  		</foreach>
+  		<if test="parameter.masterId != null">
+  			and master_id =#{parameter.masterId,jdbcType=INTEGER}
+  		</if>
+  		<if test="parameter.repairmanId != null">
+  			and repairman_id =#{parameter.repairmanId,jdbcType=INTEGER}
+  		</if>
+  </select>
+  
+  <select id="findServiceTypeIdByOrderId" resultType="java.lang.Integer" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+	  	SELECT
+			tcs.service_type_id
+		FROM
+			tb_wap_order_service twos
+		INNER JOIN tb_customer_service tcs ON tcs.id = twos.service_type_id
+		WHERE
+			twos.id =#{parameter.id,jdbcType=INTEGER}
+  </select>
+  
+  
+  
+   <sql id="Object_Where_ClauseDto" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.serviceTypeIds != null" >
+       and tst.id in
+       	 <foreach item="item" index="index" collection="parameter.serviceTypeIds" open="(" separator="," close=")" >  
+		           ${item}
+		        </foreach>
+      </if>
+       <if test="parameter.orderStatus != null" >
+         and s.order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+      </if> 
+        <if test="parameter.notIsmaster != null" >
+         and s.master_id != #{parameter.notIsmaster,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.repairmanId != null" >
+         and s.repairman_id = #{parameter.repairmanId,jdbcType=INTEGER}
+      </if> 
+       <if test="parameter.masterId != null" >
+         and s.master_id = #{parameter.masterId,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.id != null" >
+         and s.id = #{parameter.id,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.repairmanShow != null" >
+         and s.repairman_show = #{parameter.repairmanShow,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.masterShow != null" >
+         and s.master_show = #{parameter.masterShow,jdbcType=INTEGER}
+      </if>  
+       <if test="parameter.cityCode != null" >
+         and s.city_code = #{parameter.cityCode,jdbcType=INTEGER}
+      </if>  
+    </trim>   
+  </sql>
+</mapper>

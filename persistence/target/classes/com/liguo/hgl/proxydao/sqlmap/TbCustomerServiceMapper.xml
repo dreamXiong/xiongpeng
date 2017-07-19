@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCustomerServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCustomerService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="operation_id" property="operationId" jdbcType="INTEGER" />
+    <result column="service_type_id" property="serviceTypeId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="introduce" property="introduce" jdbcType="VARCHAR" />
+    <result column="cimg_one" property="cimgOne" jdbcType="VARCHAR" />
+    <result column="cimg_two" property="cimgTwo" jdbcType="VARCHAR" />
+    <result column="cimg_three" property="cimgThree" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+ <!--   <resultMap id="customerServiceResultMap" type="com.liguo.hgl.proxydao.model.CustomerServiceDto" extends="BaseResultMap" >
+     <result column="tstName" property="tstName" jdbcType="VARCHAR" />
+     <result column="bName" property="bName" jdbcType="VARCHAR" />
+  </resultMap> -->
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.operationId != null" >
+         and operation_id = #{parameter.operationId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.serviceTypeId != null" >
+         and service_type_id = #{parameter.serviceTypeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.price != null" >
+         and price = #{parameter.price,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.introduce != null" >
+         and introduce = #{parameter.introduce,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.cimgOne != null" >
+         and cimg_one = #{parameter.cimgOne,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.cimgTwo != null" >
+         and cimg_two = #{parameter.cimgTwo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.cimgThree != null" >
+         and cimg_three = #{parameter.cimgThree,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, operation_id, service_type_id, price, describes, introduce, cimg_one, cimg_two, 
+    cimg_three, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_customer_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_customer_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_customer_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_customer_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCustomerService" >
+    insert into hgl.tb_customer_service (id, name, operation_id, 
+      service_type_id, price, describes, 
+      introduce, cimg_one, cimg_two, 
+      cimg_three)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{operationId,jdbcType=INTEGER}, 
+      #{serviceTypeId,jdbcType=INTEGER}, #{price,jdbcType=DOUBLE}, #{describes,jdbcType=VARCHAR}, 
+      #{introduce,jdbcType=VARCHAR}, #{cimgOne,jdbcType=VARCHAR}, #{cimgTwo,jdbcType=VARCHAR}, 
+      #{cimgThree,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCustomerService" useGeneratedKeys="true" keyProperty="id">
+    insert into tb_customer_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="operationId != null" >
+        operation_id,
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="introduce != null" >
+        introduce,
+      </if>
+      <if test="cimgOne != null" >
+        cimg_one,
+      </if>
+      <if test="cimgTwo != null" >
+        cimg_two,
+      </if>
+      <if test="cimgThree != null" >
+        cimg_three,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null" >
+        #{operationId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypeId != null" >
+        #{serviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgOne != null" >
+        #{cimgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgTwo != null" >
+        #{cimgTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgThree != null" >
+        #{cimgThree,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_customer_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCustomerService" flushCache="true" >
+    update tb_customer_service
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="operationId != null" >
+        operation_id = #{operationId,jdbcType=INTEGER},
+      </if>
+      <if test="serviceTypeId != null" >
+        service_type_id = #{serviceTypeId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="introduce != null" >
+        introduce = #{introduce,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgOne != null" >
+        cimg_one = #{cimgOne,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgTwo != null" >
+        cimg_two = #{cimgTwo,jdbcType=VARCHAR},
+      </if>
+      <if test="cimgThree != null" >
+        cimg_three = #{cimgThree,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCustomerService" flushCache="true" >
+    update tb_customer_service
+    set name = #{name,jdbcType=VARCHAR},
+      operation_id = #{operationId,jdbcType=INTEGER},
+      service_type_id = #{serviceTypeId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      describes = #{describes,jdbcType=VARCHAR},
+      introduce = #{introduce,jdbcType=VARCHAR},
+      cimg_one = #{cimgOne,jdbcType=VARCHAR},
+      cimg_two = #{cimgTwo,jdbcType=VARCHAR},
+      cimg_three = #{cimgThree,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <select id="selectInfoListByName" resultType="com.liguo.hgl.proxydao.model.CustomerServiceDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+	 select 
+			 tcs.id,  tcs.name,  tcs.operation_id,  tcs.service_type_id as serviceTypeId,  tcs.price,  tcs.describes,  tcs.introduce, 
+		   	tcs.cimg_one as cimgOne,  tcs.cimg_two as cimgTwo,  tcs.cimg_three as cimgThree,
+			tst.name as tstName,
+			(select name from tb_service_type where id = tst.parent_id) as bName
+		from tb_customer_service tcs
+		left join tb_service_type tst on tcs.service_type_id= tst.id 
+			where 1=1
+			<if test="parameter.name != null and parameter.name!=''" >
+	      		and tcs.name like '%${parameter.name}%'
+	    	</if>
+	    	 
+	    	<if test="parameter.serviceId != null and parameter.serviceId !=''" >
+   				and tcs.service_type_id in 
+   				<foreach item="itemc" index="index" collection="parameter.serviceId" open="(" separator="," close=")" >  
+                       ${itemc}
+                </foreach>
+   			</if>
+	    	 order by tcs.id desc
+	    	<if test="parameter.wapSize != null and parameter.wapSize!=''" >
+	      		limit ${parameter.wapSize}
+	    	</if>
+    	<include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectInfoById" resultType="com.liguo.hgl.proxydao.model.CustomerServiceDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+	 select 
+		  tcs.id,  tcs.name,  tcs.operation_id,  tcs.service_type_id as serviceTypeId,  tcs.price,  tcs.describes,  tcs.introduce, 
+		   tcs.cimg_one as cimgOne,  tcs.cimg_two as cimgTwo,  tcs.cimg_three as cimgThree,
+			tst.name as tstName,
+		(select name from tb_service_type where id = tst.parent_id) as bName
+		from tb_customer_service tcs
+		left join tb_service_type tst on tcs.service_type_id = tst.id
+		where tcs.id = #{id,jdbcType=INTEGER}
+  </select>
+</mapper>

@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.linkon.liguo.hgl</groupId>
+    <artifactId>hgl</artifactId>
+    <version>1.0</version>
+	
+  </parent>
+  <groupId>com.liguo.hgl</groupId>
+  <artifactId>hgl-admin</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+  <name>liguo-hgl-admin</name>
+  <url>http://www.hnsteel.com/</url>
+  
+  
+	<properties>
+		<lib.scope>provided</lib.scope>
+
+		<!-- <jdbc.url>jdbc:mysql://172.168.3.199:3306/xunpay</jdbc.url>
+		<jdbc.userName>admin</jdbc.userName>
+		<jdbc.password>admin</jdbc.password> -->
+		
+		<jdbc.url>jdbc:mysql://localhost:3306/hgl</jdbc.url>
+		<jdbc.userName>admin</jdbc.userName>
+		<jdbc.password>lCzd9geWAuAuJtLhpaG/J+d28H8KiMFAWopxXkYpMNdUai6Xe/LsPqMQeg5MIrmvtMa+hzycdRhWs29ZUPU1IQ==</jdbc.password>
+
+		<deploy.url>http://localhost:8080/manager</deploy.url>
+		<deploy.username>admin</deploy.username>
+		<deploy.password>admin</deploy.password>
+		<deploy.path>/admin</deploy.path>
+		
+		<app.pageTitle>\u8fc5\u6c47\u652f\u4ed8\u7ed3\u7b97\u4e2d\u5fc3</app.pageTitle>
+		<app.shortName>\u8fc5\u6c47</app.shortName>
+		<app.flag>L</app.flag>
+		<xunpayUrl>http://localhost:8080</xunpayUrl>
+	</properties>
+	
+	<dependencies>
+	
+		<dependency>
+			<groupId>com.linkon.liguo.hgl</groupId>
+			<artifactId>hgl-service</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.geronimo.specs</groupId>
+			<artifactId>geronimo-servlet_2.4_spec</artifactId>
+			<version>1.0</version>
+            <scope>provided</scope>
+		</dependency>
+	</dependencies>
+    <profiles>
+		<profile>
+			<id>development</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-surefire-plugin</artifactId>
+						<version>2.7.1</version>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
+					</plugin>
+					
+					 <plugin>
+		                <groupId>org.apache.tomcat.maven</groupId>
+		                <artifactId>tomcat7-maven-plugin</artifactId>
+		                <version>2.2</version>
+		                <configuration>
+		                    <url>http://localhost:8080/manager/text</url>
+		                    <server>tomcat7</server>
+		                    <!-- <username>admin</username>
+		                    <password>admin</password> -->
+		                    <path>/admin</path>
+		                    <!-- war文件路径缺省情况下指向target -->
+		                    <!--<warFile>${basedir}/target/${project.build.finalName}.war</warFile>-->
+		                </configuration>
+		            </plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+</project>

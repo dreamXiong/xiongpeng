@@ -1,0 +1,153 @@
+@charset "utf-8";
+/* 招商页面浮动 */
+.fd{
+	width:100%;
+	height:160px;
+	position: fixed;
+	bottom:0;
+}
+.fd-in{
+	position: relative;
+	color:#eee;
+	font-family: '楷体';
+	font-size:16px;
+	font-weight:bold;
+	line-height: 36px;
+	text-shadow:1px 1px 5px rgba(0,0,0,.4),2px 2px 5px rgba(0,0,0,.3),3px 3px 5px rgba(0,0,0,.2),4px 4px 5px rgba(0,0,0,.1);
+}
+.fd-title,.fd-text{
+	position: absolute;
+	top:30px;
+}
+
+.fd-text{
+	position: absolute;
+	right:80px;
+}
+.fd-text>span{
+	position: absolute;
+	left:0;
+	top:72px;
+}
+.fd-in span{
+	font-size:20px;
+	text-shadow:none;
+}
+.fd-text>button{
+	position: absolute;
+	right:-80px;
+	top:37px;
+}
+.fd-text .text-add{
+	top:35px;
+}
+.fd-text .serve{
+	top:73px;
+}
+.fd img{
+	width:100%;
+	height:100%;
+}
+
+
+/* 招商详情页 */
+.list-banner{
+	padding:10px 0 10px 0px ;
+}
+.list-banner .banner{
+	padding:20px;
+	width:360px;
+	height:228px;
+	border:1px solid #d9d9d9;
+}
+.list-banner .banner img{
+	width:100%;
+	height:100%;
+}
+.list-banner .text{
+	border:1px solid #d9d9d9;
+	padding:20px;
+	height:228px;
+	width:746px;
+	text-align:justify;
+	overflow: hidden;
+	line-height:28px;
+	text-indent:2em;
+	position: relative;
+}
+.list-banner .text span.iconfont{
+	color:#f2000e;
+	position: absolute;
+	bottom:10px;
+	right:10px;
+	cursor:pointer;
+}
+/* 招商列表页 */
+.pd-list{padding:10px 0;}
+.product-left{margin-right: 10px;width:360px;}
+.product-right{width:828px;}
+.product-right-content{font-size:16px;}
+.product-right-content h3{padding-bottom:8px;}
+.product-right-content p{border-bottom:1px dashed #eee ;}
+.product-right-content .iconfont{font-size:20px;margin:0 20px;color:#f2000e;}
+.pd-top-left{width:360px;height:360px;border:1px solid #eee;}
+
+.pd-top-left img{width:100%;height:100%;}
+.pd-botton-left{margin-top:8px;margin-right:-8px;}
+.pd-botton-left .active{border-color:#f2000e;}
+.pd-botton-left li{float: left;width: 64px;height:64px;border:1px solid #eee;margin-right:8px;cursor: pointer;}
+.pd-botton-left img{width:100%;height:100%;}
+.choose{width:1200px;overflow-x:auto }
+.choose table{ border-collapse: collapse !important;min-width:1200px;}
+.choose table th{font-size:16px;height:40px;}
+.choose table td{height:36px;min-width:30px;}
+.choose table th,.choose table td {border: 1px solid #ddd !important;vertical-align:middle;text-align:center;}
+.choose table button{
+	padding:5px;
+	background:#f2000e; 
+	color:#fff;
+}
+.choose table button:hover{
+	opacity: 0.8
+}
+.choose table .addon{
+	border:1px solid #ccc;
+	padding:4px 8px;
+	display: inline-block;
+}
+.choose table input[type=text]{
+	border:1px solid #ccc;
+	height:23px;
+	line-height: 23px;
+	vertical-align:middle;
+	margin-top:-3px;
+	text-align:center;
+	width:66px;
+	margin-left:-5px;
+	margin-right:-5px;
+	background: none;
+}
+
+
+.referral-title  ul{
+	border-bottom:1px solid #eee;
+}
+.referral-title li{
+	float: left;
+	line-height:36px;
+	width:100px;
+	text-align:center;
+	cursor: pointer;
+}
+.referral-title li.active{
+	margin-top:-1px ;
+	border-top:1px solid #f2000e;
+	border-right:1px solid #eee;
+	border-left:1px solid #eee;
+	width:98px;
+	color:#f2000e;
+}
+.referral-body div img{
+	width:100%;
+	margin: 10px auto;
+}

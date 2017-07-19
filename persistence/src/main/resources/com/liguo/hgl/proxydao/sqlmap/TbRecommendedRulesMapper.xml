@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbRecommendedRulesMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbRecommendedRules" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="recommended_type" property="recommendedType" jdbcType="INTEGER" />
+    <result column="is_recommended_type" property="isRecommendedType" jdbcType="INTEGER" />
+    <result column="way" property="way" jdbcType="INTEGER" />
+    <result column="reward_type" property="rewardType" jdbcType="INTEGER" />
+    <result column="reward_way" property="rewardWay" jdbcType="INTEGER" />
+    <result column="reward" property="reward" jdbcType="DOUBLE" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="update_dt" property="updateDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.recommendedType != null" >
+         and recommended_type = #{parameter.recommendedType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.isRecommendedType != null" >
+         and is_recommended_type = #{parameter.isRecommendedType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.way != null" >
+         and way = #{parameter.way,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.rewardType != null" >
+         and reward_type = #{parameter.rewardType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.rewardWay != null" >
+         and reward_way = #{parameter.rewardWay,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reward != null" >
+         and reward = #{parameter.reward,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.updateDt != null" >
+         and update_dt = #{parameter.updateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_id, recommended_type, is_recommended_type, way, reward_type, reward_way, 
+    reward, describes, update_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_recommended_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_recommended_rules
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_recommended_rules
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_recommended_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbRecommendedRules" >
+    insert into hgl.tb_recommended_rules (id, shop_id, recommended_type, 
+      is_recommended_type, way, reward_type, 
+      reward_way, reward, describes, 
+      update_dt, version)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{recommendedType,jdbcType=INTEGER}, 
+      #{isRecommendedType,jdbcType=INTEGER}, #{way,jdbcType=INTEGER}, #{rewardType,jdbcType=INTEGER}, 
+      #{rewardWay,jdbcType=INTEGER}, #{reward,jdbcType=DOUBLE}, #{describes,jdbcType=VARCHAR}, 
+      #{updateDt,jdbcType=BIGINT}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbRecommendedRules" >
+    insert into tb_recommended_rules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="recommendedType != null" >
+        recommended_type,
+      </if>
+      <if test="isRecommendedType != null" >
+        is_recommended_type,
+      </if>
+      <if test="way != null" >
+        way,
+      </if>
+      <if test="rewardType != null" >
+        reward_type,
+      </if>
+      <if test="rewardWay != null" >
+        reward_way,
+      </if>
+      <if test="reward != null" >
+        reward,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="updateDt != null" >
+        update_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedType != null" >
+        #{recommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommendedType != null" >
+        #{isRecommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="way != null" >
+        #{way,jdbcType=INTEGER},
+      </if>
+      <if test="rewardType != null" >
+        #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardWay != null" >
+        #{rewardWay,jdbcType=INTEGER},
+      </if>
+      <if test="reward != null" >
+        #{reward,jdbcType=DOUBLE},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDt != null" >
+        #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_recommended_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbRecommendedRules" flushCache="true" >
+    update tb_recommended_rules
+    <set >
+       <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="recommendedType != null" >
+        recommended_type = #{recommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="isRecommendedType != null" >
+        is_recommended_type = #{isRecommendedType,jdbcType=INTEGER},
+      </if>
+      <if test="way != null" >
+        way = #{way,jdbcType=INTEGER},
+      </if>
+      <if test="rewardType != null" >
+        reward_type = #{rewardType,jdbcType=INTEGER},
+      </if>
+      <if test="rewardWay != null" >
+        reward_way = #{rewardWay,jdbcType=INTEGER},
+      </if>
+      <if test="reward != null" >
+        reward = #{reward,jdbcType=DOUBLE},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDt != null" >
+        update_dt = #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbRecommendedRules" flushCache="true" >
+    update tb_recommended_rules
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      recommended_type = #{recommendedType,jdbcType=INTEGER},
+      is_recommended_type = #{isRecommendedType,jdbcType=INTEGER},
+      way = #{way,jdbcType=INTEGER},
+      reward_type = #{rewardType,jdbcType=INTEGER},
+      reward_way = #{rewardWay,jdbcType=INTEGER},
+      reward = #{reward,jdbcType=DOUBLE},
+      describes = #{describes,jdbcType=VARCHAR},
+      update_dt = #{updateDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="ArrayList" >
+    insert into tb_recommended_rules (shop_id, recommended_type,is_recommended_type,reward_type)
+    values 
+      <foreach collection="list" item="obj" index="index" separator="," >
+	    (#{obj.shopId,jdbcType=INTEGER}, #{obj.recommendedType,jdbcType=INTEGER}, 
+	      #{obj.isRecommendedType,jdbcType=INTEGER},#{obj.rewardType,jdbcType=INTEGER}
+	    )
+      </foreach>
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+</mapper>

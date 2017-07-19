@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWebPermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWebPermission" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="action_url" property="actionUrl" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+     <result column="parent_node" property="parentNode" jdbcType="INTEGER" />
+    <result column="child_node" property="childNode" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.actionUrl != null" >
+         and action_url = #{parameter.actionUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.parentNode != null" >
+         and parent_node = #{parameter.parentNode,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status == null" >
+         and status =1
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+        id, name, action_url,parent_node, child_node, remark, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_web_permission
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    order by child_node
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_web_permission
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_web_permission
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_web_permission
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWebPermission" >
+    insert into hgl.tb_web_permission (id, name, action_url, 
+      remark, version)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{actionUrl,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWebPermission" >
+    insert into tb_web_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="actionUrl != null" >
+        action_url,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+       <if test="parentNode != null" >
+        parent_node,
+      </if>
+      <if test="childNode != null" >
+        child_node,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null" >
+        #{actionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="parentNode != null" >
+        #{parentNode,jdbcType=INTEGER},
+      </if>
+      <if test="childNode != null" >
+        #{childNode,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_web_permission
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWebPermission" flushCache="true" >
+    update tb_web_permission
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="actionUrl != null" >
+        action_url = #{actionUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+       <if test="parentNode != null" >
+        parent_node = #{parentNode,jdbcType=INTEGER},
+      </if>
+      <if test="childNode != null" >
+        child_node = #{childNode,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWebPermission" flushCache="true" >
+    update tb_web_permission
+    set name = #{name,jdbcType=VARCHAR},
+      action_url = #{actionUrl,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+       parent_node = #{parentNode,jdbcType=INTEGER},
+      child_node = #{childNode,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectByObjectToMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="map" >
+    select
+	    parent_node as pId,
+	    id as id,
+	    name
+    from tb_web_permission
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  <select id="selectByStringList" parameterType="list" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_web_permission
+    where
+    id in
+    <foreach collection="list" index="index" item="item" open="(" separator=',' close=")">
+    	 #{item}
+    </foreach>
+    and status = 1
+    order by child_node
+  </select>
+  
+  <select id="selectByUrl" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_web_permission
+    where
+    id not in
+    <foreach collection="parameter.permissionIds" index="index" item="item" open="(" separator=',' close=")">
+    	 ${item}
+    </foreach>
+    <if test="parameter.actionUrl != null">
+    	and action_url = #{parameter.actionUrl,jdbcType=VARCHAR}
+    </if>
+  </select>
+</mapper>

@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbOrderGroupMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbOrderGroup" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_serial_no" property="orderSerialNo" jdbcType="VARCHAR" />
+    <result column="total_money" property="totalMoney" jdbcType="DOUBLE" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="pay_money" property="payMoney" jdbcType="DOUBLE" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="buyer_id" property="buyerId" jdbcType="INTEGER" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="warehouse_id" property="warehouseId" jdbcType="INTEGER" />
+    <result column="pay_dt" property="payDt" jdbcType="BIGINT" />
+    <result column="commission" property="commission" jdbcType="DOUBLE" />
+    <result column="settle_type" property="settleType" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="plat_flag" property="platFlag" jdbcType="INTEGER" />
+    <result column="cancel_dt" property="cancelDt" jdbcType="BIGINT" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="coupon_money" property="couponMoney" jdbcType="INTEGER" />
+    <result column="address_id" property="addressId" jdbcType="INTEGER" />
+    <result column="cancel_flag" property="cancelFlag" jdbcType="INTEGER" />
+    <result column="delete_dt" property="deleteDt" jdbcType="BIGINT" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="INTEGER" />
+    <result column="order_type" property="orderType" jdbcType="INTEGER" />
+    <result column="stop_status" property="stopStatus" jdbcType="INTEGER" />
+    <result column="stop_reason" property="stopReason" jdbcType="VARCHAR" />
+    <result column="reissue_description" property="reissueDescription" jdbcType="VARCHAR" />
+    <result column="reissue_image" property="reissueImage" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+  </resultMap>
+  
+   <resultMap id="myOrderGroupResultMap" type="com.liguo.hgl.proxydao.model.OrderGroupDto" extends="BaseResultMap">
+   	 	  <result column="brandName" property="brandName" jdbcType="VARCHAR" />
+   	 	  <result column="productName" property="productName" jdbcType="VARCHAR" />
+   	 	 <collection property="productList" ofType="com.liguo.hgl.proxydao.model.ProductDto" javaType="ArrayList">
+   	 	 	<result column="productName" property="productName" jdbcType="VARCHAR" />
+   	 	 	<result column="productId" property="productId" jdbcType="VARCHAR"/>
+   	 	 	<result column="pImageOne" property="pImageOne" jdbcType="VARCHAR"/>
+	   		<collection property="orderDetailList" ofType="com.liguo.hgl.proxydao.model.OrderGroupDetailDto" javaType="ArrayList">
+			   <result column="code" property="code" jdbcType="VARCHAR" />
+			   <result column="outstock_price" property="outstockPrice" jdbcType="DECIMAL" />
+			   <result column="price" property="price" jdbcType="DECIMAL" />
+			   <result column="detailPayMoney" property="detailPayMoney" jdbcType="DECIMAL" />
+			   <result column="sales_price" property="salesPrice" jdbcType="DECIMAL" />
+			   <result column="status" property="status" jdbcType="INTEGER" />
+			   <result column="onebox_count" property="oneboxCount" jdbcType="INTEGER" />
+			   <result column="buy_num" property="buyNum" jdbcType="INTEGER" />
+			   <result column="spec" property="spec" jdbcType="VARCHAR" />
+			   <result column="material" property="material" jdbcType="VARCHAR" />
+			   <result column="meterageUnit" property="meterageUnit" jdbcType="VARCHAR" />
+	   		</collection>
+	   	</collection>
+  </resultMap> 
+  
+  <resultMap id="manualOrderResultMap" type="com.liguo.hgl.proxydao.model.OrderGroupDto" extends="BaseResultMap">
+  	<result column="userName" property="userName" jdbcType="VARCHAR"/>
+  	<result column="mobile" property="mobile" jdbcType="VARCHAR"/>
+  	<result column="from" property="from" jdbcType="BIGINT"/>
+  	<result column="to" property="to" jdbcType="BIGINT"/>
+  	<result column="payResultCode" property="payResultCode" jdbcType="INTEGER"/>
+  </resultMap>
+  
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderSerialNo != null" >
+         and order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.totalMoney != null" >
+         and total_money = #{parameter.totalMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.totalNum != null" >
+         and total_num = #{parameter.totalNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payMoney != null" >
+         and pay_money = #{parameter.payMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.buyerId != null" >
+         and buyer_id = #{parameter.buyerId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.brandId != null" >
+         and brand_id = #{parameter.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderStatus != null" >
+         and order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.warehouseId != null" >
+         and warehouse_id = #{parameter.warehouseId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payDt != null" >
+         and pay_dt = #{parameter.payDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.commission != null" >
+         and commission = #{parameter.commission,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.settleType != null" >
+         and settle_type = #{parameter.settleType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.platFlag != null" >
+         and plat_flag = #{parameter.platFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.cancelDt != null" >
+         and cancel_dt = #{parameter.cancelDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.couponMoney != null" >
+         and coupon_money = #{parameter.couponMoney,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.addressId != null" >
+         and address_id = #{parameter.addressId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.cancelFlag != null" >
+         and cancel_flag = #{parameter.cancelFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.deleteDt != null" >
+         and delete_dt = #{parameter.deleteDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.deleteFlag != null" >
+         and delete_flag = #{parameter.deleteFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderType != null" >
+         and order_type = #{parameter.orderType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.stopStatus != null" >
+         and stop_status = #{parameter.stopStatus,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.stopReason != null" >
+         and stop_reason = #{parameter.stopReason,jdbcType=VARCHAR}
+      </if>
+       <if test="parameter.reissueDescription != null" >
+         and reissue_description = #{parameter.reissueDescription,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.reissueImage != null" >
+         and reissue_image = #{parameter.reissueImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.updateTime != null" >
+         and update_time = #{parameter.updateTime,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_serial_no, total_money, total_num, pay_money, shop_id, buyer_id, brand_id, 
+    order_status, warehouse_id, pay_dt, commission, settle_type, version, plat_flag, 
+    cancel_dt, create_dt, coupon_money, address_id, cancel_flag, delete_dt, delete_flag, 
+    order_type, stop_status, stop_reason, reissue_description, reissue_image,update_time
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_order_group
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order_group
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_order_group
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_order_group
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbOrderGroup" >
+    insert into hgl.tb_order_group (order_serial_no, total_money, 
+	      total_num, pay_money,shop_id, 
+	      buyer_id, brand_id, order_status, 
+	      warehouse_id, pay_dt, commission, 
+	      settle_type, plat_flag, 
+	      cancel_dt, create_dt, coupon_money, 
+	      address_id, cancel_flag, delete_dt, 
+	      delete_flag, order_type, stop_status, 
+	      stop_reason, reissue_description, 
+      	   reissue_image,update_time)
+	    values 
+	    (#{orderSerialNo,jdbcType=VARCHAR}, #{totalMoney,jdbcType=DOUBLE}, 
+	      #{totalNum,jdbcType=INTEGER}, #{payMoney,jdbcType=DOUBLE}, #{shopId,jdbcType=INTEGER}, 
+	      #{buyerId,jdbcType=INTEGER}, #{brandId,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, 
+	      #{warehouseId,jdbcType=INTEGER}, #{payDt,jdbcType=BIGINT}, #{commission,jdbcType=DOUBLE}, 
+	      #{settleType,jdbcType=INTEGER}, #{platFlag,jdbcType=INTEGER}, 
+	      #{cancelDt,jdbcType=BIGINT}, #{createDt,jdbcType=BIGINT}, #{couponMoney,jdbcType=INTEGER}, 
+	      #{addressId,jdbcType=INTEGER}, #{cancelFlag,jdbcType=INTEGER}, #{deleteDt,jdbcType=BIGINT}, 
+	      #{deleteFlag,jdbcType=INTEGER}, #{orderType,jdbcType=INTEGER}, #{stopStatus,jdbcType=INTEGER}, 
+	      #{stopReason,jdbcType=VARCHAR}, #{reissueDescription,jdbcType=VARCHAR}, 
+          #{reissueImage,jdbcType=VARCHAR},#{updateTime,jdbcType=BIGINT})
+	     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+		    SELECT @@IDENTITY
+		 </selectKey>
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbOrderGroup" >
+    insert into tb_order_group
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no,
+      </if>
+      <if test="totalMoney != null" >
+        total_money,
+      </if>
+      <if test="totalNum != null" >
+        total_num,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="buyerId != null" >
+        buyer_id,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id,
+      </if>
+      <if test="payDt != null" >
+        pay_dt,
+      </if>
+      <if test="commission != null" >
+        commission,
+      </if>
+      <if test="settleType != null" >
+        settle_type,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="platFlag != null" >
+        plat_flag,
+      </if>
+      <if test="cancelDt != null" >
+        cancel_dt,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="couponMoney != null" >
+        coupon_money,
+      </if>
+      <if test="addressId != null" >
+        address_id,
+      </if>
+      <if test="cancelFlag != null" >
+        cancel_flag,
+      </if>
+      <if test="deleteDt != null" >
+        delete_dt,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="stopStatus != null" >
+        stop_status,
+      </if>
+      <if test="stopReason != null" >
+        stop_reason,
+      </if>
+      <if test="reissueDescription != null" >
+        reissue_description,
+      </if>
+      <if test="reissueImage != null" >
+        reissue_image,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="totalNum != null" >
+        #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null" >
+        #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="payDt != null" >
+        #{payDt,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="settleType != null" >
+        #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="platFlag != null" >
+        #{platFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cancelDt != null" >
+        #{cancelDt,jdbcType=BIGINT},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="couponMoney != null" >
+        #{couponMoney,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelFlag != null" >
+        #{cancelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteDt != null" >
+        #{deleteDt,jdbcType=BIGINT},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="stopStatus != null" >
+        #{stopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stopReason != null" >
+        #{stopReason,jdbcType=VARCHAR},
+      </if>
+       <if test="reissueDescription != null" >
+        #{reissueDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="reissueImage != null" >
+        #{reissueImage,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_order_group
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbOrderGroup" flushCache="true" >
+    update tb_order_group
+    <set >
+      <if test="orderSerialNo != null" >
+        order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="totalMoney != null" >
+        total_money = #{totalMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="totalNum != null" >
+        total_num = #{totalNum,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="buyerId != null" >
+        buyer_id = #{buyerId,jdbcType=INTEGER},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="warehouseId != null" >
+        warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      </if>
+      <if test="payDt != null" >
+        pay_dt = #{payDt,jdbcType=BIGINT},
+      </if>
+      <if test="commission != null" >
+        commission = #{commission,jdbcType=DOUBLE},
+      </if>
+      <if test="settleType != null" >
+        settle_type = #{settleType,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="platFlag != null" >
+        plat_flag = #{platFlag,jdbcType=INTEGER},
+      </if>
+      <if test="cancelDt != null" >
+        cancel_dt = #{cancelDt,jdbcType=BIGINT},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="couponMoney != null" >
+        coupon_money = #{couponMoney,jdbcType=INTEGER},
+      </if>
+      <if test="addressId != null" >
+        address_id = #{addressId,jdbcType=INTEGER},
+      </if>
+      <if test="cancelFlag != null" >
+        cancel_flag = #{cancelFlag,jdbcType=INTEGER},
+      </if>
+      <if test="deleteDt != null" >
+        delete_dt = #{deleteDt,jdbcType=BIGINT},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
+      <if test="stopStatus != null" >
+        stop_status = #{stopStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stopReason != null" >
+        stop_reason = #{stopReason,jdbcType=VARCHAR},
+      </if>
+      <if test="reissueDescription != null" >
+        reissue_description = #{reissueDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="reissueImage != null" >
+        reissue_image = #{reissueImage,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+	update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbOrderGroup" flushCache="true" >
+    update tb_order_group
+    set order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      total_money = #{totalMoney,jdbcType=DOUBLE},
+      total_num = #{totalNum,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=DOUBLE},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      buyer_id = #{buyerId,jdbcType=INTEGER},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      warehouse_id = #{warehouseId,jdbcType=INTEGER},
+      pay_dt = #{payDt,jdbcType=BIGINT},
+      commission = #{commission,jdbcType=DOUBLE},
+      settle_type = #{settleType,jdbcType=INTEGER},
+      version = version + 1,
+      plat_flag = #{platFlag,jdbcType=INTEGER},
+      cancel_dt = #{cancelDt,jdbcType=BIGINT},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      coupon_money = #{couponMoney,jdbcType=INTEGER},
+      address_id = #{addressId,jdbcType=INTEGER},
+      cancel_flag = #{cancelFlag,jdbcType=INTEGER},
+      delete_dt = #{deleteDt,jdbcType=BIGINT},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      order_type = #{orderType,jdbcType=INTEGER},
+      stop_status = #{stopStatus,jdbcType=INTEGER},
+      stop_reason = #{stopReason,jdbcType=VARCHAR},
+       reissue_description = #{reissueDescription,jdbcType=VARCHAR},
+      reissue_image = #{reissueImage,jdbcType=VARCHAR}
+       update_time = #{updateTime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+   <select id="selectOrderGroupList" resultMap="myOrderGroupResultMap" >
+  	select 
+		tog.id,
+		tog.order_serial_no ,
+		tog.total_money ,
+		tog.total_num ,
+		tog.pay_money ,
+		tog.shop_id  ,
+		tog.buyer_id  ,
+		tog.order_status  ,
+		tog.pay_dt  ,
+		tog.settle_type  ,
+		tog.plat_flag  ,
+		tog.cancel_dt  ,
+		tog.create_dt  ,
+		tog.cancel_flag  ,
+		tog.order_type  ,
+		tog.version,
+		tog.stop_status, 
+		tog.stop_reason,
+		tog.reissue_description,
+		tog.reissue_image,  
+		tp.name as productName,
+		tp.id as productId,
+		tp.pImgOne as pImageOne,
+		tb.name as brandName,		
+		tp.meterageUnit,
+		
+		tpi.code,
+		tpi.onebox_count ,
+		tpi.outstock_price ,
+		tpi.spec,
+		tpi.material,
+		
+		tod.id as orderDetailId,
+		tod.buy_num,
+		tod.price,
+		tod.buy_price as detailPayMoney
+			from tb_order_group tog
+			left join tb_order_detail tod on tog.id = tod.order_group_id
+			left join tb_product_inventory tpi on tpi.id = tod.inventory_id
+			left join tb_product tp on tp.id = tpi.product_id
+			left join tb_brand tb on tb.id = tp.brand_id
+			where 
+			tog.id in
+			  <foreach item="item" index="index" collection="parameter.iDList" open="(" separator="," close=")" >  
+                       ${item}
+               </foreach>
+               order by tog.id desc
+ 	</select>
+ 	
+ 	 <select id="selectOrderGroupIds" resultType="java.lang.Integer" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+	  	select distinct
+			tog.id,
+			tog.order_serial_no,
+			tog.address_id,
+			tog.create_dt,
+			tp.name
+				from tb_order_group tog
+				left join tb_order_detail tod on tog.id = tod.order_group_id
+				left join tb_product_inventory tpi on tpi.id = tod.inventory_id
+				left join tb_product tp on tp.id = tpi.product_id
+				left join tb_brand tb on tb.id = tp.brand_id
+				left join tb_warehouse tw on tw.id = tog.warehouse_id
+				where 1=1
+				 <if test="parameter.id != null and parameter.id != 0">
+				 	and tog.id = ${parameter.id}
+				 </if>
+				 <if test="parameter.shopId != null and parameter.shopId != 0" >
+					and tog.buyer_id = ${parameter.shopId} 
+				</if>
+				 <if test="parameter.shopIdList != null">
+					and tog.shop_id in
+					  <foreach item="items" index="index" collection="parameter.shopIdList" open="(" separator="," close=")" >  
+		                       ${items}
+		               </foreach>
+				</if> 
+				 <if test="parameter.orderType != null and parameter.orderType != 0" >
+				 	and tog.order_type = ${parameter.orderType} 
+				 </if>
+			 	 <if test="parameter.orderStateList != null">
+			 	 	and tog.order_status in
+					  <foreach item="item" index="index" collection="parameter.orderStateList" open="(" separator="," close=")" >  
+		                       ${item}
+		               </foreach>
+	               </if>
+				 <if test="parameter.searchText != '' and parameter.searchText != null" >
+				 	and (tog.order_serial_no like '%${parameter.searchText}%' or tp.name like '%${parameter.searchText}%')
+				 </if>
+				 <!-- 查询条件：创建开始时间 -->
+				 <if test="parameter.startTime!=null and parameter.startTime!=''">
+	                AND tog.create_dt &gt;= ${parameter.startTime}
+	            </if>
+	            <!-- 查询条件：创建结束时间 -->
+	            <if test="parameter.endTime !=null and parameter.endTime !=''">
+	                AND tog.create_dt &lt;= ${parameter.endTime}
+	            </if> 
+	             <if test="parameter.warehouseIdList != null">
+					and tog.warehouse_id in
+					  <foreach item="items" index="index" collection="parameter.warehouseIdList" open="(" separator="," close=")" >  
+		                       ${items}
+		              </foreach>
+				</if> 
+			    <if test="parameter.warehouseIdList != null">
+					and tog.order_status in (208,204,210)
+					and tog.order_status != 222
+				</if> 
+			order by tog.id desc
+ 	</select>
+ 	
+ 	 <select id="selectMyOrderStatesCount" resultType="com.liguo.hgl.proxydao.model.MyOrderStatesCount"  parameterType="java.lang.Integer"  >
+ 		select 
+			sum(case tog.order_status when 200 then 1 else 0 end) as staus200,
+			sum(case tog.order_status when 202 then 1 else 0 end) as staus202,
+			sum(case tog.order_status when 204 then 1 else 0 end) as staus204,
+			sum(case tog.order_status when 208 then 1 else 0 end) as staus208,  
+			sum(case tog.order_status when 210 then 1 else 0 end) as staus210,
+			sum(case tog.order_status when 218 then 1 else 0 end) as staus218,
+			sum(case tog.order_status when 220 then 1 else 0 end) as staus220
+		from tb_order_group tog 
+			where 
+			tog.order_status != 222
+			and tog.buyer_id = #{shopId}
+	</select> 	
+ 	
+ 	
+ 	 <select id="selectMyOrderStatesCountAdmin" resultType="com.liguo.hgl.proxydao.model.MyOrderStatesCount">
+ 		select 
+			sum(case tog.order_status when 200 then 1 else 0 end) as staus200,
+			sum(case tog.order_status when 202 then 1 else 0 end) as staus202,
+			sum(case tog.order_status when 204 then 1 else 0 end) as staus204,
+			sum(case tog.order_status when 208 then 1 else 0 end) as staus208,  
+			sum(case tog.order_status when 210 then 1 else 0 end) as staus210,
+			sum(case tog.order_status when 218 then 1 else 0 end) as staus218,
+			sum(case tog.order_status when 220 then 1 else 0 end) as staus220
+		from tb_order_group tog 
+			where 
+			tog.shop_id in
+			  <foreach item="item" index="index" collection="parameter.shopIdList" open="(" separator="," close=")" >  
+                       ${item}
+               </foreach>
+	</select> 
+	
+	<!-- 批量插入 -->
+	<insert id="batchInsert" parameterType="ArrayList" >
+	<!--  <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER"> 
+	    SELECT LAST_INSERT_ID()   
+     </selectKey>   -->
+	    insert into hgl.tb_order_group (order_serial_no, total_money, 
+	      total_num, pay_money,shop_id, 
+	      buyer_id, brand_id, order_status, 
+	      warehouse_id, pay_dt, commission, 
+	      settle_type, plat_flag, 
+	      cancel_dt, create_dt, coupon_money, 
+	      address_id, cancel_flag, delete_dt, 
+	      delete_flag, order_type, stop_status, 
+	      stop_reason)
+	    values 
+	     <foreach collection="list" item="obj" index="index" separator="," >
+		    ( #{obj.orderSerialNo,jdbcType=VARCHAR}, #{obj.totalMoney,jdbcType=DOUBLE}, 
+		      #{obj.totalNum,jdbcType=INTEGER}, #{obj.payMoney,jdbcType=DOUBLE}, #{obj.shopId,jdbcType=INTEGER}, 
+		      #{obj.buyerId,jdbcType=INTEGER}, #{obj.brandId,jdbcType=INTEGER}, #{obj.orderStatus,jdbcType=INTEGER}, 
+		      #{obj.warehouseId,jdbcType=INTEGER}, #{obj.payDt,jdbcType=BIGINT}, #{obj.commission,jdbcType=DOUBLE}, 
+		      #{obj.settleType,jdbcType=INTEGER}, #{obj.platFlag,jdbcType=INTEGER}, 
+		      #{obj.cancelDt,jdbcType=BIGINT}, #{createDt,jdbcType=BIGINT}, #{obj.couponMoney,jdbcType=INTEGER}, 
+		      #{obj.addressId,jdbcType=INTEGER}, #{obj.cancelFlag,jdbcType=INTEGER}, #{obj.deleteDt,jdbcType=BIGINT}, 
+		      #{obj.deleteFlag,jdbcType=INTEGER}, #{obj.orderType,jdbcType=INTEGER}, #{obj.stopStatus,jdbcType=INTEGER}, 
+		      #{obj.stopReason,jdbcType=VARCHAR})
+	     </foreach>
+	     <selectKey resultType="ArrayList" keyProperty="id" order="AFTER" >
+		    SELECT @@IDENTITY
+		 </selectKey>
+    </insert>
+    
+    <select id="selectObjectByPage" resultMap="manualOrderResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+    	select o.*,w.user_name as userName,w.mobile as mobile from tb_order_group as o left join tb_web_user as w on o.buyer_id=w.id
+    		<if test="parameter.userName != null">
+    			and w.user_name like CONCAT('%',#{parameter.userName,jdbcType=VARCHAR},'%')
+    		</if>
+    		<trim prefix="where" prefixOverrides="and|or">
+    			<if test="parameter.orderSerialNo !=null and parameter.orderSerialNo !=''">
+    				and o.order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+    			</if>
+    			<if test="parameter.from != null">
+    				and o.create_dt &gt;=#{parameter.from,jdbcType=BIGINT}
+    			</if>
+    			<if test="parameter.to != null">
+    				and o.create_dt &lt;=#{parameter.to,jdbcType=BIGINT}
+    			</if>
+    		</trim>
+    		<if test="orderByClause!=null">
+				order by ${orderByClause}
+			</if>
+	
+			<include refid="common.Mysql_Pagination_Limit" />
+    </select>
+     <select id="selectByOrderNumber" resultMap="BaseResultMap" parameterType="java.lang.String" >
+	    select 
+	   g.*
+	    from tb_order_group g
+	    where g.order_serial_no = #{orderNumber,jdbcType=INTEGER}
+	  </select>	
+    <select id="selectObjectByPrimaryKey" resultMap="manualOrderResultMap" parameterType="java.lang.Integer">
+    	select o.*,w.user_name as userName,w.mobile as mobile from tb_order_group as o left join tb_web_user as w on o.buyer_id = w.id  	
+    	where o.id = #{parameter.id,jdbcType=INTEGER}
+    </select>
+    
+    
+    
+    
+    
+    <select id="findOrderGroupByOrderStatus" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    id,
+    (updateTime+#{parameter.seven_day}) as updateTime
+    from tb_order_group
+    where
+    order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+  </select>
+  
+   <update id="updateOrderStatusByIds" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_order_group
+    set  order_status = #{parameter.orderStatus,jdbcType=INTEGER}
+    where 
+      id in
+    <foreach item="item" index="index" collection="parameter.idList" open="(" separator="," close=")" >  
+	   ${item}
+   	</foreach>
+    
+  </update>
+  
+    	
+</mapper>

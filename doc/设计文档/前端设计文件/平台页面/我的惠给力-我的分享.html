@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>我的分享</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="jquery-ui/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/jq-ui-rest.css">
+	<link rel="stylesheet" href="css/me.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="js/pick.js"></script>
+	<script src="js/datepicker-zh.js"></script>
+	<script src="js/jquery.jqzoom.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="js/uploadPreview.min.js"></script>
+</head>
+<body>
+<!-- 头部菜单开始 -->
+	<div class="nav">
+		<div class="area">
+			<div class="nav-left">
+				<ul>
+					<li style="padding-left:0"><a href="javascript:">收藏网站</a></li>
+					<li><a href="javascript:">注册</a></li>
+					<li><a href="javascript:">登录</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="javascript:">我的订单</a></li>
+					<li class="two-ac"><a href="javascript:">商家入驻</a></li>
+					<li><a href="javascript:">联系我们</a></li>
+					<li style="padding-right:0"> 
+						<span class="icon-phone text-red" style="font-size:16px"></span>&nbsp; 
+						<i class="text-red font-bold" style="font-size:16px">400-2377-2661</i>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- 头部菜单结束 -->
+<!-- 搜索板块开始 -->
+	<div class="search area">
+		<div class="logo">
+			<h1>
+				<a href="javascript:">
+					<img src="images/logo.png" height="100" width="200" alt="">
+				</a>
+			</h1>
+		</div>
+		<div class="search-box">
+			<div class="search-bg">
+				<input type="text" placeholder="输入厂家、品名、规格、材质、产地">
+				<button type="button">搜 索</button>
+			</div>
+			<div class="search-text">
+				<span><a href="javascript:" class="text-red">六角螺母</a></span>
+				<span><a href="javscript:" class="text-red">八角扳手</a></span>
+				<span><a href="javascript:">满额送</a></span>
+				<span><a href="javascript:">招商</a></span>
+			</div>
+		</div>
+		<div class="shopping">
+			<i>0</i>
+			进货单
+			<div class="shopping-in">
+				<div class="shop-in"></div>
+				购物车中还没有商品，赶紧选购吧！
+			</div>
+		</div>
+	</div>
+	
+<!-- 搜索板块结束 -->
+<!-- 内容板块开始 -->
+	<div class="cantainer" style="border-top:none;">
+		<div class="area me">
+			<h2>我的惠给力</h2>
+			<!-- <div class="main-left pull-left">
+				<div class="main-left-in">
+					<div class="main-list">
+						<dl>
+							<dt>订单中心</dt>
+							<dd><a href="javascript:;">我的订单</a></dd>
+							<dd><a href="javascript:;">关闭订单</a></dd>
+							<dd><a href="javascript:;">我的商铺管理</a></dd>
+							<dd><a href="javascript:;">收货地址</a></dd>
+							<dd class="active"><a href="javascript:;">我的收藏</a></dd>
+							<dd><a href="javascript:;">我的优惠券</a></dd>
+							<dd><a href="javascript:;">我的等级</a></dd>
+						</dl>
+						<dl>
+							<dt>销售订单</dt>
+							<dd><a href="javascript:;">销售订单</a></dd>
+							<dd><a href="javascript:;">关闭订单</a></dd>
+							<dd><a href="javascript:;">库存管理</a></dd>
+							<dd><a href="javascript:;">积分管理</a></dd>
+						</dl>
+						<dl>
+							<dt>系统功能</dt>
+							<dd><a href="javascript:;">账户管理</a></dd>
+							<dd><a href="javascript:;">我的工作台</a></dd>
+							<dd><a href="javascript:;">系统配置</a></dd>
+						</dl>
+					</div>
+				</div>
+			</div> -->
+			<div class="main-right pull-right">
+				<div class="store">
+					<div class="store-list invite-list-one">
+						<h3 class="bg-gray">邀请好友得奖励</h3>
+						<div>
+							<p><b class="text-red">1.VIP抵用券：</b>使用邀请码注册的被邀请人，注册后立刻获得30元VIP抵用券。</p>
+							<p><b class="text-red">2.现金奖励：</b>当被邀请人待收总额首次超过1万元(含)，邀请人在24小时内获得100元奖励。</p>
+							<p><b class="text-red">3.积分奖励：</b>被邀请人待收总额首次超过1万元(含)，邀请人与被邀请人均可获得1000积分奖励。</p>
+							<p><b class="text-red">4.提成奖励：</b>被邀请人注册后的36个自然月内，邀请人可得得到被邀请人每月月底账户待收的相应提成比例作为提成奖励。</p>
+						</div>
+					</div>
+					<div class="store-list invite-list-two">
+						<h3 class="bg-gray">邀请码邀请</h3>
+						<div>
+							<div class="code">
+								我的邀请码：<span class="text-red" id="invitation">98373</span>
+								<button type="button" class="btn-bg">
+									<span onclick="jsCopy('invitation')">复制</span>
+								</button>
+							</div>
+							<p>您可以让好友在注册页面填写邀请码，好友将获得39元VIP抵用券。</p>
+						</div>
+					</div>
+					<div class="store-list invite-list-three">
+						<h3 class="bg-gray">邀请列表</h3>
+						<div>
+							<table class="hover col-10">
+								<thead>
+									<tr>
+										<th width="192">我的邀请的用户</th>
+										<th width="168">角色</th>
+										<th width="184">注册时间</th>
+										<th width="186">首单金额</th>
+										<th width="175">返利</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>taoyang</td>
+										<td>师傅</td>
+										<td>2016-06-18 09：47</td>
+										<td>10000元</td>
+										<td>100元</td>
+									</tr>
+									<tr class="odd">
+										<td>taoyang</td>
+										<td>师傅</td>
+										<td>2016-06-18 09：47</td>
+										<td>10000元</td>
+										<td>100元</td>
+									</tr>
+									<tr>
+										<td>taoyang</td>
+										<td>师傅</td>
+										<td>2016-06-18 09：47</td>
+										<td>10000元</td>
+										<td>100元</td>
+									</tr>
+									<tr class="odd">
+										<td>taoyang</td>
+										<td>师傅</td>
+										<td>2016-06-18 09：47</td>
+										<td>10000元</td>
+										<td>100元</td>
+									</tr>
+									<tr>
+										<td>taoyang</td>
+										<td>师傅</td>
+										<td>2016-06-18 09：47</td>
+										<td>10000元</td>
+										<td>100元</td>
+									</tr>
+									<!-- 让tbody的2n个tr加odd的类名 -->
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 内容板块结束 -->
+
+
+
+<!-- 底部开始 -->
+	<div class="foot">
+		<div class="area">
+			<p class="font-text text-center">
+				<span><a href="javascript:">购物指南</a></span>
+				<span><a href="javascript:">免费注册</a></span>
+				<span><a href="javascript:">联系客服</a></span>
+				<span><a href="javascript:">特色服务</a></span>
+				<span><a href="javascript:">招商代理</a></span>
+				<span><a href="javascript:">满额赠送</a></span>
+				<span><a href="javascript:">商家中心</a></span>
+				<span><a href="javascript:">入驻平台</a></span>
+				<span><a href="javascript:">入驻协议</a></span>
+				<span><a href="javascript:">交易规则</a></span>
+			</p>
+			<p class="text-center" style="line-height:26px">Copyright © 2012-2019 http://www.hgeili.com All Rights Reserved.</p>
+			<p class="text-center" style="line-height:26px">粤ICP备16000497号-1 立国网络技术有限公司 版权所有</p>
+		</div>
+	</div>
+<!-- 底部结束 -->
+
+
+
+
+</body>
+<script>
+
+	// function jsCopy(obj_id)
+	// {    
+	//     var e=document.getElementById(obj_id).innerHTML;//对象是content 
+	// 	window.clipboardData.getData("Text",v);
+	// 	alert("该邀请码已复制到您的粘贴板！");
+	// }
+</script>
+</html>

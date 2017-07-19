@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWithdrawalsMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWithdrawals" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="freezing" property="freezing" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="operation_dt" property="operationDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="audit_id" property="auditId" jdbcType="INTEGER" />
+    <result column="accountbank_id" property="accountbankId" jdbcType="INTEGER" />
+    <result column="audit_dt" property="auditDt" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="audit_person" property="auditPerson" jdbcType="INTEGER" />
+    <result column="determine_dt" property="determineDt" jdbcType="BIGINT" />
+    <result column="bank_account" property="bankAccount" jdbcType="VARCHAR" />
+    <result column="card_holder" property="cardHolder" jdbcType="VARCHAR" />
+    <result column="bank" property="bank" jdbcType="VARCHAR" />
+  </resultMap>
+   <resultMap id="DtoResultMap" type="com.liguo.hgl.proxydao.dto.WithdrawalsDto" extends="BaseResultMap">
+  	<id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="bankNo" property="bankNo" jdbcType="VARCHAR" />
+    <result column="branch" property="branch" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.accountId != null" >
+         and account_id = #{parameter.accountId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.state != null" >
+         and state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.freezing != null" >
+         and freezing = #{parameter.freezing,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.money != null" >
+         and money = #{parameter.money,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.operationDt != null" >
+         and operation_dt = #{parameter.operationDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.auditId != null" >
+         and audit_id = #{parameter.auditId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.accountbankId != null" >
+         and accountbank_id = #{parameter.accountbankId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.auditDt != null" >
+         and audit_dt = #{parameter.auditDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.auditPerson != null" >
+         and audit_person = #{parameter.auditPerson,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.determineDt != null" >
+         and determine_dt = #{parameter.determineDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.bankAccount != null" >
+         and bank_account = #{parameter.bankAccount,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.card_holder != null" >
+         and card_holder = #{parameter.card_holder,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.bank != null" >
+         and bank = #{parameter.bank,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, account_id, state, freezing, money, operation_dt, version, audit_id, 
+    accountbank_id, audit_dt, shop_id, audit_person, determine_dt, bank_account,card_holder, bank
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_withdrawals
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_withdrawals
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_withdrawals
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_withdrawals
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWithdrawals" >
+    insert into hgl.tb_withdrawals (id, user_id, account_id, 
+      state, freezing, money, 
+      operation_dt, version, audit_id, 
+      accountbank_id, audit_dt, shop_id, 
+      audit_person, determine_dt, bank_account,card_holder,
+      bank)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, 
+      #{state,jdbcType=INTEGER}, #{freezing,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, 
+      #{operationDt,jdbcType=BIGINT}, #{version,jdbcType=INTEGER}, #{auditId,jdbcType=INTEGER}, 
+      #{accountbankId,jdbcType=INTEGER}, #{auditDt,jdbcType=BIGINT}, #{shopId,jdbcType=INTEGER}, 
+      #{auditPerson,jdbcType=INTEGER}, #{determineDt,jdbcType=BIGINT}, #{bankAccount,jdbcType=VARCHAR}, 
+      #{cardHolder,jdbcType=VARCHAR}, 
+      #{bank,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWithdrawals" >
+    insert into tb_withdrawals
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="freezing != null" >
+        freezing,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="operationDt != null" >
+        operation_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="auditId != null" >
+        audit_id,
+      </if>
+      <if test="accountbankId != null" >
+        accountbank_id,
+      </if>
+      <if test="auditDt != null" >
+        audit_dt,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="auditPerson != null" >
+        audit_person,
+      </if>
+      <if test="determineDt != null" >
+        determine_dt,
+      </if>
+      <if test="bankAccount != null" >
+        bank_account,
+      </if>
+       <if test="card_holder != null" >
+        card_holder,
+      </if>
+      <if test="bank != null" >
+        bank,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="freezing != null" >
+        #{freezing,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="operationDt != null" >
+        #{operationDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="auditId != null" >
+        #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="accountbankId != null" >
+        #{accountbankId,jdbcType=INTEGER},
+      </if>
+      <if test="auditDt != null" >
+        #{auditDt,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="auditPerson != null" >
+        #{auditPerson,jdbcType=INTEGER},
+      </if>
+      <if test="determineDt != null" >
+        #{determineDt,jdbcType=BIGINT},
+      </if>
+      <if test="bankAccount != null" >
+        #{bankAccount,jdbcType=VARCHAR},
+      </if>
+       <if test="cardHolder != null" >
+        #{cardHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        #{bank,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_withdrawals
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWithdrawals" flushCache="true" >
+    update tb_withdrawals
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="freezing != null" >
+        freezing = #{freezing,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="operationDt != null" >
+        operation_dt = #{operationDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="auditId != null" >
+        audit_id = #{auditId,jdbcType=INTEGER},
+      </if>
+      <if test="accountbankId != null" >
+        accountbank_id = #{accountbankId,jdbcType=INTEGER},
+      </if>
+      <if test="auditDt != null" >
+        audit_dt = #{auditDt,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="auditPerson != null" >
+        audit_person = #{auditPerson,jdbcType=INTEGER},
+      </if>
+      <if test="determineDt != null" >
+        determine_dt = #{determineDt,jdbcType=BIGINT},
+      </if>
+      <if test="bankAccount != null" >
+        bank_account = #{bankAccount,jdbcType=VARCHAR},
+      </if>
+       <if test="cardHolder != null" >
+        card_holder = #{cardHolder,jdbcType=VARCHAR},
+      </if>
+      <if test="bank != null" >
+        bank = #{bank,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWithdrawals" flushCache="true" >
+    update tb_withdrawals
+    set user_id = #{userId,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      freezing = #{freezing,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
+      operation_dt = #{operationDt,jdbcType=BIGINT},
+      version = version + 1,
+      audit_id = #{auditId,jdbcType=INTEGER},
+      accountbank_id = #{accountbankId,jdbcType=INTEGER},
+      audit_dt = #{auditDt,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      audit_person = #{auditPerson,jdbcType=INTEGER},
+      determine_dt = #{determineDt,jdbcType=BIGINT},
+      bank_account = #{bankAccount,jdbcType=VARCHAR},
+      card_holder = #{cardHolder,jdbcType=VARCHAR},
+      bank = #{bank,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectWithdrawalsPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="DtoResultMap">
+  		select wu.user_name as userName,c.bank_account as bankNo,c.branch as branch,  w.* 
+			from tb_withdrawals w left join tb_web_user wu on wu.id=w.user_id
+		left join tb_account_bank c on c.id=w.accountbank_id
+		<if test="parameter != null" >
+	      <include refid="Object_Where_ClauseDto" />
+	    </if>
+  		order by w.operation_dt desc
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+   <sql id="Object_Where_ClauseDto" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.userName != null" >
+         and wu.user_name like CONCAT('%','${parameter.userName}','%')
+      </if>
+        <if test="parameter.name != null" >
+         and wu.name =  like CONCAT('%','${parameter.name}','%')
+      </if>
+       <if test="parameter.state != null" >
+         and w.state = #{parameter.state,jdbcType=INTEGER}
+      </if>
+       <if test="parameter.auditPerson != null" >
+	       and w.audit_person = #{parameter.auditPerson,jdbcType=INTEGER}
+	     </if>
+	     
+	     <if test="parameter.shopId != null" >
+	       and w.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+	     </if>
+    </trim>
+  </sql>
+</mapper>

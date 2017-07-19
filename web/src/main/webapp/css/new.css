@@ -1,0 +1,32 @@
+@charset "utf-8";
+/* 新闻详情页 */
+.details{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+.details-left{
+	width:928px;
+	border:1px solid #d9d9d9;
+	padding:20px 30px;
+}
+.details-left h3{
+	line-height: 40px;
+	border-bottom:1px solid #EBEBEB;
+}
+.details-left p{
+	line-height:2em;
+	color:#666;
+	margin-bottom:15px;
+}
+.details-left img{
+	width:100%;
+	margin:10px auto;
+
+}
+.navigate ul li{
+	float: left;
+	padding-right:8px;
+	line-height: 20px;
+	margin-bottom:5px;
+}

@@ -1,0 +1,46 @@
+.no-right-left{
+	padding-left:0;
+	padding-right:0;
+}
+.no-left{
+	padding-left:0;
+}
+.no-right{
+	padding-right:0;
+}
+.form-group{
+	margin-bottom:5px;
+}
+.table>tbody+tbody{
+	border:none;
+}
+.tab-pane h3{
+	border-left:3px solid #3c8dbc;
+	padding-left:15px;
+	font-size:20px;
+}
+.auto-width .table{
+	width:auto;
+}
+.auto-width input,.auto-width select{
+	width: 166px;
+}
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td{
+	border-top:none;
+	text-align:center;
+}
+td .form-group{
+	margin:0;
+}
+.table-height{
+	height:180px;
+	overflow-y:auto;
+}
+.info label{
+	margin-right:8px;
+}
+.form-inline .input-group{
+	width:150px;
+	overflow: auto;
+	
+}

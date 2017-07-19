@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>广告列表</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	<header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+        	<a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+        	<a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+        	<a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-dashboard"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javasript:;"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+            <li><a href="javasript:;"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i>
+            <span>活动管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 秒杀管理</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 优惠券</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 积分管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-laptop"></i>
+            <span>广告管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 添加广告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-edit"></i>
+            <span>系统管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+          </ul>
+        </li>
+        <li class="treeview  ">
+          <a href="javascript:;">
+            <i class="fa fa-tag"></i>
+            <span>招商管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javascript:;"><i class="fa fa-circle-o"></i> 招商详情</a></li>
+          </ul>
+        </li>
+        <li class="treeview active ">
+          <a href="javascript:;">
+            <i class="fa fa-tag"></i>
+            <span>库存管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="javascript:;"><i class="fa fa-circle-o"></i> 库存管理</a></li>
+          </ul>
+        </li>
+    	</ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>广告列表</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+    		<div class="box box-primary">
+    			 <div class="box-body">
+             <form action="#" class="form-horizontal">
+             <div class="row">
+              <div  class="col-sm-3">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">名称</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div  class="col-sm-3">
+                <div class="form-group">
+                  <label class="col-sm-3 control-label">状态</label>
+                  <div class="col-sm-8">
+                    <select class="form-control">
+                      <option>显示</option>
+                      <option>隐藏</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3 ">
+                  <button type="button" class="btn btn-primary">查询</button>
+                  <button type="button" class="btn btn-info">添加</button>
+              </div>
+             </div>
+              <div class="col-sm-12">
+                <table class="table table-bordered table-hover dataTable text-center table-bordered">
+                  <tr class="info">
+                    <th><input type="checkbox"></th>
+                    <th>广告名称</th>
+                    <th>广告版位</th>
+                    <th>类型</th>
+                    <th>状态</th>
+                    <th>添加时间</th>
+                    <th>排序</th>
+                    <th>链接地址</th>
+                    <th>点击次数</th>
+                    <th>操作选项</th>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>首页轮播图</td>
+                    <td>首页轮播</td>
+                    <td>图片</td>
+                    <td>显示</td>
+                    <td>2016-3-31</td>
+                    <td>1</td>
+                    <td></td>
+                    <td>80</td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>首页轮播图</td>
+                    <td>首页轮播</td>
+                    <td>图片</td>
+                    <td>显示</td>
+                    <td>2016-3-31</td>
+                    <td>2</td>
+                    <td></td>
+                    <td>80</td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox"></td>
+                    <td>首页轮播图</td>
+                    <td>首页轮播</td>
+                    <td>图片</td>
+                    <td>显示</td>
+                    <td>2016-3-31</td>
+                    <td>3</td>
+                    <td></td>
+                    <td>80</td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">修改</button>
+                      <button type="button" class="btn btn-primary btn-sm">删除</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+                <div class="col-sm-12 text-right">
+                  <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button previous disabled">
+                        <a href="#">
+                          <span>&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="paginate_button active">
+                        <a href="#">1</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">2</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">3</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">4</a>
+                      </li>
+                      <li class="paginate_button previous">
+                        <a href="#">
+                          <span>&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+              </div>
+             </form>
+    			 </div>
+    		</div>
+    	</div>
+    </section>
+  </div>
+</div>
+
+
+</body>
+</html>

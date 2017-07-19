@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbGoodsProfitMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbGoodsProfit" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="inventory_id" property="inventoryId" jdbcType="INTEGER" />
+    <result column="inventory_name" property="inventoryName" jdbcType="VARCHAR" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="sum_outstock_price" property="sumOutstockPrice" jdbcType="DOUBLE" />
+    <result column="sum_instock_price" property="sumInstockPrice" jdbcType="DOUBLE" />
+    <result column="sale_num" property="saleNum" jdbcType="INTEGER" />
+    <result column="sale_inventory" property="saleInventory" jdbcType="INTEGER" />
+    <result column="sale_money" property="saleMoney" jdbcType="DOUBLE" />
+    <result column="profit_money" property="profitMoney" jdbcType="DOUBLE" />
+    <result column="profit_proportion" property="profitProportion" jdbcType="DOUBLE" />
+    <result column="profits_rate" property="profitsRate" jdbcType="DOUBLE" />
+    <result column="sale_day" property="saleDay" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMapDataInfo" type="com.liguo.hgl.proxydao.dto.GoodsProfitDto" extends="BaseResultMap">
+    <result column="sale_num_day" property="saleNumDay" jdbcType="INTEGER" />
+    <result column="start_count" property="startCount" jdbcType="INTEGER" />
+    <result column="year_name" property="yearName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.inventoryId != null" >
+         and inventory_id = #{parameter.inventoryId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.inventoryName != null" >
+         and inventory_name = #{parameter.inventoryName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.sumOutstockPrice != null" >
+         and sum_outstock_price = #{parameter.sumOutstockPrice,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.sumInstockPrice != null" >
+         and sum_instock_price = #{parameter.sumInstockPrice,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.saleNum != null" >
+         and sale_num = #{parameter.saleNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.saleInventory != null" >
+         and sale_inventory = #{parameter.saleInventory,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.saleMoney != null" >
+         and sale_money = #{parameter.saleMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.profitMoney != null" >
+         and profit_money = #{parameter.profitMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.profitProportion != null" >
+         and profit_proportion = #{parameter.profitProportion,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.profitsRate != null" >
+         and profits_rate = #{parameter.profitsRate,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.saleDay != null" >
+         and sale_day = #{parameter.saleDay,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, inventory_id, inventory_name, shop_id, sum_outstock_price, sum_instock_price, 
+    sale_num, sale_inventory, sale_money, profit_money, profit_proportion, profits_rate, 
+    sale_day, create_dt
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_goods_profit
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_goods_profit
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_goods_profit
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_goods_profit
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbGoodsProfit" >
+    insert into hgl.tb_goods_profit (id, inventory_id, inventory_name, 
+      shop_id, sum_outstock_price, sum_instock_price, 
+      sale_num, sale_inventory, sale_money, 
+      profit_money, profit_proportion, profits_rate, 
+      sale_day, create_dt)
+    values (#{id,jdbcType=INTEGER}, #{inventoryId,jdbcType=INTEGER}, #{inventoryName,jdbcType=VARCHAR}, 
+      #{shopId,jdbcType=INTEGER}, #{sumOutstockPrice,jdbcType=DOUBLE}, #{sumInstockPrice,jdbcType=DOUBLE}, 
+      #{saleNum,jdbcType=INTEGER}, #{saleInventory,jdbcType=INTEGER}, #{saleMoney,jdbcType=DOUBLE}, 
+      #{profitMoney,jdbcType=DOUBLE}, #{profitProportion,jdbcType=DOUBLE}, #{profitsRate,jdbcType=DOUBLE}, 
+      #{saleDay,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbGoodsProfit" >
+    insert into tb_goods_profit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="inventoryName != null" >
+        inventory_name,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="sumOutstockPrice != null" >
+        sum_outstock_price,
+      </if>
+      <if test="sumInstockPrice != null" >
+        sum_instock_price,
+      </if>
+      <if test="saleNum != null" >
+        sale_num,
+      </if>
+      <if test="saleInventory != null" >
+        sale_inventory,
+      </if>
+      <if test="saleMoney != null" >
+        sale_money,
+      </if>
+      <if test="profitMoney != null" >
+        profit_money,
+      </if>
+      <if test="profitProportion != null" >
+        profit_proportion,
+      </if>
+      <if test="profitsRate != null" >
+        profits_rate,
+      </if>
+      <if test="saleDay != null" >
+        sale_day,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryName != null" >
+        #{inventoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="sumOutstockPrice != null" >
+        #{sumOutstockPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sumInstockPrice != null" >
+        #{sumInstockPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="saleNum != null" >
+        #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleInventory != null" >
+        #{saleInventory,jdbcType=INTEGER},
+      </if>
+      <if test="saleMoney != null" >
+        #{saleMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="profitMoney != null" >
+        #{profitMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="profitProportion != null" >
+        #{profitProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="profitsRate != null" >
+        #{profitsRate,jdbcType=DOUBLE},
+      </if>
+      <if test="saleDay != null" >
+        #{saleDay,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(distinct inventory_id) from tb_goods_profit
+    where date_format(from_unixtime(create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+      and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbGoodsProfit" flushCache="true" >
+    update tb_goods_profit
+    <set >
+      <if test="inventoryId != null" >
+        inventory_id = #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryName != null" >
+        inventory_name = #{inventoryName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="sumOutstockPrice != null" >
+        sum_outstock_price = #{sumOutstockPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="sumInstockPrice != null" >
+        sum_instock_price = #{sumInstockPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="saleNum != null" >
+        sale_num = #{saleNum,jdbcType=INTEGER},
+      </if>
+      <if test="saleInventory != null" >
+        sale_inventory = #{saleInventory,jdbcType=INTEGER},
+      </if>
+      <if test="saleMoney != null" >
+        sale_money = #{saleMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="profitMoney != null" >
+        profit_money = #{profitMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="profitProportion != null" >
+        profit_proportion = #{profitProportion,jdbcType=DOUBLE},
+      </if>
+      <if test="profitsRate != null" >
+        profits_rate = #{profitsRate,jdbcType=DOUBLE},
+      </if>
+      <if test="saleDay != null" >
+        sale_day = #{saleDay,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbGoodsProfit" flushCache="true" >
+    update tb_goods_profit
+    set inventory_id = #{inventoryId,jdbcType=INTEGER},
+      inventory_name = #{inventoryName,jdbcType=VARCHAR},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      sum_outstock_price = #{sumOutstockPrice,jdbcType=DOUBLE},
+      sum_instock_price = #{sumInstockPrice,jdbcType=DOUBLE},
+      sale_num = #{saleNum,jdbcType=INTEGER},
+      sale_inventory = #{saleInventory,jdbcType=INTEGER},
+      sale_money = #{saleMoney,jdbcType=DOUBLE},
+      profit_money = #{profitMoney,jdbcType=DOUBLE},
+      profit_proportion = #{profitProportion,jdbcType=DOUBLE},
+      profits_rate = #{profitsRate,jdbcType=DOUBLE},
+      sale_day = #{saleDay,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <select id="callGoodsProfit" parameterType="java.util.Map" statementType="CALLABLE">  
+      {
+      	call p_goods_profit(#{rowCount,jdbcType=INTEGER,mode=OUT})
+      }
+  </select>   
+  <select id="selectByDataInfo" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDataInfo" >
+   <if test="parameter.startCount == null">
+	   select
+		       tgp.inventory_id,
+		       tgp.inventory_name,
+		       floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}) sale_num_day,
+		       min(tgp.sale_inventory) sale_inventory,
+		       if(floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER})=0,100000, floor(ifnull(min(tgp.sale_inventory)/floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}),0))) sale_day,	  
+		       ROUND(sum(tgp.profit_money),2) profit_money, 
+		       ROUND(sum(tgp.sale_money),2) sale_money,
+		       ROUND((sum(tgp.profit_money)/#{parameter.profitTotalMoney,jdbcType=DOUBLE})*100,2) profit_proportion,
+		       sum(tgp.sale_num) sale_num,  
+		       ROUND(sum(tgp.sum_instock_price),2) sum_instock_price,
+		       ROUND((sum(tgp.profit_money)/sum(tgp.sum_instock_price))*100,2) profits_rate,
+		       0 start_count
+		from tb_goods_profit tgp
+		where date_format(from_unixtime(tgp.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tgp.inventory_id,tgp.inventory_name
+		order by ${orderByClause}
+	</if>
+	<if test="parameter.startCount != null">
+		(select
+		       tgp.inventory_id,
+		       tgp.inventory_name,
+		       floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}) sale_num_day,
+		       min(tgp.sale_inventory) sale_inventory,
+		       if(floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER})=0,100000, floor(ifnull(min(tgp.sale_inventory)/floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}),0))) sale_day,
+		       ROUND(sum(tgp.profit_money),2) profit_money, 
+		       ROUND(sum(tgp.sale_money),2) sale_money,
+		       ROUND((sum(tgp.profit_money)/#{parameter.profitTotalMoney,jdbcType=DOUBLE})*100,2) profit_proportion,
+		       sum(tgp.sale_num) sale_num,  
+		       ROUND(sum(tgp.sum_instock_price),2) sum_instock_price,
+		       ROUND((sum(tgp.profit_money)/sum(tgp.sum_instock_price))*100,2) profits_rate,
+		       0 start_count
+		from tb_goods_profit tgp
+		where date_format(from_unixtime(tgp.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tgp.inventory_id,tgp.inventory_name
+		order by ${orderByClause}
+		limit 5)
+		union all
+		(select 
+			   tgp.inventory_id,
+		       tgp.inventory_name,
+		       floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}) sale_num_day,
+		       min(tgp.sale_inventory) sale_inventory,
+		       if(floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER})=0,100000, floor(ifnull(min(tgp.sale_inventory)/floor(sum(tgp.sale_num)/#{parameter.dayCount,jdbcType=INTEGER}),0))) sale_day,
+		       ROUND(sum(tgp.profit_money),2) profit_money, 
+		       ROUND(sum(tgp.sale_money),2) sale_money,
+		       ROUND((sum(tgp.profit_money)/#{parameter.profitTotalMoney,jdbcType=DOUBLE})*100,2) profit_proportion,
+		       sum(tgp.sale_num) sale_num,  
+		       ROUND(sum(tgp.sum_instock_price),2) sum_instock_price,
+		       ROUND((sum(tgp.profit_money)/sum(tgp.sum_instock_price))*100,2) profits_rate,
+		       #{parameter.startCount,jdbcType=INTEGER} start_count
+		from tb_goods_profit tgp
+		where date_format(from_unixtime(tgp.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		  and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		group by tgp.inventory_id,tgp.inventory_name
+		order by ${orderByClause}
+		limit #{parameter.startCount,jdbcType=INTEGER},4)
+	</if>
+  </select>
+  <select id="selectByDataInfoSum" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+		 select ROUND(sum(tgp.profit_money),2) profit_money,
+		        ROUND(sum(tgp.sale_money),2) sale_money,
+		        sum(tgp.sale_num) sale_num, 
+		        ROUND((sum(tgp.profit_money)/sum(tgp.sum_instock_price))*100,2) profits_rate
+		 from tb_goods_profit tgp 
+		 where date_format(from_unixtime(tgp.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		   and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+  </select>
+  <select id="selectByDataInfoProfitsRate" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+		 select sum(t.profits_rate) profits_rate
+		 from (     
+		    select ROUND((sum(tgp.profit_money)/sum(tgp.sum_instock_price))*100,2) profits_rate
+		    from tb_goods_profit tgp
+		    where date_format(from_unixtime(tgp.create_dt),'%Y-%m') = #{parameter.selectDate,jdbcType=VARCHAR}
+		     and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER} 
+		    group by tgp.inventory_id,tgp.inventory_name
+		 ) t
+  </select>
+  <select id="selectByProfitsChange" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDataInfo" >
+		  select concat(REPLACE(date_format(from_unixtime(tgp.create_dt),'%Y-%m'),'-','年'),'月') year_name,
+		        ROUND(sum(tgp.profit_money),2) profit_money,
+		        sum(tgp.sale_num) sale_num, 
+		        ROUND(sum(tgp.sale_money),2) sale_money
+		 from tb_goods_profit tgp 
+		 where date_format(from_unixtime(tgp.create_dt),'%Y-%m') <![CDATA[<=]]> #{parameter.selectDate,jdbcType=VARCHAR}
+		   and tgp.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+		 group by date_format(from_unixtime(tgp.create_dt),'%Y-%m')
+		 order by date_format(from_unixtime(tgp.create_dt),'%Y-%m') desc
+		 limit 10
+  </select>
+</mapper>

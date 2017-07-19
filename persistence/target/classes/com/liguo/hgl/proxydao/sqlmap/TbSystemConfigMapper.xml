@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbSystemConfigMapper">
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbSystemConfig">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="config_key" jdbcType="VARCHAR" property="configKey" />
+    <result column="config_value" jdbcType="VARCHAR" property="configValue" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="delete_flag" jdbcType="INTEGER" property="deleteFlag" />
+    <result column="create_by" jdbcType="VARCHAR" property="createBy" />
+    <result column="create_dt" jdbcType="BIGINT" property="createDt" />
+    <result column="update_by" jdbcType="VARCHAR" property="updateBy" />
+    <result column="update_dt" jdbcType="BIGINT" property="updateDt" />
+    <result column="extension_field" jdbcType="VARCHAR" property="extensionField" />
+    <result column="version" jdbcType="INTEGER" property="version" />
+  </resultMap>
+  <sql id="Object_Where_Clause">
+    <trim prefix="where" prefixOverrides="and|or">
+      <if test="parameter.configKey != null">
+         and config_key = #{parameter.configKey,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.configValue != null">
+         and config_value = #{parameter.configValue,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null">
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.deleteFlag != null">
+         and delete_flag = #{parameter.deleteFlag,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null">
+         and create_by = #{parameter.createBy,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createDt != null">
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.updateBy != null">
+         and update_by = #{parameter.updateBy,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.updateDt != null">
+         and update_dt = #{parameter.updateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.extensionField != null">
+         and extension_field = #{parameter.extensionField,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null">
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List">
+    id, config_key, config_value, remark, delete_flag, create_by, create_dt, update_by, 
+    update_dt, extension_field, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_system_config
+    <if test="parameter != null">
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_system_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete flushCache="true" id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from tb_system_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete flushCache="true" id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+    delete from tb_system_config
+    <if test="parameter != null">
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbSystemConfig">
+    insert into hgl.tb_system_config (id, config_key, config_value, remark, create_by,create_dt, update_by, update_dt,extension_field)
+    values (#{id,jdbcType=INTEGER}, #{configKey,jdbcType=VARCHAR}, #{configValue,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{createBy,jdbcType=VARCHAR}, 
+      unix_timestamp(now()),#{updateBy,jdbcType=VARCHAR},unix_timestamp(now()), 
+      #{extensionField,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbSystemConfig">
+    insert into tb_system_config
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="configKey != null">
+        config_key,
+      </if>
+      <if test="configValue != null">
+        config_value,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="createBy != null">
+        create_by,
+      </if>
+      <if test="createDt != null">
+        create_dt,
+      </if>
+      <if test="updateBy != null">
+        update_by,
+      </if>
+      <if test="updateDt != null">
+        update_dt,
+      </if>
+      <if test="extensionField != null">
+        extension_field,
+      </if>
+      <if test="version != null">
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="configKey != null">
+        #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null">
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDt != null">
+        #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null">
+        #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer">
+    select count(*) from tb_system_config
+    <if test="parameter != null">
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update flushCache="true" id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbSystemConfig">
+    update tb_system_config
+    <set>
+      <if test="configKey != null">
+        config_key = #{configKey,jdbcType=VARCHAR},
+      </if>
+      <if test="configValue != null">
+        config_value = #{configValue,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null">
+        create_by = #{createBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null">
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="updateBy != null">
+        update_by = #{updateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDt != null">
+        update_dt = #{updateDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null">
+        extension_field = #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null">
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update flushCache="true" id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbSystemConfig">
+    update tb_system_config
+    set config_key = #{configKey,jdbcType=VARCHAR},
+      config_value = #{configValue,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      update_by = #{updateBy,jdbcType=VARCHAR},
+      update_dt = #{updateDt,jdbcType=BIGINT},
+      extension_field = #{extensionField,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <!-- 查询分页 -->
+  <select id="selectByObjectPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_system_config
+    where delete_flag = 0
+    	 <if test="parameter.name != null and parameter.name !=''"  >
+         	and (config_key like '%${parameter.name}%'
+         	or config_value like '%${parameter.name}%'
+         	or remark like '%${parameter.name}%')
+      </if>
+      order by id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <!-- 根据配置key查询 -->
+  <select id="selectByConfigKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tb_system_config
+    where delete_flag = 0 
+    and config_key = #{configKey,jdbcType=VARCHAR}
+  </select>
+</mapper>

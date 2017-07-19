@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbIntegralRulesMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbIntegralRules" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="INTEGER" />
+    <result column="pay_money" property="payMoney" jdbcType="INTEGER" />
+    <result column="use_situation" property="useSituation" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+    
+      <if test="parameter.id != null" >
+         and id = #{parameter.id,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.money != null" >
+         and money = #{parameter.money,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payMoney != null" >
+         and pay_money = #{parameter.payMoney,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.useSituation != null" >
+         and use_situation = #{parameter.useSituation,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_id, type, money, pay_money, use_situation, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_integral_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_integral_rules
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_integral_rules
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_integral_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbIntegralRules" >
+    insert into hgl.tb_integral_rules (id, shop_id, type, 
+      money, pay_money, use_situation, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{money,jdbcType=INTEGER}, #{payMoney,jdbcType=INTEGER}, #{useSituation,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralRules" >
+    insert into tb_integral_rules
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="useSituation != null" >
+        use_situation,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=INTEGER},
+      </if>
+      <if test="useSituation != null" >
+        #{useSituation,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_integral_rules
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbIntegralRules" flushCache="true" >
+    update tb_integral_rules
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=INTEGER},
+      </if>
+      <if test="useSituation != null" >
+        use_situation = #{useSituation,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbIntegralRules" flushCache="true" >
+    update tb_integral_rules
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      money = #{money,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=INTEGER},
+      use_situation = #{useSituation,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+    <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="ArrayList" >
+    insert into tb_integral_rules (shop_id,type,money,use_situation)
+    values 
+      <foreach collection="list" item="obj" index="index" separator="," >
+	    (#{obj.shopId,jdbcType=INTEGER}, #{obj.type,jdbcType=INTEGER}, 
+	      #{obj.money,jdbcType=INTEGER},#{obj.useSituation,jdbcType=INTEGER}
+	    )
+      </foreach>
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  
+  <update id="batchUpdate" parameterType="ArrayList">
+    	<foreach collection="list" item="item" index="index" open="" close="" separator=";">
+              update tb_integral_rules
+		    <set> 
+		    	use_situation = #{item.useSituation,jdbcType=INTEGER},
+		        version = version + 1
+		    </set>
+		    where id = #{item.id,jdbcType=INTEGER}
+		      	  and shop_id = #{item.shopId,jdbcType=INTEGER};
+        </foreach>
+  </update>
+  
+  <select id="selectIntegralByMoney" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria"  >
+  	select 
+			a.*
+		from tb_integral_rules a
+		where 
+			a.use_situation = 0
+			and a.pay_money &lt;= #{parameter.money,jdbcType=DOUBLE}
+			and a.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+			limit 1
+  </select>
+  
+  <select id="selectUsedRule" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria"  >
+	  select 
+		tir.*
+		from 
+		tb_integral_rules tir
+		where  
+		 ((tir.type = 0 and tir.pay_money = 0) or (tir.type = 1 and tir.pay_money != 0))
+		and tir.use_situation = 0
+		and tir.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+   </select>
+</mapper>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbPayParamMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbPayParam" >
+    <id column="order_groub_no" property="orderGroubNo" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="Remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.liguo.hgl.proxydao.model.TbPayParam" extends="BaseResultMap" >
+    <result column="rep_param" property="repParam" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <where >
+      <foreach collection="orderByClause" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Object_Where_Clause" >
+    <where >
+      <foreach collection="example.orderByClause" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    order_groub_no, id, version, remark1, Remark2
+  </sql>
+  <sql id="Blob_Column_List" >
+    rep_param
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_pay_param
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_pay_param
+    where order_groub_no = #{orderGroubNo,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" flushCache="true" >
+    delete from tb_pay_param
+    where order_groub_no = #{orderGroubNo,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" flushCache="true" >
+    delete from tb_pay_param
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" >
+    insert into hgl.tb_pay_param (order_groub_no, id, version, 
+      remark1, Remark2, rep_param
+      )
+    values (#{orderGroubNo,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR}, #{repParam,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" >
+    insert into tb_pay_param
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderGroubNo != null" >
+        order_groub_no,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        Remark2,
+      </if>
+      <if test="repParam != null" >
+        rep_param,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderGroubNo != null" >
+        #{orderGroubNo,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="repParam != null" >
+        #{repParam,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" resultType="java.lang.Integer" >
+    select count(*) from tb_pay_param
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" flushCache="true" >
+    update tb_pay_param
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        Remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+      <if test="repParam != null" >
+        rep_param = #{repParam,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where order_groub_no = #{orderGroubNo,jdbcType=VARCHAR}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbPayParam" flushCache="true" >
+    update tb_pay_param
+    set id = #{id,jdbcType=VARCHAR},
+      version = version + 1,
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      Remark2 = #{remark2,jdbcType=VARCHAR}
+    where order_groub_no = #{orderGroubNo,jdbcType=VARCHAR}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

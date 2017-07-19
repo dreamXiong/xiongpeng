@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>厂家会员注册</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/register.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/register-base.js"></script>
+</head>
+<body>
+
+<!-- 登录logo开始 -->
+	<div class="user-head">
+		<div class="area">
+			<h1 class="pull-left">
+				<a href="index.html">
+					<img src="images/logo.png"  alt="">
+				</a>
+				<div class="pull-left head-title">
+					欢 迎 注 册
+				</div>
+			</h1>
+			
+		</div>
+	</div>
+<!-- 登录logo结束 -->
+<!-- 注册表单开始 -->
+	<div class="register">
+		<div class="area">
+			<div class="register-body">
+				<form>
+					<div class="register-nav line-height">
+						<a href="会员注册.html">我是个人</a>
+						<a href="经销商用户注册.html">我是商家</a>
+					</div>
+					<div class="form-col">
+						<label for="">企 业 名 称</label>
+						<input type="text">
+						<i class="iconfont text-center line-height">&#xe610;</i>
+						<small>请输入企业名称</small>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">企 业 地 址</label>
+							<select>
+								<option value="北京">北京</option>
+							</select>
+							<select>
+								<option value="北京">北京</option>
+							</select>
+							<select>
+								<option value="北京">北京</option>
+							</select>
+							<select>
+								<option value="北京">北京</option>
+							</select>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">经 营 类 别</label>
+							<select style="width:100px">
+								<option value="北京">手动工具</option>
+							</select>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">品 牌 名 称</label>
+						<input type="text">
+						<small>与商标相同</small>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">经 营 品 类</label>
+						<input type="text" class="cursor" readonly >
+						<small>与营业执照相同</small>
+						<span class="text-red">*</span>
+					</div>
+					
+
+					<div class="form-col">
+						<label for="">企 业 资 质</label>
+						<div class="col-block">
+							<p>请上传：营业执照、税务登记证、组织机构证</p>
+							<div class="por">
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">营业执照</p>
+								</div>
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">税务登记证</p>
+								</div>
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">组织机构证</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="form-col">
+						<label for="">工 厂 照 片</label>
+						<div class="col-block">
+							<p>请至少上传一张工厂实景照片</p>
+							<div class="por">
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">工厂实景1</p>
+								</div>
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">工厂实景2</p>
+								</div>
+								<div class="pull-left">
+									<input type="file">
+									<span class="iconfont">&#xe612;</span>
+									<p class="text-center">工厂实景3</p>
+								</div>
+							</div>
+						</div>
+						<span class="text-red" style="top:3px">*</span>
+					</div>
+					
+					
+					<div class="form-col">
+						<label for="">企 业 法 人</label>
+						<input type="text">
+						<span class="text-red">*</span>
+					</div>
+
+					<div class="form-col">
+						<label for="">电 话 号 码</label>
+						<input type="text">
+						<span class="text-red">*</span>
+					</div><div class="form-col">
+						<label for="">手 机 验 证</label>
+						<input type="text">
+						<i class="iconfont text-center line-height">&#xe615;</i>
+						<small>验证完成后，你可以直接通过手机登录或找回密码</small>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">验&nbsp;&nbsp; 证 &nbsp;&nbsp;码</label>
+						<input class="short" type="text">
+						<div class="text">
+							<img src="images/verify.png">
+						</div>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">手机验证码</label>
+						<input class="short" type="text">
+						<button class="text text-center" type="button" style="background:#f2f2f2">获取验证码</button>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">管理用户名</label>
+						<input type="password">
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">设 置 密 码</label>
+						<input type="password">
+						<i class="iconfont text-center line-height">&#xe611;</i>
+						<small>6-20个字符，建议由字母、数字、符号两种以上组合</small>
+						<span class="text-red">*</span>
+					</div>
+					<div class="form-col">
+						<label for="">确 定 密 码</label>
+						<input type="password">
+						<i class="iconfont text-center line-height">&#xe611;</i>
+						<small>请再次输入密码</small>
+						<span class="text-red">*</span>
+					</div>
+				</form>
+				<div class="register-in text-center">
+					<p><span class="text-red">*</span>标记栏目为必填信息</p>
+					<div>
+						<input type="checkbox" id="yes">
+						<label for="yes">我已阅读并同意</label><a class="text-red" href="javascript:;">《惠给利用户注册协议》</a>
+					</div>
+					<button type="button">立即注册</button>
+					<div class="less clear">
+						<a href="会员注册.html" class="pull-left">我是个人</a>
+						<a href="经销商用户注册.html" style="margin-left:11px" class="pull-right"> 我是经销商</a>
+					</div>
+					<p>我已有惠给利账号，立即<a class="text-red" href="会员登录.html">登录</a></p>
+				</div>
+			</div>
+			<div class="attract-nav">
+				<ul class="clear attract-tilte text-center">
+					<li class="active">招商政策</li>
+					<li>招商规则</li>
+					<li>商家感言</li>
+				</ul>
+				<div class="slide">
+					<div class="show-bg one merchant-one">
+						<div class="abso">
+							一个好汉三个帮，成功的公司通常因为有卓越的伙伴，惠给力的健康成长，离不开分销商伙伴的支持和帮助。无论您是创业初期的小微贸易公司，还是特定领域的行业翘楚，惠给力诚邀您与我们合作共赢，共创美化的未来。
+						</div>
+						<ul class="slide-list clear">
+							<li>
+								<h3 class="text-red text-center">价格优势</h3>
+								<p>惠给力充分理解分销商伙伴面临的市场挑战，我们愿意与您分享基于集中采购机制而获得的优惠价格，惠给力将提供给您远低于普通终端客户的产品价格，以协助您提高市场竞争力。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">海量渠道</h3>
+								<p>与数百家国际国内知名品牌建立了良好的合作关系，众多厂商的资源全部在惠给力上体现，构建了核心竞争优势。选择惠给力，您将不必再为寻找产品采购渠道而烦恼。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">技术支持</h3>
+								<p>客户对服务的需求正逐渐超出对产品的需求，您是否正在为无法满足客户的技术咨询而苦恼？惠给力拥有自建的化学品实验室，更组建了由公司资深员工及社会行业精英组成的专家团队，竭诚为您提供在线、电话及上门的技术支持服务，解决您的后顾之忧。</p>
+							</li>
+						</ul>
+					</div>
+					
+					<div class="show-bg two none  merchant-two">
+						<div class="abso">
+							一定的进货量，您将获得您区域内的独家经营权，充分保证了经营区域的品牌效应，后续的海量数据分析，实时满足您的经营，后续的供货保障，让您无后顾之忧。
+						</div>
+						<ul class="slide-list clear">
+							<li>
+								<h3 class="text-red text-center">招商限制</h3>
+								<p>惠给利为单区域内的品牌独立建立保护，在该区域的品牌已经获得招商后其他的经销商将不能再获得经营权。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">招商渠道</h3>
+								<p>惠给利平台会在已经建立市场的区域发布招商，经销商在获得平台认证以后将可以参与招商，在招商的时候需要完成规定的购货量。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">招商事项</h3>
+								<p>在开始注册时，您需要提供相关的证件证明您的经营权，营业执照，法人身份证，惠给力也会需要实地考察您的店面时候满足招商要求。</p>
+							</li>
+						</ul>
+					</div>
+					<div class="show-bg three none merchant-three">
+						<div class="abso">
+							惠给利有众多优秀的经销商，他们为惠给利的成长带来了众多的机遇和帮助。
+						</div>
+						<ul class="slide-list clear">
+							<li>
+								<h3 class="text-red text-center">肖伟</h3>
+								<img src="images/geren.jpg" height="150" width="200">
+								<p>和惠给力合作了将近10年，全部正品和贴心服务，是我选择震坤行的理由。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">招商渠道</h3>
+								<p>惠给力平台会在已经建立市场的区域发布招商，经销商在获得平台认证以后将可以参与招商，在招商的时候需要完成规定的购货量。</p>
+							</li>
+							<li>
+								<h3 class="text-red text-center margin-bottom">招商事项</h3>
+								<p>在开始注册时，您需要提供相关的证件证明您的经营权，营业执照，法人身份证，惠给力也会需要实地考察您的店面时候满足招商要求</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<!-- 注册表单结束 -->
+
+<!-- 底部开始 -->
+	<div class="foot">
+		<div class="area">
+			<p class="font-text text-center">
+				<span><a href="javascript:">购物指南</a></span>
+				<span><a href="javascript:">免费注册</a></span>
+				<span><a href="javascript:">联系客服</a></span>
+				<span><a href="javascript:">特色服务</a></span>
+				<span><a href="javascript:">招商代理</a></span>
+				<span><a href="javascript:">满额赠送</a></span>
+				<span><a href="javascript:">商家中心</a></span>
+				<span><a href="javascript:">入驻平台</a></span>
+				<span><a href="javascript:">入驻协议</a></span>
+				<span><a href="javascript:">交易规则</a></span>
+			</p>
+			<p class="text-center" style="line-height:26px">Copyright © 2012-2019 http://www.hgeili.com All Rights Reserved.</p>
+			<p class="text-center" style="line-height:26px">粤ICP备16000497号-1 立国网络技术有限公司 版权所有</p>
+		</div>
+	</div>
+<!-- 底部结束 -->
+
+</body>
+
+</html>

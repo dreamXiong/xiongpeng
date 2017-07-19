@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWapOrderTrackingServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWapOrderTrackingService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_service_id" property="orderServiceId" jdbcType="INTEGER" />
+    <result column="order_state" property="orderState" jdbcType="INTEGER" />
+    <result column="operate_name" property="operateName" jdbcType="VARCHAR" />
+    <result column="operate_by" property="operateBy" jdbcType="INTEGER" />
+    <result column="operate_dt" property="operateDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderServiceId != null" >
+         and order_service_id = #{parameter.orderServiceId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderState != null" >
+         and order_state = #{parameter.orderState,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateName != null" >
+         and operate_name = #{parameter.operateName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.operateBy != null" >
+         and operate_by = #{parameter.operateBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateDt != null" >
+         and operate_dt = #{parameter.operateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_service_id, order_state, operate_name, operate_by, operate_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_wap_order_tracking_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wap_order_tracking_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_wap_order_tracking_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_wap_order_tracking_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderTrackingService" >
+    insert into hgl.tb_wap_order_tracking_service (id, order_service_id, order_state, 
+      operate_name, operate_by, operate_dt)
+    values (#{id,jdbcType=INTEGER}, #{orderServiceId,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, 
+      #{operateName,jdbcType=VARCHAR}, #{operateBy,jdbcType=INTEGER}, #{operateDt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderTrackingService" >
+    insert into tb_wap_order_tracking_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderServiceId != null" >
+        order_service_id,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="operateName != null" >
+        operate_name,
+      </if>
+      <if test="operateBy != null" >
+        operate_by,
+      </if>
+      <if test="operateDt != null" >
+        operate_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceId != null" >
+        #{orderServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="operateName != null" >
+        #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null" >
+        #{operateBy,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_wap_order_tracking_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderTrackingService" flushCache="true" >
+    update tb_wap_order_tracking_service
+    <set >
+      <if test="orderServiceId != null" >
+        order_service_id = #{orderServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="operateName != null" >
+        operate_name = #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null" >
+        operate_by = #{operateBy,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        operate_dt = #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderTrackingService" flushCache="true" >
+    update tb_wap_order_tracking_service
+    set order_service_id = #{orderServiceId,jdbcType=INTEGER},
+      order_state = #{orderState,jdbcType=INTEGER},
+      operate_name = #{operateName,jdbcType=VARCHAR},
+      operate_by = #{operateBy,jdbcType=INTEGER},
+      operate_dt = #{operateDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

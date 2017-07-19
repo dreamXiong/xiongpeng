@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbPayParamMessageMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbPayParamMessage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="pay_type_code" property="payTypeCode" jdbcType="VARCHAR" />
+    <result column="pay_type_name" property="payTypeName" jdbcType="VARCHAR" />
+    <result column="pay_get_code" property="payGetCode" jdbcType="VARCHAR" />
+    <result column="pay_notify_url" property="payNotifyUrl" jdbcType="VARCHAR" />
+    <result column="pay_return_url" property="payReturnUrl" jdbcType="VARCHAR" />
+    <result column="pay_ip" property="payIp" jdbcType="VARCHAR" />
+    <result column="pay_port" property="payPort" jdbcType="VARCHAR" />
+    <result column="pay_encode" property="payEncode" jdbcType="VARCHAR" />
+    <result column="pay_addr" property="payAddr" jdbcType="VARCHAR" />
+    <result column="pay_key" property="payKey" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.payTypeCode != null" >
+         and pay_type_code = #{parameter.payTypeCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payTypeName != null" >
+         and pay_type_name = #{parameter.payTypeName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payGetCode != null" >
+         and pay_get_code = #{parameter.payGetCode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payNotifyUrl != null" >
+         and pay_notify_url = #{parameter.payNotifyUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payReturnUrl != null" >
+         and pay_return_url = #{parameter.payReturnUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payIp != null" >
+         and pay_ip = #{parameter.payIp,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payPort != null" >
+         and pay_port = #{parameter.payPort,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payEncode != null" >
+         and pay_encode = #{parameter.payEncode,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payAddr != null" >
+         and pay_addr = #{parameter.payAddr,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payKey != null" >
+         and pay_key = #{parameter.payKey,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, pay_type_code, pay_type_name, pay_get_code, pay_notify_url, pay_return_url, pay_ip, 
+    pay_port, pay_encode, pay_addr, pay_key
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_pay_param_message
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_pay_param_message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_pay_param_message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_pay_param_message
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbPayParamMessage" >
+    insert into hgl.tb_pay_param_message (id, pay_type_code, pay_type_name, 
+      pay_get_code, pay_notify_url, pay_return_url, 
+      pay_ip, pay_port, pay_encode, 
+      pay_addr, pay_key)
+    values (#{id,jdbcType=INTEGER}, #{payTypeCode,jdbcType=VARCHAR}, #{payTypeName,jdbcType=VARCHAR}, 
+      #{payGetCode,jdbcType=VARCHAR}, #{payNotifyUrl,jdbcType=VARCHAR}, #{payReturnUrl,jdbcType=VARCHAR}, 
+      #{payIp,jdbcType=VARCHAR}, #{payPort,jdbcType=VARCHAR}, #{payEncode,jdbcType=VARCHAR}, 
+      #{payAddr,jdbcType=VARCHAR}, #{payKey,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbPayParamMessage" >
+    insert into tb_pay_param_message
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="payTypeCode != null" >
+        pay_type_code,
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name,
+      </if>
+      <if test="payGetCode != null" >
+        pay_get_code,
+      </if>
+      <if test="payNotifyUrl != null" >
+        pay_notify_url,
+      </if>
+      <if test="payReturnUrl != null" >
+        pay_return_url,
+      </if>
+      <if test="payIp != null" >
+        pay_ip,
+      </if>
+      <if test="payPort != null" >
+        pay_port,
+      </if>
+      <if test="payEncode != null" >
+        pay_encode,
+      </if>
+      <if test="payAddr != null" >
+        pay_addr,
+      </if>
+      <if test="payKey != null" >
+        pay_key,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="payTypeCode != null" >
+        #{payTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="payGetCode != null" >
+        #{payGetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyUrl != null" >
+        #{payNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnUrl != null" >
+        #{payReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payIp != null" >
+        #{payIp,jdbcType=VARCHAR},
+      </if>
+      <if test="payPort != null" >
+        #{payPort,jdbcType=VARCHAR},
+      </if>
+      <if test="payEncode != null" >
+        #{payEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="payAddr != null" >
+        #{payAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="payKey != null" >
+        #{payKey,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_pay_param_message
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbPayParamMessage" flushCache="true" >
+    update tb_pay_param_message
+    <set >
+      <if test="payTypeCode != null" >
+        pay_type_code = #{payTypeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="payGetCode != null" >
+        pay_get_code = #{payGetCode,jdbcType=VARCHAR},
+      </if>
+      <if test="payNotifyUrl != null" >
+        pay_notify_url = #{payNotifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payReturnUrl != null" >
+        pay_return_url = #{payReturnUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="payIp != null" >
+        pay_ip = #{payIp,jdbcType=VARCHAR},
+      </if>
+      <if test="payPort != null" >
+        pay_port = #{payPort,jdbcType=VARCHAR},
+      </if>
+      <if test="payEncode != null" >
+        pay_encode = #{payEncode,jdbcType=VARCHAR},
+      </if>
+      <if test="payAddr != null" >
+        pay_addr = #{payAddr,jdbcType=VARCHAR},
+      </if>
+      <if test="payKey != null" >
+        pay_key = #{payKey,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbPayParamMessage" flushCache="true" >
+    update tb_pay_param_message
+    set pay_type_code = #{payTypeCode,jdbcType=VARCHAR},
+      pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      pay_get_code = #{payGetCode,jdbcType=VARCHAR},
+      pay_notify_url = #{payNotifyUrl,jdbcType=VARCHAR},
+      pay_return_url = #{payReturnUrl,jdbcType=VARCHAR},
+      pay_ip = #{payIp,jdbcType=VARCHAR},
+      pay_port = #{payPort,jdbcType=VARCHAR},
+      pay_encode = #{payEncode,jdbcType=VARCHAR},
+      pay_addr = #{payAddr,jdbcType=VARCHAR},
+      pay_key = #{payKey,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

@@ -1,0 +1,15 @@
+#imgdiv{
+	width:165px;
+	height:100px;
+	position: relative;
+}
+#imgdiv img{
+	width:100%;
+	height:100%;
+}
+#imgdiv span{
+	position: absolute;
+	left:170px;
+	top:5px;
+	width:160px;
+}

@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>购物车-选购商品</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/cart.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="jquery-ui/jquery-ui.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="js/cart.js"></script>
+</head>
+<body>
+<!-- 头部菜单开始 -->
+	<div class="nav">
+		<div class="area">
+			<div class="nav-left">
+				<ul>
+					<li style="padding-left:0"><a href="javascript:">收藏网站</a></li>
+					<li><a href="javascript:">注册</a></li>
+					<li><a href="javascript:">登录</a></li>
+				</ul>
+			</div>
+			<div class="nav-right">
+				<ul>
+					<li><a href="javascript:">我的订单</a></li>
+					<li class="two-ac"><a href="javascript:">商家入驻</a></li>
+					<li><a href="javascript:">联系我们</a></li>
+					<li style="padding-right:0"> 
+						<span class="icon-phone text-red" style="font-size:16px"></span>&nbsp; 
+						<i class="text-red font-bold" style="font-size:16px">400-2377-2661</i></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+<!-- 头部菜单结束 -->
+
+
+<div class="warp">
+	<div class="area">
+		<!-- 搜索板块开始 -->
+	<div class="search area">
+		<div class="logo">
+			<h1>
+				<a href="javascript:">
+					<img src="images/logo.png" height="100" width="200" alt="">
+				</a>
+			</h1>
+		</div>
+		<div class="search-box">
+			<div class="search-bg">
+				<input type="text" placeholder="输入厂家、品名、规格、材质、产地">
+				<button type="button">搜 索</button>
+			</div>
+			<div class="search-text">
+				<span><a href="javascript:" class="text-red">六角螺母</a></span>
+				<span><a href="javscript:" class="text-red">八角扳手</a></span>
+				<span><a href="javascript:">满额送</a></span>
+				<span><a href="javascript:">招商</a></span>
+			</div>
+		</div>
+		<div class="shopping">
+			<i>1</i>
+			<span class="iconfont">&#xe622;</span>
+			进货单
+			
+		</div>
+	</div>
+<!-- 搜索板块结束 -->
+		<!-- 选择商品开始 -->
+
+		<div class="chart clear">
+			<div class="chart-top"></div>
+			<span class="active">选择商品</span>
+			<span>核对信息</span>
+			<span>付款</span>
+			<span>收货</span>
+		</div>
+
+
+		<div class="chart-nav">
+			<div class="active">MA/田岛TAJI</div>
+			<div>进货单</div>
+		</div>
+		<div class="chart-main">
+			<div class="chart-table">
+				<div class="chart-list">
+					<div class="chat-title clear">
+						<div class="pull-left pull-icon">
+							<span class="iconfont shrink">&#xe61a;</span>
+						</div>
+						<div class="pull-left pull-img"><img src="images/diandong-3.png" ></div>
+						<div class="pull-left pull-text">
+							<p>TAJIMA/田岛</p>
+							<p>维修级尖嘴大力钳</p>
+							<small>棘轮扳手</small>
+						</div>
+
+						<div class="pull-right pull-btn">
+							<a href="javascript:;">添加规格</a>
+						</div>
+						<div class="pull-right pull-sum">已选商品 <span class="text-red">￥0.10</span></div>
+					</div>
+					<div class="table">
+						<table class="col-10">
+							<thead>
+							<tr>
+								<th width="57">
+									<input type="checkbox" class="check">
+								</th>
+								<th width="200">
+									货号
+								</th>
+								<th width="220">
+									单价
+								</th>
+								<th width="82">
+									规格
+								</th>
+								<th width="265">
+									订购数量
+								</th>
+								<th width="95">
+									小计
+								</th>
+								<th width="137">
+									合计商品
+								</th>
+								<th width="138">
+									合计金额
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="checkbox">
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+									<td class="num">
+										40把
+									</td>
+									<td  class="sum">
+										300元
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox">
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox" disabled>
+									</td>
+									<td>
+										MMM-S09810
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="chart-list">
+					<div class="chat-title clear">
+						<div class="pull-left pull-icon">
+							<span class="iconfont shrink">&#xe61a;</span>
+						</div>
+						<div class="pull-left pull-img"><img src="images/diandong-3.png" ></div>
+						<div class="pull-left pull-text">
+							<p>TAJIMA/田岛</p>
+							<p>维修级尖嘴大力钳</p>
+							<small>棘轮扳手</small>
+						</div>
+
+						<div class="pull-right pull-btn">
+							<a href="javascript:;">添加规格</a>
+						</div>
+						<div class="pull-right pull-sum">已选商品 <span class="text-red">￥0.10</span></div>
+					</div>
+					<div class="table">
+						<table class="col-10">
+							<thead>
+							<tr>
+								<th width="89">
+									<input type="checkbox" class="check">
+								</th>
+								<th width="200">
+									货号
+								</th>
+								<th width="200">
+									单价
+								</th>
+								<th width="80">
+									规格
+								</th>
+								<th width="265">
+									订购数量
+								</th>
+								<th width="95">
+									小计
+								</th>
+								<th width="137">
+									合计商品
+								</th>
+								<th width="138">
+									合计金额
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<span class="text-red" style="padding:0 3px;">已下架<i>删除</i></span>
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+									<td class="num">
+										40把
+									</td>
+									<td  class="sum">
+										300元
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span class="text-red" style="padding:0 3px;">已下架<i>删除</i></span>
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox">
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<input type="checkbox">
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+
+								<tr >
+									<td>
+										<span class="text-red" style="padding:0 3px;">已下架<i>删除</i></span>
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+								</tr>
+
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="chart-list">
+					<div class="chat-title clear">
+						<div class="pull-left pull-icon">
+							<span class="iconfont shrink">&#xe61a;</span>
+						</div>
+						<div class="pull-left pull-img"><img src="images/diandong-3.png" ></div>
+						<div class="pull-left pull-text">
+							<p>TAJIMA/田岛</p>
+							<p>维修级尖嘴大力钳</p>
+							<small>棘轮扳手</small>
+						</div>
+
+						<div class="pull-right pull-btn">
+							<a href="javascript:;">添加规格</a>
+						</div>
+						<div class="pull-right pull-sum">已选商品 <span class="text-red">￥0.10</span></div>
+					</div>
+					<div class="table">
+						<table class="col-10">
+							<thead>
+							<tr>
+								<th width="57">
+									<span class="text-red" style="padding:0 3px;">已下架<i>删除</i></span>
+								</th>
+								<th width="200">
+									货号
+								</th>
+								<th width="220">
+									单价
+								</th>
+								<th width="82">
+									规格
+								</th>
+								<th width="265">
+									订购数量
+								</th>
+								<th width="95">
+									小计
+								</th>
+								<th width="137">
+									合计商品
+								</th>
+								<th width="138">
+									合计金额
+								</th>
+							</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>
+										<input type="checkbox">
+									</td>
+									<td>
+										MMM-S0980
+									</td>
+									<td>
+										<del>8.00</del> <span class="text-red">7.50</span>元/把
+									</td>
+									<td>
+										1000#
+									</td>
+									<td>
+										<a href="javascript:;" class="addon">-</a>
+										<input type="text" value="1">
+										<a href="javascript:;" class="addon addon-right">+</a> X 把/箱
+									</td>
+									<td>
+										150元
+									</td>
+									<td class="num">
+										40把
+									</td>
+									<td  class="sum">
+										300元
+									</td>
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+
+		<div class="chart-sum">
+			<label class="pull-left" for="check-only">
+				<input type="checkbox" id="check-only"> 全选
+			</label>
+			<div class="pull-left">
+				<button type="button">删除所中的商品</button>
+			</div>
+			<div class="pull-right account">
+				<a href="购物车-确认结算.html">去结算</a>
+			</div>
+			<div class="pull-right back">
+				<a href="javascript:;"><<返回继续购物</a>
+			</div>
+			<div class="pull-right text">
+				合计(物流费到付) : <span class="text-red">0.00</span> 元
+			</div>
+			<div class="pull-right text">
+			已选商品 <span class="text-red" id="gsfgf"> 40 </span> 件
+			</div>
+		</div>
+		<!-- 选择商品结束 -->
+	</div>
+</div>
+<!-- 底部开始 -->
+	<div class="foot">
+		<div class="area">
+			<p class="font-text text-center">
+				<span><a href="javascript:">购物指南</a></span>
+				<span><a href="javascript:">免费注册</a></span>
+				<span><a href="javascript:">联系客服</a></span>
+				<span><a href="javascript:">特色服务</a></span>
+				<span><a href="javascript:">招商代理</a></span>
+				<span><a href="javascript:">满额赠送</a></span>
+				<span><a href="javascript:">商家中心</a></span>
+				<span><a href="javascript:">入驻平台</a></span>
+				<span><a href="javascript:">入驻协议</a></span>
+				<span><a href="javascript:">交易规则</a></span>
+			</p>
+			<p class="text-center" style="line-height:26px">Copyright © 2012-2019 http://www.hgeili.com All Rights Reserved.</p>
+			<p class="text-center" style="line-height:26px">粤ICP备16000497号-1 立国网络技术有限公司 版权所有</p>
+		</div>
+	</div>
+<!-- 底部结束 -->
+<script>
+	$(function() {
+		$('.check').click(function(event) {
+			var check = $(this).prop('checked');
+			$(this).parents('table').find('input:not(:disabled)').prop('checked',check)
+		});
+		$('#gsfgf').text('400000');
+		
+	});
+</script>
+
+
+</body>
+</html>

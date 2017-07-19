@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbMerchNoticeMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbMerchNotice" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="brandId" property="brandid" jdbcType="INTEGER" />
+    <result column="number" property="number" jdbcType="DOUBLE" />
+    <result column="coupons" property="coupons" jdbcType="DOUBLE" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="imgFile" property="imgfile" jdbcType="VARCHAR" />
+    <result column="createdBy" property="createdby" jdbcType="VARCHAR" />
+    <result column="createdDateTime" property="createddatetime" jdbcType="BIGINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.liguo.hgl.proxydao.model.TbMerchNotice" extends="BaseResultMap" >
+    <result column="detail" property="detail" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.typeId != null" >
+         and type_id = #{parameter.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.brandid != null" >
+         and brandId = #{parameter.brandid,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.number != null" >
+         and number = #{parameter.number,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.coupons != null" >
+         and coupons = #{parameter.coupons,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.level != null" >
+         and level = #{parameter.level,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.address != null" >
+         and address = #{parameter.address,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.imgfile != null" >
+         and imgFile = #{parameter.imgfile,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createdby != null" >
+         and createdBy = #{parameter.createdby,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createddatetime != null" >
+         and createdDateTime = #{parameter.createddatetime,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.detail != null" >
+         and detail = #{parameter.detail,jdbcType=LONGVARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type_id, status, brandId, number, coupons, level, address, imgFile, createdBy, 
+    createdDateTime
+  </sql>
+  <sql id="Blob_Column_List" >
+    detail
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_merch_notice
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from tb_merch_notice
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_merch_notice
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_merch_notice
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbMerchNotice" >
+    insert into hgl.tb_merch_notice (id, type_id, status, 
+      brandId, number, coupons, 
+      level, address, imgFile, 
+      createdBy, createdDateTime, detail
+      )
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{brandid,jdbcType=INTEGER}, #{number,jdbcType=DOUBLE}, #{coupons,jdbcType=DOUBLE}, 
+      #{level,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{imgfile,jdbcType=VARCHAR}, 
+      #{createdby,jdbcType=VARCHAR}, #{createddatetime,jdbcType=BIGINT}, #{detail,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbMerchNotice" >
+    insert into tb_merch_notice
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="brandid != null" >
+        brandId,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="coupons != null" >
+        coupons,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="imgfile != null" >
+        imgFile,
+      </if>
+      <if test="createdby != null" >
+        createdBy,
+      </if>
+      <if test="createddatetime != null" >
+        createdDateTime,
+      </if>
+      <if test="detail != null" >
+        detail,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null" >
+        #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=DOUBLE},
+      </if>
+      <if test="coupons != null" >
+        #{coupons,jdbcType=DOUBLE},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="imgfile != null" >
+        #{imgfile,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddatetime != null" >
+        #{createddatetime,jdbcType=BIGINT},
+      </if>
+      <if test="detail != null" >
+        #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_merch_notice
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbMerchNotice" flushCache="true" >
+    update tb_merch_notice
+    <set >
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="brandid != null" >
+        brandId = #{brandid,jdbcType=INTEGER},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=DOUBLE},
+      </if>
+      <if test="coupons != null" >
+        coupons = #{coupons,jdbcType=DOUBLE},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="imgfile != null" >
+        imgFile = #{imgfile,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=VARCHAR},
+      </if>
+      <if test="createddatetime != null" >
+        createdDateTime = #{createddatetime,jdbcType=BIGINT},
+      </if>
+      <if test="detail != null" >
+        detail = #{detail,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbMerchNotice" flushCache="true" >
+    update tb_merch_notice
+    set type_id = #{typeId,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      brandId = #{brandid,jdbcType=INTEGER},
+      number = #{number,jdbcType=DOUBLE},
+      coupons = #{coupons,jdbcType=DOUBLE},
+      level = #{level,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR},
+      imgFile = #{imgfile,jdbcType=VARCHAR},
+      createdBy = #{createdby,jdbcType=VARCHAR},
+      createdDateTime = #{createddatetime,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+</mapper>

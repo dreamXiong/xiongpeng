@@ -1,0 +1,29 @@
+@charset "utf-8";
+/* 新闻列表页面 */
+.news .news-left,.news .news-right{
+	width:593px;
+	color:#999;
+	margin:10px 0 20px 0;
+}
+.news-list a{
+	color:#929292;
+}
+.news .news-left h4,.news .news-right h4{
+	border:1px solid #fefefe;
+	margin-bottom:10px;
+	padding:10px 20px ;
+	color:#333;
+}
+.news .news-left h5,.news .news-right h5{
+	color:#666;
+	font-size:12px;
+	padding:0 20px;
+}
+.news .news-left .news-list,.news .news-right .news-list{
+	padding:10px 20px;
+	height:620px;
+}
+.news .news-left .news-list li,.news .news-right .news-list li{
+	border-bottom:1px dashed #d9d9d9;
+	line-height: 30px;
+}

@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCompanyServiceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCompanyService" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="type_id" property="typeId" jdbcType="INTEGER" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="contract" property="contract" jdbcType="VARCHAR" />
+    <result column="contract_phone" property="contractPhone" jdbcType="VARCHAR" />
+    <result column="company_tel" property="companyTel" jdbcType="VARCHAR" />
+    <result column="reg_province" property="regProvince" jdbcType="INTEGER" />
+    <result column="reg_city" property="regCity" jdbcType="INTEGER" />
+    <result column="reg_country" property="regCountry" jdbcType="INTEGER" />
+    <result column="reg_street" property="regStreet" jdbcType="INTEGER" />
+    <result column="reg_address" property="regAddress" jdbcType="VARCHAR" />
+    <result column="scope" property="scope" jdbcType="VARCHAR" />
+    <result column="company_image1" property="companyImage1" jdbcType="VARCHAR" />
+    <result column="company_image2" property="companyImage2" jdbcType="VARCHAR" />
+    <result column="company_image3" property="companyImage3" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="describes" property="describes" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="DOUBLE" />
+    <result column="lat" property="lat" jdbcType="DOUBLE" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <resultMap id="tbCompanyServiceMap" type="com.liguo.hgl.proxydao.dto.TbCompanyServiceDto" extends="BaseResultMap">
+	  <result column="provinceName" property="provinceName" jdbcType="VARCHAR" />
+	  <result column="cityName" property="cityName" jdbcType="VARCHAR" />
+	  <result column="countryName" property="countryName" jdbcType="VARCHAR" />
+	  <result column="streetName" property="streetName" jdbcType="VARCHAR" />
+	  <result column="tName" property="tName" jdbcType="VARCHAR" />
+	  <result column="balance" property="balance" jdbcType="VARCHAR" />
+  </resultMap> 
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.typeId != null" >
+         and type_id = #{parameter.typeId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.companyName != null" >
+         and company_name = #{parameter.companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contract != null" >
+         and contract = #{parameter.contract,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.contractPhone != null" >
+         and contract_phone = #{parameter.contractPhone,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyTel != null" >
+         and company_tel = #{parameter.companyTel,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.regProvince != null" >
+         and reg_province = #{parameter.regProvince,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCity != null" >
+         and reg_city = #{parameter.regCity,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regCountry != null" >
+         and reg_country = #{parameter.regCountry,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regStreet != null" >
+         and reg_street = #{parameter.regStreet,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.regAddress != null" >
+         and reg_address = #{parameter.regAddress,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.scope != null" >
+         and scope = #{parameter.scope,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyImage1 != null" >
+         and company_image1 = #{parameter.companyImage1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyImage2 != null" >
+         and company_image2 = #{parameter.companyImage2,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyImage3 != null" >
+         and company_image3 = #{parameter.companyImage3,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.describes != null" >
+         and describes = #{parameter.describes,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.lon != null" >
+         and lon = #{parameter.lon,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.lat != null" >
+         and lat = #{parameter.lat,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, type_id, company_name, contract, contract_phone, company_tel, reg_province, reg_city, 
+    reg_country, reg_street, reg_address, scope, company_image1, company_image2, company_image3, 
+    remark, describes, lon, lat, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_company_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_company_service
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_company_service
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_company_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCompanyService" >
+    insert into hgl.tb_company_service (id, type_id, company_name, 
+      contract, contract_phone, company_tel, 
+      reg_province, reg_city, reg_country, 
+      reg_street, reg_address, scope, 
+      company_image1, company_image2, company_image3, 
+      remark, describes, lon, 
+      lat, version)
+    values (#{id,jdbcType=INTEGER}, #{typeId,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR}, 
+      #{contract,jdbcType=VARCHAR}, #{contractPhone,jdbcType=VARCHAR}, #{companyTel,jdbcType=VARCHAR}, 
+      #{regProvince,jdbcType=INTEGER}, #{regCity,jdbcType=INTEGER}, #{regCountry,jdbcType=INTEGER}, 
+      #{regStreet,jdbcType=INTEGER}, #{regAddress,jdbcType=VARCHAR}, #{scope,jdbcType=VARCHAR}, 
+      #{companyImage1,jdbcType=VARCHAR}, #{companyImage2,jdbcType=VARCHAR}, #{companyImage3,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{describes,jdbcType=VARCHAR}, #{lon,jdbcType=DOUBLE}, 
+      #{lat,jdbcType=DOUBLE}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCompanyService" useGeneratedKeys="true" keyProperty="id" >
+    insert into tb_company_service
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeId != null" >
+        type_id,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="contract != null" >
+        contract,
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone,
+      </if>
+      <if test="companyTel != null" >
+        company_tel,
+      </if>
+      <if test="regProvince != null" >
+        reg_province,
+      </if>
+      <if test="regCity != null" >
+        reg_city,
+      </if>
+      <if test="regCountry != null" >
+        reg_country,
+      </if>
+      <if test="regStreet != null" >
+        reg_street,
+      </if>
+      <if test="regAddress != null" >
+        reg_address,
+      </if>
+      <if test="scope != null" >
+        scope,
+      </if>
+      <if test="companyImage1 != null" >
+        company_image1,
+      </if>
+      <if test="companyImage2 != null" >
+        company_image2,
+      </if>
+      <if test="companyImage3 != null" >
+        company_image3,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="describes != null" >
+        describes,
+      </if>
+      <if test="lon != null" >
+        lon,
+      </if>
+      <if test="lat != null" >
+        lat,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeId != null" >
+        #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="regProvince != null" >
+        #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage1 != null" >
+        #{companyImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage2 != null" >
+        #{companyImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage3 != null" >
+        #{companyImage3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="lon != null" >
+        #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_company_service
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCompanyService" flushCache="true" >
+    update tb_company_service
+    <set >
+      <if test="typeId != null" >
+        type_id = #{typeId,jdbcType=INTEGER},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="contract != null" >
+        contract = #{contract,jdbcType=VARCHAR},
+      </if>
+      <if test="contractPhone != null" >
+        contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="companyTel != null" >
+        company_tel = #{companyTel,jdbcType=VARCHAR},
+      </if>
+      <if test="regProvince != null" >
+        reg_province = #{regProvince,jdbcType=INTEGER},
+      </if>
+      <if test="regCity != null" >
+        reg_city = #{regCity,jdbcType=INTEGER},
+      </if>
+      <if test="regCountry != null" >
+        reg_country = #{regCountry,jdbcType=INTEGER},
+      </if>
+      <if test="regStreet != null" >
+        reg_street = #{regStreet,jdbcType=INTEGER},
+      </if>
+      <if test="regAddress != null" >
+        reg_address = #{regAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="scope != null" >
+        scope = #{scope,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage1 != null" >
+        company_image1 = #{companyImage1,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage2 != null" >
+        company_image2 = #{companyImage2,jdbcType=VARCHAR},
+      </if>
+      <if test="companyImage3 != null" >
+        company_image3 = #{companyImage3,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="describes != null" >
+        describes = #{describes,jdbcType=VARCHAR},
+      </if>
+      <if test="lon != null" >
+        lon = #{lon,jdbcType=DOUBLE},
+      </if>
+      <if test="lat != null" >
+        lat = #{lat,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCompanyService" flushCache="true" >
+    update tb_company_service
+    set type_id = #{typeId,jdbcType=INTEGER},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      contract = #{contract,jdbcType=VARCHAR},
+      contract_phone = #{contractPhone,jdbcType=VARCHAR},
+      company_tel = #{companyTel,jdbcType=VARCHAR},
+      reg_province = #{regProvince,jdbcType=INTEGER},
+      reg_city = #{regCity,jdbcType=INTEGER},
+      reg_country = #{regCountry,jdbcType=INTEGER},
+      reg_street = #{regStreet,jdbcType=INTEGER},
+      reg_address = #{regAddress,jdbcType=VARCHAR},
+      scope = #{scope,jdbcType=VARCHAR},
+      company_image1 = #{companyImage1,jdbcType=VARCHAR},
+      company_image2 = #{companyImage2,jdbcType=VARCHAR},
+      company_image3 = #{companyImage3,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      describes = #{describes,jdbcType=VARCHAR},
+      lon = #{lon,jdbcType=DOUBLE},
+      lat = #{lat,jdbcType=DOUBLE},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectTbCompanyServicePage" resultMap="tbCompanyServiceMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+	  select 
+			tcs.* ,
+			(select name from tb_province_info where id = tcs.reg_province) as provinceName,
+			(select name from tb_city_info where id = tcs.reg_city) as cityName,
+			(select name from tb_country_info where id = tcs.reg_country) as countryName,
+			(select name from tb_street_info where id = tcs.reg_street) as streetName,
+			tct.name as tName
+		from tb_company_service tcs
+		left join tb_company_type tct on tct.id = tcs.type_id
+		where 1=1
+		 <if test="parameter.id != null" >
+         	and tcs.id = #{parameter.id,jdbcType=INTEGER}
+      	 </if>
+      	 <if test="parameter.typeId != null" >
+         	and tcs.type_id = #{parameter.typeId,jdbcType=INTEGER}
+      	 </if>
+      	 <if test="parameter.companyName != null" >
+         	and tcs.company_name like '%${parameter.companyName}%'
+      	 </if>
+      	 <if test="parameter.address != null and parameter.address !=''" >
+     		and tcs.reg_city = (select id from tb_city_info where name = #{parameter.address,jdbcType=VARCHAR} limit 1)
+   		 </if>
+  </select>
+  
+  <select id="selectTbCompanyService" resultMap="tbCompanyServiceMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+	  select 
+			tcs.* ,
+			(select name from tb_province_info where id = tcs.reg_province) as provinceName,
+			(select name from tb_city_info where id = tcs.reg_city) as cityName,
+			(select name from tb_country_info where id = tcs.reg_country) as countryName,
+			(select name from tb_street_info where id = tcs.reg_street) as streetName,
+			GetShortDistance(tcs.lon,tcs.lat,#{parameter.lon,jdbcType=DOUBLE},#{parameter.lat,jdbcType=DOUBLE}) as balance,
+			tct.name as tName
+		from tb_company_service tcs
+		left join tb_company_type tct on tct.id = tcs.type_id
+		where 1=1
+		 <if test="parameter.id != null" >
+         	and tcs.id = #{parameter.id,jdbcType=INTEGER}
+      	 </if>
+      	 <if test="parameter.typeId != null" >
+         	and tcs.type_id = #{parameter.typeId,jdbcType=INTEGER}
+      	 </if>
+      	 <if test="parameter.companyName != null" >
+         	and tcs.company_name like '%${parameter.companyName}%'
+      	 </if>
+      	 <if test="parameter.address != null and parameter.address !=''" >
+     		and tcs.reg_city = (select id from tb_city_info where name = #{parameter.address,jdbcType=VARCHAR} limit 1)
+   		 </if>
+      	 order by balance
+  </select>
+</mapper>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>产品管理</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+  <script src="js/jquery.slimscroll.min.js"></script>
+  <script src="js/uploadPreview.min.js"></script>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+	<header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+        	<a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+        	<a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+        	<a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-dashboard"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="javasript:;"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+            <li class="active"><a href="javasript:;"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="javascript:;">
+            <i class="fa fa-th"></i> <span>产品管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active "><a href="javasript:;"><i class="fa fa-circle-o"></i> 产品管理</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i>
+            <span>活动管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 秒杀管理</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 优惠券</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 积分管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-laptop"></i>
+            <span>广告管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 添加广告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-edit"></i>
+            <span>系统管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-tag"></i>
+            <span>招商管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 招商详情</a></li>
+          </ul>
+        </li>
+    	</ul>
+    </section>
+  </aside>
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>产品管理</small>
+      </h1>
+    </section>
+    <section class="content">
+    	<div class="row no-margin">
+    		<div class="box box-primary">
+    			 <div class="box-body">
+             <form action="#" class="form-horizontal">
+              <div  class="col-sm-4">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">名称</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                  <button type="button" class="btn btn-primary">查询</button>
+                  <button type="button" class="btn btn-info">添加</button>
+              </div>
+              <div class="col-sm-12">
+                <table class="table table-bordered table-hover dataTable text-center table-bordered">
+                  <tr class="info">
+                    <th>名称</th>
+                    <th>分类</th>
+                    <th>品牌</th>
+                    <th>附加属性</th>
+                    <th>操作选项</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      维修级尖嘴大力钳@TAJIMA/田岛
+                    </td>
+                    <td>
+                      手动工具-扳手-呆扳手
+                    </td>
+                    <td>
+                      TAJIMA/田岛
+                    </td>
+                    <td>
+                      价格/规格/材质/产地/开口半径/开口宽度
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm">详情</button>
+                      <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">修改</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+                <div class="col-sm-12 text-right">
+                  <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate">
+                    <ul class="pagination">
+                      <li class="paginate_button previous disabled">
+                        <a href="#">
+                          <span>&laquo;</span>
+                        </a>
+                      </li>
+                      <li class="paginate_button active">
+                        <a href="#">1</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">2</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">3</a>
+                      </li>
+                      <li class="paginate_button ">
+                        <a href="#">4</a>
+                      </li>
+                      <li class="paginate_button previous">
+                        <a href="#">
+                          <span>&raquo;</span>
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+             </form>
+    			 </div>
+    		</div>
+    	</div>
+    </section>
+  </div>
+</div>
+<!-- 模态框 -->
+<div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title"><strong>修改</strong></h4>
+      </div>
+      <div class="modal-body">
+        <form action="#" class="form-horizontal">
+            <div class="form-group">
+              <label class="col-sm-2 control-label">品牌</label>
+              <div class="col-sm-9">
+                <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">分类</label>
+              <div class="col-sm-9">
+                <div class="row">
+                  <div class="col-sm-6">
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="col-sm-6">
+                    <select class="form-control">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">名称</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">货号</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">计量单位</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">产品图片</label>
+              <div class="col-sm-9">
+                <div class="col-sm-3">
+                  <input type="file" id="input2">
+                  <div id="imgdiv">
+                    <img id="imgShow">
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <div class="col-sm-3">
+                  <input type="file">
+                  <div>
+                    <img>
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <div class="col-sm-3">
+                  <input type="file">
+                  <div>
+                    <img>
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label" style="padding-left:0;padding-right:0">产品描述图片</label>
+              <div class="col-sm-9">
+                <div class="col-sm-3">
+                  <input type="file">
+                  <div>
+                    <img>
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <div class="col-sm-3">
+                  <input type="file">
+                  <div>
+                    <img>
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+                <div class="col-sm-3">
+                  <input type="file">
+                  <div>
+                    <img>
+                  </div>
+                  <span class="glyphicon glyphicon-plus"></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-2 control-label">描述</label>
+              <div class="col-sm-9">
+                <textarea type="text" class="form-control" rows="5"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="col-sm-2 control-label">附加属性</label>
+              <div class="col-sm-9 form-line" id="add">
+                <div class="add">
+                <input type="text" class="form-control" readonly value="价格">
+                <input type="text" class="form-control" readonly value="规格">
+                <input type="text" class="form-control" readonly value="材质">
+                <div class="pull-left">
+                  <input type="text" class="form-control">
+                  <span class="close inp-close">&times;</span>
+                </div>
+                <div class="pull-left">
+                  <input type="text" class="form-control">
+                  <span class="close inp-close">&times;</span>
+                </div>
+                <div class="pull-left">
+                  <input type="text" class="form-control">
+                  <span class="close inp-close">&times;</span>
+                </div>
+                </div>
+                <a href="javascript:;" class="btn btn-default" id="addInput">添加...</a>
+              </div>
+            </div> 
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+</html>
+<script>
+  $(function() {
+    $('.add').delegate('.inp-close','click',function(){
+      $(this).parent('div').remove();
+    })
+    $('#addInput').on('click',function(){
+      var div= $('<div class="pull-left">' 
+                   +' <input type="text" class="form-control">'
+                    +'<span class="close inp-close">×</span>'
+                  +'</div>')
+      if($('.add .pull-left').length<9){
+        $('.add').append(div)
+      }
+    })
+   
+
+  });
+  window.onload = function () { 
+    new uploadPreview({ UpBtn: "input2", DivShow: "imgdiv", ImgShow: "imgShow" });
+  }
+</script>

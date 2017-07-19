@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbOrderTrackingMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbOrderTracking" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_group_id" property="orderGroupId" jdbcType="INTEGER" />
+    <result column="order_state" property="orderState" jdbcType="INTEGER" />
+    <result column="operate_name" property="operateName" jdbcType="VARCHAR" />
+    <result column="operate_by" property="operateBy" jdbcType="INTEGER" />
+    <result column="operate_by_admin" property="operateByAdmin" jdbcType="INTEGER" />
+    <result column="operate_dt" property="operateDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.OrderTrackingDto" extends="BaseResultMap">
+  	<result column="userName" property="userName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderGroupId != null" >
+         and order_group_id = #{parameter.orderGroupId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderState != null" >
+         and order_state = #{parameter.orderState,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateName != null" >
+         and operate_name = #{parameter.operateName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.operateBy != null" >
+         and operate_by = #{parameter.operateBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateByAdmin != null" >
+         and operate_by_admin = #{parameter.operateByAdmin,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateDt != null" >
+         and operate_dt = #{parameter.operateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+ 
+    <sql id="Object_Where_Clause_Status" >
+	    <trim prefix="where" prefixOverrides="and|or" >
+	      <if test="parameter.orderGroupId != null" >
+	         and order_group_id = #{parameter.orderGroupId,jdbcType=INTEGER}
+	      </if>	      
+        	 and order_state in (200,208,210,212)	      
+	      <if test="parameter.operateName != null" >
+	         and operate_name = #{parameter.operateName,jdbcType=VARCHAR}
+	      </if>
+	      <if test="parameter.operateby != null" >
+	         and operateBy = #{parameter.operateby,jdbcType=INTEGER}
+	      </if>
+	      <if test="parameter.operateDt != null" >
+	         and operate_dt = #{parameter.operateDt,jdbcType=BIGINT}
+	      </if>
+	      <if test="parameter.version != null" >
+	         and version = #{parameter.version,jdbcType=INTEGER}
+	      </if>
+	    </trim>
+  </sql>
+  
+  <sql id="Base_Column_List" >
+    id, order_group_id, order_state, operate_name, operate_by, operate_by_admin, operate_dt, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_order_tracking
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+    <select id="selectByObjectStatus" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_order_tracking
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause_Status" /> 
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_order_tracking
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_order_tracking
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_order_tracking
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbOrderTracking" >
+    insert into hgl.tb_order_tracking (id, order_group_id, order_state, 
+      operate_name, operate_by, operate_by_admin, 
+      operate_dt, version)
+    values (#{id,jdbcType=INTEGER}, #{orderGroupId,jdbcType=INTEGER}, #{orderState,jdbcType=INTEGER}, 
+      #{operateName,jdbcType=VARCHAR}, #{operateBy,jdbcType=INTEGER}, #{operateByAdmin,jdbcType=INTEGER}, 
+      #{operateDt,jdbcType=BIGINT}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbOrderTracking" >
+    insert into tb_order_tracking
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderGroupId != null" >
+        order_group_id,
+      </if>
+      <if test="orderState != null" >
+        order_state,
+      </if>
+      <if test="operateName != null" >
+        operate_name,
+      </if>
+      <if test="operateBy != null" >
+        operate_by,
+      </if>
+      <if test="operateByAdmin != null" >
+        operate_by_admin,
+      </if>
+      <if test="operateDt != null" >
+        operate_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderGroupId != null" >
+        #{orderGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="operateName != null" >
+        #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null" >
+        #{operateBy,jdbcType=INTEGER},
+      </if>
+      <if test="operateByAdmin != null" >
+        #{operateByAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_order_tracking
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbOrderTracking" flushCache="true" >
+    update tb_order_tracking
+    <set >
+      <if test="orderGroupId != null" >
+        order_group_id = #{orderGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="orderState != null" >
+        order_state = #{orderState,jdbcType=INTEGER},
+      </if>
+      <if test="operateName != null" >
+        operate_name = #{operateName,jdbcType=VARCHAR},
+      </if>
+      <if test="operateBy != null" >
+        operate_by = #{operateBy,jdbcType=INTEGER},
+      </if>
+      <if test="operateByAdmin != null" >
+        operate_by_admin = #{operateByAdmin,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        operate_dt = #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbOrderTracking" flushCache="true" >
+    update tb_order_tracking
+    set order_group_id = #{orderGroupId,jdbcType=INTEGER},
+      order_state = #{orderState,jdbcType=INTEGER},
+      operate_name = #{operateName,jdbcType=VARCHAR},
+      operate_by = #{operateBy,jdbcType=INTEGER},
+      operate_by_admin = #{operateByAdmin,jdbcType=INTEGER},
+      operate_dt = #{operateDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <insert id="batchInsert" parameterType="ArrayList" >
+    insert into hgl.tb_order_tracking (order_group_id, order_state, 
+      operate_name, operateBy, operate_dt)
+    values 
+     <foreach collection="list" item="obj" index="index" separator="," >
+	    (#{obj.orderGroupId,jdbcType=INTEGER}, #{obj.orderState,jdbcType=INTEGER}, 
+	      #{obj.operateName,jdbcType=VARCHAR}, #{obj.operateby,jdbcType=INTEGER}, #{obj.operateDt,jdbcType=BIGINT}
+	      )
+      </foreach>
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  
+  <select id="selectByObjectDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDto">
+    	select tot.*,case when tot.operateBy is not null then (select name from tb_web_user where id = tot.operateBy)
+                     else
+						(select user_name from tb_admin_user where id = tot.operateByadmin)
+					end as userName from tb_order_tracking tot
+					where 1=1
+    <if test="parameter.orderGroupId != null">
+    	and tot.order_group_id =#{parameter.orderGroupId,jdbcType=VARCHAR}
+    </if>  
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  
+</mapper>

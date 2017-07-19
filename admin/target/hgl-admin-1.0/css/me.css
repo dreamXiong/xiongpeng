@@ -1,0 +1,161 @@
+@charset "utf-8";
+a{
+	color:#999;
+}
+.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th{
+	text-align:center;
+}
+label{
+	width:66px;
+	margin:10px 0;
+	vertical-align: middle;
+}
+input.short{
+	width:100px;
+	text-align: center;
+}
+input.long{
+	width:350px;
+}
+button{
+	background:#3c8dbc;
+	color:#fff;
+	outline: none;
+	border:none;
+	height: 32px;
+	line-height: 32px;
+	margin-left:-4px;
+	vertical-align: middle;
+	margin-top:-3px;
+}
+.pgBtn button{
+	margin-left:0;
+	height:auto;
+	line-height:1;
+	color:#000;
+	border: 1px solid #bcbcbc;
+}
+input{
+	width:180px;
+	border:1px solid #eee;
+	padding:6px;
+	outline: none;
+	height:32px;
+	line-height: 32px;
+}
+input:hover,input:focus{
+	border-color:#3c8dbc;
+}
+td img{
+	width:80px;
+	height:80px;
+	margin-right:10px;
+}
+td dt{
+	float: left;
+}
+td dd{
+	text-align:left;
+}
+.deal{
+	margin:10px 0;
+}
+.deal a{
+	padding:10px;
+}
+.deal a.active{
+	background:#3c8dbc;
+	color:#fff;
+}
+.head{
+	line-height: 30px;
+	color: #999;
+	background:#f5f5f5;
+	margin-bottom:10px;
+}
+.head span{
+	color:#333;
+	display:inline-block;
+}
+.indent-size{
+	width:280px;     
+}
+.indent-time{
+	width:280px;
+}
+.indent-brand{  
+	width:280px;
+}
+.indent-sum,.indent-state{
+	width:150px;
+}
+/*************************************************  订单详情 ***********************************************/
+.details h3{
+	font-size:14px;
+	font-weight:600;
+	padding:10px;
+	color:#333;
+	background:#f5f5f5!important;
+}
+.details em{
+	font-style: normal;
+}
+.details p{
+	margin-bottom: 0;
+}
+.details-bg{
+	margin:20px 0 30px;
+	position: relative;
+	background: url(../images/step1.png) no-repeat 80px 2px;
+	height:36px;
+}
+.details-bg.two{
+	background-position:80px -32px;
+}
+.details-bg.three{
+	background-position:80px -62px;
+}
+.details-bg.fore{
+	background-position:80px -92px;
+}
+.details-bg .po,.details-bg .bo{
+	position: absolute;
+}
+.details-bg .po span,.details-bg .bo span{
+	width:180px;
+	display: inline-block;
+	text-align:center;
+}
+.details-bg .po{
+	top:-30px;
+}
+.details-bg .bo{
+	bottom:-30px;
+}
+
+
+
+
+       
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

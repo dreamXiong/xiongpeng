@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" class="classification">
+<head>
+	<meta charset="UTF-8">
+	<title>分类</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="js/base.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<style>
+	
+	
+	</style>
+</head>	
+<body>
+	
+<header class="text-center">
+	<span class="icon-angle-left text-center" onclick="javascript :history.back(-1);"></span>
+	分类
+	<span class="icon-reorder"></span>
+	<ul class="nav">
+		<li>
+			<a href="index.html">
+				<span class="icon-home"></span>
+				首页
+			</a>
+		</li>
+		<li>
+			<a href="class.html">
+				<span class="icon-th-list"></span>
+				分类
+			</a>
+		</li>
+		<li>
+			<a href="javascript:;">
+				<span class="icon-shopping-cart"></span>
+				选购
+			</a>
+		</li>
+		<li>
+			<a href="选购页面.html">
+				<span class="icon-user"></span>
+				我的
+			</a>
+		</li>
+	</ul>
+</header>
+
+<div class="class-nav">
+	<div class="class-nav-l">
+		<ul>
+			<li class="cur">手动工具</li>
+			<li>电动工具</li>
+			<li>橱柜</li>
+			<li>电器</li>
+			<li>卫浴</li>
+			<li>洁具</li>
+			<li>水暖</li>
+			<li>交电</li>
+			<li>照明</li>
+		</ul>
+	</div>
+	<div class="class-nav-r">
+		<div class="nav-r-main">
+			<div class="hgl-list">
+				<h3>产品分类</h3>
+				<ul class="clearfix">
+					<li><a href="javascript:;">扳手</a></li>
+					<li><a href="javascript:;">六角螺丝</a></li>
+					<li><a href="javascript:;">螺丝刀</a></li>
+					<li><a href="javascript:;">钳子</a></li>
+					<li><a href="javascript:;">扳手</a></li>
+					<li><a href="javascript:;">六角螺丝</a></li>
+					<li><a href="javascript:;">螺丝刀</a></li>
+					<li><a href="javascript:;">钳子</a></li>
+					<li><a href="javascript:;">扳手</a></li>
+					<li><a href="javascript:;">六角螺丝</a></li>
+					<li><a href="javascript:;">螺丝刀</a></li>
+					<li><a href="javascript:;">钳子</a></li>
+					<li><a href="javascript:;">扳手</a></li>
+					<li><a href="javascript:;">六角螺丝</a></li>
+				</ul>
+			</div>
+			<div class="hgl-list">
+				<h3>品牌分类</h3>
+				<ul class="clearfix">
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">螺丝牌刀</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌</a></li>
+					<li><a href="javascript:;">坤哥牌扳手</a></li>
+					<li><a href="javascript:;">坤哥牌丝</a></li>
+					<li><a href="javascript:;">坤哥牌螺刀</a></li>
+					<li><a href="javascript:;">坤哥牌钳子坤哥牌钳子</a></li>
+					<li><a href="javascript:;">坤哥牌扳手</a></li>
+					<li><a href="javascript:;">坤哥牌螺丝</a></li>
+				</ul>
+			</div>	
+		</div>
+	</div>
+</div>
+
+
+  		
+</body>
+<script>
+	$(function() {
+		var divH = 44;
+		var winH = $(window).height();
+		$('.class-nav-l').height(winH-divH);
+		$('.class-nav-r').height(winH-divH);
+		$('.class-nav-l li').click(function(event) {
+			$(this).addClass('cur').siblings('li').removeClass('cur')
+		});
+		
+	});
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>load</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<!-- <script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script> -->
+</head>	
+<body>
+	<script>
+		 var oBody =document.getElementsByTagName('body')[0];
+		 var winH = window.screen.availHeight;
+		 var winW = window.screen.availWidth;
+		 var oDiv = document.createElement('div');
+		 oBody.appendChild(oDiv);
+		 oDiv.id = 'xiongpeng';
+		 oDiv.style.width = winW + 'px';
+		 oDiv.style.height = winH + 'px';
+		 oDiv.style.background = 'url(images/open.gif) no-repeat center center rgba(0,0,0,.1)';
+
+	// background: url(../images/noload.png) no-repeat center center;
+	</script>
+	
+	
+</body>
+
+
+</html>
+
+
+<script>
+	window.onload=function(){
+		var oDiv = document.getElementById('xiongpeng');
+		oDiv.style.display = 'none';
+	}
+</script>
+

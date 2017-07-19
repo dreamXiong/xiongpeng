@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbSaveInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbSaveInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="save_id" property="saveId" jdbcType="INTEGER" />
+    <result column="save_name" property="saveName" jdbcType="VARCHAR" />
+    <result column="brand_id" property="brandId" jdbcType="INTEGER" />
+    <result column="brand_name" property="brandName" jdbcType="VARCHAR" />
+    <result column="save_type" property="saveType" jdbcType="INTEGER" />
+    <result column="save_url" property="saveUrl" jdbcType="VARCHAR" />
+    <result column="save_image" property="saveImage" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="bind" property="bind" jdbcType="INTEGER" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.UserLetterDto" >
+  <result column="userId" property="userId" jdbcType="INTEGER" />
+    <result column="userName" property="userName" jdbcType="VARCHAR" />
+    <result column="shopId" property="shopId" jdbcType="INTEGER" />
+    <result column="shopName" property="shopName" jdbcType="VARCHAR" />
+     <result column="letterCount" property="letterCount" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.saveId != null" >
+         and save_id = #{parameter.saveId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.saveName != null" >
+         and save_name = #{parameter.saveName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.brandId != null" >
+         and brand_id = #{parameter.brandId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.brandName != null" >
+         and brand_name = #{parameter.brandName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.saveType != null" >
+         and save_type = #{parameter.saveType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.saveUrl != null" >
+         and save_url = #{parameter.saveUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.saveImage != null" >
+         and save_image = #{parameter.saveImage,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.price != null" >
+         and price = #{parameter.price,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.bind != null" >
+         and bind = #{parameter.bind,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, save_id, save_name, brand_id, brand_name, save_type, save_url, save_image, price, 
+    create_dt, create_by, bind, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_save_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_save_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_save_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_save_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbSaveInfo" >
+    insert into hgl.tb_save_info (id, save_id, save_name, 
+      brand_id, brand_name, save_type, 
+      save_url, save_image, price, 
+      create_dt, create_by, bind, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{saveId,jdbcType=INTEGER}, #{saveName,jdbcType=VARCHAR}, 
+      #{brandId,jdbcType=INTEGER}, #{brandName,jdbcType=VARCHAR}, #{saveType,jdbcType=INTEGER}, 
+      #{saveUrl,jdbcType=VARCHAR}, #{saveImage,jdbcType=VARCHAR}, #{price,jdbcType=DOUBLE}, 
+      #{createDt,jdbcType=BIGINT}, #{createBy,jdbcType=INTEGER}, #{bind,jdbcType=INTEGER}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbSaveInfo" >
+    insert into tb_save_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="saveId != null" >
+        save_id,
+      </if>
+      <if test="saveName != null" >
+        save_name,
+      </if>
+      <if test="brandId != null" >
+        brand_id,
+      </if>
+      <if test="brandName != null" >
+        brand_name,
+      </if>
+      <if test="saveType != null" >
+        save_type,
+      </if>
+      <if test="saveUrl != null" >
+        save_url,
+      </if>
+      <if test="saveImage != null" >
+        save_image,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="bind != null" >
+        bind,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="saveId != null" >
+        #{saveId,jdbcType=INTEGER},
+      </if>
+      <if test="saveName != null" >
+        #{saveName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveType != null" >
+        #{saveType,jdbcType=INTEGER},
+      </if>
+      <if test="saveUrl != null" >
+        #{saveUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="saveImage != null" >
+        #{saveImage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="bind != null" >
+        #{bind,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_save_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbSaveInfo" flushCache="true" >
+    update tb_save_info
+    <set >
+      <if test="saveId != null" >
+        save_id = #{saveId,jdbcType=INTEGER},
+      </if>
+      <if test="saveName != null" >
+        save_name = #{saveName,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null" >
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="brandName != null" >
+        brand_name = #{brandName,jdbcType=VARCHAR},
+      </if>
+      <if test="saveType != null" >
+        save_type = #{saveType,jdbcType=INTEGER},
+      </if>
+      <if test="saveUrl != null" >
+        save_url = #{saveUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="saveImage != null" >
+        save_image = #{saveImage,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="bind != null" >
+        bind = #{bind,jdbcType=INTEGER},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbSaveInfo" flushCache="true" >
+    update tb_save_info
+    set save_id = #{saveId,jdbcType=INTEGER},
+      save_name = #{saveName,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      brand_name = #{brandName,jdbcType=VARCHAR},
+      save_type = #{saveType,jdbcType=INTEGER},
+      save_url = #{saveUrl,jdbcType=VARCHAR},
+      save_image = #{saveImage,jdbcType=VARCHAR},
+      price = #{price,jdbcType=DOUBLE},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      create_by = #{createBy,jdbcType=INTEGER},
+      bind = #{bind,jdbcType=INTEGER},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  	 <!-- 分页 -->
+  <select id="selectByObjectPage" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+  	select 
+  	<include refid="Base_Column_List" />
+  	from tb_save_info		
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="parameter.saveType != null and parameter.saveType!=''">
+			and save_type = #{parameter.saveType,jdbcType=INTEGER}
+		</if>	
+		<if test="parameter.createBy != null and parameter.createBy!=''">
+			and create_by = #{parameter.createBy,jdbcType=INTEGER}
+		</if>	
+  	</trim>	
+  	<if test="orderByClause!=null">
+		order by ${orderByClause}
+	</if>
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select> 
+  
+  <!-- 查询产品是否已经被收藏 -->
+  <select id="selectSaveInfo" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_save_info
+    where save_id =#{parameter.saveId,jdbcType=INTEGER}
+    and save_type =#{parameter.saveType,jdbcType=INTEGER}
+    and create_by =#{parameter.createBy,jdbcType=INTEGER}
+  </select>
+  
+  
+  <select id="getUserLetter" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+   
+	select w.id as userId,w.name as userName,v.save_id as shopId,v.save_name as shopName,bb.count1 as letterCount from 
+	tb_web_user w left join tb_save_info v   on v.save_id = w.shop_id left join
+(select count(*) as count1,s.shopId as sid from tb_stand_letter s where s.reserved= #{parameter.reserved,jdbcType=INTEGER}  
+and s.user_id =#{parameter.userId,jdbcType=INTEGER}
+ group by s.shopId) bb on bb.sid=v.save_id
+where v.create_by=#{parameter.userId,jdbcType=INTEGER} and v.save_type = #{parameter.type,jdbcType=INTEGER} order by bb.count1 desc
+
+   
+  </select>
+  
+    <select id="getShopLetter" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+   
+	select w.id as userId,w.name as userName,bb.count1 as letterCount from tb_web_user w
+       left join tb_save_info s on  s.create_by = w.id 
+       left join 
+       ( select count(*) as count1,s.recipientId as userId from tb_stand_letter s 
+       		where s.reserved= #{parameter.reserved,jdbcType=INTEGER}   and s.user_id = #{parameter.userId,jdbcType=INTEGER} group by s.recipientId) bb on bb.userId=w.id
+     
+       where 1=1 and s.save_id =#{parameter.shopId,jdbcType=INTEGER} and s.save_type =#{parameter.type,jdbcType=INTEGER} 
+       and w.id != #{parameter.userId,jdbcType=INTEGER}
+       order by bb.count1 desc
+
+   
+  </select>
+</mapper>

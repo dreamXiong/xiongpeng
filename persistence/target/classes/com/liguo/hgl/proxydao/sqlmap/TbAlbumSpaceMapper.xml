@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbAlbumSpaceMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbAlbumSpace" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="image_name_old" property="imageNameOld" jdbcType="VARCHAR" />
+    <result column="image_url" property="imageUrl" jdbcType="VARCHAR" />
+    <result column="image_tag_name" property="imageTagName" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="DATE" />
+    <result column="update_name" property="updateName" jdbcType="VARCHAR" />
+    <result column="download_count" property="downloadCount" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.imageNameOld != null" >
+         and image_name_old = #{parameter.imageNameOld,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.imageUrl != null" >
+         and image_url = #{parameter.imageUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.imageTagName != null" >
+         and image_tag_name = #{parameter.imageTagName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.updateTime != null" >
+         and update_time = #{parameter.updateTime,jdbcType=DATE}
+      </if>
+      <if test="parameter.updateName != null" >
+         and update_name = #{parameter.updateName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.downloadCount != null" >
+         and download_count = #{parameter.downloadCount,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.imageTagNameAll != null" >
+         and (image_tag_name!='' and  image_tag_name is not null)
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, image_name_old,  image_url, image_tag_name, update_time, update_name, 
+    download_count, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_album_space
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_album_space
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_album_space
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_album_space
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbAlbumSpace" >
+    insert into hgl.tb_album_space (id, image_name_old,  
+      image_url, image_tag_name, update_time, 
+      update_name, download_count, version
+      )
+    values (#{id,jdbcType=INTEGER}, #{imageNameOld,jdbcType=VARCHAR}, 
+      #{imageUrl,jdbcType=VARCHAR}, #{imageTagName,jdbcType=VARCHAR}, #{updateTime,jdbcType=DATE}, 
+      #{updateName,jdbcType=VARCHAR}, #{downloadCount,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbAlbumSpace" >
+    insert into tb_album_space
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="imageNameOld != null" >
+        image_name_old,
+      </if>
+      <if test="imageUrl != null" >
+        image_url,
+      </if>
+      <if test="imageTagName != null" >
+        image_tag_name,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="updateName != null" >
+        update_name,
+      </if>
+      <if test="downloadCount != null" >
+        download_count,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="imageNameOld != null" >
+        #{imageNameOld,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageTagName != null" >
+        #{imageTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateName != null" >
+        #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadCount != null" >
+        #{downloadCount,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_album_space
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbAlbumSpace" flushCache="true" >
+    update tb_album_space
+    <set >
+      <if test="imageNameOld != null" >
+        image_name_old = #{imageNameOld,jdbcType=VARCHAR},
+      </if>
+      <if test="imageUrl != null" >
+        image_url = #{imageUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="imageTagName != null" >
+        image_tag_name = #{imageTagName,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=DATE},
+      </if>
+      <if test="updateName != null" >
+        update_name = #{updateName,jdbcType=VARCHAR},
+      </if>
+      <if test="downloadCount != null" >
+        download_count = #{downloadCount,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbAlbumSpace" flushCache="true" >
+    update tb_album_space
+    set image_name_old = #{imageNameOld,jdbcType=VARCHAR},
+      image_url = #{imageUrl,jdbcType=VARCHAR},
+      image_tag_name = #{imageTagName,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=DATE},
+      update_name = #{updateName,jdbcType=VARCHAR},
+      download_count = #{downloadCount,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select  id="findImageNowNameBatch" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tb_album_space tas
+	WHERE 
+		tas.image_url = #{parameter.url,jdbcType=VARCHAR}
+	AND tas.image_name_old IN 
+	<foreach collection="parameter.tbWapProduct" item="item" index="index" open="(" separator="," close=")"  >
+		#{item.pimgone},#{item.pimgtwo},#{item.pimgthree}
+	</foreach>
+  	
+  </select>
+  
+  <select id="searchImage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap">
+  	SELECT
+		<include refid="Base_Column_List" />
+	FROM
+		tb_album_space tas
+	WHERE
+		tas.image_name_old LIKE CONCAT('%', #{parameter.likeKey,jdbcType=VARCHAR}, '%')
+		and
+		tas.image_url = #{parameter.userId,jdbcType=INTEGER}
+  </select>
+  
+  <select id="findImageNameOldAll" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.String" >
+    select
+    image_name_old as imageNameOld
+    from tb_album_space
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+</mapper>

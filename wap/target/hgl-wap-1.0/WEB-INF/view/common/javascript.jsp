@@ -1,0 +1,9 @@
+<%@page pageEncoding="UTF-8"%>
+<script src="${ctx}/jsmin/jquery/jquery-1.12.2.min.js"></script>
+<script src="${ctx}/js/hgl/base.js"></script>
+<script src="${ctx}/js/jquery/jquery1.9.2/ui/jquery-ui.js"></script>
+<script src="${ctx}/js/common/publicCheckFormat.js"></script>
+<script src="${ctx}/js/common/common.js"></script>
+<script src="${ctx}/js/common/jquery.linkon.web.js"></script>
+<script src="${ctx}/js/hgl/jquery.lazyload.min.js"></script>
+<script src="${ctx}/js/hgl/jquery.jqzoom.js"></script>

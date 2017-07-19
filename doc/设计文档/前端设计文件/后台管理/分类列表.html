@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>分类管理</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+  <script src="js/jquery-1.12.2.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <script src="dist/js/app.min.js"></script>
+</head>
+<body class="skin-blue sidebar-mini wysihtml5-supported">
+<div class="wrapper">
+  <header class="main-header">
+  <a href="javascript:;" class="logo">
+   惠给利后台管理系统
+  </a>
+  <nav class="navbar navbar-static-top" role="navigation">
+    <div class="navbar-custom-menu">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="javascript:;">当前用户 : admin</a> 
+        </li>
+        <li>
+          <a href="javascript:;">修改密码</a>
+        </li>
+         <li>
+          <a href="javascript:;">安全退出</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+<aside class="main-sidebar">
+    <section class="sidebar" style="height: auto;">
+      <ul class="sidebar-menu">
+        <li class="header">菜单管理</li>
+        <li class="active treeview">
+          <a href="javasript:;">
+            <i class="fa fa-dashboard"></i> <span>品牌管理</span> <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="classify.html"><i class="fa fa-circle-o"></i> 类别管理</a></li>
+            <li><a href="brand-index.html"><i class="fa fa-circle-o"></i> 品牌列表</a></li>
+          </ul>
+        </li>
+        
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-pie-chart"></i>
+            <span>活动管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> 秒杀管理</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 优惠券</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> 积分管理</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-laptop"></i>
+            <span>广告管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 广告列表</a></li>
+            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 添加广告</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="javascript:;">
+            <i class="fa fa-edit"></i>
+            <span>系统管理</span>
+            <i class="fa fa-angle-left pull-right"></i>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 公告列表</a></li>
+            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 添加公告</a></li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </aside>
+
+  <div class="content-wrapper">
+    <section class="content-header">
+      <h1>
+        我的主页
+        <small>分类列表</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+        <div class="box box-primary">
+          <div class="box-body pad table-responsive">
+              <div class="fil">
+                <div>
+                  <ul class="nav text-center one">
+                    <li class="nav-title">
+                      <a href="classify-add.html">添加一级分类</a>
+                    </li>
+                    <li>
+                      <a href="javascript:;">手动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    
+                    <ul class="nav text-center two">
+                      <li class="nav-title">
+                        <a href="javascript:;">添加二级分类</a>
+                      </li>
+                      <li>
+                        <a href="javascript:;">扳手</a>
+                        <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                      </li>
+                      <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+
+
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li><li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">电动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                    <li>
+                      <a href="javascript:;">气动工具</a>
+                      <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                    </li>
+                      <ul class="nav text-center three">
+                        <li class="nav-title">
+                          <a href="javascript:;">添加三级分类</a>
+                        </li>
+                        <li>
+                          <a href="javascript:;">呆扳手</a>
+                          <div class="pull-right">
+                        <a href="classify-add.html">修改</a>
+                        <a href="classify-add.html">删除</a>
+                      </div>
+                        </li>
+                        <li>
+                          <a href="javascript:;">梅花扳手梅花扳手</a>
+                          <div class="pull-right">
+                            <a href="classify-add.html">修改</a>
+                            <a href="classify-add.html">删除</a>
+                          </div>
+                        </li>
+                        <li>
+                          <a href="javascript:;">两用扳手</a>
+                          <div class="pull-right">
+                            <a href="classify-add.html">修改</a>
+                            <a href="classify-add.html">删除</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </ul>
+                  </ul>
+                  
+                  
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+</body>
+</html>
+<script>
+  $(function() {
+    var num=null;
+    var oH  = $('.fil .one').height();
+    var tH =$('.fil .two').height();
+    var thH =$('.fil .three').height();
+    var arr=[oH,tH,thH];
+    function height(){
+    for(var i=0;i<arr.length;i++){
+      if(arr[i]-arr[i+1]>0){
+      return arr[i];
+        }
+      }
+    }
+    $('.fil .one').height(height())
+   
+
+  });
+</script>

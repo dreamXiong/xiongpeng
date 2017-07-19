@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbDealersWeixinConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbDealersWeixinConfig" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="app_id" property="appId" jdbcType="VARCHAR" />
+    <result column="mch_id" property="mchId" jdbcType="VARCHAR" />
+    <result column="app_key" property="appKey" jdbcType="VARCHAR" />
+    <result column="notify_url" property="notifyUrl" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+   <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.DealersWeixinConfigDto" extends="BaseResultMap">
+    <result column="shop_name" property="shopName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.appId != null" >
+         and app_id = #{parameter.appId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.mchId != null" >
+         and mch_id = #{parameter.mchId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.appKey != null" >
+         and app_key = #{parameter.appKey,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.notifyUrl != null" >
+         and notify_url = #{parameter.notifyUrl,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, shop_id, app_id, mch_id, app_key, notify_url, status, create_by, create_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMapDto" >
+    select tsi.shop_name,
+	       tdwc.* 
+	from tb_dealers_weixin_config tdwc
+	inner join tb_shop_info tsi on tsi.id = tdwc.shop_id
+	<if test="parameter.shopName != null and parameter.shopName != ''" >
+		where tsi.shop_name like CONCAT('%','${parameter.shopName}','%')  
+	</if>
+	order by tdwc.id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dealers_weixin_config
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_dealers_weixin_config
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_dealers_weixin_config
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbDealersWeixinConfig" >
+    insert into hgl.tb_dealers_weixin_config (shop_id, app_id, 
+      mch_id, app_key, notify_url, 
+      status, create_by, create_dt)
+    values (#{shopId,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR}, 
+      #{mchId,jdbcType=VARCHAR}, #{appKey,jdbcType=VARCHAR}, #{notifyUrl,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, #{createDt,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbDealersWeixinConfig" >
+    insert into tb_dealers_weixin_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="appId != null" >
+        app_id,
+      </if>
+      <if test="mchId != null" >
+        mch_id,
+      </if>
+      <if test="appKey != null" >
+        app_key,
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        #{mchId,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null" >
+        #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_dealers_weixin_config
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbDealersWeixinConfig" flushCache="true" >
+    update tb_dealers_weixin_config
+    <set >
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="appId != null" >
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="mchId != null" >
+        mch_id = #{mchId,jdbcType=VARCHAR},
+      </if>
+      <if test="appKey != null" >
+        app_key = #{appKey,jdbcType=VARCHAR},
+      </if>
+      <if test="notifyUrl != null" >
+        notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbDealersWeixinConfig" flushCache="true" >
+    update tb_dealers_weixin_config
+    set shop_id = #{shopId,jdbcType=INTEGER},
+      app_id = #{appId,jdbcType=VARCHAR},
+      mch_id = #{mchId,jdbcType=VARCHAR},
+      app_key = #{appKey,jdbcType=VARCHAR},
+      notify_url = #{notifyUrl,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <select id="selectByShopId" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_dealers_weixin_config
+    where shop_id = #{parameter.shopId,jdbcType=INTEGER}
+    <if test="parameter.status != null" >
+       and status = #{parameter.status,jdbcType=INTEGER}
+    </if>
+  </select>
+</mapper>

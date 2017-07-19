@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.linkon.liguo.hgl</groupId>
+		<artifactId>hgl</artifactId>
+		<version>1.0</version>
+
+	</parent>
+	<artifactId>hgl-service</artifactId>
+	<name>liguo-hgl-service</name>
+	<packaging>jar</packaging>
+	<properties>  
+		<lib.scope>provided</lib.scope>
+		<spring.version>3.2.9.RELEASE</spring.version>
+		<mybatis.version>3.2.4</mybatis.version>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.linkon.liguo.hgl</groupId>
+			<artifactId>hgl-persistence</artifactId>
+			<version>${project.parent.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>jstl</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.5</version>
+		</dependency>
+		<dependency>
+			<groupId>com.github.junrar</groupId>
+			<artifactId>junrar</artifactId>
+			<version>0.7</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>3.0.0</version>
+		</dependency>
+<!-- 		<dependency>
+			<groupId>alibaba.aliqin.fc.sms.num.send</groupId>
+			<artifactId>smssend</artifactId>
+			<version>1.0</version>
+		</dependency> -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.3.1</version>
+		</dependency>
+	</dependencies>
+</project>

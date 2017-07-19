@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>发表评价</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<link rel="stylesheet" href="layer-mobile/layer/need/layer.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<script src="layer-mobile/layer/layer.js"></script>
+	<script src="js/base.js"></script>
+</head>	
+<body>
+<div>
+	<header class="cart verify-head ">
+		<span class="icon-angle-left text-center"></span>
+		<h3 class="text-center">发表评价</h3>
+		<span class="icon-reorder"></span>
+		<ul class="nav">
+			<li>
+				<a href="index.html">
+					<span class="icon-home"></span>
+					首页
+				</a>
+			</li>
+			<li>
+				<a href="class.html">
+					<span class="icon-th-list"></span>
+					分类
+				</a>
+			</li>
+			<li>
+				<a href="javascript:;">
+					<span class="icon-shopping-cart"></span>
+					选购
+				</a>
+			</li>
+			<li>
+				<a href="选购页面.html">
+					<span class="icon-user"></span>
+					我的
+				</a>
+			</li>
+		</ul>
+	</header>
+</div>
+
+<div class="container container-order eva">
+	<div class="eva-info box-shadow">
+		<div class="box">
+			<img src="images/shoudong.png" alt="">
+			<div class="box1">
+				<p class="text-hidden">维修级尖嘴大力钳@TAJIMA/田岛田岛田岛田岛田岛</p>
+				<div class="text-red font-bold">
+					<span class="dollar">¥</span>
+					<span class="unit">50.</span>
+					<span class="mark">00</span>
+				</div>
+			</div>
+		</div>
+		<div class="star">
+			<ul>
+				<li>
+					<span>总体评价</span>
+					<nav>
+						<a href="javascript:;" class="active"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+						<a href="javascript:;"></a>
+					</nav>
+					<input type="hidden" value="1">
+				</li>
+			</ul>
+		</div>
+		<textarea name="" id=""  rows="3" placeholder="说说你对产品的描述"></textarea>
+		
+		<div class="refer">
+			<button type="button">提交</button>
+		</div>
+	</div>
+	
+</div>
+
+
+
+
+  		
+</body>
+<script>
+	$(function() {
+		var winH = $(window).height();
+		var winW = $(window).width();
+		$('body').css({
+			width:winW,
+			height:winH,
+			overflow:'hidden'
+		})
+		$('.star nav').delegate('a', 'click', function(event) {
+			var input = $(this).parents('li').find('input');
+			$(this).addClass('active');
+			$(this).prevAll().addClass('active');
+			$(this).nextAll().removeClass('active');
+			var len = $(this).parents('li').find('.active').length;
+			input.val(len);
+		});
+		$('.refer').delegate('button','click',function(){
+			var len = $('input').length;
+			for(var i=0;i<len;i++ ){
+				alert($('input').eq(i).val())
+			}
+			if($('textarea').val()=='' || $('textarea')==null){
+				alert('产品描述不能为空');
+				return false;
+			}else{
+				layer.open({
+				    content: '提交成功！',
+				    time: 2
+				});
+				$('textarea').val('');
+			}
+			
+		})
+	});
+</script>
+
+</html>
+
+

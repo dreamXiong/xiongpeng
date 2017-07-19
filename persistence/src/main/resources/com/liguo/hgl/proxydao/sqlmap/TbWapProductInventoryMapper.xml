@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWapProductInventoryMapper" >
+	<resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWapProductInventory" >
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="product_id" property="productId" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="code" property="code" jdbcType="VARCHAR" />
+		<result column="sale_inventory" property="saleInventory" jdbcType="INTEGER" />
+		<result column="total_inventory" property="totalInventory" jdbcType="INTEGER" />
+		<result column="unsale_inventory" property="unsaleInventory" jdbcType="INTEGER" />
+		<result column="sales_count" property="salesCount" jdbcType="INTEGER" />
+		<result column="attributes_values" property="attributesValues" jdbcType="VARCHAR" />
+		<result column="instock_price" property="instockPrice" jdbcType="DECIMAL" />
+		<result column="outstock_price" property="outstockPrice" jdbcType="DECIMAL" />
+		<result column="sales_price" property="salesPrice" jdbcType="DECIMAL" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="onebox_count" property="oneboxCount" jdbcType="INTEGER" />
+		<result column="remark" property="remark" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="INTEGER" />
+		<result column="deleted" property="deleted" jdbcType="INTEGER" />
+		<result column="create_by" property="createBy" jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="BIGINT" />
+		<result column="last_update_by" property="lastUpdateBy" jdbcType="VARCHAR" />
+		<result column="last_update_time" property="lastUpdateTime" jdbcType="BIGINT" />
+		<result column="spec" property="spec" jdbcType="VARCHAR" />
+		<result column="material" property="material" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.TbWapProductInventoryDto" extends="BaseResultMap" >
+		<result column="first_type" property="firstProductTypeName" jdbcType="LONGVARCHAR" />
+		<result column="second_type" property="secondProductTypeName" jdbcType="LONGVARCHAR" />
+		<result column="third_type" property="thirdProductTypeName" jdbcType="LONGVARCHAR" />
+		<result column="brand_name" property="brandName" jdbcType="LONGVARCHAR" />
+		<result column="product_name" property="productName" jdbcType="LONGVARCHAR" />
+		<result column="attributes" property="attributes" jdbcType="LONGVARCHAR" />
+		<result column="shopFlag" property="shopFlag" jdbcType="INTEGER" />
+		<result column="buyNum" property="buyNum" jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Object_Where_Clause" >
+		<trim prefix="where" prefixOverrides="and|or" >
+			<if test="parameter.productId != null" >
+         and product_id = #{parameter.productId,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.code != null" >
+         and code = #{parameter.code,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.saleInventory != null" >
+         and sale_inventory = #{parameter.saleInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.totalInventory != null" >
+         and total_inventory = #{parameter.totalInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.unsaleInventory != null" >
+         and unsale_inventory = #{parameter.unsaleInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.salesCount != null" >
+         and sales_count = #{parameter.salesCount,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.attributesValues != null" >
+         and attributes_values = #{parameter.attributesValues,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.instockPrice != null" >
+         and instock_price = #{parameter.instockPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.outstockPrice != null" >
+         and outstock_price = #{parameter.outstockPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.salesPrice != null" >
+         and sales_price = #{parameter.salesPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.oneboxCount != null" >
+         and onebox_count = #{parameter.oneboxCount,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.deleted != null" >
+         and deleted = #{parameter.deleted,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=BIGINT}
+			</if>
+			<if test="parameter.lastUpdateBy != null" >
+         and last_update_by = #{parameter.lastUpdateBy,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.lastUpdateTime != null" >
+         and last_update_time = #{parameter.lastUpdateTime,jdbcType=BIGINT}
+			</if>
+			<if test="parameter.spec != null" >
+         and spec = #{parameter.spec,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.material != null" >
+         and material = #{parameter.material,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+  
+	<sql id="Object_Where_ClauseDto" >
+		<trim prefix="where" prefixOverrides="and|or" >
+			<if test="parameter.brandId != null" >
+         and p.brand_id = #{parameter.brandId,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.mainId != null" >
+         and pt.main_id = #{parameter.mainId,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.name != null" >
+         and pi.name like CONCAT('%','${parameter.name}','%')
+			</if>
+			<if test="parameter.productId != null" >
+         and product_id = #{parameter.productId,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.code != null" >
+         and code = #{parameter.code,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.saleInventory != null" >
+         and sale_inventory = #{parameter.saleInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.totalInventory != null" >
+         and total_inventory = #{parameter.totalInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.unsaleInventory != null" >
+         and unsale_inventory = #{parameter.unsaleInventory,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.salesCount != null" >
+         and sales_count = #{parameter.salesCount,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.attributesValues != null" >
+         and attributes_values = #{parameter.attributesValues,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.instockPrice != null" >
+         and instock_price = #{parameter.instockPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.outstockPrice != null" >
+         and outstock_price = #{parameter.outstockPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.salesPrice != null" >
+         and sales_price = #{parameter.salesPrice,jdbcType=DECIMAL}
+			</if>
+			<if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.oneboxCount != null" >
+         and onebox_count = #{parameter.oneboxCount,jdbcType=INTEGER}
+			</if>
+			<if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+			</if>   
+			<if test="parameter.deleted != null" >
+         and IFNULL(deleted,0) = #{parameter.deleted,jdbcType=INTEGER}
+			</if>
+    
+			<if test="parameter.createTime != null" >
+         and create_time = #{parameter.createTime,jdbcType=BIGINT}
+			</if>
+			<if test="parameter.lastUpdateBy != null" >
+         and last_update_by = #{parameter.lastUpdateBy,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.lastUpdateTime != null" >
+         and last_update_time = #{parameter.lastUpdateTime,jdbcType=BIGINT}
+			</if>
+			<if test="parameter.spec != null" >
+         and spec = #{parameter.spec,jdbcType=VARCHAR}
+			</if>
+			<if test="parameter.material != null" >
+         and material = #{parameter.material,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</sql>
+  
+	<sql id="Base_Column_List" >
+    id, product_id, name, code, sale_inventory, total_inventory, unsale_inventory, sales_count, 
+    attributes_values, instock_price, outstock_price, sales_price, status, onebox_count, 
+    remark, version, deleted, create_by, create_time, last_update_by, last_update_time, 
+    spec, material
+	</sql>
+	<select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+		<if test="distinct" >
+      distinct
+		</if>
+		<include refid="Base_Column_List" />
+    from tb_wap_product_inventory
+		<if test="parameter != null" >
+			<include refid="Object_Where_Clause" />
+		</if>
+		<if test="orderByClause != null" >
+      order by ${orderByClause}
+		</if>
+		<include refid="common.Mysql_Pagination_Limit" />
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+		<include refid="Base_Column_List" />
+    from tb_wap_product_inventory
+    where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_wap_product_inventory
+    where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_wap_product_inventory
+		<if test="parameter != null" >
+			<include refid="Object_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWapProductInventory" >
+    insert into hgl.tb_wap_product_inventory (id, product_id, name, 
+      code, sale_inventory, total_inventory, 
+      unsale_inventory, sales_count, attributes_values, 
+      instock_price, outstock_price, sales_price, 
+      status, onebox_count, remark, deleted, create_by, 
+      create_time, last_update_by, last_update_time, 
+      spec, material
+      )
+    values (#{id,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{saleInventory,jdbcType=INTEGER}, #{totalInventory,jdbcType=INTEGER}, 
+      #{unsaleInventory,jdbcType=INTEGER}, #{salesCount,jdbcType=INTEGER}, #{attributesValues,jdbcType=VARCHAR}, 
+      #{instockPrice,jdbcType=DECIMAL}, #{outstockPrice,jdbcType=DECIMAL}, #{salesPrice,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{oneboxCount,jdbcType=INTEGER}, #{remark,jdbcType=VARCHAR}, 
+	  #{deleted,jdbcType=INTEGER}, #{createBy,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=BIGINT}, #{lastUpdateBy,jdbcType=VARCHAR}, #{lastUpdateTime,jdbcType=BIGINT}, 
+      #{spec,jdbcType=VARCHAR}, #{material,jdbcType=VARCHAR}
+      )
+	</insert>
+	<insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapProductInventory" >
+    insert into tb_wap_product_inventory
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        id,
+			</if>
+			<if test="productId != null" >
+        product_id,
+			</if>
+			<if test="name != null" >
+        name,
+			</if>
+			<if test="code != null" >
+        code,
+			</if>
+			<if test="saleInventory != null" >
+        sale_inventory,
+			</if>
+			<if test="totalInventory != null" >
+        total_inventory,
+			</if>
+			<if test="unsaleInventory != null" >
+        unsale_inventory,
+			</if>
+			<if test="salesCount != null" >
+        sales_count,
+			</if>
+			<if test="attributesValues != null" >
+        attributes_values,
+			</if>
+			<if test="instockPrice != null" >
+        instock_price,
+			</if>
+			<if test="outstockPrice != null" >
+        outstock_price,
+			</if>
+			<if test="salesPrice != null" >
+        sales_price,
+			</if>
+			<if test="status != null" >
+        status,
+			</if>
+			<if test="oneboxCount != null" >
+        onebox_count,
+			</if>
+			<if test="remark != null" >
+        remark,
+			</if>
+			<if test="version != null" >
+        version,
+			</if>
+			<if test="deleted != null" >
+        deleted,
+			</if>
+			<if test="createBy != null" >
+        create_by,
+			</if>
+			<if test="createTime != null" >
+        create_time,
+			</if>
+			<if test="lastUpdateBy != null" >
+        last_update_by,
+			</if>
+			<if test="lastUpdateTime != null" >
+        last_update_time,
+			</if>
+			<if test="spec != null" >
+        spec,
+			</if>
+			<if test="material != null" >
+        material
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+        #{id,jdbcType=INTEGER},
+			</if>
+			<if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null" >
+        #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="saleInventory != null" >
+        #{saleInventory,jdbcType=INTEGER},
+			</if>
+			<if test="totalInventory != null" >
+        #{totalInventory,jdbcType=INTEGER},
+			</if>
+			<if test="unsaleInventory != null" >
+        #{unsaleInventory,jdbcType=INTEGER},
+			</if>
+			<if test="salesCount != null" >
+        #{salesCount,jdbcType=INTEGER},
+			</if>
+			<if test="attributesValues != null" >
+        #{attributesValues,jdbcType=VARCHAR},
+			</if>
+			<if test="instockPrice != null" >
+        #{instockPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="outstockPrice != null" >
+        #{outstockPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="salesPrice != null" >
+        #{salesPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null" >
+        #{status,jdbcType=INTEGER},
+			</if>
+			<if test="oneboxCount != null" >
+        #{oneboxCount,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null" >
+        #{version,jdbcType=INTEGER},
+			</if>
+			<if test="deleted != null" >
+        #{deleted,jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null" >
+        #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null" >
+        #{createTime,jdbcType=BIGINT},
+			</if>
+			<if test="lastUpdateBy != null" >
+        #{lastUpdateBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null" >
+        #{lastUpdateTime,jdbcType=BIGINT},
+			</if>
+			<if test="spec != null" >
+        #{spec,jdbcType=VARCHAR},
+			</if>
+			<if test="material != null" >
+        #{material,jdbcType=VARCHAR}
+			</if>
+		</trim>
+	</insert>
+	<select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_wap_product_inventory
+		<if test="parameter != null" >
+			<include refid="Object_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWapProductInventory" flushCache="true" >
+    update tb_wap_product_inventory
+		<set >
+			<if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+			</if>
+			<if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="code != null" >
+        code = #{code,jdbcType=VARCHAR},
+			</if>
+			<if test="saleInventory != null" >
+        sale_inventory = #{saleInventory,jdbcType=INTEGER},
+			</if>
+			<if test="totalInventory != null" >
+        total_inventory = #{totalInventory,jdbcType=INTEGER},
+			</if>
+			<if test="unsaleInventory != null" >
+        unsale_inventory = #{unsaleInventory,jdbcType=INTEGER},
+			</if>
+			<if test="salesCount != null" >
+        sales_count = #{salesCount,jdbcType=INTEGER},
+			</if>
+			<if test="attributesValues != null" >
+        attributes_values = #{attributesValues,jdbcType=VARCHAR},
+			</if>
+			<if test="instockPrice != null" >
+        instock_price = #{instockPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="outstockPrice != null" >
+        outstock_price = #{outstockPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="salesPrice != null" >
+        sales_price = #{salesPrice,jdbcType=DECIMAL},
+			</if>
+			<if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="oneboxCount != null" >
+        onebox_count = #{oneboxCount,jdbcType=INTEGER},
+			</if>
+			<if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+			</if>
+			<if test="version != null" >
+        version = version + 1,
+			</if>
+			<if test="deleted != null" >
+        deleted = #{deleted,jdbcType=INTEGER},
+			</if>
+			<if test="createBy != null" >
+        create_by = #{createBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null" >
+        create_time = #{createTime,jdbcType=BIGINT},
+			</if>
+			<if test="lastUpdateBy != null" >
+        last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+			</if>
+			<if test="lastUpdateTime != null" >
+        last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
+			</if>
+			<if test="spec != null" >
+        spec = #{spec,jdbcType=VARCHAR},
+			</if>
+			<if test="material != null" >
+        material = #{material,jdbcType=VARCHAR}
+			</if>
+		</set>
+    where id = #{id,jdbcType=INTEGER}
+		<!--  and version = #{version,jdbcType=INTEGER}  -->
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWapProductInventory" flushCache="true" >
+    update tb_wap_product_inventory
+    set product_id = #{productId,jdbcType=INTEGER},
+      name = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      sale_inventory = #{saleInventory,jdbcType=INTEGER},
+      total_inventory = #{totalInventory,jdbcType=INTEGER},
+      unsale_inventory = #{unsaleInventory,jdbcType=INTEGER},
+      sales_count = #{salesCount,jdbcType=INTEGER},
+      attributes_values = #{attributesValues,jdbcType=VARCHAR},
+      instock_price = #{instockPrice,jdbcType=DECIMAL},
+      outstock_price = #{outstockPrice,jdbcType=DECIMAL},
+      sales_price = #{salesPrice,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      onebox_count = #{oneboxCount,jdbcType=INTEGER},
+      remark = #{remark,jdbcType=VARCHAR},
+      version = version + 1,
+      deleted = #{deleted,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=BIGINT},
+      last_update_by = #{lastUpdateBy,jdbcType=VARCHAR},
+      last_update_time = #{lastUpdateTime,jdbcType=BIGINT},
+      spec = #{spec,jdbcType=VARCHAR},
+      material = #{material,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+	</update>
+	<select id="selectByCriteria" resultMap="ResultMapDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+	    select 
+	    	pi.*,p.name as product_name,b.name as brand_name,p.attributes as attributes,p.shop_flag as shopFlag,
+		<!-- FORMAT(pi.outstock_price*#{parameter.discount,jdbcType=DECIMAL},2) as discountPrice, -->
+		<if test="parameter.userId != null and parameter.userId!=''" >
+	    		sc.buy_num as buyNum,
+	    		sc.id as cartId,
+		</if>
+		<!-- <if test="parameter.userId != null" >
+				(select sc.buy_num from tb_shopping_cart sc where sc.inventory_id = pi.id and sc.create_by = #{parameter.userId,jdbcType=INTEGER} limit 1) as buyNum,
+				(select sc.id from tb_shopping_cart sc where sc.inventory_id = pi.id and sc.create_by = #{parameter.userId,jdbcType=INTEGER} limit 1) as cartId,
+			</if> -->
+	if( case when pt.parent_id=pt.main_id then pt.main_id<![CDATA[<>]]>0 else 0=1 end,pt.name,(select name from tb_product_type pt2 where pt2.id=pt.parent_id)) as second_type, 
+	if(case when pt.parent_id=pt.main_id then pt.main_id<![CDATA[<>]]>0 else 0=1 end,'',pt.name) as third_type,
+	    	(select name from tb_product_type pt3 where pt3.id=pt.main_id) as first_type
+	    from tb_wap_product_inventory pi 
+		  left  join tb_wap_product p on pi.product_id=p.id
+		  left  join tb_brand b on b.id=p.brand_id
+		  left  join tb_product_type pt on pt.id=p.product_type_id
+		<if test="parameter.userId != null and parameter.userId!=''" >
+		  		left  join tb_wap_shopping_cart sc on sc.inventory_id = pi.id and sc.create_by = #{parameter.userId,jdbcType=INTEGER}
+		</if>
+		<if test="parameter != null" >
+			<include refid="Object_Where_ClauseDto" />
+		</if>
+		<!-- <if test="parameter.userId != null and parameter.userId!=''" >
+					  and p.create_by = #{parameter.userId,jdbcType=INTEGER}
+			  </if> -->
+		   order by pi.outstock_price   
+		<include refid="common.Mysql_Pagination_Limit" />
+	</select>
+	<update id="batchUpOrdownFrame" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_wap_product_inventory
+   		 set status = #{parameter.status,jdbcType=INTEGER},
+    where product_id = #{parameter.productId,jdbcType=INTEGER}
+	</update>
+	<update id="markDeleteByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_wap_product_inventory
+     set deleted=1,
+    	 last_update_by = #{parameter.lastUpdateBy,jdbcType=VARCHAR},
+         last_update_time = unix_timestamp(now())
+    where id = #{parameter.id,jdbcType=INTEGER}
+	</update>
+	<select id="selectById" resultMap="ResultMapDto" parameterType="java.lang.Integer" >
+	    select 
+	    	pi.*,p.name as product_name,b.name as brand_name,p.attributes as attributes,
+	    	if(pt.parent_id=pt.main_id,pt.name,(select name from tb_product_type pt2 where pt2.id=pt.parent_id)) as second_type, 
+	    	if(pt.parent_id=pt.main_id,'',pt.name) as third_type,
+	    	(select name from tb_product_type pt3 where pt3.id=pt.main_id) as first_type
+	    from tb_wap_product_inventory pi 
+		  left  join tb_wap_product p on pi.product_id=p.id
+		  left  join tb_brand b on b.id=p.brand_id
+		  left  join tb_product_type pt on pt.id=p.product_type_id
+	    where pi.id = #{id,jdbcType=INTEGER}
+	</select>
+	<update id="batchUpdatePrice" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_wap_product_inventory
+      set outstock_price = 
+      <if test="parameter.asPrice=='1' or parameter.asPrice==1">
+   		  instock_price*${parameter.price}*0.01
+	  </if>
+	  <if test="parameter.asPrice=='2' or parameter.asPrice==2">
+      	  sales_price*${parameter.price}*0.01
+	  </if>
+	  <if test="parameter.asPrice=='3' or parameter.asPrice==3">
+      	  if(outstock_price${parameter.price}&lt;0,0,outstock_price${parameter.price})
+	  </if>,
+      last_update_by = #{parameter.user},
+      last_update_time = unix_timestamp(now())
+    where id in 
+		<foreach collection="parameter.inventoryIds" close=")" open="(" separator="," item="inventory">
+    			${inventory}
+		</foreach>
+	</update>
+	<update id="batchUpdateStatus" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_wap_product_inventory
+    set status = #{parameter.status,jdbcType=INTEGER}
+    where id in 
+		<foreach collection="parameter.ids" close=")" open="(" separator="," item="ids">
+    			${ids}
+		</foreach>
+	</update>
+	<insert id="batchInsertSelective" parameterType="ArrayList" >
+	     insert into hgl.tb_wap_product_inventory (product_id, name, 
+	      code, sale_inventory, total_inventory, 
+	      unsale_inventory, sales_count, attributes_values, 
+	      instock_price, outstock_price, sales_price, 
+	      status, onebox_count, remark, deleted, create_by, 
+	      create_time, last_update_by, last_update_time, 
+	      spec, material)
+	    values
+		<foreach collection="list" item="twis" index="index" separator="," >
+	      (#{twis.productId,jdbcType=INTEGER}, #{twis.name,jdbcType=VARCHAR}, 
+	      #{twis.code,jdbcType=VARCHAR}, #{twis.saleInventory,jdbcType=INTEGER}, #{twis.totalInventory,jdbcType=INTEGER}, 
+	      #{twis.unsaleInventory,jdbcType=INTEGER}, #{twis.salesCount,jdbcType=INTEGER}, #{twis.attributesValues,jdbcType=VARCHAR}, 
+	      #{twis.instockPrice,jdbcType=DECIMAL}, #{twis.outstockPrice,jdbcType=DECIMAL}, #{twis.salesPrice,jdbcType=DECIMAL}, 
+	      #{twis.status,jdbcType=INTEGER}, #{twis.oneboxCount,jdbcType=INTEGER}, #{twis.remark,jdbcType=VARCHAR}, 
+		  #{twis.deleted,jdbcType=INTEGER}, #{twis.createBy,jdbcType=VARCHAR}, 
+	      #{twis.createTime,jdbcType=BIGINT}, #{twis.lastUpdateBy,jdbcType=VARCHAR}, #{twis.lastUpdateTime,jdbcType=BIGINT}, 
+	      #{twis.spec,jdbcType=VARCHAR}, #{twis.material,jdbcType=VARCHAR}
+      )
+		</foreach>
+	</insert>
+  
+	<!-- 批量插入 -->
+	<insert id="insertBatchInventory" parameterType="java.util.LinkedList" >
+		INSERT INTO tb_wap_product_inventory (product_id,name,code,total_inventory,attributes_values,
+		instock_price,outstock_price,sales_price,spec,material,sale_inventory,unsale_inventory,
+		onebox_count,status) VALUES 
+		<foreach collection="list" item="item" index="index" separator="," >  
+     		(
+	     		#{item.productId,jdbcType=INTEGER},
+	     		#{item.inventoryName,jdbcType=VARCHAR},
+				#{item.code,jdbcType=VARCHAR},
+				#{item.totalInventory,jdbcType=INTEGER},
+				#{item.attributesValues,jdbcType=VARCHAR},
+				#{item.instockPrice,jdbcType=DECIMAL},
+				#{item.outstockPrice,jdbcType=DECIMAL},
+				#{item.salesPrice,jdbcType=DECIMAL},
+				#{item.spec,jdbcType=VARCHAR},
+				#{item.material,jdbcType=VARCHAR},
+				#{item.saleInventory,jdbcType=INTEGER},
+				#{item.unsaleInventory,jdbcType=INTEGER},
+				#{item.oneboxCount,jdbcType=INTEGER},
+				#{item.status,jdbcType=INTEGER}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 查询所有的产品名称和相应的货号-->
+	<select id="findProNameAndCodeLimit" resultType="com.liguo.hgl.proxydao.model.ProductImport" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+		SELECT
+			twp.name as name,
+			twpi.code as code
+		FROM
+			tb_wap_product twp
+		LEFT JOIN tb_wap_product_inventory twpi ON twpi.product_id = twp.id
+	<include refid="common.Mysql_Pagination_Limit" />
+	</select>
+	<select id="selectByProductNameCriteria" resultMap="ResultMapDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+	    select p.name as product_name,b.name as brand_name,
+			if( case when pt.parent_id=pt.main_id then pt.main_id<![CDATA[<>]]>0 else 0=1 end,pt.name,(select name from tb_product_type pt2 where pt2.id=pt.parent_id)) as second_type, 
+			if(case when pt.parent_id=pt.main_id then pt.main_id<![CDATA[<>]]>0 else 0=1 end,'',pt.name) as third_type,
+	    	(select name from tb_product_type pt3 where pt3.id=pt.main_id) as first_type
+	    from tb_wap_product p
+		left join tb_brand b on b.id=p.brand_id
+		left join tb_product_type pt on pt.id=p.product_type_id
+		where p.id = #{parameter.productId,jdbcType=INTEGER}
+		limit 1
+	</select>
+</mapper>

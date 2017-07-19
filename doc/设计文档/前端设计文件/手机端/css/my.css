@@ -1,0 +1,538 @@
+@charset "utf-8";
+/* ***************************************个人中心******************************************************** */
+/* 盒子內减 */
+*{
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+/* 头部 */
+ .personal{
+ 	width:100%;
+ 	position: relative;
+ 	height:110px;
+ 	background: #fff;
+ 	border-bottom:1px solid #eee;
+ 	margin-bottom:10px;
+ }
+ .personal .user{
+ 	position: relative;
+ }
+ .personal .user-img{
+ 	height:68px;
+ 	width:68px;
+ 	display:block;
+ 	overflow:hidden;
+ 	border-radius:34px;
+ 	margin:20px 20px 20px 40px;
+ }
+ .personal .user-info{
+ 	margin:25px 10px;
+ }
+.personal .user-info p{
+	line-height: 30px;
+	letter-spacing:1px;
+}
+/* 列表部分 */
+
+.mylist ul,.quit{
+	padding:0 20px;
+	background:#fff;
+	border-top:1px solid #eee;
+	border-bottom:1px solid #eee;
+	margin-bottom:10px;
+}
+.quit{
+	width:100%;
+	text-align:center;
+	line-height: 48px;
+	outline: none;
+	font-size:1rem;
+}
+.mylist ul li{
+	border-bottom:1px solid #eee;
+}
+.mylist ul li:last-child{
+	border-bottom:0;
+}
+.mylist ul li>a{
+	display: block;
+	position: relative;
+	color:#333;
+}
+.mylist ul li .right{
+	width:8px;
+	height:13px;
+	background: url(../images/right.png) no-repeat;
+	position: absolute;
+	background-size: 100% 100%;
+	right:0px;
+	top:20px;
+}
+.mylist ul li span{
+	line-height: 47px;
+	display: inline-block;
+}
+.mylist img{
+	width:31px;
+	display: inline-block;
+	vertical-align: middle;
+	margin:8px 10px;
+}
+/* ***************************************我的收藏******************************************************** */
+/* 头部 */
+.collect-head{
+	position: fixed;
+	line-height: 44px;
+}
+/* 头部导航 */
+.collect-nav{
+	position: fixed;
+	top:44px;
+	width:100%;
+	z-index:101;
+}
+.collect-nav ul{
+	line-height:40px;
+	background: #fff;
+}
+.collect-nav ul a{
+	color:#555;
+	display: block;
+	width:100%;
+	height:100%;
+}
+.collect-nav ul .active a{
+	color:#f2000e;
+	border-bottom:3px solid #f2000e;
+}
+/* 导航的内容 */
+.show-list{
+	display: none;
+}
+/* 图片的大小 */
+
+.list-info .box{
+	padding:0 40px 0 10px;
+	position: relative;
+	max-height:80px;
+	margin-bottom:10px;
+	background: #fff;
+}
+.list-info img{
+	width:60px;
+	height:60px;
+	margin:10px;
+}
+.list-info .box1{
+	line-height: 80px;
+	text-overflow: hidden;
+}
+.list-info .remove{
+	width: 20px;
+    height: 20px;
+    background: url(../images/remove.png) no-repeat;
+    position: absolute;
+    background-size: 100% 100%;
+    right: 10px;
+    top: 30px;
+    z-index:102;
+}
+/* layer第二个按钮的位置调整 */
+.layermbtn span:last-child{
+	line-height: 39px;
+}
+/* ***************************************意见反馈******************************************************** */
+#idea{
+	padding:5px;
+	line-height: 1.6em;
+	font-size:14px;
+	text-align:justify;
+	margin-bottom:0;
+}
+.idea-info{
+	padding:5px 20px;
+}
+.idea-info p{
+	font-size:12px;
+	line-height: 20px;
+	margin-bottom:5px;
+}
+.idea-info .subimt{
+	width:100%;
+	background: #f2000e;
+	color:#fff;
+	padding:0.8rem 0;
+	font-size:1rem;
+	border-radius:5px;
+}
+/* ***************************************完善地址******************************************************** */
+.site,body{
+	height:100%;
+	width:100%;
+	overflow:hidden;
+}
+.site .container{
+	margin:0;
+	width:100%;
+	height:0;
+	background-size:100%;
+}
+/* 完善地址的底部 */
+.site-footer{
+	background: #fff;
+	padding:10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+
+}
+.site-footer .box{
+	padding-left:30px;
+	background:url(../images/add-icon.png) 0 center no-repeat #FFF;
+	background-size:20px 20px ;
+}
+.site-footer .box2{
+	padding:0 5px;
+}
+.site-footer .button{
+	color:#fff;
+	background: #f2000e;
+	padding:6px 10px ;
+}
+.site-footer .box{
+	position: relative;
+	font-size:14px;
+}
+ /* *************************** 收获地址管理 *************************************************** */
+/* 列表 */
+.address-list{
+	background: #fff;
+}
+.address-list li{
+	border-bottom:1px solid #ddd;
+	position: relative;
+	padding-left:30px;
+}
+.address-list .address-list-top{
+	border-bottom:1px dashed #ddd;
+	line-height: 30px;
+	color:#666;
+}
+.address-list .address-list-top button{
+	float: right;
+	height:30px;
+	padding: 0 8px;
+	background: none;
+	color:#aaa;
+}
+
+.address-list .address-list-button{
+	padding:8px 0;
+	font-size:0.8rem;
+	color:#999;	
+}
+.address-list-button a{
+	color:#999;
+	width: 100%;
+	position: relative;
+	padding-right:30px;
+	display: block;
+}
+.address-list-button a span{
+	position: absolute;
+	height:26px;
+	width:15px;
+	background: url(../images/right.png) right center no-repeat;
+	background-size:50% 50%;
+	right:8px;
+	top:50%;
+	margin-top:-13px;
+}
+.address-input{
+	position: absolute;
+	height:100%;
+	width:30px;
+	left:0px;
+	text-align: center;
+}
+.address-input input{
+	background: url(../images/checkbox.png) no-repeat;
+	background-position:-20px -10px;
+	margin:0;
+	position: absolute;
+	top:50%;
+	left:50%;
+	margin-top:-10px;
+	margin-left:-10px;
+}
+.address-input input:checked{
+	background-position:-40px -10px;
+}
+/* 底部 */
+.reap-site{
+	position: fixed;
+	padding:15px;
+	width:100%;
+	bottom: 0;
+	background: #eee;
+}
+.reap-site a{
+	padding:5px;
+	border-radius:3px;
+} 
+ /* *************************** 邀请分享 *************************************************** */
+ .share{
+ 	background: #fff;
+ 	padding:10px;
+ }
+ .share .box{
+ 	 margin-bottom:10px;
+ 	 border-radius:0 0 5px 5px;
+ }
+ .share .box1{
+ 	padding:10px;
+ 	text-align:center;
+ 	line-height:24px;
+ 	font-size:0.9rem;
+ }
+.share img{
+	width:100px;
+	margin-bottom:15px;
+}
+.share table{
+	width:100%;
+	table-layout:fixed;
+}
+.share table th{
+	line-height:30px;
+}
+.share table th,.share table td{
+	width:33.3333%;
+	text-align:center;
+	border:1px solid #ccc; 
+}
+.share-info{
+	padding:10px 0;
+}
+.share-info p{
+	margin:5px 0;
+}
+ /* *************************** 我的积分 *************************************************** */
+.integral{
+	padding: 10px;
+	background:#fff;
+	position: relative;
+}
+.integral p{
+	margin:5px 0;
+}
+.integral table{
+	border:1px solid #ccc;
+	width:100%;
+	font-size:0.8rem;
+}
+.integral h3{
+	line-height:30px;
+	border-top:1px solid #eee;
+}
+.integral th{
+	line-height: 30px;
+}
+.integral th,.integral td{
+	width:33.3333%;
+	text-align:center;
+	border:1px solid #ccc; 
+	padding:3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.integral tbody tr:nth-child(odd){
+	background:#f7f7f7;
+}
+
+ /* *************************** 我的预存款 *************************************************** */
+.money th,.money td{
+	width:25%;
+}
+ /* 提现按钮 */
+ .deposit{
+ 	position:absolute;
+ 	z-index:100;
+ 	top:30px;
+ 	margin-top:-15px;
+ 	right:10px;
+ 	border:1px solid #aaa;
+ 	border-radius:5px;
+ 	width:45px;
+ 	height:30px;
+ 	line-height:30px;
+ 	text-align:center;
+ }  
+ /* *************************** 提现 *************************************************** */
+.kiting{
+	padding:10px;
+	background:#fff;
+}
+.kiting .form-group{
+	position: relative;
+} 
+.kiting .form-group label{
+	position: absolute;
+	width:66px;
+	line-height: 40px;
+	left:10px;
+	top:0;
+}
+.kiting .form-group input{
+	line-height:40px;
+	height:40px;
+	padding-left:70px;
+	border-radius:5px;
+}
+.kiting .button-make{
+	height:40px;
+	line-height: 40px;
+	background:#f2000e;
+	width:100%;
+	color:#fff;
+	display: block;
+	text-align:center;
+	border-radius:5px;
+}
+/* ***************************************站内信******************************************************** */
+.letter{
+	padding:10px;
+}
+.letter-inser{
+	margin-bottom:20px;
+}
+.letter-inser .box-shadow{
+	padding:5px;
+	position: relative;
+	-webkit-box-shadow:none;
+	box-shadow:none;
+}
+.letter-inser .box-shadow img{
+	width:100%;
+	height:150px;
+}
+.letter-inser>.text-center{
+	margin-bottom:5px;
+}
+.letter-inser>.text-center>span{
+	background: rgba(128,128,128,.3);
+	padding:3px 5px;
+	border-radius:3px;
+	color:#fff;
+	font-size:14px;
+}
+.letter-inser .box-shadow .text-hidden{
+	position: absolute;
+	bottom:0;
+	width:100%;
+	background:rgba(0,0,0,.5);
+	margin:0 -5px;
+	color:#fff;
+	line-height: 30px;
+	padding:0 10px;
+}
+.letter-inser .box5{
+	background:	#87CEFA;
+	padding:5px;
+	margin:0 10px;
+	border-radius:5px;
+	font-size:0.9rem;
+	color:#fff;
+}
+.letter-inser .pull-right.box5:after{
+	content:'';
+	height:0;
+	width:0;
+	position: absolute;
+	border-left:10px solid #87CEFA;
+	border-top:5px solid transparent;
+	border-bottom:5px solid transparent;
+	right:-6px;
+	top:10px;
+	z-index:-1;
+}
+.letter-inser .pull-left.box5:after{
+	content:'';
+	height:0;
+	width:0;
+	position: absolute;
+	border-right:10px solid #87CEFA;
+	border-top:5px solid transparent;
+	border-bottom:5px solid transparent;
+	left:-6px;
+	top:10px;
+	z-index:-1;
+}
+.letter-inser .box1 img{
+	border-radius:50%;
+	width:100%;
+	height:50px;
+}
+/* 站内信底部 */
+.letter-foot{
+	padding:5px 10px;
+	position: fixed;
+	bottom:0;
+	width:100%;
+	background:#fff;
+	padding-right:76px;
+}
+.letter-foot input{
+	margin-bottom:0;
+	border-radius:3px 0 0 3px;
+}
+.letter-foot button{
+	right:10px;
+	top:5px;
+	position: absolute;
+	height:30px;
+	line-height: 30px;
+	background:#87CEFA;
+	color:#fff;
+	width:66px;
+	display: inline-block;
+	border-radius:0 3px 3px 0;
+}
+/* ***************************************站内信列表******************************************************** */
+.letter-list img{
+	width:100%;
+	height:40px;
+}
+.letter-list .box-img{
+	border-radius:50%;
+	overflow:hidden;
+}
+.letter-list  li{
+	padding:5px 0;
+	border-bottom:1px solid #ddd;
+}
+.letter-list .box5{
+	padding:0 10px;
+}
+.letter-list  p:first-child{
+	font-size:.9rem;
+	font-weight: bold;
+	line-height: 1.5;
+}
+.letter-list  p:last-child{
+	font-size:.8rem;
+	color:#aaa;
+	line-height: 1.5;
+}
+.letter-list .box .box1:last-child{
+	font-size:0.9rem;
+	line-height: 2rem;
+}
+
+
+
+
+
+

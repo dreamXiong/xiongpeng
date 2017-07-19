@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWapOrderServiceDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_service_id" property="orderServiceId" jdbcType="INTEGER" />
+    <result column="inventory_id" property="inventoryId" jdbcType="INTEGER" />
+    <result column="buy_num" property="buyNum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_by" property="createBy" jdbcType="INTEGER" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="extension_field" property="extensionField" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.WapOrderServiceDetailDto" extends="BaseResultMap">
+  	<result column="pimg_one" property="pImgOne"/>
+  	<result column="attributes" property="attributes"/>
+  	<association property="productInventory" javaType="com.liguo.hgl.proxydao.model.TbWapProductInventory">
+  		<id column="inventory_id" property="id"/>
+  		<result column="product_id" property="productId"/>
+  		<result column="name" property="name"/>
+  		<result column="salesPrice" property="salesPrice"/>
+  		<result column="spec" property="spec"/>
+  		<result column="material" property="material"/>
+  		<result column="attributesValues" property="attributesValues"/> 		
+  	</association>
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderServiceId != null" >
+         and order_service_id = #{parameter.orderServiceId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.inventoryId != null" >
+         and inventory_id = #{parameter.inventoryId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.buyNum != null" >
+         and buy_num = #{parameter.buyNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createBy != null" >
+         and create_by = #{parameter.createBy,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.extensionField != null" >
+         and extension_field = #{parameter.extensionField,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_service_id, inventory_id, buy_num, status, create_by, create_dt, extension_field, 
+    version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from tb_wap_order_service_detail
+    where order_service_id = #{parameter.orderServiceId,jdbcType=INTEGER}
+    and inventory_id in 
+    <foreach item="item" index="index" collection="parameter.idsList" open="(" separator="," close=")" >  
+       ${item}
+    </foreach>
+  </select>
+  
+  <select id="selectInventByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto">
+  	select o.*,i.product_id as productId,i.name as name,i.sales_price as salesPrice,i.spec as spec,
+  		   i.material as material,i.attributes_values as attributesValues,p.pimg_one as pimg_one,p.attributes as attributes
+  		   from tb_wap_order_service_detail as o left join tb_wap_product_inventory as i on o.inventory_id = i.id
+  		   left join tb_wap_product as p on p.id = i.product_id
+  	<where>
+  		<if test="parameter.orderServiceId != null">
+  			and order_service_id =#{parameter.orderServiceId,jdbcType=INTEGER}
+  		</if>
+  	</where>	
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wap_order_service_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_wap_order_service_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_wap_order_service_detail
+    where order_service_id = #{parameter.orderServiceId,jdbcType=INTEGER}
+    and inventory_id in 
+    <foreach item="item" index="index" collection="parameter.idsList" open="(" separator="," close=")" >  
+       ${item}
+    </foreach>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" >
+    insert into hgl.tb_wap_order_service_detail (id, order_service_id, inventory_id, 
+      buy_num, status, create_by, 
+      create_dt, extension_field, version
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderServiceId,jdbcType=INTEGER}, #{inventoryId,jdbcType=INTEGER}, 
+      #{buyNum,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, #{createBy,jdbcType=INTEGER}, 
+      #{createDt,jdbcType=BIGINT}, #{extensionField,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" >
+    insert into tb_wap_order_service_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderServiceId != null" >
+        order_service_id,
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="buyNum != null" >
+        buy_num,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createBy != null" >
+        create_by,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="extensionField != null" >
+        extension_field,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderServiceId != null" >
+        #{orderServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null" >
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null" >
+        #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_wap_order_service_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" flushCache="true" >
+    update tb_wap_order_service_detail
+    <set >
+      <if test="orderServiceId != null" >
+        order_service_id = #{orderServiceId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id = #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="buyNum != null" >
+        buy_num = #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createBy != null" >
+        create_by = #{createBy,jdbcType=INTEGER},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="extensionField != null" >
+        extension_field = #{extensionField,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" flushCache="true" >
+    update tb_wap_order_service_detail
+    set order_service_id = #{orderServiceId,jdbcType=INTEGER},
+      inventory_id = #{inventoryId,jdbcType=INTEGER},
+      buy_num = #{buyNum,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      create_by = #{createBy,jdbcType=INTEGER},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      extension_field = #{extensionField,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <insert id="batchInsertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderServiceDetail" >
+    insert into hgl.tb_wap_order_service_detail (id, order_service_id, inventory_id, buy_num, status, create_by,create_dt, extension_field)
+    values 
+      <foreach collection="list" item="obj" index="index" separator="," >
+	     (#{obj.id,jdbcType=INTEGER}, #{obj.orderServiceId,jdbcType=INTEGER}, #{obj.inventoryId,jdbcType=INTEGER}, 
+	      #{obj.buyNum,jdbcType=INTEGER}, #{obj.status,jdbcType=INTEGER}, #{obj.createBy,jdbcType=INTEGER}, 
+	      #{obj.createDt,jdbcType=BIGINT}, #{obj.extensionField,jdbcType=VARCHAR})
+       </foreach>
+  </insert>
+  <update id="updateByServiceKey" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    update tb_wap_order_service_detail
+    set status = #{parameter.status,jdbcType=INTEGER}
+    where order_service_id = #{parameter.orderServiceId,jdbcType=INTEGER}
+      and inventory_id = #{parameter.inventoryId,jdbcType=INTEGER}
+  </update>
+</mapper>

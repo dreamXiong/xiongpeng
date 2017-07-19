@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbStreetInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbStreetInfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="parentId" property="parentid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BaseResultAddressMap" type="com.liguo.hgl.proxydao.dto.AddressDto">
+  	<id column="streetId" property="streetId" jdbcType="INTEGER"/>
+  	<result column="streetName" property="streetName" jdbcType="VARCHAR"/> 
+  	<result column="streetParentId" property="streetParentId" jdbcType="INTEGER"/>
+  	<result column="countryId" property="countryId" jdbcType="INTEGER"/> 
+  	<result column="countryName" property="countryName" jdbcType="VARCHAR"/>
+  	<result column="countryParentId" property="countryParentId" jdbcType="INTEGER"/> 
+	<result column="cityId" property="cityId" jdbcType="INTEGER"/> 
+  	<result column="cityName" property="cityName" jdbcType="VARCHAR"/>
+  	<result column="cityParentId" property="cityParentId" jdbcType="INTEGER"/> 
+  	<result column="provinceId" property="provinceId" jdbcType="INTEGER"/> 
+  	<result column="provinceName" property="provinceName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.parentid != null" >
+         and parentId = #{parameter.parentid,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, parentId
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from hgl.tb_street_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from hgl.tb_street_info
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from hgl.tb_street_info
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from hgl.tb_street_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbStreetInfo" >
+    insert into hgl.tb_street_info (id, name, parentId
+      )
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{parentid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbStreetInfo" >
+    insert into hgl.tb_street_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="parentid != null" >
+        parentId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        #{parentid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from hgl.tb_street_info
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbStreetInfo" flushCache="true" >
+    update hgl.tb_street_info
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="parentid != null" >
+        parentId = #{parentid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbStreetInfo" flushCache="true" >
+    update hgl.tb_street_info
+    set name = #{name,jdbcType=VARCHAR},
+      parentId = #{parentid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+   <select id="countByCityParentid" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+   
+   select count(*) from tb_street_info s where s.parentId in(select c.id from tb_country_info c where c.parentId= #{parameter.id})
+  </select>
+  
+  <select id="selectObjectByPage" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultAddressMap">
+  	select s.id as streetId,s.name as streetName,s.parentId as streetParentId,
+  		   c.id as countryId,c.name as countryName,c.parentId as countryParentId,
+  		   t.id as cityId,t.name as cityName,t.parentId as cityParentId,
+  		   p.id as provinceId,p.name as provinceName 
+  		   from tb_street_info as s left join tb_country_info as c  on s.parentId = c.id			    	
+  		   left join tb_city_info as t on c.parentId = t.id
+		   left join tb_province_info as p on t.parentId = p.id
+			where 1=1
+	<if test="parameter.streetName != null and parameter.streetName !=''">
+		and s.name like CONCAT('%',#{parameter.streetName,jdbcType=VARCHAR},'%')
+	</if> 
+	<if test="parameter.countryName != null and parameter.countryName !=''">
+  		 and c.name like CONCAT('%',#{parameter.countryName,jdbcType=VARCHAR},'%')
+  	</if>
+  	<if test="parameter.cityName != null and parameter.cityName !=''">
+  		 and t.name like CONCAT('%',#{parameter.cityName,jdbcType=VARCHAR},'%')
+  	</if>
+  	<if test="parameter.provinceName != null and parameter.provinceName !=''">
+		 and p.name like CONCAT('%',#{parameter.provinceName,jdbcType=VARCHAR},'%')
+	</if>
+	<if test="orderByClause != null" >
+    	order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+  
+  <select id="selectAddressInfo" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultAddressMap">
+  	select s.id as streetId,s.name as streetName,s.parentId as streetParentId,
+  		   c.id as countryId,c.name as countryName,c.parentId as countryParentId,
+  		   t.id as cityId,t.name as cityName,t.parentId as cityParentId,
+  		   p.id as provinceId,p.name as provinceName 
+  		   from tb_street_info as s left join tb_country_info as c  on s.parentId = c.id			    	
+  		   left join tb_city_info as t on c.parentId = t.id
+		   left join tb_province_info as p on t.parentId = p.id
+			where 1=1
+	<if test="parameter.streetId !=null">
+		and s.id = #{parameter.streetId,jdbcType=INTEGER}
+	</if>
+	<if test="parameter.streetName != null and parameter.streetName !=''">
+		and s.name like CONCAT('%',#{parameter.streetName,jdbcType=VARCHAR},'%')
+	</if> 
+	<if test="parameter.countryId !=null">
+		and c.id = #{parameter.countryId,jdbcType=INTEGER}
+	</if> 
+	<if test="parameter.countryName != null and parameter.countryName !=''">
+  		 and c.name like CONCAT('%',#{parameter.countryName,jdbcType=VARCHAR},'%')
+  	</if>
+  	<if test="parameter.cityId !=null">
+		and t.id = #{parameter.cityId,jdbcType=INTEGER}
+	</if>
+  	<if test="parameter.cityName != null and parameter.cityName !=''">
+  		 and t.name like CONCAT('%',#{parameter.cityName,jdbcType=VARCHAR},'%')
+  	</if>
+  	<if test="parameter.provinceId !=null">
+		and p.id = #{parameter.provinceId,jdbcType=INTEGER}
+	</if>
+  	<if test="parameter.provinceName != null and parameter.provinceName !=''">
+		 and p.name like CONCAT('%',#{parameter.provinceName,jdbcType=VARCHAR},'%')
+	</if>
+	<if test="orderByClause != null" >
+    	order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />	
+  </select>
+</mapper>

@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbStandLetterMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbStandLetter" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="letter_type" property="letterType" jdbcType="INTEGER" />
+    <result column="recipientId" property="recipientid" jdbcType="VARCHAR" />
+    <result column="recipientName" property="recipientname" jdbcType="VARCHAR" />
+    <result column="shopId" property="shopid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="activity_id" property="activityId" jdbcType="INTEGER" />
+    <result column="reserved" property="reserved" jdbcType="INTEGER" />
+    <result column="reservedstr" property="reservedstr" jdbcType="VARCHAR" />
+    <result column="create_dt" property="createDt" jdbcType="BIGINT" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="ResultMapDto" type="com.liguo.hgl.proxydao.dto.LetterActivityDto" extends="BaseResultMap" >
+    <result column="activityId" property="activityId" jdbcType="INTEGER" />
+    <result column="activityName" property="activityName" jdbcType="VARCHAR" />
+  </resultMap>
+ <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.userId != null" >
+         and user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.letterType != null" >
+         and letter_type = #{parameter.letterType,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.recipientid != null" >
+         and recipientId = #{parameter.recipientid,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.recipientname != null" >
+         and recipientName = #{parameter.recipientname,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.shopid != null" >
+         and shopId = #{parameter.shopid,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.content != null" >
+         and content = #{parameter.content,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.activityId != null" >
+         and activity_id = #{parameter.activityId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reserved != null" >
+         and reserved = #{parameter.reserved,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.reservedstr != null" >
+         and reservedstr = #{parameter.reservedstr,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.createDt != null" >
+         and create_dt = #{parameter.createDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, letter_type, recipientId, recipientName, shopId, type, content, activity_id, 
+    reserved, reservedstr, create_dt, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_stand_letter
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_stand_letter
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_stand_letter
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_stand_letter
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbStandLetter" keyProperty="id">
+    insert into hgl.tb_stand_letter (id, user_id, letter_type, 
+      recipientId, recipientName, shopId, 
+      type, content, activity_id, 
+      reserved, reservedstr, create_dt, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{letterType,jdbcType=INTEGER}, 
+      #{recipientid,jdbcType=VARCHAR}, #{recipientname,jdbcType=VARCHAR}, #{shopid,jdbcType=INTEGER}, 
+      #{type,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{activityId,jdbcType=INTEGER}, 
+      #{reserved,jdbcType=INTEGER}, #{reservedstr,jdbcType=VARCHAR}, #{createDt,jdbcType=BIGINT}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbStandLetter" >
+    insert into tb_stand_letter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="letterType != null" >
+        letter_type,
+      </if>
+      <if test="recipientid != null" >
+        recipientId,
+      </if>
+      <if test="recipientname != null" >
+        recipientName,
+      </if>
+      <if test="shopid != null" >
+        shopId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="activityId != null" >
+        activity_id,
+      </if>
+      <if test="reserved != null" >
+        reserved,
+      </if>
+      <if test="reservedstr != null" >
+        reservedstr,
+      </if>
+      <if test="createDt != null" >
+        create_dt,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="letterType != null" >
+        #{letterType,jdbcType=INTEGER},
+      </if>
+      <if test="recipientid != null" >
+        #{recipientid,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientname != null" >
+        #{recipientname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopid != null" >
+        #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reservedstr != null" >
+        #{reservedstr,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_stand_letter
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbStandLetter" flushCache="true" >
+    update tb_stand_letter
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="letterType != null" >
+        letter_type = #{letterType,jdbcType=INTEGER},
+      </if>
+      <if test="recipientid != null" >
+        recipientId = #{recipientid,jdbcType=VARCHAR},
+      </if>
+      <if test="recipientname != null" >
+        recipientName = #{recipientname,jdbcType=VARCHAR},
+      </if>
+      <if test="shopid != null" >
+        shopId = #{shopid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="activityId != null" >
+        activity_id = #{activityId,jdbcType=INTEGER},
+      </if>
+      <if test="reserved != null" >
+        reserved = #{reserved,jdbcType=INTEGER},
+      </if>
+      <if test="reservedstr != null" >
+        reservedstr = #{reservedstr,jdbcType=VARCHAR},
+      </if>
+      <if test="createDt != null" >
+        create_dt = #{createDt,jdbcType=BIGINT},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbStandLetter" flushCache="true" >
+    update tb_stand_letter
+    set user_id = #{userId,jdbcType=INTEGER},
+      letter_type = #{letterType,jdbcType=INTEGER},
+      recipientId = #{recipientid,jdbcType=VARCHAR},
+      recipientName = #{recipientname,jdbcType=VARCHAR},
+      shopId = #{shopid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      activity_id = #{activityId,jdbcType=INTEGER},
+      reserved = #{reserved,jdbcType=INTEGER},
+      reservedstr = #{reservedstr,jdbcType=VARCHAR},
+      create_dt = #{createDt,jdbcType=BIGINT},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <select id="selectLetters" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="ResultMapDto" >
+   
+	select a.id as activityId,a.activity_name as activityName,s.* from tb_stand_letter s 
+	left join tb_activity_info a on a.id=s.activity_id 
+    where  s.id in( select id from (select ss.id FROM
+	tb_stand_letter ss where 1=1
+    <if test="parameter.userId != null" >
+         	and ss.user_id = #{parameter.userId,jdbcType=INTEGER} 
+    </if>
+    <if test="parameter.sendShopUserId != null" >
+         	and ss.shopId = #{parameter.sendShopUserId,jdbcType=INTEGER} 
+    </if>
+     <if test="parameter.oneRecipientId != null" >
+         	and ss.recipientId = #{parameter.oneRecipientId,jdbcType=INTEGER} 
+    </if>
+	order by ss.create_dt  desc
+	  <if test="parameter.numbers != null" >
+         	limit #{parameter.numbers,jdbcType=INTEGER}
+    </if>
+    ) tt ) ORDER BY s.id ASC
+  </select>
+  
+      <!-- 批量插入 -->
+  <insert id="insertList" parameterType="ArrayList" >
+    insert into tb_stand_letter (user_id, letter_type,recipientId,recipientName,type,content,activity_id,reserved,shopId,create_dt)
+    values 
+      <foreach collection="list" item="obj" index="index" separator="," >
+	    (#{obj.userId,jdbcType=INTEGER}, #{obj.letterType,jdbcType=INTEGER}, #{obj.recipientid,jdbcType=INTEGER},  #{obj.recipientname,jdbcType=VARCHAR},
+	      #{obj.type,jdbcType=INTEGER}, #{obj.content,jdbcType=VARCHAR}, #{obj.activityId,jdbcType=INTEGER},#{obj.reserved,jdbcType=INTEGER},
+	      #{obj.shopid,jdbcType=INTEGER},#{obj.createDt,jdbcType=BIGINT}
+	    )
+      </foreach>
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  
+   <update id="updateReservedState" parameterType="com.liguo.hgl.proxydao.model.TbStandLetter" flushCache="true" >
+    update tb_stand_letter t set
+   
+      t.reserved = #{parameter.reservedStateRead,jdbcType=INTEGER},
+    
+      t.version = version + 1
+    where 1=1
+    	 <if test="parameter.otherUserId != null" >
+         	and t.recipientId = #{parameter.otherUserId,jdbcType=INTEGER} 
+	    </if>
+	     <if test="parameter.myUserId != null" >
+	         	and t.user_id = #{parameter.myUserId,jdbcType=INTEGER} 
+	    </if>
+	     <if test="parameter.reservedState != null" >
+	         	and t.reserved = #{parameter.reservedState,jdbcType=INTEGER} 
+	    </if>
+  </update>
+</mapper>

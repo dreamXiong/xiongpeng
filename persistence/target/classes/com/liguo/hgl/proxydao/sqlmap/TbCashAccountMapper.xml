@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbCashAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbCashAccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cash_out" property="cashOut" jdbcType="DOUBLE" />
+    <result column="cash_in" property="cashIn" jdbcType="DOUBLE" />
+    <result column="balance" property="balance" jdbcType="DOUBLE" />
+    <result column="operation_dt" property="operationDt" jdbcType="BIGINT" />
+    <result column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <result column="account_id" property="accountId" jdbcType="INTEGER" />
+    <result column="platform" property="platform" jdbcType="INTEGER" />
+    <result column="order_serial_no" property="orderSerialNo" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="resultMapCashDto" type="com.liguo.hgl.proxydao.dto.CashAccountDto" extends="BaseResultMap">
+	 <result column="platformString" property="platformString" jdbcType="VARCHAR" />
+     <result column="cashString" property="cashString" jdbcType="VARCHAR" />
+     <result column="dateString" property="dateString" jdbcType="VARCHAR" />
+     <result column="dateTimeString" property="dateTimeString" jdbcType="VARCHAR" />
+  </resultMap> 
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.cashOut != null" >
+         and cash_out = #{parameter.cashOut,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.cashIn != null" >
+         and cash_in = #{parameter.cashIn,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.balance != null" >
+         and balance = #{parameter.balance,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.operationDt != null" >
+         and operation_dt = #{parameter.operationDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.shopId != null" >
+         and shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.accountId != null" >
+         and account_id = #{parameter.accountId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.platform != null" >
+         and platform = #{parameter.platform,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.orderSerialNo != null" >
+         and order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, cash_out, cash_in, balance, operation_dt, shop_id, account_id, platform, order_serial_no
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_cash_account
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    order by id desc
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_cash_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_cash_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_cash_account
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbCashAccount" >
+    insert into hgl.tb_cash_account (id, cash_out, cash_in, 
+      balance, operation_dt, shop_id, 
+      account_id, platform, order_serial_no
+      )
+    values (#{id,jdbcType=INTEGER}, #{cashOut,jdbcType=DOUBLE}, #{cashIn,jdbcType=DOUBLE}, 
+      #{balance,jdbcType=DOUBLE}, #{operationDt,jdbcType=BIGINT}, #{shopId,jdbcType=INTEGER}, 
+      #{accountId,jdbcType=INTEGER}, #{platform,jdbcType=INTEGER}, #{orderSerialNo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbCashAccount" >
+    insert into tb_cash_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="cashOut != null" >
+        cash_out,
+      </if>
+      <if test="cashIn != null" >
+        cash_in,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="operationDt != null" >
+        operation_dt,
+      </if>
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="accountId != null" >
+        account_id,
+      </if>
+      <if test="platform != null" >
+        platform,
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="cashOut != null" >
+        #{cashOut,jdbcType=DOUBLE},
+      </if>
+      <if test="cashIn != null" >
+        #{cashIn,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="operationDt != null" >
+        #{operationDt,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_cash_account
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbCashAccount" flushCache="true" >
+    update tb_cash_account
+    <set >
+      <if test="cashOut != null" >
+        cash_out = #{cashOut,jdbcType=DOUBLE},
+      </if>
+      <if test="cashIn != null" >
+        cash_in = #{cashIn,jdbcType=DOUBLE},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DOUBLE},
+      </if>
+      <if test="operationDt != null" >
+        operation_dt = #{operationDt,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null" >
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null" >
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="platform != null" >
+        platform = #{platform,jdbcType=INTEGER},
+      </if>
+      <if test="orderSerialNo != null" >
+        order_serial_no = #{orderSerialNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbCashAccount" flushCache="true" >
+    update tb_cash_account
+    set cash_out = #{cashOut,jdbcType=DOUBLE},
+      cash_in = #{cashIn,jdbcType=DOUBLE},
+      balance = #{balance,jdbcType=DOUBLE},
+      operation_dt = #{operationDt,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      account_id = #{accountId,jdbcType=INTEGER},
+      platform = #{platform,jdbcType=INTEGER},
+      order_serial_no = #{orderSerialNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectCashAccountList" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+   		select
+   			tca.*		 
+  		from tb_cash_account tca
+  		where 1=1
+  		<!-- 查询条件：创建开始时间 -->
+		 <if test="parameter.accountId!=null and parameter.accountId!=''">
+             AND tca.account_id = ${parameter.accountId}
+         </if>
+  		 <!-- 查询条件：创建开始时间 -->
+		 <if test="parameter.startTime!=null and parameter.startTime!=''">
+             AND tca.operation_dt &gt;= ${parameter.startTime}
+         </if>
+         <!-- 查询条件：创建结束时间 -->
+         <if test="parameter.endTime !=null and parameter.endTime !=''">
+             AND tca.operation_dt &lt;= ${parameter.endTime}
+         </if>   
+         <if test="parameter.searchText != '' and parameter.searchText != null" >
+		 	and tca.order_serial_no like '%${parameter.searchText}%' 
+		 </if>
+		 	order by tca.id desc
+  </select>
+  
+  <!-- 批量插入 -->
+	<insert id="insertBatchCashAccount" parameterType="java.util.LinkedList" >
+		insert into hgl.tb_cash_account (
+			  cash_out, cash_in, 
+		      balance, operation_dt, shop_id, 
+		      account_id, platform, order_serial_no
+		      ) VALUES 
+		<foreach collection="list" item="item" index="index" separator="," >  
+     		(
+     			#{item.cashOut,jdbcType=DOUBLE}, 
+     			#{item.cashIn,jdbcType=DOUBLE}, 
+     			#{item.balance,jdbcType=DOUBLE}, 
+     			#{item.operationDt,jdbcType=BIGINT}, 
+     			#{item.shopId,jdbcType=INTEGER}, 
+			    #{item.accountId,jdbcType=INTEGER}, 
+			    #{item.platform,jdbcType=INTEGER}, 
+			    #{item.orderSerialNo,jdbcType=VARCHAR}
+      		)
+		</foreach>
+	</insert>
+	
+	<select id="selectByCashAccount" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="resultMapCashDto" >
+	  select tca.*,twog.id as orderGroupId,
+			 CASE tca.platform WHEN '0' THEN '充值' WHEN '1' THEN '支付' WHEN '2' THEN '返利' WHEN '3' THEN '提现' end as platformString,
+			 CASE cash_out WHEN '0' THEN CONCAT('+',tca.cash_in) ELSE CONCAT("-",tca.cash_out) END AS cashString, 
+			 FROM_UNIXTIME(tca.operation_dt/1000,'%Y-%m-%d') AS dateString,
+			 FROM_UNIXTIME(tca.operation_dt/1000,'%H:%i:%s') AS dateTimeString 
+		
+		from 
+			tb_cash_account tca
+		left join tb_wap_order_group twog on twog.order_serial_no = tca.order_serial_no
+			where 1=1
+		     <if test="parameter.accountId != null" >
+		         and tca.account_id = #{parameter.accountId,jdbcType=INTEGER}
+		     </if>
+		     order by tca.id desc
+		     <if test="parameter.pageFrom != null" >
+		         limit #{parameter.pageFrom,jdbcType=INTEGER},#{parameter.pageSize,jdbcType=INTEGER}
+		     </if>
+  </select>
+</mapper>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" class="cart-body">
+<head>
+	<meta charset="UTF-8">
+	<title>选择城市</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/index.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="dist/css/swiper.min.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
+	<script src="dist/js/swiper.min.js"></script>
+	<script src="dist/js/swiper.jquery.min.js"></script>
+	<script src="js/base.js"></script>
+</head>	
+<body style="background:#fff;">
+	
+<header class="cart verify-head">
+	<span class="icon-angle-left text-center"></span>
+	<h3 class="text-center">城市</h3>
+</header>
+
+<div class="container select-city">
+	<div class="clearfix">
+		<div class="pull-left">
+			<span class="icon-map-marker"></span> 当前定位城市
+		</div>
+		<div class="pull-right">深圳市</div>
+	</div>
+	<dl>
+		<dt>已开通城市</dt>
+		<dd>广州市</dd>
+		<dd>深圳市</dd>
+		<dd>珠海市</dd>
+		<dd>汕头市</dd>
+		<dd>韶关市</dd>
+		<dd>佛山市</dd>
+		<dd>江门市</dd>
+		<dd>湛江市</dd>
+		<dd>茂名市</dd>
+		<dd>肇庆市</dd>
+		<dd>惠州市</dd>
+		<dd>梅州市</dd>
+		<dd>汕尾市</dd>
+		<dd>河源市</dd>
+		<dd>阳江市</dd>
+		<dd>清远市</dd>
+		<dd>东莞市</dd>
+		<dd>中山市</dd>
+		<dd>潮州市</dd>
+		<dd>揭阳市</dd>
+		<dd>云浮市</dd>
+	</dl>
+
+
+</div>
+
+
+  		
+</body>
+
+</html>
+
+ <script>
+ 	$(function() {
+ 		$(document).delegate('dd','click',function(){
+ 			alert($(this).text());
+ 		})
+ 	});
+ </script>

@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仓库管理</title>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+	<link rel="stylesheet" href="Font-Awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/back.css">
+	<script src="js/jquery-1.12.2.min.js"></script>
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="dist/js/app.min.js"></script>
+  <script src="dist/js/jquery.slimscroll.min.js"></script>
+</head>
+<body class="skin-blue fixed">
+<div class="wrapper">
+  <div class="content-wrapper">
+  	<section class="content-header">
+      <h1>
+        我的主页
+        <small>仓库管理</small>
+      </h1>
+    </section>
+    <section class="content">
+      <div class="row no-margin">
+    		<div class="box box-primary">
+    			  <div class="box-body">
+             <form action="#" class="form-horizontal">
+              <div  class="col-sm-4">
+                <div class="form-group">
+                  <label class="col-sm-2 control-label">仓库名称</label>
+                  <div class="col-sm-8">
+                    <input type="text" class="form-control" placeholder="请输入查询名称">
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-4 ">
+                  <button type="button" class="btn btn-primary">查询</button>
+                  <button type="button" class="btn btn-info">添加</button>
+              </div>
+              <div class="col-sm-12">
+                <table class="table table-bordered table-hover dataTable text-center table-bordered">
+                  <tr class="info">
+                    <th>名称</th>
+                    <th>地址</th>
+                    <th>联系人</th>
+                    <th>联系电话</th>
+                    <th>仓库电话</th>
+                    <th>仓管人数</th>
+                    <th>操作</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      深圳中央仓库
+                    </td>
+                    <td>
+                      广东省-深圳市-龙华新区-民治街道-展滔科技大厦1201
+                    </td>
+                    <td>
+                      张三
+                    </td>
+                    <td>
+                      0755-58748526
+                    </td>
+                    <td>
+                      0755-58748526
+                    </td>
+                    <td>
+                      2
+                    </td>
+                    <td>
+                      <button type="button" class="btn btn-primary btn-sm allot">分配管理员</button>
+                      <button type="button" class="btn btn-primary btn-sm" id="amend">修改</button>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+                
+             </form>
+    			 </div>
+    		</div>
+    	</div>
+    </section>
+  </div>
+</div>
+
+<!-- 分配管理员开始 -->
+<div class="modal fade" id="allot" data-backdrop="static">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="btn btn-default pull-right btn-xs" type="button" id="addTab">添加</button>
+        <h4 class="modal-title">已有管理员</h4>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered" id="table1">
+          <tr>
+            <th>用户名</th>
+            <th>姓名</th>
+            <th>操作</th>
+          </tr>
+          <tr>
+            <td>zhangsn</td>
+            <td>张三</td>
+            <td><button class="btn btn-primary btn-xs" type="button">删除</button></td>
+          </tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 分配管理员结束 -->
+
+<!-- 添加+修改管理员开始 -->
+<div class="modal fade" data-backdrop="static" id="amend-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">添加仓管员</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <table class="table table-bordered" style="width:80%;margin:0 auto">
+            <tr>
+              <td>仓库名称</td>
+              <td colspan="2"><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>地址</td>
+              <td><select class="form-control"></select></td>
+              <td><select class="form-control"></select></td>
+            </tr>
+            <tr>
+              <td class="sr-only">地址</td>
+              <td><select class="form-control"></select></td>
+              <td><select class="form-control"></select></td>
+            </tr>
+            <tr>
+              <td>具体地址</td>
+              <td colspan="2"><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>仓库座机</td>
+              <td colspan="2"><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>联系人</td>
+              <td colspan="2"><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>联系方式</td>
+              <td colspan="2"><input type="text" class="form-control"></td>
+            </tr>
+            <tr>
+              <td>仓库管理员</td>
+              <td colspan="2"><select class="form-control"></select></td>
+            </tr>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- 添加+修改管理员结束 -->
+
+</body>
+<script>
+  $(function() {
+    $('.allot').click(function(event) {
+      $('#allot').modal('show')
+    });
+    $('#addTab').click(function(event) {
+      var addTr=$('<tr>'
+                   + '<td colspan="2">'
+                   +    '<select class="form-control">'
+                   +      '<option>1</option>'
+                   +     '</select>'
+                   +  '</td>'
+                   +  '<td>'
+                   +    '<button class="btn btn-primary btn-xs" type="button">'
+                   +      '保存'
+                   +    '</button>'
+                   +  '</td>'
+                   +'</tr>')
+      $('#table1').append(addTr)
+    });
+    $('#amend').click(function(event) {
+      $('#amend-modal').modal('show')
+    });
+  });
+</script>
+</html>

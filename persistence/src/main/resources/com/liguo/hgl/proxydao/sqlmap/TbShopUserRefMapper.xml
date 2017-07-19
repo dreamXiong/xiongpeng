@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbShopUserRefMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbShopUserRef" >
+    <id column="shop_id" property="shopId" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="company_name" property="companyName" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="remark1" property="remark1" jdbcType="VARCHAR" />
+    <result column="remark2" property="remark2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.shopId != null" >
+      	 and  ref.shop_id = #{parameter.shopId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userId != null" >
+      	 and ref.user_id = #{parameter.userId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userName != null" >
+         and au.user_name = #{parameter.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.companyName != null" >
+         and si.company_name = #{parameter.companyName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and ref.version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status != null" >
+         and si.auth_status = '1'
+      </if>
+      <if test="parameter.remark1 != null" >
+         and ref.remark1 = #{parameter.remark1,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark2 != null" >
+         and ref.remark2 = #{parameter.remark2,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+     ref.shop_id,
+	 ref.user_id,
+	 au.user_name,
+	 si.company_name,
+	 ref.version,
+	 ref.STATUS,
+	 ref.remark1,
+	 ref.remark2
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_shop_user_ref ref
+    LEFT JOIN tb_admin_user au ON au.id = ref.user_id
+	LEFT JOIN tb_shop_info si ON si.id = ref.shop_id
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_shop_user_ref ref
+    LEFT JOIN tb_admin_user au ON au.id = ref.user_id
+	LEFT JOIN tb_shop_info si ON si.id = ref.shopId
+    where shopId = #{shopId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" flushCache="true" >
+    delete from tb_shop_user_ref 
+    where shop_id = #{shopId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_shop_user_ref
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" >
+    insert into hgl.tb_shop_user_ref (shopId, user_id, user_name, 
+      company_name, version, status, 
+      remark1, remark2)
+    values (#{shopId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, 
+      #{companyName,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{remark1,jdbcType=VARCHAR}, #{remark2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" >
+    insert into tb_shop_user_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        shop_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="companyName != null" >
+        company_name,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remark1 != null" >
+        remark1,
+      </if>
+      <if test="remark2 != null" >
+        remark2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="shopId != null" >
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark1 != null" >
+        #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        #{remark2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_shop_user_ref
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" flushCache="true" >
+    update tb_shop_user_ref
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="companyName != null" >
+        company_name = #{companyName,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="remark1 != null" >
+        remark1 = #{remark1,jdbcType=VARCHAR},
+      </if>
+      <if test="remark2 != null" >
+        remark2 = #{remark2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopId = #{shopId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" flushCache="true" >
+    update tb_shop_user_ref
+    set user_name = #{userName,jdbcType=VARCHAR},
+      company_name = #{companyName,jdbcType=VARCHAR},
+      version = version + 1,
+      status = #{status,jdbcType=INTEGER},
+      remark1 = #{remark1,jdbcType=VARCHAR},
+      remark2 = #{remark2,jdbcType=VARCHAR}
+    where shopId = #{shopId,jdbcType=INTEGER}
+      and user_id = #{userId,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+   <select id="selectShopListByUser" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+		    select
+		    	shop_id
+		    from tb_shop_user_ref
+		   		where
+		   		user_id = #{userId,jdbcType=INTEGER}
+	  </select>
+  
+  <select id="findNotUserList" parameterType="com.liguo.hgl.proxydao.model.TbShopUserRef" resultType="hashmap" >
+   SELECT
+		si.id as shopId,
+		si.company_name as companyName
+	FROM
+		tb_shop_info si
+	WHERE
+		si.shop_type ='102'
+		AND
+		si.auth_status = '1'
+			AND
+				NOT EXISTS (
+					SELECT
+						1
+					FROM
+						(
+							SELECT
+								ref.shop_id
+							FROM
+								tb_shop_user_ref ref
+							WHERE
+								ref.user_id = #{userId,jdbcType=INTEGER}
+						) t
+					WHERE
+						t.shop_id = si.id
+				)
+  </select>
+	
+</mapper>

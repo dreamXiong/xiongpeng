@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbWapOrderDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbWapOrderDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_group_id" property="orderGroupId" jdbcType="INTEGER" />
+    <result column="inventory_id" property="inventoryId" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="buy_price" property="buyPrice" jdbcType="DOUBLE" />
+    <result column="buy_num" property="buyNum" jdbcType="INTEGER" />
+    <result column="pay_money" property="payMoney" jdbcType="DOUBLE" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.orderGroupId != null" >
+         and order_group_id = #{parameter.orderGroupId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.inventoryId != null" >
+         and inventory_id = #{parameter.inventoryId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.price != null" >
+         and price = #{parameter.price,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.buyPrice != null" >
+         and buy_price = #{parameter.buyPrice,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.buyNum != null" >
+         and buy_num = #{parameter.buyNum,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.payMoney != null" >
+         and pay_money = #{parameter.payMoney,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, order_group_id, inventory_id, price, buy_price, buy_num, pay_money, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_wap_order_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_wap_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_wap_order_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_wap_order_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderDetail" >
+    insert into hgl.tb_wap_order_detail (id, order_group_id, inventory_id, 
+      price, buy_price, buy_num, 
+      pay_money, version)
+    values (#{id,jdbcType=INTEGER}, #{orderGroupId,jdbcType=INTEGER}, #{inventoryId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DOUBLE}, #{buyPrice,jdbcType=DOUBLE}, #{buyNum,jdbcType=INTEGER}, 
+      #{payMoney,jdbcType=DOUBLE}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderDetail" >
+    insert into tb_wap_order_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderGroupId != null" >
+        order_group_id,
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="buyPrice != null" >
+        buy_price,
+      </if>
+      <if test="buyNum != null" >
+        buy_num,
+      </if>
+      <if test="payMoney != null" >
+        pay_money,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderGroupId != null" >
+        #{orderGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="buyPrice != null" >
+        #{buyPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="buyNum != null" >
+        #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_wap_order_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderDetail" flushCache="true" >
+    update tb_wap_order_detail
+    <set >
+      <if test="orderGroupId != null" >
+        order_group_id = #{orderGroupId,jdbcType=INTEGER},
+      </if>
+      <if test="inventoryId != null" >
+        inventory_id = #{inventoryId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="buyPrice != null" >
+        buy_price = #{buyPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="buyNum != null" >
+        buy_num = #{buyNum,jdbcType=INTEGER},
+      </if>
+      <if test="payMoney != null" >
+        pay_money = #{payMoney,jdbcType=DOUBLE},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbWapOrderDetail" flushCache="true" >
+    update tb_wap_order_detail
+    set order_group_id = #{orderGroupId,jdbcType=INTEGER},
+      inventory_id = #{inventoryId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DOUBLE},
+      buy_price = #{buyPrice,jdbcType=DOUBLE},
+      buy_num = #{buyNum,jdbcType=INTEGER},
+      pay_money = #{payMoney,jdbcType=DOUBLE},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <!-- 批量插入 -->
+  <insert id="batchInsert" parameterType="ArrayList" >
+    insert into tb_wap_order_detail (order_group_id, inventory_id,price, buy_price, buy_num, pay_money)
+    values 
+      <foreach collection="list" item="obj" index="index" separator="," >
+	    (#{obj.orderGroupId,jdbcType=INTEGER}, #{obj.inventoryId,jdbcType=INTEGER}, 
+	      #{obj.price,jdbcType=DOUBLE}, #{obj.buyPrice,jdbcType=DOUBLE}, #{obj.buyNum,jdbcType=INTEGER}, 
+	      #{obj.payMoney,jdbcType=DOUBLE})
+      </foreach>
+      <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+	    SELECT @@IDENTITY
+	  </selectKey>
+  </insert>
+  
+   <!-- 卖家已经发货，终止订单时 增加发货时的库存-->
+  <update id="stopOrderForSendGoods" parameterType="java.lang.Integer" flushCache="true" >
+    update tb_wap_inventory_lock til,tb_wap_product_inventory tpi
+	set 
+		tpi.sale_inventory = tpi.sale_inventory + til.lock_quantity
+		where til.inventory_id = tpi.id
+		and  tpi.id in  (select inventory_id from tb_wap_order_detail where order_group_id= #{orderGroupId} )
+		and til.order_id = #{orderGroupId}
+  </update>
+  
+  <!-- 卖家还未发货，订单终止时减占用量 -->
+  <update id="updateSaleInventoryStopOrder" parameterType="java.lang.Integer" flushCache="true" >
+   update tb_wap_inventory_lock til,tb_wap_product_inventory tpi
+	set 
+		tpi.unsale_inventory = tpi.unsale_inventory - til.lock_quantity
+		where til.inventory_id = tpi.id
+		and  tpi.id in  (select inventory_id from tb_wap_order_detail where order_group_id= #{orderGroupId} )
+		and til.order_id = #{orderGroupId}
+  </update>
+  
+   <!-- 支付完成时加占用量 -->
+  <update id="updateSaleInventoryPayment" parameterType="java.lang.Integer" flushCache="true" >
+    update tb_wap_inventory_lock til,tb_wap_product_inventory tpi
+	set 
+		tpi.unsale_inventory = tpi.unsale_inventory + til.lock_quantity
+		where til.inventory_id = tpi.id
+		and  tpi.id in  (select inventory_id from tb_wap_order_detail where order_group_id= #{orderGroupId} )
+		and til.order_id = #{orderGroupId}
+  </update>
+  
+  <!-- 发货时减库存量和加占用量 -->
+  <update id="shopSendGoods" parameterType="java.lang.Integer" flushCache="true" >
+  update tb_wap_inventory_lock til,tb_wap_product_inventory tpi
+	set 
+		tpi.sale_inventory = tpi.sale_inventory - til.lock_quantity,
+		tpi.unsale_inventory = tpi.unsale_inventory - til.lock_quantity
+		where til.inventory_id = tpi.id
+		and  tpi.id in  (select inventory_id from tb_wap_order_detail where order_group_id= #{orderGroupId} )
+		and til.order_id = #{orderGroupId}
+  </update>
+  
+   <!-- 买家确认收货时操作 -->
+  <update id="updateSaleInventoryConfigGoods" parameterType="java.lang.Integer" flushCache="true" >
+   update tb_wap_inventory_lock til,tb_wap_product_inventory tpi
+	set 
+		tpi.unsale_inventory = tpi.unsale_inventory - til.lock_quantity ,
+		tpi.sale_inventory = tpi.sale_inventory - til.lock_quantity		
+		where til.inventory_id = tpi.id
+		and  tpi.id in  (select inventory_id from tb_wap_order_detail where order_group_id= #{orderGroupId} )
+		and til.order_id = #{orderGroupId}
+  </update>
+  
+  <select id="selectTotalAmount" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Double">
+  	select buy_price*buy_num as totalAmount from tb_wap_order_detail where 1=1
+  	<if test="parameter.orderGroupId != null">
+  		and order_group_id = #{parameter.orderGroupId,jdbcType=INTEGER}
+  	</if>
+  </select>
+</mapper>

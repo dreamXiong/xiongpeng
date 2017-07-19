@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbManualorderDetailMapper" >
+    <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbManualorderDetail">
+	    <id column="id" property="id" jdbcType="INTEGER" />
+	    <result column="buy_id" property="buyId" jdbcType="VARCHAR" />
+	    <result column="order_id" property="orderId" jdbcType="INTEGER" />
+	    <result column="buy_dt" property="buyDt" jdbcType="BIGINT" />
+	    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+	    <result column="pay_amount" property="payAmount" jdbcType="DOUBLE" />
+	    <result column="status_before" property="statusBefore" jdbcType="INTEGER" />
+	    <result column="status_after" property="statusAfter" jdbcType="INTEGER" />
+	    <result column="operate_dt" property="operateDt" jdbcType="BIGINT" />
+	    <result column="operate_by" property="operateBy" jdbcType="VARCHAR" />
+	    <result column="version" property="version" jdbcType="INTEGER" />
+  </resultMap>
+  <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.ManualOrderDetailDto" extends="BaseResultMap">
+  	<result column="orderSerialNo" property="orderSerialNo" jdbcType="VARCHAR"/>
+  	<result column="userName" property="userName" jdbcType="VARCHAR"/>
+  	<result column="from" property="from" jdbcType="BIGINT"/>
+  	<result column="to" property="to" jdbcType="BIGINT"/>
+  </resultMap>
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.buyId != null" >
+         and buy_id = #{parameter.buyId,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.orderId != null" >
+         and order_id = #{parameter.orderId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.buyDt != null" >
+         and buy_dt = #{parameter.buyDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.mobile != null" >
+         and mobile = #{parameter.mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.payAmount != null" >
+         and pay_amount = #{parameter.payAmount,jdbcType=DOUBLE}
+      </if>
+      <if test="parameter.statusBefore != null" >
+         and status_before = #{parameter.statusBefore,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.statusAfter != null" >
+         and status_after = #{parameter.statusAfter,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.operateDt != null" >
+         and operate_dt = #{parameter.operateDt,jdbcType=BIGINT}
+      </if>
+      <if test="parameter.operateBy != null" >
+         and operate_by = #{parameter.operateBy,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, buy_id, order_id, buy_dt, mobile, pay_amount, status_before, status_after, operate_dt, 
+    operate_by, version
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_manualorder_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_manualorder_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_manualorder_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_manualorder_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbManualorderDetail" >
+    insert into hgl.tb_manualorder_detail (id, buy_id, order_id, 
+      buy_dt, mobile, pay_amount, 
+      status_before, status_after, operate_dt, 
+      operate_by, version)
+    values (#{id,jdbcType=INTEGER}, #{buyId,jdbcType=VARCHAR}, #{orderId,jdbcType=INTEGER}, 
+      #{buyDt,jdbcType=BIGINT}, #{mobile,jdbcType=VARCHAR}, #{payAmount,jdbcType=DOUBLE}, 
+      #{statusBefore,jdbcType=INTEGER}, #{statusAfter,jdbcType=INTEGER}, #{operateDt,jdbcType=BIGINT}, 
+      #{operateBy,jdbcType=VARCHAR}, #{version,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbManualorderDetail" >
+    insert into tb_manualorder_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="buyId != null" >
+        buy_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="buyDt != null" >
+        buy_dt,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="payAmount != null" >
+        pay_amount,
+      </if>
+      <if test="statusBefore != null" >
+        status_before,
+      </if>
+      <if test="statusAfter != null" >
+        status_after,
+      </if>
+      <if test="operateDt != null" >
+        operate_dt,
+      </if>
+      <if test="operateBy != null" >
+        operate_by,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="buyId != null" >
+        #{buyId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="buyDt != null" >
+        #{buyDt,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        #{payAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="statusBefore != null" >
+        #{statusBefore,jdbcType=INTEGER},
+      </if>
+      <if test="statusAfter != null" >
+        #{statusAfter,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="operateBy != null" >
+        #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_manualorder_detail
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbManualorderDetail" flushCache="true" >
+    update tb_manualorder_detail
+    <set >
+      <if test="buyId != null" >
+        buy_id = #{buyId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="buyDt != null" >
+        buy_dt = #{buyDt,jdbcType=BIGINT},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="payAmount != null" >
+        pay_amount = #{payAmount,jdbcType=DOUBLE},
+      </if>
+      <if test="statusBefore != null" >
+        status_before = #{statusBefore,jdbcType=INTEGER},
+      </if>
+      <if test="statusAfter != null" >
+        status_after = #{statusAfter,jdbcType=INTEGER},
+      </if>
+      <if test="operateDt != null" >
+        operate_dt = #{operateDt,jdbcType=BIGINT},
+      </if>
+      <if test="operateBy != null" >
+        operate_by = #{operateBy,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbManualorderDetail" flushCache="true" >
+    update tb_manualorder_detail
+    set buy_id = #{buyId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=INTEGER},
+      buy_dt = #{buyDt,jdbcType=BIGINT},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      pay_amount = #{payAmount,jdbcType=DOUBLE},
+      status_before = #{statusBefore,jdbcType=INTEGER},
+      status_after = #{statusAfter,jdbcType=INTEGER},
+      operate_dt = #{operateDt,jdbcType=BIGINT},
+      operate_by = #{operateBy,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <!-- 分页 -->
+  <select id="selectObjectByPage" resultMap="BaseResultMapDto" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+  	select m.*,o.order_serial_no as orderSerialNo from tb_manualorder_detail as m
+  				inner join tb_order_group as o on m.order_id = o.id 
+  		<if test="parameter.orderSerialNo != null and parameter.orderSerialNo != ''">
+ 			and o.order_serial_no = #{parameter.orderSerialNo,jdbcType=VARCHAR}
+ 		</if> 				
+ 		<trim prefix="where" prefixOverrides="and|or" >
+ 			<if test="parameter.operateBy != null and parameter.operateBy != ''" >
+	         	and m.operate_by = #{parameter.operateBy,jdbcType=VARCHAR}
+	      	</if> 
+	      	
+	    	<if test="parameter.buyId != null and parameter.buyId != ''" >
+	         	and m.buy_id = #{parameter.buyId,jdbcType=VARCHAR}
+	      	</if>   
+    	</trim>
+   		<if test="orderByClause != null" >
+      		order by ${orderByClause}
+    	</if>
+    <include refid="common.Mysql_Pagination_Limit" />		
+  </select>
+</mapper>

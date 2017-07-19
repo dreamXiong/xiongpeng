@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>会员登录</title>
+	<link rel="stylesheet" href="css/base.css">
+	<link rel="stylesheet" href="css/user.css">
+</head>
+<body>
+
+<!-- 登录logo开始 -->
+	<div class="user-head">
+		<div class="area">
+			<h1 class="pull-left">
+				<a href="javascript:;">
+					<img src="images/logo.png"  alt="">
+				</a>
+				<div class="pull-left head-title">
+					欢 迎 登 录
+				</div>
+			</h1>
+			
+		</div>
+	</div>
+<!-- 登录logo结束 -->
+<!-- 登录表单开始 -->
+	<div class="user-body">
+		<div class="area user-bg">
+			<div class="pull-right forms">
+				<h2 class="text-center text-red">会员登录</h2>
+				<form>
+					<div class="form-row">
+						<label class="iconfont" for="use">&#xe610;</label>
+						<input class="col-10" type="text" id="use" placeholder="请输入用户名">
+					</div>
+					<div class="form-row">
+						<label class="iconfont" for="pas">&#xe611;</label>
+						<input class="col-10"  type="password" id="pas" placeholder="请输入密码">
+					</div>
+					<div class="form-row">
+							<label for="">验证码</label>
+							<input type="text" class="verify">
+						<div class="verify-img "> 
+							<img src="images/verify.png" height="36" width="100" alt="">
+							<span class="cursor">换一张</span>
+						</div>
+					</div>
+					<div>
+						<input type="checkbox" id="breapass" style="vertical-align:middle">
+						<label for="breapass">记住密码</label>
+						<a href="javascript:;" class="pull-right" style="margin-top:8px">忘记密码?</a>
+					</div>
+				</form>
+				<div class="btn-group">
+					<div class="text-center">
+						<a href="javascript:;">登录</a>
+					</div>
+					<div class="text-center">
+						<a href="会员注册.html">个人用户注册</a>
+					</div>
+					<div class="text-center">
+						<a href="经销商用户注册.html">销售商会员注册</a>
+					</div>
+					<div class="text-center">
+						<a href="厂家用户注册.html">厂家会员注册</a>
+					</div>
+				</div>
+				<div>个人用户注册，赠10元代金券</div>
+				<div>商家用户注册，赠100元代金券</div>
+				<div>厂家用户注册，赠100元代金券</div>
+			</div>
+		</div>
+	</div>
+<!-- 登录表单结束 -->
+
+<!-- 底部开始 -->
+	<div class="foot">
+		<div class="area">
+			<p class="font-text text-center">
+				<span><a href="javascript:">购物指南</a></span>
+				<span><a href="javascript:">免费注册</a></span>
+				<span><a href="javascript:">联系客服</a></span>
+				<span><a href="javascript:">特色服务</a></span>
+				<span><a href="javascript:">招商代理</a></span>
+				<span><a href="javascript:">满额赠送</a></span>
+				<span><a href="javascript:">商家中心</a></span>
+				<span><a href="javascript:">入驻平台</a></span>
+				<span><a href="javascript:">入驻协议</a></span>
+				<span><a href="javascript:">交易规则</a></span>
+			</p>
+			<p class="text-center" style="line-height:26px">Copyright © 2012-2019 http://www.hgeili.com All Rights Reserved.</p>
+			<p class="text-center" style="line-height:26px">粤ICP备16000497号-1 立国网络技术有限公司 版权所有</p>
+		</div>
+	</div>
+<!-- 底部结束 -->
+
+</body>
+<script>
+	
+	function nameHide(){
+		$('.name-list').stop().slideUp(300)
+	}
+	$(function() {
+		var timer= null;
+		$('.name').hover(function(){
+			$(this).find('.name-list').stop().slideDown(100);
+			clearTimeout(timer)
+		},function(){
+			timer = setTimeout(nameHide,500);
+		})
+		$('.seek-class a').click(function(event) {
+			$(this).addClass('active').siblings('a').removeClass('active')
+		});
+		$('.seek-nav .current').click(function(event) {
+			$(this).addClass('active').siblings('.current').removeClass('active')
+		});
+		
+		$('.prev').click(function(){
+			var prevText = $('#prev').text();
+			var nextText = $('.next').text();
+			prevText--;
+			
+			if(prevText>0 && prevText<5){
+				$('#prev').text(prevText);
+			}
+		})
+		$('.next').click(function(){
+			var prevText = $('#prev').text();
+			var nextText = $('.next').text();
+			prevText++;
+			
+			if(prevText>0 && prevText<5){
+				$('#prev').text(prevText);
+			}
+		})
+		$('.seek-icon .cursor').click(function(){
+			var index = $(this).index();
+			$('.show .style-list').eq(index).show().siblings('.style-list').hide()
+		})
+		$('.pagination .page').click(function(event) {
+			$(this).addClass('active').siblings('li').removeClass('active')
+		});
+		$('.pagination .prev').click(function(event) {
+			$('.pagination .active').prev('.page').addClass('active').siblings('li').removeClass('active')
+		})
+		$('.pagination .next').click(function(event) {
+			$('.pagination .active').next('.page').addClass('active').siblings('li').removeClass('active')
+		})
+	});
+</script>
+</html>

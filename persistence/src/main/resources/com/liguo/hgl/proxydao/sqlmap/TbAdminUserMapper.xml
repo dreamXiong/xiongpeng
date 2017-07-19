@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.liguo.hgl.proxydao.dao.TbAdminUserMapper" >
+  <resultMap id="BaseResultMap" type="com.liguo.hgl.proxydao.model.TbAdminUser">    
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="role_id" property="roleId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="id_card" property="idCard" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="version" property="version" jdbcType="INTEGER" />
+    <result column="recommend_code" property="recommendCode" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseResultMapDto" type="com.liguo.hgl.proxydao.dto.TbAdminUserDto" extends="BaseResultMap">
+  	<result column="roleName" property="roleName" jdbcType="VARCHAR"/>
+  </resultMap>
+  
+  <sql id="Object_Where_Clause" >
+    <trim prefix="where" prefixOverrides="and|or" >
+      <if test="parameter.id != null">
+      	and id = #{parameter.id,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.userName != null" >
+         and user_name = #{parameter.userName,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.password != null" >
+         and password = #{parameter.password,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.address != null" >
+         and address = #{parameter.address,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.email != null" >
+         and email = #{parameter.email,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.mobile != null" >
+         and mobile = #{parameter.mobile,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.name != null" >
+         and name = #{parameter.name,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.roleId != null" >
+         and role_id = #{parameter.roleId,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.type != null" >
+         and type = #{parameter.type,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.status != null" >
+         and status = #{parameter.status,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.idCard != null" >
+         and id_card = #{parameter.idCard,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.remark != null" >
+         and remark = #{parameter.remark,jdbcType=VARCHAR}
+      </if>
+      <if test="parameter.version != null" >
+         and version = #{parameter.version,jdbcType=INTEGER}
+      </if>
+      <if test="parameter.recommendCode != null" >
+         and recommend_code = #{parameter.recommendCode,jdbcType=VARCHAR}
+      </if>
+    </trim>
+  </sql>
+  <sql id="Base_Column_List" >
+     id, user_name, password, address, email, mobile, name, role_id, type, status, id_card, 
+    remark, version,recommend_code
+  </sql>
+  <select id="selectByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultMap="BaseResultMap" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tb_admin_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <include refid="common.Mysql_Pagination_Limit" />
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_admin_user
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" flushCache="true" >
+    delete from tb_admin_user
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" flushCache="true" >
+    delete from tb_admin_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.liguo.hgl.proxydao.model.TbAdminUser" >
+    insert into hgl.tb_admin_user (id, user_name, password, 
+      address, email, mobile, 
+      name, role_id, type, 
+      status, id_card, remark, 
+      version)
+    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
+      #{address,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{status,jdbcType=INTEGER}, #{idCard,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{version,jdbcType=INTEGER})
+  </insert>
+  
+  <insert id="insertSelective" parameterType="com.liguo.hgl.proxydao.model.TbAdminUser" >
+   insert into tb_admin_user
+   <trim prefix="(" suffix=")" suffixOverrides="," >
+    <if test="id != null" >
+        id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="mobile != null" >
+        mobile,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="roleId != null" >
+        role_id,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="idCard != null" >
+        id_card,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+       <if test="recommendCode != null" >
+        #{recommendCode,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByObject" parameterType="com.liguo.hgl.proxydao.model.Criteria" resultType="java.lang.Integer" >
+    select count(*) from tb_admin_user
+    <if test="parameter != null" >
+      <include refid="Object_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="com.liguo.hgl.proxydao.model.TbAdminUser" flushCache="true" >
+    update tb_admin_user
+    <set >
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="mobile != null" >
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roleId != null" >
+        role_id = #{roleId,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="idCard != null" >
+        id_card = #{idCard,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = version + 1,
+      </if>
+      <if test="recommendCode != null" >
+        recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.liguo.hgl.proxydao.model.TbAdminUser" flushCache="true" >
+    update tb_admin_user
+    set user_name = #{userName,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      role_id = #{roleId,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      id_card = #{idCard,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      recommend_code = #{recommendCode,jdbcType=VARCHAR},
+      version = version + 1
+    where id = #{id,jdbcType=INTEGER}
+     and version = #{version,jdbcType=INTEGER} 
+  </update>
+  
+  <select id="selectByUsernameAndPwd" resultMap="BaseResultMapDto" parameterType="com.liguo.hgl.proxydao.model.Criteria" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_admin_user
+    where user_name = #{parameter.userName,jdbcType=VARCHAR} and password = #{parameter.password,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 分页 -->
+  <select id="selectByObjectPage" resultMap="BaseResultMapDto" parameterType="com.liguo.hgl.proxydao.model.Criteria">
+  	select u.*,r.name as roleName 
+  		    from tb_admin_user as u left join tb_admin_role as r on r.id = u.role_id 		
+  	<trim prefix="where" prefixOverrides="and|or">
+  		<if test="parameter.userName != null and parameter.userName!=''">
+			and u.user_name like CONCAT('%',#{parameter.userName,jdbcType=VARCHAR},'%')
+		</if>	
+		<if test="parameter.name != null and parameter.name !=''">
+			and u.name like CONCAT('%',#{parameter.name,jdbcType=VARCHAR},'%')
+		</if>
+		<if test="parameter.mobile != null and parameter.mobile != ''">
+			and u.mobile like CONCAT('%',#{parameter.mobile,jdbcType=VARCHAR},'%')
+		</if>		
+  	</trim>	
+  	<if test="orderByClause!=null">
+		order by ${orderByClause}
+	</if>
+	
+	<include refid="common.Mysql_Pagination_Limit" />	
+  </select> 
+    
+  <select id="selectByTbWarehouseId" resultType="java.lang.Integer" resultMap="BaseResultMap" >
+	select 
+		id, 
+		user_name, 
+		password, 
+		address, 
+		email, 
+		mobile, 
+		name, 
+		role_id, 
+		id_card, 
+		remark, 
+		version 
+		from tb_admin_user 
+			where 
+			type = 110
+	 			and
+			id not in (select twu.user_id from tb_warehouse_user twu where twu.warehouse_id = #{tbWIntegerId})
+  </select>
+   
+   
+</mapper>
